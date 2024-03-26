@@ -21,13 +21,22 @@ People who install vantage6. We are probably not going to cover this topic.
 
 ## Objectives (we need max. 8)
 ### Newbie objectives
-1. Understanding privacy enhancing technology (PET) and federated learning
-  - Understand scenarios where PET could be applied
-  - Understand that there is paperwork to be done (DPIA etc.)
+1. Understand the basic concepts of PET
+   - Understand PET, FL, MPC, homomorphic encryption, differential privacy
+   - Understand how different PET techniques relate
+   - Understand scenarios where PET could be applied
+   - Understand horizontal vs vertical partitioning
+   - Decompose a simple analysis in a federated way 
+   - Understand that there is paperwork to be done (DPIA etc.)
 2. Understanding v6
-  - Understand how to apply v6 to FL scenarios
-  - Understand the future of vantage6
-  - Understand how to manage v6 collaborations
+   - List the high-level infrastructure components of v6 (server, client, node)
+   - Understand that there is different actors in algorithms
+   - Understand that the v6 server does not run algorithms
+   - Explain how a simple analysis runs on v6
+   - Understand the problems that v6 solves
+   - Understand how to apply v6 to FL scenarios
+   - Understand the future of vantage6
+   - Be able to manage v6 collaborations with the UI
 3. Running PET analysis without programming
    - Know some analyses that are available
 
@@ -40,3 +49,4 @@ People who install vantage6. We are probably not going to cover this topic.
 ### Rejected objectives
 - setting up v6 infrastructure (very difficult, requires different prerequisites)
 - how to do the paperwork
+
