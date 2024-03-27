@@ -59,6 +59,7 @@ necessary to combine multiple techniques in order to overcome your problems.
 ## Technology doesn't solve everything
 
 Paperwork, trust, etc.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - TODO
