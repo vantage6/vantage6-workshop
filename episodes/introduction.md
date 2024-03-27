@@ -30,8 +30,29 @@ rather than the raw data itself. This raises an intriguing question: Can we unlo
 insights in a manner that upholds and respects privacy standards?
 
 ## Introducing the landscape of PETs
+Incomplete list of PETs:
+- Homomorphic encryption
+- Federated learning
+- Secure Multiparty Computation
+- differential privacy
+- synthetic data
+
+See individual PETs as building blocks to craft your analyses.
 
 ## Data partitioning
+Data sharing challenges come in many different shapes and sizes, but in the end, the goal of the
+researchers is often to analyze data *as if* it were available in one big table in one place. 
+There are 2 main ways in which the dataset can be separated over different sources: **horizontal**
+and **vertical** partioning. In horizontal partitioning, this giant table has been snipped in pieces
+by making horizontal cuts. The result is that information of an individual record will stay in one
+place, but the records themselves have been scattered around in different locations.
+
+In vertical partitioning, the cuts have been made vertically. Columns have now been divided over
+different locations. This type of partitioning is usually more challenging because often a way needs
+to be found to link identities accross datasources.
+
+In reality, data can be horizontally and vertically partitioned at the same time. It might be
+necessary to combine multiple techniques in order to overcome your problems.
 
 ## Example: federated average
 
