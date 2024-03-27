@@ -48,25 +48,24 @@ People who install vantage6. We are probably not going to cover this topic.
         - Be able to register a new organization
         - Ad a user to the new organization
         - Reset an api key
-   
 
 ### Data scientist objectives
 Preparation (might require setup session):
 - Install v6 packages
 - Install docker
 
-1. Run PET analysis using the python client
+5. Run PET analysis using the python client
    - Log in to v6
    - Find available algorithms in community store
    - Look up your collaboration, organization, nodes
    - Run an algorithm in an existing collaboration
    - View results of a (sub)task
-2. Make your data available to a v6 network
+6. Make your data available to a v6 network
    - Understand [IT requirements](https://docs.vantage6.ai/en/main/node/requirements.html) to share data with v6 (python, docker, )
    - Know the basic commands of the v6 cli
    - Configure a new node using the wizard
    - Start and observe the logs
-3. Creating basic algorithms
+7. Creating basic algorithms
    - Understand the available algorithm tools
    - Create a new personalized boilerplate using the v6 cli
    - Adapt the boilerplate into a simple algorithm
@@ -75,10 +74,10 @@ Preparation (might require setup session):
    - Set up a local test environment using the v6 cli (`v6 dev`)
    - Publish your algorithm in the algorithm store
    - Run your algorithm in the UI
-4. Understanding advanced future features
+8. Understanding advanced future features
    - Understand how to integrate external libraries into v6
    - Know about build service
-5. Working on your own v6 projects
+9. Working on your own v6 projects
    - Know some examples/starting points
 
 ### Rejected objectives
