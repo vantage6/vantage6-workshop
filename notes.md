@@ -1,32 +1,42 @@
 ## Target Audience
+
 ### Newbies
+
 Want to run basic federated data analyses
+
 #### Prerequisites
+
 - Know how to do data analysis in a centralized setting
 
 ### Data scientist
+
 Knows what the newbie knows. Want more control over their analyses. Potentially develop their own
 federated algorithms.
 
 #### Prerequisites
+
 - Basic (!) python knowledge
 - Experience with command line
 - Knows how to do federated analysis using the vantage6 UI
 
 ### Sys admin (not targeted)
+
 People who install vantage6. We are probably not going to cover this topic.
 
 #### Prerequisites
+
 - Lots of prerequisites
 
 ## Objectives (we need max. 8)
+
 ### Newbie objectives
+
 1. Understand the basic concepts of PET
    - Understand PET, FL, MPC, homomorphic encryption, differential privacy
    - Understand how different PET techniques relate
    - Understand scenarios where PET could be applied
    - Understand horizontal vs vertical partitioning
-   - Decompose a simple analysis in a federated way 
+   - Decompose a simple analysis in a federated way
    - Understand that there is paperwork to be done (DPIA etc.)
 2. Understanding v6
    - List the high-level infrastructure components of v6 (server, client, node)
@@ -45,13 +55,22 @@ People who install vantage6. We are probably not going to cover this topic.
    - Understand the relation between the administrative entities of v6 (e.g. users, orgs, collaborations)
    - Understand the permission system of v6
    - be able to manage a collaboration using the UI
-        - Be able to register a new organization
-        - Ad a user to the new organization
-        - Reset an api key
+     - Be able to register a new organization
+     - Ad a user to the new organization
+     - Reset an api key
 
 ### Data scientist objectives
+
 Preparation (might require setup session):
-- Install v6 packages
+
+- Install v6 packages (which version?)
+
+```bash
+pip install vantage6
+pip install vantage6-algorithm-tools
+pip install vantage6-client
+```
+
 - Install docker
 
 5. Run PET analysis using the python client
@@ -81,6 +100,6 @@ Preparation (might require setup session):
    - Know some examples/starting points
 
 ### Rejected objectives
+
 - setting up v6 infrastructure (very difficult, requires different prerequisites)
 - how to do the paperwork
-
