@@ -102,7 +102,7 @@ after you have implemented your functions.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 1: Create a personalized boilerplate
+## Challenge: Create a personalized boilerplate
 
 Create a personalized template to start developing your average algorithm
 
@@ -124,6 +124,7 @@ TODO what do they need to do for central?
 The personalized boilerplate should be successfully created.
 
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 Your personalized boilerplate is now ready to be adapted into a simple algorithm. We
 are now going to implement the average algorithm in several steps. Note that the README
@@ -159,7 +160,7 @@ most of the code to test your algorithm.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 2: Implement the functions and test them
+## Challenge: Implement the functions and test them
 
 Implement your partial and central functions. Adapt and run `test.py` to test your
 function implementation.
@@ -174,6 +175,7 @@ TODO the average reported by `test.py` should be X. It should also provide sum Y
 count Z for each of the partial functions.
 
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Build your algorithm into a docker image
 
@@ -204,6 +206,7 @@ v6 dev create-demo-network
 ```
 
 TODO test on linux/mac?
+TODO it would be very convenient to add algorithm store and UI to this network
 
 This command creates a vantage6 server configuration, and then registers a
 collaboration with 3 organizations in it. It registers a node for each organization and
