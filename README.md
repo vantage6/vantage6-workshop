@@ -1,6 +1,11 @@
 # The Carpentries Workbench Template Markdown Lesson
 
-This lesson is a template lesson that uses [The Carpentries Workbench][workbench]. 
+This lesson is a template lesson that uses [The Carpentries Workbench][workbench].
+
+## Setup and installation
+
+To set up a local environment for building the lesson website, please the
+[installation instructions](https://carpentries.github.io/workbench/#installation) for details.
 
 ## Note about lesson life cycle stage
 Although the `config.yaml` states the life cycle stage as pre-alpha, **the template is stable and ready to use**. The life cycle stage is preset to `"pre-alpha"` as this setting is appropriate for new lessons initialised using the template.
