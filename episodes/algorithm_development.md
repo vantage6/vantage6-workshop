@@ -33,7 +33,7 @@ exercises: 2
 
 ## Introduction
 
-The goal of this lesson is to develop a very simple average algorithm, and walk through
+The goal of this lesson is to develop a simple average algorithm, and walk through
 all the steps from creating the proper code up until running it in the User Interface
 and via the Python client. We will start by explaining how the algorithm
 interacts with the vantage6 infrastructure. Then, you will start to build your own
@@ -97,8 +97,12 @@ If you later want to modify your answers, you can do so by running:
 v6 algorithm update --change-answers
 ```
 
+This is recommended to do whenever you want to change something like the name of the
+function, as it will ensure that it will be updated in all places it was mentioned.
+
 The update command can also be used to update your algorithm to a new version, even
-after you have implemented your functions.
+after you have implemented your functions. This is helpful when there is new
+functionality or changes in vantage6 that require algorithms to update.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -109,13 +113,12 @@ Create a personalized template to start developing your average algorithm
 - We need both a central and a partial function.
 - The central function should get an algorithm client to communicate with the server,
   but it does not need data.
-- The partial function should get one database from the node.
+- The partial function does not need an algorithm client, but it should get one database
+  from the node.
 - Both functions should have a `column` argument - the average over this column will
   be calculated.
 - (Optional) Use the advanced options to create a Github pipeline that creates and
   pushes your Docker image every time you commit to main.
-
-TODO what do they need to do for central?
 
 :::::::::::::::::::::::: solution
 
@@ -141,6 +144,17 @@ tools, the following should be extracted for the requested column:
 - The number of rows that contains a number
 - The sum of all these numbers
 
+The boilerplate code for the central function already a large part of the code that will
+be required to gather the results from the partial functions. To compute the final
+average, we will need to:
+
+- Modify how the subtasks are created - we need to provide the column to the partial
+  functions
+- Combine the results from the partial functions to compute the average
+
+Remember that both functions should return the results as valid JSON serializable
+objects - we recommend returning a Python dictionary.
+
 ### Test your algorithm using the mock client
 
 As discussed before, the algorithm tools contain an algorithm client that helps the
@@ -162,17 +176,38 @@ most of the code to test your algorithm.
 
 ## Challenge: Implement the functions and test them
 
-Implement your partial and central functions. Adapt and run `test.py` to test your
-function implementation.
+Implement your partial and central functions as described above.
 
-TODO add more details
+Adapt and run `test.py` to test your function implementation:
+
+- Create a Python environment and run `pip install -e .`. This installs the local Python
+  package and also the algorithm tools (which contain the mock client).
+- Adjust `test.py` to have a sensible value for the column name to compute the average
+  over. Note that this should be done both for the test of the central and of the
+  partial function
+- Run `test.py` to test your functions.
 
 :::::::::::::::::::::::: solution
 
 ## Output
 
-TODO the average reported by `test.py` should be X. It should also provide sum Y and
-count Z for each of the partial functions.
+You output of `test.py` should look something like:
+
+```
+[{'id': 0, 'name': 'mock-0', 'domain': 'mock-0.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=0', 'users': '/api/user?organization_id=0', 'tasks': '/api/task?init_org_id=0', 'nodes': '/api/node?organization_id=0', 'runs': '/api/run?organization_id=0'}, {'id': 1, 'name': 'mock-1', 'domain': 'mock-1.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=1', 'users': '/api/user?organization_id=1', 'tasks': '/api/task?init_org_id=1', 'nodes': '/api/node?organization_id=1', 'runs': '/api/run?organization_id=1'}]
+info > Defining input parameters
+info > Creating subtask for all organizations in the collaboration
+info > Waiting for results
+info > Mocking waiting for results
+info > Results obtained!
+info > Mocking waiting for results
+[{'average': 34.666666666666664}]
+{'id': 2, 'runs': '/api/run?task_id=2', 'results': '/api/results?task_id=2', 'status': 'completed', 'name': 'mock', 'databases': ['mock'], 'description': 'mock', 'image': 'mock_image', 'init_user': {'id': 1, 'link': '/api/user/1', 'methods': ['GET', 'DELETE', 'PATCH']}, 'init_org': {'id': 0, 'link': '/api/organization/0', 'methods': ['GET', 'PATCH']}, 'parent': None, 'collaboration': {'id': 1, 'link': '/api/collaboration/1', 'methods': ['DELETE', 'PATCH', 'GET']}, 'job_id': 1, 'children': None}
+info > Mocking waiting for results
+[{'sum': 624.0, 'count': 18}, {'sum': 624.0, 'count': 18}]
+```
+
+Hence, the average is 34.666!
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -193,7 +228,31 @@ you had the option to include a Github action pipeline that built the Docker ima
 you every time a commit is pushed to main. This is the preferred way of working for
 real-world projects with open-source algorithm implementations.
 
-TODO include exercise to build the algorithm image
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge: Implement the functions and test them
+
+Build an algorithm image with the name: `harbor2.vantage6.ai/workshop/average:<myname>`.
+Push it to the repository.
+
+<!-- TODO this is just an idea - we could temporarily create a project in harbor with free push access for the workshop -->
+
+:::::::::::::::::::::::: solution
+
+## Output
+
+If your name is Jane Smith, you may have done the following in the base directory of
+your algorithm (where the Dockerfile is):
+
+```bash
+docker build -t harbor2.vantage6.ai/workshop/average:jsmith .
+docker push harbor2.vantage6.ai/workshop/average:jsmith
+```
+
+Both commands should execute without errors.
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Set up a local test environment
 
@@ -277,7 +336,8 @@ usually important to take before your algorithm is ready for real-world use:
 
 Other next steps could be to extend the algorithm with more functionality, such as
 allowing to calculate the average over multiple columns, or to add a `group_by`
-argument to compute the average per group.
+argument to compute the average per group. Alternatively, you can have a look at other
+algorithms in the algorithm store to see if you can understand and/or improve them.
 
 In the final lesson of this course, you will have the opportunity to work on your own
 projects. Maybe you can also use that opportunity to further develop your algorithm!
