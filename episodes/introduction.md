@@ -115,7 +115,7 @@ was part of the analysis. An individual has *plausible deniability* with regards
 part of the dataset.
 
 ### Synthetic data
-
+Sometimes the 
 
 No solution is perfect.
 See individual PETs as building blocks to craft your analyses.
@@ -141,8 +141,22 @@ necessary to combine multiple techniques in order to overcome your problems.
 ## Example: federated average
 
 ## Technology doesn't solve everything
+You have now learned about various technologies for analyzing data while preserving privacy of
+individuals. However, it should be emphasized that these technologies do not solve all your data
+sharing problems. Rather, they are only a small piece of the puzzle. In research projects involving
+privacy enhancing technologies, a lot of work goes into complying with regulations and building
+trust.
 
-Paperwork, trust, etc.
+Since these projects have a risk of affecting the privacy of individuals, a Data Protection Impact Assessment (DPIA)
+is usually required. This is a process that will help identify and minimize privacy risks of a project
+and is required by GDPR.
+
+Apart from procedures required by GDPR there might be other regulations in place enforced by the 
+owners of the data (e.g. hospitals). The specific situation of a project can affect the way in which
+the data is allowed to be processed. Some privacy enhancing technologies might be allowed in one 
+project but prohibited in another. It is always important to stay transparent about privacy risks
+of the technologies you intend to use.
+
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
