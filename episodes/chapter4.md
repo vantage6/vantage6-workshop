@@ -1,30 +1,30 @@
 ---
-title: "Using UI"
+title: "Managing vantage6 server via the user interface"
 teaching: 2
 exercises: 3
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What are the administrative entities in Vantage6?
-- What is the relation between the entities in Vantage6?
-- What is the permission system in Vantage6?
-- What are the default roles in Vantage6?
-- How to create a new organization using Vantage6 UI?
-- How to create a new user using Vantage6 UI?
-- How to create a new collaboration using Vantage6 UI?
+- What are the administrative entities in vantage6?
+- What is the relation between the entities in vantage6?
+- What is the permission system in vantage6?
+- What are the default roles in vantage6?
+- How to create a new organization using vantage6 user interface (UI)?
+- How to create a new user using vantage6 UI?
+- How to create a new collaboration using vantage6 UI?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand the types of administrative entities in Vantage6
-- Understand the relation between the administrative entities of Vatange6
-- Understand the permission system of Vantage6
-- Understand the default roles in Vantage6
-- Be able to create a new organization using the Vantage6 UI
-- Be able to create a new user using the Vantage6 UI
-- Be able to create a new collaboration using the Vantage6 UI
+- Understand the types of administrative entities in vantage6
+- Understand the relation between the administrative entities of vantage6
+- Understand the permission system of vantage6
+- Understand the default roles in vantage6
+- Be able to create a new organization using the vantage6 UI
+- Be able to create a new user using the vantage6 UI
+- Be able to create a new collaboration using the vantage6 UI
 - Be able to reset an api key for a node
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -32,54 +32,55 @@ exercises: 3
 
 ## Vantage6 entities and their relations
 
-There are several entities in Vantage6, such as users, organizations, tasks, etc. These entities are created by users that have sufficient permission to do so and are stored in a database that is managed by the central server.
+There are several entities in vantage6, such as users, organizations, tasks, etc. These entities are created by users that have sufficient permission to do so and are stored in a database that is managed by the central server.
 
-The administrative entities in Vantage6 are:
+The administrative entities in vantage6 are:
 
-- **User**: a person who can perform certain actions in Vantage6.
+- **User**: a person who can perform certain actions in vantage6.
     - A user can only belong to one **organization**.
-    - A user can have multiple **roles**.
+    - A user can have multiple **roles** and can be assigned with extra permissions not covered by the roles.
     - A user can create **tasks** for one or more **organizations** within a **collaboration**.
 - **Organization**: an orgarnization to which users belong
     - An organization can have zero and more **users**.
     - An organization can have multiple **nodes**.
 - **Collaboration**: a collection of one or more **organizations**.
-    - Each participating **organization** needs a **node** to compute **tasks** for the **collaboration**.
+    - In a specific **collaboration**, each participating **organization** needs one **node** to compute **tasks**; In another **collaboration**, the same **organization** must have a separate **node** for this **collaboration**.
     - A collaboration can contain zero or more **studies**.
     - A **study** is a subset of organizations from the collaboration that are involved in a specific research question. By setting up studies, it can be easier to send tasks to a subset of the organizations in a collaboration and to keep track of the results of these analyses.
 - **Role**: a collection of rules that define the permissions of a user.
     - A user can have multiple roles.
     - The permissions of the user are defined by the assigned **rules**.
-- **Node**: a server that can execute **tasks**.
+    - **Rules** define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own,  organization, collaboration, global), and the resource (e.g. users, orgarnizations).
+- **Node**: an application that can execute **tasks**.
 - **Task**: a task that is executed by one or more **nodes**.
-    - A task should produce an algorithm run for each organization involved in the task. The results are part of such an algorithm run.
-    - A task can be part of a **study**.
+    - A task should use an algorithm run for each organization involved in the task. The results are part of such an algorithm run.
+    - A task can be part of a **study** or a **collaboration**.
 
-The following diagram is simplified relations between these entities. A `1-n` relationship means that the entity on the left side of the relationship can have multiple entities on the right side. For instance, a single organization can have multiple Vantage6 users, but a single user always belongs to one organization. There is one `0-n` relationship between roles and organizations, since a role can be coupled to an organization, but it doesn’t have to be. An `n-n` relationship is a many-to-many relationship: for instance, a collaboration can contain multiple organizations, and an organization can participate in multiple collaborations.
+The following diagram is simplified relations between these entities. A `1-n` relationship means that the entity on the left side of the relationship can have multiple entities on the right side. For instance, a single organization can have multiple vantage6 users, but a single user always belongs to one organization. There is one `0-n` relationship between roles and organizations, since a role can be coupled to an organization, but it doesn’t have to be. An `n-n` relationship is a many-to-many relationship: for instance, a collaboration can contain multiple organizations, and an organization can participate in multiple collaborations.
 
-![Vantage6 relations between entities](fig/v6_entities.png)
+![vantage6 relations between entities](fig/v6_entities.png)
 
 ### Where are the entities in the UI?
 
-After logging in to the Vantage6 UI, you will see the start page.
+After logging in to the vantage6 UI, you will see the start page.
 
-![Vantage6 UI start page](fig/ui_start_page.png)
+![vantage6 UI start page](fig/ui_start_page.png)
 
 There are some collbarations displayed on the start page. Clicking one of the collaborations will show the tasks of that collaboration.
 
-![Vantage6 UI tasks page](fig/ui_task_page.png)
+![vantage6 UI tasks page](fig/ui_task_page.png)
 
-The start page also contains a button `Adaministration` in the top right corner. Clicking on this button will redirect you to the administration page.
+The start page also contains a button `Administration` in the top right corner. Clicking on this button will redirect you to the administration page.
 
-In the administration page, you can manage the entities of Vantage6. The entities are divided into tabs: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. We will get back to this later in more detail.
+In the administration page, you can manage the entities of vantage6. The entities are divided into tabs: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. We will get back to this later in more detail.
 
-![Vantage6 UI administration page](fig/ui_admin_page.png)
+![vantage6 UI administration page](fig/ui_admin_page.png)
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 1: Get familiar with the Vanatge6 UI
+## Challenge 1: Get familiar with the vantage6 UI
 
-Log in to the Vantage6 UI and navigate to the `Administration` page. Familiarize yourself with the entities in the administration page.
+Log in to the vantage6 UI and navigate to the `Administration` page. Familiarize yourself with the entities in the administration page.
 
 Can you find the `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes` tabs?
 
@@ -88,9 +89,9 @@ Can you find the `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes
 
 ## Vantage6 permission system
 
-Vantage6 uses a permission system to control who can do what in the system. The permission system is based on **roles**, which are collections of rules that define the permissions of a user. A user can have multiple roles, and the permissions of the user are defined by the assigned **rules**.
+vantage6 uses a permission system to control who can do what in the system. The permission system is based on **roles**, which are collections of rules that define the permissions of a user. A user can have multiple roles, and the permissions of the user are defined by the assigned **rules**.
 
-The permission rules define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own,  organization, collaboration, global), and the resource (e.g. users, orgarnizations). Users can be assigned anywhere between zero and all of these permission rules.
+The permission rules define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own,  organization, collaboration, global), and the resource (e.g. users, orgarnizations). Users can be assigned anywhere between zero and all of these permission rules. For example, having the rules with `create` in the scope `organization` for the resource `users` means that the user can create users for the organization they belong to.
 
 To make it easier to assign permissions, there are also predefined roles:
 
@@ -104,17 +105,17 @@ The permissions are set up in the `Roles` tab in the administration page. You ca
 
 The permission structure allows for a lot of flexibility, but it can be complex for beginners to set up. The default roles provide a quick way to set up permissions, but it is recommended to review them before using them in a project.
 
-![Vantage6 permissions for the role Root](fig/permissions_root.png)
+![vantage6 permissions for the role Root](fig/permissions_root.png)
 
-![Vantage6 permissions for the role Researcher](fig/permissions_researcher.png)
+![vantage6 permissions for the role Researcher](fig/permissions_researcher.png)
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 2: What can you do in Vantage6?
+## Challenge 2: What can you do in vantage6?
 
-Go the administration page in the Vantage6 UI, check the permissions that you have, and answer the following questions:
+Go the administration page in the vantage6 UI, check the permissions that you have, and answer the following questions:
 
-1. What is your role in Vantage6?
+1. What is your role in vantage6?
 2. Can you create a new organization, a new user or a new collaboration?
 
 :::::::::::::::::::::::: solution
@@ -128,7 +129,7 @@ Go the administration page in the Vantage6 UI, check the permissions that you ha
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-## Manage Vantage6 project using the UI
+## Manage vantage6 project using the UI
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -137,14 +138,14 @@ Note that the role `Collaboration Admin` does not have the permission to create 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-In this section, we will go through the steps to create a new organization, a new user, a new collaboration and reset an api key for a node using the Vantage6 UI.
+In this section, we will go through the steps to create a new organization, a new user, a new collaboration and reset an api key for a node using the vantage6 UI.
 
-First you need to log in to the Vantage6 UI, and then go to the `Administration` page. You can find the `Administration` button in the top right corner of the start page.
+First you need to log in to the vantage6 UI, and then go to the `Administration` page. You can find the `Administration` button in the top right corner of the start page.
 
-![Vantage6 UI administration page](fig/ui_admin_page.png)
+![vantage6 UI administration page](fig/ui_admin_page.png)
 
 ### Create a new organization
-It's quite straightforward to create a new organization in Vantage6. Here are the steps:
+It's quite straightforward to create a new organization in vantage6. Here are the steps:
 
 1. Click on the `Organizations` tab in the administration page.
 2. Click on the `Create organization` button.
@@ -179,7 +180,7 @@ A collaboration is a collection of one or more organizations. Let's create a new
 ![Create a new collaboration](fig/create_collab_01.png)
 
 4. Click on the `Submit` button to create the new collaboration.
-    * After submitting the form, you will see a dialog box to ask you to download the API key. The API key is used to authenticate the nodes in the collaboration. Later we will see how to reset the API key for a node.
+    * After submitting the form, you may see a dialog box to ask you to download the API key (on MacOS) or a dialog points out that the API key has been downloaded (on Windows). The API key is used to authenticate the nodes in the collaboration. Later we will see how to reset the API key for a node.
 
 ![Download API keys](fig/create_collab_02.png)
 
@@ -218,12 +219,13 @@ You will see a message:
 >
 > Your API key has been reset. Please read your new key in the file that has been downloaded.
 
+At this point, put the new API key in your node configuration file and restart the node to connect to the server again.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 3: Manage Vantage6 project using the UI
+## Challenge 3: Manage vantage6 project using the UI
 
-Go the administration page in the Vantage6 UI and try to create a new organization, a new user, and a new collaboration. Also, try to reset the API key for a node.
+Go the administration page in the vantage6 UI and try to create a new organization, a new user, and a new collaboration. Also, try to reset the API key for a node.
 
 1. Can you create a new organization, a new user, and a new collaboration?
 2. Can you reset the API key for a node?
@@ -234,9 +236,9 @@ Go the administration page in the Vantage6 UI and try to create a new organizati
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Understand Vantage6 entities including `Users`, `Organizations`, `Collaborations`, `Roles`, `Nodes`, and `Tasks`
-- Understand Vanatge6 permission system and default roles such as `Root`, `Collaboration Admin`, `Organization Admin`, `Researcher`, and `Viewer`
-- Be able to create a new organization, a new user, and a new collaboration using the Vantage6 UI
-- Be able to reset an api key for a node
+- Vantage6 entities are `Users`, `Organizations`, `Collaborations`, `Roles`, `Nodes`, and `Tasks`.
+- Vantage6 uses a permission system to control who can do what in the system.
+- Vantage6 has default roles like  `Root`, `Collaboration Admin`, `Organization Admin`, `Researcher`, and `Viewer`.
+- Vantage6 UI can be used to manage the entities of vantage6, like creating a new organization, a new user, a new collaboration, and resetting an api key for a node.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
