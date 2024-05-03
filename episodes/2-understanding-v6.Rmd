@@ -1,0 +1,40 @@
+---
+title: "2-understanding-v6"
+---
+
+::: questions
+This are the questions
+:::
+
+::: objectives
+-   List the high-level infrastructure components of v6 (server, client, node)
+-   Understand the added value of v6
+-   Understand that there is different actors in algorithms
+-   Understand that the v6 server does not run algorithms
+-   Explain how a simple analysis runs on v6
+-   Understand the future of vantage6 (policies, etc.)
+:::
+
+## The vantage6 infrastructure
+
+In vantage6, a **client** can pose a question to the central **server**. Each organization with sensitive data contributes one **node** to the network. The nodes collects the research question from the server and fetches the **algorithm to answer** it. When the algorithm completes, the node sends the aggregated results back to the server.
+
+The roles of these vantage6 components are as follows:
+
+-   A (central) **server** coordinates communication with clients and nodes. The server tracks the status of the computation requests and handles administrative functions such as authentication and authorization.
+
+-   **Node(s)** have access to data and execute algorithms
+
+-   **Clients** (i.e. users or applications) request computations from the nodes via the client
+
+-   **Algorithms** are scripts that are run on the sensitive data. Each algorithm is packaged in a Docker image; the node pulls the image from a Docker registry and runs it on the local data. Note that the node owner can control which algorithms are allowed to run on their data.
+
+![v6 basic schema.](fig/v6_basic_schema.svg)
+
+On a technical level, vantage6 may be seen as a (Docker) container orchestration tool for privacy preserving analyses. It deploys a network of containerized applications that together ensure insights can be exchanged without sharing record-level data.
+
+
+
+::: keypoints
+These are the keypoints
+:::
