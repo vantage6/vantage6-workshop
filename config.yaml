@@ -60,7 +60,7 @@ contact: 'd.smits@esciencecenter.nl'
 # Order of episodes in your lesson
 episodes: 
 - introduction.md
-- 2-understanding-v6.Rmd
+- 2-understanding-v6.md
 
 # Information for Learners
 learners: 
