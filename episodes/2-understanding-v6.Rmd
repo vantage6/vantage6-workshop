@@ -3,8 +3,9 @@ title: "2-understanding-v6"
 ---
 
 ::: questions
+-   Why to use vantage6?
 -   How does vantage6 work?
--   How are federated algorithms run in vantage6?
+-   How do federated algorithms run in vantage6?
 -   What will be available in vantage6 in the future?
 :::
 
@@ -16,6 +17,16 @@ title: "2-understanding-v6"
 -   Explain how a simple analysis runs on v6
 -   Understand the future of vantage6 (policies, etc.)
 :::
+
+# Unique selling points of vantage6
+
+vantage6 is a platform to perform  privacy preserving federated learning. Other platofmrs for federalte learning are current available, but vantage6 provides some unique features:
+-   Open source.
+-   Container orchestration for privacy enhancing techniques.
+-   Easily extensible to different types of data sources.
+-   Algorithms can be developed in any language.
+-   Other applications can connect to vantage6 using the API.
+
 
 # The vantage6 infrastructure
 
