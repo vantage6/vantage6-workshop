@@ -20,7 +20,7 @@ title: "2-understanding-v6"
 
 # Unique selling points of vantage6
 
-vantage6 is a platform to perform  privacy preserving federated learning. Other platofmrs for federalte learning are current available, but vantage6 provides some unique features:
+vantage6 is a platform to perform  privacy preserving federated learning. Other platforms for federated learning are current available, but vantage6 provides some unique features:
 -   Open source.
 -   Container orchestration for privacy enhancing techniques.
 -   Easily extensible to different types of data sources.
