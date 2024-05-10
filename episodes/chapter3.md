@@ -4,16 +4,6 @@ teaching: 0
 exercises: 0
 ---
 
-   - Find available algorithms in community store
-   - Know an algorithm store can be created for their project
-   - Run an algorithm in an existing collaboration
-   - View partial results in UI
-   - Understand privacy limit set by collaboration
-
-Understand privacy limit set by collaboration: does this mean, for instance, that only people from organizations that belong to a collaboration will be able to see the results?
-
-We define a collaboration as an agreement between two or more parties to participate in a study (i.e., to answer a research question). Moreover, there are a three fundamental functional aspects of FL infrastructures that are worth describing (and that are often overlooked8):
-
 
 :::::::::::::::::::::::::::::::::::::: questions
 
@@ -43,7 +33,7 @@ Following vantage6's concepts, this scenario would involve two collaborations, o
 
 ## Algorithms trustworthiness on a federated setting
 
-Although a technical infrastructure like the described on the previous sections provide a good measure against most data privacy risks, there is one key security element that scapes from the platform's realm: the validation of the code that will be running on this infrastructure. For instance, the administrators of the nodes running within each organization are responsibles for defining which algorithms (i.e., [which the docker images](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options)) will be allowed for execution on their running nodes. As this is a critical and complex task that entails activities like code analysis, working with algorithms from trusted sources is the first measure for preventing potential threats. 
+Although a technical infrastructure like the described on the previous sections provide a good measure against most data privacy risks, there is one key security element that scapes from the platform's realm: the validation of the code that will be running on this infrastructure. For instance, the administrators of the nodes running within each organization are responsibles for defining which algorithms (i.e., [which the docker images](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options)) will be allowed for execution on their running nodes. As this is a critical and complex task that entails activities like code analysis, working with algorithms from trusted sources is the primary line of defense against potential threats
 
 Vantage6's algorithm store feature is aimed at enabling this trustworthiness by providing a centralized way of managing pre-registered algorithms. It is an alternative to the use of algorithms from unkown authors or lacking details about its development process and status. The algorithm store currently allow researchers to explore which algorithms are available and how to run them, which, along with its integration with the UI, simplifies the request of a task execution within a collaboration. At the time of writing this document, the integration of information such as who created the algorithm or who reviewed the code is a work in progress. Furthermore, the algorithm-review process is planned to be itegrated on the publication process on any algorithm store.
 
