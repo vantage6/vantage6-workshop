@@ -12,8 +12,8 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explore in more depth specific data analysis scenarios that further illustrates the concept of collaboration
-- Understand the concept of 'algorithm trustworthiness' in the context of a collaboration
+- Explore specific data analysis scenarios that further illustrates the concept of collaboration
+- Understand the concept of 'algorithm trustworthiness' in the context of a vantage6 collaboration
 - Understand v6's algorithm-store current and envisioned features
 - Understand the UI-based approach for performing a data analysis through the given scenarios 
 
@@ -112,80 +112,5 @@ Now, you'll take on the role of the researcher within the collaboration for whic
 
 
 
-
-
-
-
-1. Now create a new task, but this time choose the 'central average'
-
-![alt text](image.png)
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 2: 
-
-
-:::::::::::::::::::::::: solution
-
-## Output
-
-1. Check it with your instructor.
-2. Yes, you should be able to create a new organization, a new user, and a new collaboration. If not, ask your instructor to give you the necessary permissions.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-
-
-
-Running PET analysis without programming
-
-Find available algorithms in community store
-
-Know an algorithm store can be created for their project
-
-Run an algorithm in an existing collaboration
-
-View partial results in UI
-
-Understand privacy limit set by collaboration
-
-
-
-Login as PhY24 administrator/researcher role
-
-![alt text](image.png)
-
-Check collaboration, add community store:
-https://store.cotopaxi.vantage6.ai
-
-![alt text](image-2.png)
-
-![alt text](image-3.png)
-
-Look at the central_average vs partial_average. Which one should be used?
-https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py
-
-
-![alt text](image-4.png)
-
-This part is not clear: is it asking for the databases the partial function is going to use?
-
-![alt text](image-5.png)
-
-What if the collaboration participants have different columns? from which participant is the UI getting these details?
-
-![alt text](image-6.png)
-
-
-
-In th
-
-https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py
 
 
