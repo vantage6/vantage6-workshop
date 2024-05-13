@@ -40,9 +40,9 @@ Vantage6's algorithm store feature aims to enhance trustworthiness by offering a
 
 As of the time of writing this tutorial, efforts are underway to integrate additional information to the algorithms metadata such as creators and code reviewers. Moreover, plans are in place to incorporate the algorithm review process into the publication procedure for any algorithms in the store.
 
-## Running a PET (privacy-enhacing technology) analysis without programming!
+## Running a PET (privacy-enhancing technology) analysis without programming!
 
-In this episode, you will perform a PET analysis on an existing vantage6 collaborations (based on 'dummy' nodes) that resemble the two described above. 
+In this episode, you will perform a PET analysis on an existing vantage6 collaborations (based on 'dummy' nodes) that resemble the two described above. For reference, the datasets of each organization can be seen here (TODO).
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -51,7 +51,7 @@ In this episode, you will perform a PET analysis on an existing vantage6 collabo
 First, let's take a look at one of the federated algorithms -available on the vantage6's community store- that will be used in this episode: [a federated average](https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py). Based on the code and its comments:
 
 - What is the difference between the 'central_average' and the 'partial_average' functions?
-- What would happen if this algorithm is executed within a collaboration which has one of its nodes 'offline'?
+- What would happen if this algorithm is executed within a collaboration that has one of its nodes 'offline'?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -59,18 +59,18 @@ First, let's take a look at one of the federated algorithms -available on the va
 
 ## Challenge 2: exploring the status of existing collaborations configured on a vantage6 server
 
-Below are the user names of the administrators of GHT and PhY24 collaborations (passwords will be given by the instructors).
+Below are the administrator credential of GHT and PhY24 collaborations (passwords will be given by the instructors).
 
 |  User  |  Roles   |  Collaboration   |
 |----|-----|-----|
 |PhY24-admin  | Collaboration Admin    |PhY24      |
 |GHT-admin  | Collaboration Admin    |GHT    |
 
-Check the status of the nodes of each collaboration. Login to each one with the given credentials, click on 'Administration' on the top of the UI, select 'Collaborations' on the left panel, and then select the corresponding collaboration. If there are 'offline' nodes, click on the 'Nodes' panel on the left and check when these were seen for the last time.
+Check the status of the nodes of each collaboration. Log in to each one with the given credentials, click on 'Administration' on the top of the UI, select 'Collaborations' on the left panel, and then select the corresponding collaboration. If there are 'offline' nodes, click on the 'Nodes' panel on the left and check when these were seen for the last time.
 
 ![Collaboration status](fig/chapter3/collab-status-offline.png)
 
-- Based on what you see on the Challange #1, which collaboration would be ready to request the 'Average' algorithm on it?
+- Based on what you see on Challange #1, which collaboration would be ready to request the 'Average' algorithm on it?
 - For the other collaboration, which organization you would need to reach in order to fix the issue?
 
 You will now link the 'community-store' to the collaboration whose nodes are ready for it. 
@@ -89,7 +89,7 @@ You will now link the 'community-store' to the collaboration whose nodes are rea
 
 Now, you'll take on the role of the researcher within the collaboration for which you've just established the algorithm store. With this role, you will finally request the execution of the algorithm. 
 
-1. Login as a researcher using the corresponding credentials below:
+1. log in as a researcher using the corresponding credentials below:
 
     |  User  |  Roles   |  Collaboration   |
     |----|-----|-----|
@@ -97,15 +97,15 @@ Now, you'll take on the role of the researcher within the collaboration for whic
     |GHT-rs1  | Researcher    |GHT    |
 
 2. Select the collaboration given on the front page, and select 'Tasks' from the panel on the left.
-    ![alt text](fig/chapter3/collab-researcher-view.png)
+    ![Collaboration researcher view](fig/chapter3/collab-researcher-view.png)
 
-3. If you setup everything correctly, the 'Average' algorithm should be now listed under the '*Select which algorithm you want to run*' dropdown menu. Select it, and provide a name and a description.
+3. If you have set up everything correctly, the 'Average' algorithm should be now listed under the '*Select which algorithm you want to run*' dropdown menu. Select it, and provide a name and a description.
 
-    ![alt text](fig/chapter3/task-alg-selection.png)
+    ![Algorithm selection](fig/chapter3/task-alg-selection.png)
 
-4. Now the UI will let you choose between the two functions you explored on the Challenge #1. First try to run the 'partial_average' on all the nodes individually.
+4. Now the UI will let you choose between the two functions you explored in Challenge #1. First, try to run the 'partial_average' on all the nodes individually.
 
-    ![alt text](image.png)
+    ![Running a function on all nodes](fig/chapter3/task-partial-on-individial-orgs.png)
 
 5. Select the 'default' database, choose any numerical column as a parameter, and then click on 'Submit'.
 
@@ -113,7 +113,7 @@ Now, you'll take on the role of the researcher within the collaboration for whic
     ![alt text](fig/chapter3/task-results.png)
 
 
-   - Based on your understanding of the 'central_average' function, if you create one a new task, which organization nodes should you choose this time in order to calculate the 'federated' average? Proceed this way and discuss the results with the instructors.
+   - Based on your understanding of the 'central_average' function, if you create one a new task, which organization nodes should you choose this time in order to actually calculate the overall (across all the datasets) average? Experiment with this and discuss the results with the instructors.
    - What would happen if you select an alpha-numerical column (e.g., 'participant_pseudo_id')? Do this experiment and explore the generated error logs. Discuss with the instructors how these logs can be used to diagnose any task execution issues.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
