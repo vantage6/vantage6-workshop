@@ -1,12 +1,14 @@
 ---
 title: "Running a PET analysis without programming"
-teaching: 0
-exercises: 0
+teaching: 2
+exercises: 3
 ---
 
-
 :::::::::::::::::::::::::::::::::::::: questions
-
+- What is a common collaboration scenario where the same institution is involved in multiple collaborations?
+- How to check the status of a given collaboration within vantage6?
+- How to link an algorithm store to a given collaboration?
+- How to request a task based on a given algorithm through vantage6's UI?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -23,11 +25,11 @@ exercises: 0
 
 In the context of Vantage6, a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the federated learning and multi-party computation (FL/MPC) infrastructures that Vantage6 supports. Each party involved in a collaboration remains independent and autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution. 
 
-To illustrate this, let's analyze a hypothetical scenario: two international research projects relying on vantage6 technology on the same server. The first one, __PhY2024__ (Prevalence of hypertension and its association with lifestyle), requires determining the mean blood pressure levels of the population across France, Spain, and The Netherlands. The second, __GHT__ (Global Health Trends), requires determining the Average BMI across The Netherlands, Spain, and Germany. Although both projects are unrelated and independent from each other, the data from Spain and The Netherlands -required by both- is provided by the same large-scale cohort studies, namely CANTABRIA (Spain) and LIFELINES (The Netherlands). However, legal agreements dictate that each project is granted access solely to the data essential for its intended purposes (gaining access to the whole set of variables study increases risks of inference attacks). Data from the French and German population (for __PhY2024__ and __GHT__ studies), on the other hand, will be provided by the GAZEL and GNC prospective cohort studies.
+To illustrate this, let's analyze a hypothetical scenario: two international research projects relying on vantage6 technology on the same server. The first one, __PhY2024__ (Prevalence of hypertension and its association with lifestyle), requires determining the average systolic and diastolic blood pressure levels of the population across France, Spain, and The Netherlands. The second, __GHT__ (Global Health Trends), requires determining the Average BMI across The Netherlands, Spain, and Germany. Although both projects are unrelated and independent from each other, the data from Spain and The Netherlands -required by both- is provided by the same large-scale cohort studies, namely CANTABRIA (Spain) and LIFELINES (The Netherlands). However, legal agreements dictate that each project is granted access solely to the data essential for its intended purposes (gaining access to the whole set of variables study increases risks of inference attacks). Data from the French and German population (for __PhY2024__ and __GHT__ studies), on the other hand, will be provided by the GAZEL and GNC prospective cohort studies.
 
 Following vantage6's concepts, this scenario would involve two collaborations, one for each research project. As described in previous episodes, a vantage6 node is needed for each collaboration. Consequently, as illustrated in the diagram below, both CANTABRIA and LIFELINES organizations require two vantage6 data-node instances each. Since each data node defines its own rules for data access and algorithm usage, this ensures that analyses from various collaborations, even those involving shared organizations/datasets, will not conflict with one another.
 
-![alt text](fig/chapter3/orgs_n_collabs_scenario.png)
+![Hypothetical collaborations scenario](fig/chapter3/orgs_n_collabs_scenario.png)
 
 
 ## Algorithms trustworthiness on a federated setting
@@ -40,19 +42,20 @@ As of the time of writing this tutorial, efforts are underway to integrate addit
 
 ## Running a PET (privacy-enhacing technology) analysis without programming!
 
-In this episode you will perform a PET analysis on an existing (dummy) vantage6 collaborations that resemble the two described above. To this end, you will explore how 
-
-- Explore the status of both collaborations
-
+In this episode, you will perform a PET analysis on an existing vantage6 collaborations (based on 'dummy' nodes) that resemble the two described above. 
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 1: understanding a simple federated algorithm
 
-First, let's take a look at a one of the federated algorithms -available on the vantage6's community store- that will be used in this episode: [a federated average](https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py). Based on the code and its comments:
-- What is the difference between the 'central_average' and the 'partial_average' functions?
-- What would happen if this algorithm is executed on a collaboration with one of its nodes 'offline'?
+First, let's take a look at one of the federated algorithms -available on the vantage6's community store- that will be used in this episode: [a federated average](https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py). Based on the code and its comments:
 
+- What is the difference between the 'central_average' and the 'partial_average' functions?
+- What would happen if this algorithm is executed within a collaboration which has one of its nodes 'offline'?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 2: exploring the status of existing collaborations configured on a vantage6 server
 
@@ -67,19 +70,21 @@ Check the status of the nodes of each collaboration. Login to each one with the 
 
 ![Collaboration status](fig/chapter3/collab-status-offline.png)
 
-- Based on what you see on the Challange #1, on which collaboration the 'average' algorithm could be used?
-- Which collaboration wouldn't be ready for using the 'average' algorithm, and which organization you would need to reach to fix this?
+- Based on what you see on the Challange #1, which collaboration would be ready to request the 'Average' algorithm on it?
+- For the other collaboration, which organization you would need to reach in order to fix the issue?
 
 You will now link the 'community-store' to the collaboration whose nodes are ready for it. 
 
 1. Login into the organization using the corresponding credentials from above. 
 2. Click on 'Administration' on the top of the UI, select 'Collaborations' on the left panel, and then select the corresponding collaboration.
 3. Click on '+ Add algorithm store'
-4. Add the vantage6's community store. Use any descrption as name, and provide community store URL: https://store.cotopaxi.vantage6.ai
+4. Add the vantage6's community store. Use any descrption as name, and provide community store URL: `https://store.cotopaxi.vantage6.ai`
 5. Make sure the store is now shown on the collaboration details:
 ![Community store entry on the collaboration details](fig/chapter3/community-store-entry.png)
 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: challenge
 ## Challenge 3: your first algorithm execution as a researcher
 
 Now, you'll take on the role of the researcher within the collaboration for which you've just established the algorithm store. With this role, you will finally request the execution of the algorithm. 
@@ -104,13 +109,12 @@ Now, you'll take on the role of the researcher within the collaboration for whic
 
 5. Select the 'default' database, choose any numerical column as a parameter, and then click on 'Submit'.
 
-6. The task you just requested should be listed with a 'pending' status. Once finished, explore and download the provided results.
-    ![alt text](fig/chapter3/task-pendng.png)
-
-- Based on your understanding of the 'central_average' function, if you create one a new task, which organization nodes should you choose this time in order to calculate the 'federated' average? Proceed this way and discuss the results with the instructors.
-- What would happen if you select an alpha-numerical column (e.g., 'participant_pseudo_id')? Do this experiment and explore the generated error logs. Discuss with the instructors how these logs can be used to diagnose any task execution issues.
+6. The task you just requested should be listed with a 'pending' status. Once finished, explore and download the provided results:
+    ![alt text](fig/chapter3/task-results.png)
 
 
+   - Based on your understanding of the 'central_average' function, if you create one a new task, which organization nodes should you choose this time in order to calculate the 'federated' average? Proceed this way and discuss the results with the instructors.
+   - What would happen if you select an alpha-numerical column (e.g., 'participant_pseudo_id')? Do this experiment and explore the generated error logs. Discuss with the instructors how these logs can be used to diagnose any task execution issues.
 
-
+::::::::::::::::::::::::::::::::::::::::::::::::
 
