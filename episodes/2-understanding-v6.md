@@ -12,7 +12,7 @@ title: "vantage6 basics"
 ::: objectives
 -   List the high-level infrastructure components of vantage6 (server, client, node)
 -   Understand the added value of vantage6
--   Understand that there is different actors in algorithms
+-   Understand that there are different actors in the vantage6 network
 -   Understand that the vantage6 server does not run algorithms
 -   Explain how a simple analysis runs on vantage6
 -   Understand the future of vantage6 (policies, etc.)
@@ -32,7 +32,7 @@ vantage6 is a platform to execute  privacy enhancing techniques (PETs). Several 
 
 # The vantage6 infrastructure
 
-In vantage6, a **client** can pose a question to the central **server**. Each organization with sensitive data contributes one **node** to the network. The nodes collects the research question from the server and fetches the **algorithm to answer** it. When the algorithm completes, the node sends the aggregated results back to the server.
+In vantage6, a **client** can pose a question to the central **server**. Each organization with sensitive data contributes one **node** to the network. The nodes collect the computation request from the server and fetches the **algorithm to answer** it. When the algorithm completes, the node sends the aggregated results back to the server.
 
 The roles of these vantage6 components are as follows:
 
@@ -44,9 +44,9 @@ The roles of these vantage6 components are as follows:
 
 -   **Algorithms** are scripts that are run on the sensitive data. Each algorithm is packaged in a Docker image; the node pulls the image from a Docker registry and runs it on the local data. Note that the node owner can control which algorithms are allowed to run on their data.
 
-![vantage6 basic schema.](fig/vantage6_basic_schema.svg)
+![High level overview of the vantage6 infrastructure. Client(s) and Node(s) communicate through the Server. Nodes are able to communicate directly with each other when the optional VPN feature is enabled.](fig/vantage6_basic_schema.svg)
 
-On a technical level, vantage6 may be seen as a (Docker) container orchestration tool for privacy preserving analyses. It deploys a network of containerized applications that together ensure insights can be exchanged without sharing record-level data.
+On a technical level, vantage6 may be seen as a container orchestration tool for privacy preserving analyses. It deploys a network of containerized applications that together ensure insights can be exchanged without sharing record-level data.
 
  Lets explain in some more detail what these network actors are responsible for, and which subcomponents they contain.
 
@@ -60,6 +60,7 @@ The server in the network consists of multiple applications:
 -   **Algorithm store**: Is intended to be used as a repository for trusted algorithms within a certain project. Algorithm stores can be coupled to specific collaborations or to all collaborations on a given server.
 - **EduVPN instance**
 - **RabbitMQ**
+
 ### Data Station
 
 The data station hosts the node (vantage6-node) and a database.
@@ -148,14 +149,14 @@ From the development team we are working towards making vantage6 the PETOps plat
 We identified a number of areas where we want to improve and extend vantage6 in order to achieve this goal:
 
 ## Policies
-Currently vantage6 lets you set several policies, such as the organizations that are allowed to participate in a collaboration, the algorithms that are allowed to run on the nodes, and the data that is allowed to be used in a collaboration. We want to extend this to a more generic policy framework in which any aspect of the vantage6 platform can be controlled by policies. This will maximize the flexibility of the platform and make it easier to adapt to new use cases.
+Currently, vantage6 lets you set several policies, such as the organizations that are allowed to participate in a collaboration, the algorithms that are allowed to run on the nodes, and the data that is allowed to be used in a collaboration. We want to extend this to a more generic policy framework in which any aspect of the vantage6 platform can be controlled by policies. This will maximize the flexibility of the platform and make it easier to adapt to new use cases.
 
-For example it would be possible:
+For example, it would be possible:
 
 * Define the version of vantage6 that is allowed to be used in a collaboration
 * Which users is allowed to run a certain algorithm
 * Which algorithms are allowed in a collaboration/study
-* Define privacy gaurds at algorithm level
+* Define privacy guards at algorithm level
 
 In order to avoid that policies need to be set manually at the nodes, we envision a distributed policy system (possibly using Blocakchain) in which policies are distributed to the nodes by the server.
 
