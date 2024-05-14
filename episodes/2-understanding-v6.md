@@ -1,5 +1,5 @@
 ---
-title: "2-understanding-vantage6"
+title: "vantage6 basics"
 ---
 
 ::: questions
