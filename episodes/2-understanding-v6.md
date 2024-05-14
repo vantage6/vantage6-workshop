@@ -21,6 +21,7 @@ title: "2-understanding-v6"
 # Unique selling points of vantage6
 
 vantage6 is a platform to perform  privacy preserving federated learning. Other platforms for federated learning are current available, but vantage6 provides some unique features:
+
 -   Open source.
 -   Container orchestration for privacy enhancing techniques.
 -   Easily extensible to different types of data sources.
@@ -85,9 +86,9 @@ The vantage6 server is an API, which means that there are many ways to interact 
 
 Federated algorithms can be split in a **federated** and a **central** part:
 
--   **Central**: The central part of the algorithm is responsible for orchestration and aggregation of the partial results. 
+-   **Central**: The central part of the algorithm is responsible for orchestration and aggregation of the partial results.
 
--   **Federated**: The partial tasks are executing computations on the local privacy sensitive data. 
+-   **Federated**: The partial tasks are executing computations on the local privacy sensitive data.
 
 ![v6 central and federated tasks.](fig/algorithm_central_and_subtasks.png)
 
@@ -102,7 +103,7 @@ It is easy to confuse the central server with the central part of the algorithm:
 :::
 ::: challenge
 
-Two centers $a$ and $b$ have data regarding the age of a set of patients. Each center has a data station and We want to compute the overall average age of the patients. 
+Two centers $a$ and $b$ have data regarding the age of a set of patients. Each center has a data station and We want to compute the overall average age of the patients.
 
 ![Architecture.](fig/schema_exercise.png)
 
@@ -139,8 +140,33 @@ $\overline{x} =\dfrac{S_a+S_b}{n_a+n_b}$
 :::
 
 # Future developments of vantage6
+Back in 2018 when the development of vantage6 started, the focus was on Federated Learning. Since then, vantage6 has been extended to support different types of data sources, different types of algorithms and improved its usability. Privacy Enhancing Technologies (PET) are a rapidly evolving field. To keep up with the latest developments, the vantage6 platform is designed to be flexible and to adapt to new developments in the field.
 
-TODO
+From the development team we are working towards making vantage6 the PETOps platform for all your (distributed) analysis needs.
+
+[Image of the PETOps cycle]
+
+We identified a number of areas where we want to improve and extend vantage6 in order to achieve this goal:
+
+## Policies
+Currently vantage6 lets you set several policies, such as the organizations that are allowed to participate in a collaboration, the algorithms that are allowed to run on the nodes, and the data that is allowed to be used in a collaboration. We want to extend this to a more generic policy framework in which any aspect of the vantage6 platform can be controlled by policies. This will maximize the flexibility of the platform and make it easier to adapt to new use cases.
+
+For example it would be possible:
+
+* Define the version of vantage6 that is allowed to be used in a collaboration
+* Which users is allowed to run a certain algorithm
+* Which algorithms are allowed in a collaboration/study
+* Define privacy gaurds at algorithm level
+
+In order to avoid that policies need to be set manually at the nodes, we envision a distributed policy system (possibly using Blocakchain) in which policies are distributed to the nodes by the server.
+
+## Model Repository
+Currently vantage6 is focused on privacy enhancing techniques. Some of these techniques result in a model that can be used to make predictions. We want to extend vantage6 with a model repository in which these models can be stored, shared and used. This will make it easier to reuse models and to compare the performance of different models.
+
+
+## Build Services
+Algorithms in vantage6 are shipped as container images. Currently, this image can be build by the user or some external process. We want to extend vantage6 with a build service that can build the container image for you. This will make it easier to develop and deploy algorithms in vantage6 but more importantly, it will enhance the security of the platform as they are build in a controlled environment.
+
 
 ::: keypoints
 These are the keypoints
