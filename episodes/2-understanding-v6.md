@@ -20,14 +20,15 @@ title: "vantage6 basics"
 
 # Unique selling points of vantage6
 
-vantage6 is a platform to perform  privacy preserving federated learning. Other platforms for federated learning are current available, but vantage6 provides some unique features:
+vantage6 is a platform to execute  privacy enhancing techniques (PETs). Several alternative platforms for PETS are available, but vantage6 provides some unique features:
 
 -   Open source.
 -   Container orchestration for privacy enhancing techniques.
 -   Easily extensible to different types of data sources.
 -   Algorithms can be developed in any language.
 -   Other applications can connect to vantage6 using the API.
-
+- Managing and enforcing collaboration policies
+- Minimal network requirements at data stations
 
 # The vantage6 infrastructure
 
@@ -35,11 +36,11 @@ In vantage6, a **client** can pose a question to the central **server**. Each or
 
 The roles of these vantage6 components are as follows:
 
--   A (central) **server** coordinates communication with clients and nodes. The server tracks the status of the computation requests and handles administrative functions such as authentication and authorization.
+-   A (central) **server** that acts as communication hub between clients and nodes. The server tracks the status of the computation requests and handles administrative functions such as authentication and authorization.
 
--   **Node(s)** have access to data and execute algorithms
+-   **Node(s)** have access to the local data and execute algorithms
 
--   **Clients** (i.e. users or applications) request computations from the nodes via the client
+-   **Clients** (i.e. users or applications) request computations from the nodes via the client. For example the user can use the vantage6 user interface or python-client and a third-party application can make use of the vantage6 API.
 
 -   **Algorithms** are scripts that are run on the sensitive data. Each algorithm is packaged in a Docker image; the node pulls the image from a Docker registry and runs it on the local data. Note that the node owner can control which algorithms are allowed to run on their data.
 
@@ -47,20 +48,18 @@ The roles of these vantage6 components are as follows:
 
 On a technical level, vantage6 may be seen as a (Docker) container orchestration tool for privacy preserving analyses. It deploys a network of containerized applications that together ensure insights can be exchanged without sharing record-level data.
 
-## The vantage 6 infrastructure components
-
-As we saw before, the vantage6 network consists of a central server, a number of nodes and a client. This section explains in some more detail what these network actors are responsible for, and which subcomponents they contain.
+ Lets explain in some more detail what these network actors are responsible for, and which subcomponents they contain.
 
 ### Server
 
-The vantage6 server is the central point of contact for all communication in vantage6. However, it also relies on other infrastructure components to function properly. It consists of:
+The server in the network consists of multiple applications:
+-   **Vantage6 server**: Contains the users, organizations, collaborations, tasks and their results. It handles authentication and authorization to the system and acts as the communication hub for clients and nodes.
 
--   **Vantage6 server**: Contains the users, organizations, collaborations, tasks and their results. It handles authentication and authorization to the system and is the central point of contact for clients and nodes.
-
--   **Docker registry**: Contains algorithms stored in images which can be used by clients to request a computation. The node will retrieve the algorithm from this registry and execute it.
+-   **Docker registry**: Contains algorithms stored in images which can be used by clients to request a computation. The node will retrieve the algorithm from this registry and execute it. It is possible to use public registries for this purpose like [Docker hub](https://hub.docker.com/) or [Github Containers](https://ghcr.io). However it is also possible to host your own registry, for example a [Harbor](https://goharbor.io/) instance.
 
 -   **Algorithm store**: Is intended to be used as a repository for trusted algorithms within a certain project. Algorithm stores can be coupled to specific collaborations or to all collaborations on a given server.
-
+- **EduVPN instance**
+- **RabbitMQ**
 ### Data Station
 
 The data station hosts the node (vantage6-node) and a database.
@@ -75,11 +74,11 @@ A user or application who interacts with the vantage6-server. They create tasks,
 
 The vantage6 server is an API, which means that there are many ways to interact with it programatically. There are however a number of applications available that make is easier for users to interact with the vantage6 server:
 
--   **User interface** The user interface is a web application that allows users to interact with the server. It is used to create and manage organizations, collaborations, users, tasks and algorithms. It also allows users to view and download the results of tasks. Use of the user interface recommended for ease of use.
+-   **User interface** The user interface is a web application (hosted at the server) that allows users to interact with the server. It is used to create and manage organizations, collaborations, users, tasks and algorithms. It also allows users to view and download the results of tasks. Use of the user interface recommended for ease of use.
 
--   **Python client** The vantage6 python client <python-client> is a Python package that allows users to interact with the server from a Python environment. This is helpful for data scientists who want to integrate vantage6 into their existing Python workflow.
+-   **Python client** The vantage6 python client <python-client> is a Python package that allows users to interact with the server from a Python environment. This is especially usefull for data scientists who want to integrate vantage6 into their existing Python workflow.
 
--   **API** It is also possible to interact with the server using the API directly.
+-   **API** It is also possible to interact with the vantage6-server using the API directly.
 
 
 ## How algorithms run in vantage6
@@ -97,7 +96,7 @@ Now, let’s see how this works in vantage6. The user creates a task for the cen
 
 ::: callout
 
-## central server vs central part of an algorithm
+## vantage6-server vs central part of an algorithm
 
 It is easy to confuse the central server with the central part of the algorithm: the server is the central part of the infrastructure but not the place where the central part of the algorithm is executed. The central part is actually executed at one of the nodes, because it gives more flexibility: for instance, an algorithm may need heavy compute resources to do the aggregation, and it is better to do this at a node that has these resources rather than having to upgrade the server whenever a new algorithm needs more resources.
 :::
