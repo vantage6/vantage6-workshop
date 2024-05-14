@@ -32,38 +32,31 @@ vantage6 is a platform to execute  privacy enhancing techniques (PETs). Several 
 
 # The vantage6 infrastructure
 
-In vantage6, a **client** can pose a question to the central **server**. Each organization with sensitive data contributes one **node** to the network. The nodes collect the computation request from the server and fetches the **algorithm to answer** it. When the algorithm completes, the node sends the aggregated results back to the server.
-
-The roles of these vantage6 components are as follows:
-
--   A (central) **server** that acts as communication hub between clients and nodes. The server tracks the status of the computation requests and handles administrative functions such as authentication and authorization.
-
--   **Node(s)** have access to the local data and execute algorithms
-
--   **Clients** (i.e. users or applications) request computations from the nodes via the client. For example the user can use the vantage6 user interface or python-client and a third-party application can make use of the vantage6 API.
-
--   **Algorithms** are scripts that are run on the sensitive data. Each algorithm is packaged in a Docker image; the node pulls the image from a Docker registry and runs it on the local data. Note that the node owner can control which algorithms are allowed to run on their data.
+In vantage6, a **client** can pose a question to the central **server**. Each organization with sensitive data contributes one **node** to the network. The nodes collect the computation request from the server and fetches the **algorithm** to answer it. When the algorithm completes, the node sends the aggregated results back to the server.
 
 ![High level overview of the vantage6 infrastructure. Client(s) and Node(s) communicate through the Server. Nodes are able to communicate directly with each other when the optional VPN feature is enabled.](fig/vantage6_basic_schema.svg)
 
 On a technical level, vantage6 may be seen as a container orchestration tool for privacy preserving analyses. It deploys a network of containerized applications that together ensure insights can be exchanged without sharing record-level data.
 
- Lets explain in some more detail what these network actors are responsible for, and which subcomponents they contain.
+Lets explain in some more detail what these network actors are responsible for, and which subcomponents they contain.
 
 ### Server
 
-The server in the network consists of multiple applications:
+The A (central) **server** that acts as communication hub between clients and nodes. The server tracks the status of the computation requests and handles administrative functions such as authentication and authorization.It consists of multiple applications:
+
 -   **Vantage6 server**: Contains the users, organizations, collaborations, tasks and their results. It handles authentication and authorization to the system and acts as the communication hub for clients and nodes.
 
 -   **Docker registry**: Contains algorithms stored in images which can be used by clients to request a computation. The node will retrieve the algorithm from this registry and execute it. It is possible to use public registries for this purpose like [Docker hub](https://hub.docker.com/) or [Github Containers](https://ghcr.io). However it is also possible to host your own registry, for example a [Harbor](https://goharbor.io/) instance.
 
 -   **Algorithm store**: Is intended to be used as a repository for trusted algorithms within a certain project. Algorithm stores can be coupled to specific collaborations or to all collaborations on a given server.
-- **EduVPN instance**
-- **RabbitMQ**
+
+- **EduVPN instance**: If algorithms need to be able to engage in peer-to-peer communication, a VPN server can be set up to help them do so.
+
+- **RabbitMQ**: Is used to synchronize the messages between multiple vantage6 server instances.
 
 ### Data Station
 
-The data station hosts the node (vantage6-node) and a database.
+The data station hosts the node (vantage6-node), that have access to the local data and execute algorithms, and a database.
 
 -   **Vantage6 node** The node is responsible for executing the algorithms on the local data. It protects the data by allowing only specified algorithms to be executed after verifying their origin. The node is responsible for picking up the task, executing the algorithm and sending the results back to the server. The node needs access to local data. For more details see the technical documentation of the node.
 
