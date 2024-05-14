@@ -1,5 +1,5 @@
 ---
-title: "2-understanding-v6"
+title: "2-understanding-vantage6"
 ---
 
 ::: questions
@@ -10,11 +10,11 @@ title: "2-understanding-v6"
 :::
 
 ::: objectives
--   List the high-level infrastructure components of v6 (server, client, node)
--   Understand the added value of v6
+-   List the high-level infrastructure components of vantage6 (server, client, node)
+-   Understand the added value of vantage6
 -   Understand that there is different actors in algorithms
--   Understand that the v6 server does not run algorithms
--   Explain how a simple analysis runs on v6
+-   Understand that the vantage6 server does not run algorithms
+-   Explain how a simple analysis runs on vantage6
 -   Understand the future of vantage6 (policies, etc.)
 :::
 
@@ -43,7 +43,7 @@ The roles of these vantage6 components are as follows:
 
 -   **Algorithms** are scripts that are run on the sensitive data. Each algorithm is packaged in a Docker image; the node pulls the image from a Docker registry and runs it on the local data. Note that the node owner can control which algorithms are allowed to run on their data.
 
-![v6 basic schema.](fig/v6_basic_schema.svg)
+![vantage6 basic schema.](fig/vantage6_basic_schema.svg)
 
 On a technical level, vantage6 may be seen as a (Docker) container orchestration tool for privacy preserving analyses. It deploys a network of containerized applications that together ensure insights can be exchanged without sharing record-level data.
 
@@ -90,7 +90,7 @@ Federated algorithms can be split in a **federated** and a **central** part:
 
 -   **Federated**: The partial tasks are executing computations on the local privacy sensitive data.
 
-![v6 central and federated tasks.](fig/algorithm_central_and_subtasks.png)
+![vantage6 central and federated tasks.](fig/algorithm_central_and_subtasks.png)
 
 Now, let’s see how this works in vantage6. The user creates a task for the central part of the algorithm. This is registered at the server, and leads to the creation of a central algorithm container on one of the nodes. The central algorithm then creates subtasks for the federated parts of the algorithm, which again are registered at the server. All nodes for which the subtask is intended start their work by executing the federated part of the algorithm. The nodes send the results back to the server, from where they are picked up by the central algorithm. The central algorithm then computes the final result and sends it to the server, where the user can retrieve it
 
@@ -133,7 +133,7 @@ The central task receives $S_a$ and $n_a$ from node A and $S_b$ and $n_b$ from n
 
 $\overline{x} =\dfrac{S_a+S_b}{n_a+n_b}$
 
-![v6 algorithm workflow.](fig/algorithm_workflow.png)
+![vantage6 algorithm workflow.](fig/algorithm_workflow.png)
 
 :::
 
