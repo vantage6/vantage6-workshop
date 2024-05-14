@@ -27,8 +27,8 @@ vantage6 is a platform to execute  privacy enhancing techniques (PETs). Several 
 -   Easily extensible to different types of data sources.
 -   Algorithms can be developed in any language.
 -   Other applications can connect to vantage6 using the API.
-- Managing and enforcing collaboration policies
-- Minimal network requirements at data stations
+-   Managing and enforcing collaboration policies
+-   Minimal network requirements at data stations
 
 # The vantage6 infrastructure
 
@@ -42,25 +42,25 @@ Lets explain in some more detail what these network actors are responsible for, 
 
 ### Server
 
-The A (central) **server** that acts as communication hub between clients and nodes. The server tracks the status of the computation requests and handles administrative functions such as authentication and authorization.It consists of multiple applications:
+The A (central) **server** that acts as communication hub between clients and nodes. The [server](https://docs.vantage6.ai/en/main/server/index.html) tracks the status of the computation requests and handles administrative functions such as authentication and authorization.It consists of multiple applications:
 
 -   **Vantage6 server**: Contains the users, organizations, collaborations, tasks and their results. It handles authentication and authorization to the system and acts as the communication hub for clients and nodes.
 
 -   **Docker registry**: Contains algorithms stored in images which can be used by clients to request a computation. The node will retrieve the algorithm from this registry and execute it. It is possible to use public registries for this purpose like [Docker hub](https://hub.docker.com/) or [Github Containers](https://ghcr.io). However it is also possible to host your own registry, for example a [Harbor](https://goharbor.io/) instance.
 
--   **Algorithm store**: Is intended to be used as a repository for trusted algorithms within a certain project. Algorithm stores can be coupled to specific collaborations or to all collaborations on a given server.
+-   **Algorithm store**: Is intended to be used as a repository for trusted algorithms within a certain project. [Algorithm stores](https://docs.vantage6.ai/en/main/algorithm_store/index.html) can be coupled to specific collaborations or to all collaborations on a given server.
 
-- **EduVPN instance**: If algorithms need to be able to engage in peer-to-peer communication, a VPN server can be set up to help them do so.
+- [**EduVPN instance**](https://docs.vantage6.ai/en/main/server/optional.html#eduvpn): If algorithms need to be able to engage in peer-to-peer communication, a VPN server can be set up to help them do so.
 
-- **RabbitMQ**: Is used to synchronize the messages between multiple vantage6 server instances.
+- [**RabbitMQ**](https://docs.vantage6.ai/en/main/server/optional.html#rabbitmq): Is used to synchronize the messages between multiple vantage6 server instances.
 
 ### Data Station
 
-The data station hosts the node (vantage6-node), that have access to the local data and execute algorithms, and a database.
+The data station hosts the [node](https://docs.vantage6.ai/en/main/node/index.html) (vantage6-node), that have access to the local data and execute algorithms, and a database.
 
--   **Vantage6 node** The node is responsible for executing the algorithms on the local data. It protects the data by allowing only specified algorithms to be executed after verifying their origin. The node is responsible for picking up the task, executing the algorithm and sending the results back to the server. The node needs access to local data. For more details see the technical documentation of the node.
+-   **Vantage6 node**: The node is responsible for executing the algorithms on the local data. It protects the data by allowing only specified algorithms to be executed after verifying their origin. The node is responsible for picking up the task, executing the algorithm and sending the results back to the server. The node needs access to local data. For more details see the technical documentation of the node.
 
--   **Database** The database may be in any format that the algorithms relevant to your use case support. The currently supported database types are listed here.
+-   **Database**: The database may be in any format that the algorithms relevant to your use case support. The currently supported database types are listed here.
 
 ### Client
 
@@ -68,11 +68,11 @@ A user or application who interacts with the vantage6-server. They create tasks,
 
 The vantage6 server is an API, which means that there are many ways to interact with it programatically. There are however a number of applications available that make is easier for users to interact with the vantage6 server:
 
--   **User interface** The user interface is a web application (hosted at the server) that allows users to interact with the server. It is used to create and manage organizations, collaborations, users, tasks and algorithms. It also allows users to view and download the results of tasks. Use of the user interface recommended for ease of use.
+-   **User interface** The [user interface](https://docs.vantage6.ai/en/main/user/ui.html) is a web application (hosted at the server) that allows users to interact with the server. It is used to create and manage organizations, collaborations, users, tasks and algorithms. It also allows users to view and download the results of tasks. Use of the user interface recommended for ease of use.
 
--   **Python client** The vantage6 python client <python-client> is a Python package that allows users to interact with the server from a Python environment. This is especially usefull for data scientists who want to integrate vantage6 into their existing Python workflow.
+-   **Python client** The [vantage6 python client](https://docs.vantage6.ai/en/main/user/pyclient.html) <python-client> is a Python package that allows users to interact with the server from a Python environment. This is especially usefull for data scientists who want to integrate vantage6 into their existing Python workflow.
 
--   **API** It is also possible to interact with the vantage6-server using the API directly.
+-   **API** It is also possible to interact with the vantage6-server using the [API](https://docs.vantage6.ai/en/main/user/api.html) directly.
 
 
 ## How algorithms run in vantage6
