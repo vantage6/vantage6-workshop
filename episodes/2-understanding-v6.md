@@ -96,7 +96,12 @@ It is easy to confuse the central server with the central part of the algorithm:
 :::
 ::: challenge
 
-Two centers $a$ and $b$ have data regarding the age of a set of patients. Each center has a data station and We want to compute the overall average age of the patients.
+Two centers $A$ and $B$ have the following data regarding the age of a set of patients:
+$a = [34, 42, 28, 49]$
+
+$b = [51, 23, 44]$
+
+Each center has a data station and We want to compute the overall average age of the patients.
 
 ![Architecture.](fig/schema_exercise.png)
 
@@ -108,7 +113,7 @@ It can be written as follow, to make it ready for a federate computation:
 
 $\overline{x} =\dfrac{1}{n_a+n_b} (\sum_{i=1}^{n_a} a_i+\sum_{i=1}^{n_b} b_i)$
 
-Can you determine which part of the infrastructure will execute each part of the computation?
+Can you determine which part of the infrastructure will execute each part of the computation, and which is the result returned by the different parts?
 
 ::: solution
 
@@ -118,13 +123,25 @@ The node A starts two subtasks, one per node. Node A will run the following comp
 
 $S_a =\sum_{i=1}^{n_a} a_i$
 
+and it will return the following results to the central task:
+
+$S_a=153$
+
+$n_a=4$
+
 Node B will run the following computation:
 
 $S_b =\sum_{i=1}^{n_b} a_i$
 
+and it will return the following results to the central task:
+
+$S_b=118$
+
+$n_b=3$
+
 The central task receives $S_a$ and $n_a$ from node A and $S_b$ and $n_b$ from node B, and will run the following computation:
 
-$\overline{x} =\dfrac{S_a+S_b}{n_a+n_b}$
+$\overline{x} =\dfrac{S_a+S_b}{n_a+n_b}=\dfrac{153+118}{4+3}=38.71$
 
 ![vantage6 algorithm workflow.](fig/algorithm_workflow.png)
 
