@@ -1,5 +1,5 @@
 ---
-title: "Running a PET analysis without programming"
+title: "Running a PET analysis without programming on vantage6"
 teaching: 2
 exercises: 3
 ---
