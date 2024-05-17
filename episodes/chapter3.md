@@ -71,7 +71,12 @@ Below are the administrator credential of GHT and PhY24 collaborations (password
 | PhY24-admin | Collaboration Admin | PhY24         |
 | GHT-admin   | Collaboration Admin | GHT           |
 
-Check the status of the nodes of each collaboration. Log in to each one with the given credentials, click on 'Administration' on the top of the UI, select 'Collaborations' on the left panel, and then select the corresponding collaboration. If there are 'offline' nodes, click on the 'Nodes' panel on the left and check when these were seen for the last time.
+Check the status of the nodes of each collaboration: 
+
+1. Log in to each one with the given credentials
+2. Click on 'Administration' on the top of the UI
+3. select 'Collaborations' on the left panel, and then select the corresponding collaboration. 
+4. If there are 'offline' nodes, click on the 'Nodes' panel on the left and check when these were seen for the last time.
 
 ![Collaboration status](fig/chapter3/collab-status-offline.png)
 
