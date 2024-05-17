@@ -56,7 +56,7 @@ In this episode, you will perform a PET analysis on an existing vantage6 collabo
 First, let's take a look at one of the federated algorithms -available on the vantage6's community store- that will be used in this episode: [a federated average](https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py). Based on the code and its comments:
 
 - What is the difference between the 'central_average' and the 'partial_average' functions?
-- What would happen if this algorithm is executed within a collaboration that has one of its nodes 'offline'?
+- What would happen if this analysis is started in a collaboration that has one of its nodes 'offline'?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
