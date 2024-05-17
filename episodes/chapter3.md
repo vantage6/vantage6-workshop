@@ -21,7 +21,7 @@ exercises: 3
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Vantage6 collaborations: hypothetical case study
+## A hypothetical case study using vantage6 collaborations
 
 In the context of vantage6, a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution. 
 
