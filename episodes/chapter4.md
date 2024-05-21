@@ -116,7 +116,8 @@ The permission structure allows for a lot of flexibility, but it can be complex 
 Go the administration page in the vantage6 UI, check the permissions that you have, and answer the following questions:
 
 1. What is your role in vantage6?
-2. Can you create a new organization, a new user or a new collaboration?
+2. Do you have the permissions to create a new organization, a new user or a new collaboration?
+3. Do you have the permission to remove an existing organization, a user, or a collboration?
 
 :::::::::::::::::::::::: solution
 
@@ -124,6 +125,7 @@ Go the administration page in the vantage6 UI, check the permissions that you ha
 
 1. Check it with your instructor.
 2. Yes, you should be able to create a new organization, a new user, and a new collaboration. If not, ask your instructor to give you the necessary permissions.
+3. Check it with your instructor.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
