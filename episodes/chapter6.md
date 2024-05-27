@@ -174,7 +174,7 @@ The command will show a wizard to guide you through the configuration process in
 ```bash
 ? Please enter a configuration-name: node1
 ? Enter given api-key: ***
-? The base-URL of the server: http://host.docker.internal
+? The base-URL of the server: https://portal.cotopaxi.vantage6.ai/
 ? Enter port to which the server listens: 5000
 ? Path of the api: /api
 ? Task directory path: ***/vantage6/node/node1
@@ -194,7 +194,7 @@ The command will show a wizard to guide you through the configuration process in
 
 1. The `configuration-name` is the name of the node configuration file. You can give any name you like.
 2. The `api-key` is the API key that you received from the vantage6 server administrator. It is used to authenticate the node at the server.
-3. The `base-URL of the server` is the URL of the vantage6 server. It is `http://host.docker.internal` if you are running the server on your local machine; Otherwise you need to provide the URL of the server, e.g. `https://cotopaxi.vantage6.ai`.
+3. The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://host.docker.internal`.
 4. The `port to which the server listens` is the port number that the server listens to. It is usually `5000`.
 5. The `path of the api` is the path of the API of the server. It is usually `/api`.
 6. The `task directory path` is the path where the node will store the task files. You can give any path you like.
