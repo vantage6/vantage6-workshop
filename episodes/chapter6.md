@@ -26,7 +26,7 @@ exercises: 4
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-Vantage6 node is the software that runs on the machine of the data owner. It allows the data owner to share their data within the vantage6 network in a privacy-preserving way. Also, it is responsible for the execution of the federated learning tasks and the communication with the vantage6 server.
+Vantage6 node is the software that runs on a data station. It allows the data owner to share their data within the vantage6 network in a privacy-preserving way. Also, it is responsible for the execution of the federated learning tasks and the communication with the vantage6 server.
 
 Each organization that is involved in a federated learning collaboration has its own node in that collaboration. They should therefore install the node software on a virtual machine hosted in their own infrastructure. The node should have access to the data that is used in the federated learning collaboration.
 
@@ -49,19 +49,21 @@ The hardware requirements of vantage6 node also depend on the algorithms that th
 
 ### Software requirements
 
-You need the following software installed first:
+The following software must be installed before installing the vantage6 node:
 
 - Operating system: Ubuntu 18.04+ , MacOS Big Sur+, or Windows 10+
 - Python
-    - Python v3.10 for vantage6 vserion 3.8.0 or higher
+    - Python v3.10 for vantage6 version 3.8.0 or higher
     - Python v3.7 for other lower versions of vantage6
     - Highly recommended to create a new, clean virtual or conda environment for vantage6 node
 - Docker (always latest version)
 
-⚠️ For Linux users, some [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) may be required. Vantage6 needs to be able to run docker without sudo, and these steps ensure just that.
+::: callout
+## ⚠️ Docker installation 
+  - For Linux users, some [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) may be required. Vantage6 needs to be able to run docker without sudo, and these steps ensure just that.
 
-⚠️ For Windows users, if you are using Docker Desktop, it may be preferable to limit the amount of memory Docker can use - in some cases it may otherwise consume much memory and slow down the system. This may be achieved as described [here](https://stackoverflow.com/questions/62405765/memory-allocation-to-docker-containers-after-moving-to-wsl-2-in-windows).
-
+  - For Windows users, if you are using Docker Desktop, it may be preferable to limit the amount of memory Docker can use - in some cases it may otherwise consume much memory and slow down the system. This may be achieved as described [here](https://stackoverflow.com/questions/62405765/memory-allocation-to-docker-containers-after-moving-to-wsl-2-in-windows).
+:::
 
 ## Installation
 
@@ -86,7 +88,7 @@ or
 v6 --help
 ```
 
-If the installation is succesful, it will print out the following messages,
+If the installation is successful, it will print out the following messages,
 ```bash
 
 Usage: v6 [OPTIONS] COMMAND [ARGS]...
@@ -158,7 +160,8 @@ For example, to create a new node configuration, you can run the command `v6 nod
 
 ## Configure a new node
 
-We will now create a new node configuration using the `v6 node new` command.
+We will now create a new node configuration using the `v6 node new` command. 
+This process will create a configuration `yaml` file that the vantage6-node requires to run.
 
 Let's run the command:
 
@@ -191,7 +194,7 @@ The command will show a wizard to guide you through the configuration process in
 
 1. The `configuration-name` is the name of the node configuration file. You can give any name you like.
 2. The `api-key` is the API key that you received from the vantage6 server administrator. It is used to authenticate the node at the server.
-3. The `base-URL of the server` is the URL of the vantage6 server. It is `http://host.docker.internal` if you are running the server on your local machine; Othewise you need to provide the URL of the server, e.g. `https://cotopaxi.vantage6.ai`.
+3. The `base-URL of the server` is the URL of the vantage6 server. It is `http://host.docker.internal` if you are running the server on your local machine; Otherwise you need to provide the URL of the server, e.g. `https://cotopaxi.vantage6.ai`.
 4. The `port to which the server listens` is the port number that the server listens to. It is usually `5000`.
 5. The `path of the api` is the path of the API of the server. It is usually `/api`.
 6. The `task directory path` is the path where the node will store the task files. You can give any path you like.
@@ -209,12 +212,12 @@ When you finish the configuration, you will see the following message,
 [info ] - You can start the node by running v6 node start
 ```
 
-It means that the node configuration file is created successfullly, and it also gives the path of the configuration file.
+It means that the node configuration file is created successfully, and it also gives the path of the configuration file.
 
 
 ### Where is the node configuration file?
 
-You can also use the `v6 node files` command to check the location of the node configuration file,
+You can always use the `v6 node files` command to check the location of the node configuration file,
 
 ```bash
 v6 node files
@@ -320,7 +323,7 @@ then it will start the node and print out the following messages,
 [info ] - To see the logs, run: v6 node attach --name node1
 ```
 
-🎉 Now, the node is started sucessfully!
+🎉 Now, the node is started successfully!
 
 
 If you see a warning message like this,
@@ -438,7 +441,7 @@ From there, you can see the running status of the node, the connection to the se
 
 ## Stop a node
 
-To stop a node, you can run the command,
+To stop a running node, you can run the command,
 
 ```bash
 v6 node stop
@@ -538,7 +541,7 @@ after you choose the node, it will ask you to enter the new API key,
 [info ] - Your new API key has been uploaded to the config file ***/vantage6/node/node1.yaml.
 ```
 
-When you finish the process, the new API key will be uploaded to the node configuration file.
+When you finish the process, the node configuration file will be updated with the new API key.
 
 To make the new API key effective, you need to restart the node by running the command `v6 node stop` and then `v6 node start`.
 
