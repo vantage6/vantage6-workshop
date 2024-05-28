@@ -182,9 +182,8 @@ Adapt and run `test.py` to test your function implementation:
 
 - Create a Python environment and run `pip install -e .`. This installs the local Python
   package and also the algorithm tools (which contain the mock client).
-- Adjust `test.py` to have a sensible value for the column name to compute the average
-  over. Note that this should be done both for the test of the central and of the
-  partial function
+- Adjust `test.py` to compute the average over the **age** column. Do this both
+  for the test of the central and of the partial function
 - Run `test.py` to test your functions.
 
 :::::::::::::::::::::::: solution
@@ -207,7 +206,7 @@ info > Mocking waiting for results
 [{'sum': 624.0, 'count': 18}, {'sum': 624.0, 'count': 18}]
 ```
 
-Hence, the average is 34.666!
+Hence, the average age is 34.666!
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -234,8 +233,6 @@ real-world projects with open-source algorithm implementations.
 
 Build an algorithm image with the name: `harbor2.vantage6.ai/workshop/average:<myname>`.
 Push it to the repository.
-
-<!-- TODO this is just an idea - we could temporarily create a project in harbor with free push access for the workshop -->
 
 :::::::::::::::::::::::: solution
 
@@ -264,9 +261,6 @@ set up a server and a few nodes locally with:
 v6 dev create-demo-network
 ```
 
-TODO test on linux/mac?
-TODO it would be very convenient to add algorithm store and UI to this network
-
 This command creates a vantage6 server configuration, and then registers a
 collaboration with 3 organizations in it. It registers a node for each organization and
 finally, it creates the vantage6 node configuration for each node with the correct API
@@ -288,9 +282,25 @@ v6 dev remove-demo-network
 In the previous lesson, you have learned how to run an algorithm using the Python
 client. Now, you can run your own algorithm using the Python client!
 
-TODO link to lesson 5 where Python client is discussed
+<!-- TODO link to lesson 5 where Python client is discussed -->
 
-TODO exercise to test the algorithm on the local network
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge: Test your algorithm on a local vantage6 network
+
+Create and start a local vantage6 network with the `v6 dev` commands. Then, run your
+algorithm using the Python client. You can find the command to run your algorithm in
+the `test.py` file, since the mock client has exactly the same syntax as the real client.
+
+<!-- TODO an alternative is to do this all locally, but that only works if vdev has UI + algorithm store -->
+
+:::::::::::::::::::::::: solution
+
+## Output
+
+You can find the revised JSON file on the page with the algorithm details
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Publish your algorithm in the algorithm store
 
@@ -301,20 +311,35 @@ information about how to run the algorithm from the algorithm store. For example
 helps the UI to construct a dropdown of available functions, and to know what arguments
 the function expects.
 
+<!--
+TODO link in first sentence to lesson where algorithm store is discussed (lesson 3) -->
+
 The boilerplate you create should already contain an `algorithm_store.json` file that
 contains a JSON description of your algorithm - how many databases each function uses,
 for example.
 
-TODO link in first sentence to lesson where algorithm store is discussed (lesson 3)
+You can put the algorithm in the store by selecting the algorithm store in the UI, then
+clicking on the "Add algorithm" button. You can then upload the `algorithm_store.json`
+file in the top. After uploading it, you can change the details of the algorithm before
+submitting it.
 
-TODO this lesson is not finished yet as it depends on algorithm store/UI development to
-be completed over the next months. It should include:
+::::::::::::::::::::::::::::::::::::: challenge
 
-- whether they should run an algorithm store locally and how?
-- how to publish the algorithm in the store. This can at the moment be done via the API
-  or Python client, but in future should be easier via the UI.
+## Challenge: Add your algorithm to the algorithm store
 
-TODO exercise to publish the algorithm and run it in the UI. What should they adapt the algorithm_store.json?
+Upload your algorithm to the algorithm store. Submit the `algorithm_store.json`, check
+the filled in details, and submit the algorithm.
+
+Then, can you download the revised JSON file so you can update it in your algorithm
+repository?
+
+:::::::::::::::::::::::: solution
+
+## Output
+
+You can find the revised JSON file on the page with the algorithm details
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Next steps
 
@@ -329,8 +354,8 @@ usually important to take before your algorithm is ready for real-world use:
 - **Privacy filters**: implement privacy filters to ensure that sensitive data is not
   shared with the server.
 - **Error handling**: implement error handling to ensure that the algorithm does not
-  crash when unexpected input is provided.
-  TODO include something about the v6 errors here
+  crash when unexpected input is provided. Note that there are [custom vantage6 errors][v6-errors]
+  that you can raise to provide more information about what went wrong.
 - **Documentation**: document your algorithm so that others can understand how to use
   it.
 
@@ -353,5 +378,4 @@ projects. Maybe you can also use that opportunity to further develop your algori
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 [algo-concepts]: https://docs.vantage6.ai/en/main/algorithms/concepts.html
-
-<!-- TODO add reference to function documentation of client so that people know where to look for functions (or help(client)) -->
+[v6-errors]: https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.algorithm.tools.exceptions.html#module-vantage6.algorithm.tools.exceptions
