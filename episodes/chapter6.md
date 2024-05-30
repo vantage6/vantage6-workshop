@@ -517,7 +517,7 @@ To make the new API key effective, you need to restart the node by running the c
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: Reset the API key of a node
+## Challenge 4: Update the API key of a node
 
 1. How do you update the API key of a node? Try to update the API key of the node you just created, without using the `v6 node set-api-key` command.
 2. How do you make sure the new API key is effective?
