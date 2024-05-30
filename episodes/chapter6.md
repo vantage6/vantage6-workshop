@@ -519,8 +519,30 @@ To make the new API key effective, you need to restart the node by running the c
 
 ## Challenge 4: Reset the API key of a node
 
-1. How do you update the API key of a node? Try to update the API key of the node you just created.
+1. How do you update the API key of a node? Try to update the API key of the node you just created, without using the `v6 node set-api-key` command.
 2. How do you make sure the new API key is effective?
+
+::: solution
+1. We can update the API key in the configuration file:
+  - Run the `v6 node files` command to locate the configuration file.
+  - Open the configuration file and write the new API key in the `api_key` field.
+  - Stop the node with the `v6 node stop` command.
+  - Restart the node with the `v6 node start` command.
+
+2. In order to verify the effectiveness of the API key change, we can restart the node with active logging:
+```bash
+v6 node start --attach
+```
+
+In the log, we have to look for the node authentication message:
+
+```bash
+2024-05-30 14:41:13 - common         - DEBUG    - Authenticating node...
+2024-05-30 14:41:13 - common         - INFO     - Successfully authenticated
+
+```
+
+:::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
