@@ -1,15 +1,14 @@
 ---
-title: "Setting up vantage6 node"
+title: "Setting up a vantage6 node"
 teaching: 1.5
 exercises: 4
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What are the hardware requirements for vantage6 node?
-- What are the software requirements for vantage6 node?
-- How to install vantage6 command line?
-- What are the commands available in vantage6?
+- What are the requirements for a vantage6 node?
+- How to install vantage6 command line interface?
+- What are the commands available in the vantage6 CLI?
 - How to set up a new vantage6 node?
 - How to reset an API key for a node?
 
@@ -39,12 +38,14 @@ This chapter will explain how to set up and run the vantage6 node software.
 
 The minimal hardware requirements are:
 
-- x86 CPU architecture + virtualization enabled
+- x86 CPU architecture + virtualization enabled. This setting is usually the default in most of the systems.
 - 1 GB memory
-- 50GB+ storage
-- Stable and fast Internet connection (1 Mbps+)
+- Sufficient storage to install Python, docker and vantage6, and to store the required docker images (50GB+ recommended).
+- Stable and fast Internet connection (1 Mbps+).
 
 The hardware requirements of vantage6 node also depend on the algorithms that the node will run. For example, you need much less compute power for a descriptive statistical algorithm than for a machine learning model.
+
+Even though a vantage6 node can be installed and run on Linux, Windows and Mac, Linux is the recommended OS.
 
 
 ### Software requirements
@@ -67,12 +68,15 @@ The following software must be installed before installing the vantage6 node:
 
 ## Installation
 
-The Python package `vantage6` provides a command-line interface (CLI) to manage vantage6 infrastructure.
+The Python package `vantage6` provides a command-line interface (CLI) to manage the vantage6 infrastructure.
 
 To install this CLI package, run the command in your Python environment,
 
 ```bash
 # First go to your python virtual environment
+
+conda activate myenv
+
 # Then install the package
 
 pip install vantage6
@@ -88,7 +92,29 @@ or
 v6 --help
 ```
 
-If the installation is successful, it will print out the following messages,
+If the installation is successful, it will print out a message explaining the CLI usage.
+
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 1: Install vantage6 CLI
+
+Check the hardware and software requirements and install the vantage6 CLI package in your Python environment.
+
+Make sure you create a new virtual or conda environment for vantage6 CLI installation.
+
+Run the command `v6 --help` to verify the installation. What are the available commands?
+
+::: solution
+
+If the vantage6 CLI has been correctly installed, by running:
+
+```bash
+v6 --help
+```
+
+the following messages will be printed:
+
 ```bash
 
 Usage: v6 [OPTIONS] COMMAND [ARGS]...
@@ -102,25 +128,16 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  algorithm  Manage your vantage6 algorithms.
-  dev        Quickly manage a test network with a server and several nodes.
-  node       Manage your vantage6 node instances.
-  server     Manage your vantage6 server instances.
+  algorithm        Manage your vantage6 algorithms.
+  algorithm-store  Manage your vantage6 algorithm store server instances.
+  dev              Quickly manage a test network with a server and...
+  node             Manage your vantage6 node instances.
+  server           Manage your vantage6 server instances.
+  test             Execute tests on your vantage6 infrastructure.
 ```
+You can see that vantage6 CLI provides commands to manage the server (`v6 server`), node (`v6 node`) and algorithms (`v6 algorithm`) and algorithm store (`algorithm-store`).
 
-
-You can see that vantage6 CLI provides commands to manage the server (`v6 server`), node (`v6 node`), and algorithms (`v6 algorithm`).
-
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 1: Install vantage6 CLI
-
-Check the hardware and software requirements and install the vantage6 CLI package in your Python environment.
-
-Make sure you create a new virtual or conda environment for vantage6 CLI installation.
-
-Run the command `v6 --help` to verify the installation. Do you see the help message?
+:::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -129,7 +146,7 @@ Run the command `v6 --help` to verify the installation. Do you see the help mess
 
 The vantage6 CLI provides the `v6 node` command to manage the vantage6 node instances.
 
-To see how to use it, run the command `v6 node --help` in your terminal, and it will print out the following messages,
+To see how to use it, run the command `v6 node --help` in your terminal, and it will print out the following messages:
 
 ```bash
 Usage: v6 node [OPTIONS] COMMAND [ARGS]...
@@ -169,7 +186,7 @@ Let's run the command:
 v6 node new
 ```
 
-The command will show a wizard to guide you through the configuration process in a step-by-step manner,
+The command will show a wizard to guide you through the configuration process in a step-by-step manner:
 
 ```bash
 ? Please enter a configuration-name: node1
@@ -192,20 +209,16 @@ The command will show a wizard to guide you through the configuration process in
 ? Enable encryption? No
 ```
 
-1. The `configuration-name` is the name of the node configuration file. You can give any name you like.
-2. The `api-key` is the API key that you received from the vantage6 server administrator. It is used to authenticate the node at the server.
-3. The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://host.docker.internal`.
-4. The `port to which the server listens` is the port number that the server listens to. It is usually `5000`.
-5. The `path of the api` is the path of the API of the server. It is usually `/api`.
-6. The `task directory path` is the path where the node will store the task files. You can give any path you like.
-7. The `database URI` is the path of the database file. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
-8. The `level of logging` is the level of logging that you want. It can be 'DEBUG', 'INFO', 'WARNING', 'ERROR', or 'CRITICAL'.
-9. The `connect to a VPN server` is whether you want to connect to a VPN server. It is usually 'No', otherwise, you need to provide the VPN server URL.
-10. The `enable encryption` is whether you want to enable end-to-end encryption. If yes, you need to provide the encryption key.
+It is important to note the meaning of following configuration parameters:
+  - The `api-key` is the API key that you received from the vantage6 server administrator. It is used to authenticate the node at the server.
+  - The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://host.docker.internal`.
+  - The `path of the api` is the path of the API of the server. It is usually `/api`.
+  - The `database URI` is the path of the database file. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
+
 
 To see all configuration options, please check https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options.
 
-When you finish the configuration, you will see the following message,
+When you finish the configuration, you will see the following message:
 
 ```bash
 [info ] - New configuration created: ***/vantage6/node/node1.yaml
@@ -217,13 +230,13 @@ It means that the node configuration file is created successfully, and it also g
 
 ### Where is the node configuration file?
 
-You can always use the `v6 node files` command to check the location of the node configuration file,
+You can always use the `v6 node files` command to check the location of the node configuration file:
 
 ```bash
 v6 node files
 ```
 
-It will ask you which node you want to see. You can choose the one you just created,
+It will ask you which node you want to see. You can choose the one you just created:
 
 ```bash
 ? Select the configuration you want to use: (Use arrow keys)
@@ -232,43 +245,7 @@ It will ask you which node you want to see. You can choose the one you just crea
    node3
 ```
 
-then, it will print out the path of the configuration file,
-
-```bash
-? Select the configuration you want to use: node1
-2024-05-24 15:52:13 - context        - INFO     - ---------------------------------------------
-2024-05-24 15:52:13 - context        - INFO     -  Welcome to
-2024-05-24 15:52:13 - context        - INFO     -                   _                     __
-2024-05-24 15:52:13 - context        - INFO     -                  | |                   / /
-2024-05-24 15:52:13 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
-2024-05-24 15:52:13 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
-2024-05-24 15:52:13 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
-2024-05-24 15:52:13 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
-2024-05-24 15:52:13 - context        - INFO     -                             __/ |
-2024-05-24 15:52:13 - context        - INFO     -                            |___/
-2024-05-24 15:52:13 - context        - INFO     -
-2024-05-24 15:52:13 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
-2024-05-24 15:52:13 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
-2024-05-24 15:52:13 - context        - INFO     -  --> Blog: https://vantage6.ai
-2024-05-24 15:52:13 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 15:52:13 - context        - INFO     - Cite us!
-2024-05-24 15:52:13 - context        - INFO     - If you publish your findings obtained using vantage6,
-2024-05-24 15:52:13 - context        - INFO     - please cite the proper sources as mentioned in:
-2024-05-24 15:52:13 - context        - INFO     - https://vantage6.ai/vantage6/references
-2024-05-24 15:52:13 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 15:52:13 - context        - INFO     - Started application vantage6
-2024-05-24 15:52:13 - context        - INFO     - Current working directory is '/Users/clgeng/github/advantage/vantage6-workshop'
-2024-05-24 15:52:13 - context        - INFO     - Successfully loaded configuration from '/Users/clgeng/Library/Application Support/vantage6/node/node1.yaml'
-2024-05-24 15:52:13 - context        - INFO     - Logging to '/Users/clgeng/Library/Logs/vantage6/node/node1/node_user.log'
-2024-05-24 15:52:13 - context        - INFO     - Common package version '4.1.0'
-2024-05-24 15:52:13 - context        - INFO     - vantage6 version '4.1.0'
-[info ] - Configuration file = ***/vantage6/node/node1.yaml
-[info ] - Log file           = ***/vantage6/node/node1/node_user.log
-[info ] - data folders       = ***/vantage6/node/node1
-[info ] - Database labels and files
-[info ] -  - default         = ***/data.csv (type: csv)
-[info ] -  - default         = ***/data.sql (type: sql)
-```
+In the printed message the path to the configuration file.
 
 You can see that not only the path of the configuration file is printed out, but also the locations of the log file, the data folders and the database files are shown.
 
@@ -283,15 +260,15 @@ You can see that not only the path of the configuration file is printed out, but
 
 ## Start a node
 
-Before starting a vanatge6 node, you need to make sure the vantange6 server is running and the Internet connection is stable.
+Before starting a vantage6 node, you need to make sure the vantage6 server is running and the internet connection is stable.
 
-To start a node, you can run the command `v6 node start`,
+To start a node, you can run the command `v6 node start`:
 
 ```bash
 v6 node start
 ```
 
-It will ask you which node you want to start. You can choose the one you just created,
+It will ask you which node you want to start. You can choose the one you just created:
 
 ```bash
 [info ] - Starting node...
@@ -302,7 +279,7 @@ It will ask you which node you want to start. You can choose the one you just cr
    node3
 ```
 
-then it will start the node and print out the following messages,
+then it will start the node and print out the following messages:
 
 ```bash
 ? Select the configuration you want to use: node1
@@ -326,23 +303,15 @@ then it will start the node and print out the following messages,
 🎉 Now, the node is started successfully!
 
 
-If you see a warning message like this,
-```bash
-[warn ] - Version mismatch between CLI and server/node. CLI is running on version 4.1.0, while node and server are on version 4.5. This might cause unexpected issues; changing to 4.5.<latest> is recommended.
-```
-
-then you need to update the CLI to the latest version by running the command `pip install vantage6 --upgrade`.
-
-
 ## Watch the logs
 
-You can show the logs in the current console by running the command,
+You can show the logs in the current console by running the command:
 
 ```bash
 v6 node attach --name node1
 ```
 
-then it will print out the logs of the node in the console,
+then it will print out the logs of the node in the console:
 
 ```bash
 2024-05-24 14:15:14 - context        - INFO     - ---------------------------------------------
@@ -441,20 +410,20 @@ From there, you can see the running status of the node, the connection to the se
 
 ## Stop a node
 
-To stop a running node, you can run the command,
+To stop a running node, you can run the command:
 
 ```bash
 v6 node stop
 ```
 
-then it will ask you which node you want to stop,
+then it will ask you which node you want to stop:
 
 ```bash
 ? Select the node you wish to stop: (Use arrow keys)
  » vantage6-node1-user
 ```
 
-after you choose the node, it will print out the following messages,
+after you choose the node, it will print out the following messages:
 
 ```bash
 ? Select the node you wish to stop: vantage6-node1-user
@@ -487,17 +456,17 @@ after you choose the node, it will print out the following messages,
 [info ] - Stopped the vantage6-node1-user Node.
 ```
 
-## Reset an API key
+## Update the API key of your node
 
-If you get a new API key for a node from the server administrator, you need to reset the API key in the node configuration file.
+If you get a new API key for a node from the server administrator, or if the organization administrator creates a new API key, you need to reset the API key in the node configuration file.
 
-For that, you can run the command,
+For that, you can run the command:
 
 ```bash
 v6 node set-api-key
 ```
 
-then it will ask you which node you want to reset the API key,
+then it will ask you which node you want to update the API key of:
 
 ```bash
 ? Select the configuration you want to use: (Use arrow keys)
@@ -506,7 +475,7 @@ then it will ask you which node you want to reset the API key,
    node3
 ```
 
-after you choose the node, it will ask you to enter the new API key,
+after you choose the node, it will ask you to enter the new API key:
 
 ```bash
 ? Select the configuration you want to use: node1
@@ -550,7 +519,7 @@ To make the new API key effective, you need to restart the node by running the c
 
 ## Challenge 4: Reset the API key of a node
 
-1. How do you reset the API key of a node? Try to reset the API key of the node you just created.
+1. How do you update the API key of a node? Try to update the API key of the node you just created.
 2. How do you make sure the new API key is effective?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -558,13 +527,14 @@ To make the new API key effective, you need to restart the node by running the c
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints
-- Install the vantage6 CLI package by running `pip install vantage6`
-- Use the `v6 --help` command to see the available commands of the vantage6 CLI
-- Use the `v6 node` command to manage the vantage6 node instances
-- Use the `v6 node new` command to create a new node configuration
-- Use the `v6 node start` command to start a node
-- Use the `v6 node attach --name xxx` command to show the logs of the node `xxx`
-- Use the `v6 node stop` command to stop a node
-- Use the `v6 node set-api-key` command to reset the API key of a node
-- Use the `v6 node files` command to check the location of the node configuration file
+- Install the vantage6 CLI package by running `pip install vantage6`.
+- Use the `v6 --help` command to see the available commands of the vantage6 CLI.
+- Use the `v6 node` command to manage the vantage6 node instances.
+- Use the `v6 node new` command to create a new node configuration.
+- Use the `v6 node start` command to start a node.
+- Use the `v6 node attach --name xxx` command to show the logs of the node `xxx`.
+- Use the `v6 node stop` command to stop a node.
+- Use the `v6 node set-api-key` command to reset the API key of a node.
+- Use the `v6 node files` command to check the location of the node configuration file.
+- The commands similar to the ones presented for the node are also available for `v6 server` and `v6 algorithm-store`. 
 ::::::::::::::::::::::::::::::::::::::::::::::::
