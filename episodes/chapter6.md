@@ -1,6 +1,6 @@
 ---
 title: "Setting up a vantage6 node"
-teaching: 1.5
+teaching: 1
 exercises: 4
 ---
 
@@ -10,7 +10,7 @@ exercises: 4
 - How to install vantage6 command line interface?
 - What are the commands available in the vantage6 CLI?
 - How to set up a new vantage6 node?
-- How to reset an API key for a node?
+- How to update an API key for a node?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -19,7 +19,7 @@ exercises: 4
 - Understand the requirements for setting up vantage6 node
 - Understand the basic `v6` commands
 - Be able to create a new vantage6 node using `v6` commands
-- Be able to reset an API key for a node
+- Be able to update an API key for a node
 - Be able to observe the logs of vantage6 node
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -41,7 +41,7 @@ The minimal hardware requirements are:
 - x86 CPU architecture + virtualization enabled. This setting is usually the default in most of the systems.
 - 1 GB memory
 - Sufficient storage to install Python, docker and vantage6, and to store the required docker images (50GB+ recommended).
-- Stable and fast Internet connection (1 Mbps+).
+- Stable and fast internet connection (1 Mbps+).
 
 The hardware requirements of vantage6 node also depend on the algorithms that the node will run. For example, you need much less compute power for a descriptive statistical algorithm than for a machine learning model.
 
@@ -60,7 +60,7 @@ The following software must be installed before installing the vantage6 node:
 - Docker (always latest version)
 
 ::: callout
-## ⚠️ Docker installation 
+## ⚠️ Docker installation
   - For Linux users, some [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) may be required. Vantage6 needs to be able to run docker without sudo, and these steps ensure just that.
 
   - For Windows users, if you are using Docker Desktop, it may be preferable to limit the amount of memory Docker can use - in some cases it may otherwise consume much memory and slow down the system. This may be achieved as described [here](https://stackoverflow.com/questions/62405765/memory-allocation-to-docker-containers-after-moving-to-wsl-2-in-windows).
@@ -177,7 +177,7 @@ For example, to create a new node configuration, you can run the command `v6 nod
 
 ## Configure a new node
 
-We will now create a new node configuration using the `v6 node new` command. 
+We will now create a new node configuration using the `v6 node new` command.
 This process will create a configuration `yaml` file that the vantage6-node requires to run.
 
 Let's run the command:
@@ -210,7 +210,7 @@ The command will show a wizard to guide you through the configuration process in
 ```
 
 It is important to note the meaning of following configuration parameters:
-  - The `api-key` is the API key that you received from the vantage6 server administrator. It is used to authenticate the node at the server.
+  - The `api-key` is the API key that you created in vantage6 UI (see chapter 4) or you recieved from the vantage6 server administrator. It is used to authenticate the node at the server.
   - The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://host.docker.internal`.
   - The `path of the api` is the path of the API of the server. It is usually `/api`.
   - The `database URI` is the path of the database file. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
@@ -245,9 +245,7 @@ It will ask you which node you want to see. You can choose the one you just crea
    node3
 ```
 
-In the printed message the path to the configuration file.
-
-You can see that not only the path of the configuration file is printed out, but also the locations of the log file, the data folders and the database files are shown.
+In the printed message, you will see not only the path of the configuration file is printed out, but also the locations of the log file, the data folders and the database files are shown.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -448,9 +446,9 @@ after you choose the node, it will print out the following messages:
 2024-05-24 16:29:11 - context        - INFO     - https://vantage6.ai/vantage6/references
 2024-05-24 16:29:11 - context        - INFO     - ------------------------------------------------------------
 2024-05-24 16:29:11 - context        - INFO     - Started application vantage6
-2024-05-24 16:29:11 - context        - INFO     - Current working directory is '/Users/clgeng/Library/Application Support/vantage6/node'
-2024-05-24 16:29:11 - context        - INFO     - Successfully loaded configuration from '/Users/clgeng/Library/Application Support/vantage6/node/node1.yaml'
-2024-05-24 16:29:11 - context        - INFO     - Logging to '/Users/clgeng/Library/Logs/vantage6/node/node1/node_user.log'
+2024-05-24 16:29:11 - context        - INFO     - Current working directory is '***/vantage6/node'
+2024-05-24 16:29:11 - context        - INFO     - Successfully loaded configuration from '***/vantage6/node/node1.yaml'
+2024-05-24 16:29:11 - context        - INFO     - Logging to '***/vantage6/node/node1/node_user.log'
 2024-05-24 16:29:11 - context        - INFO     - Common package version '4.5.0'
 2024-05-24 16:29:11 - context        - INFO     - vantage6 version '4.5.0'
 [info ] - Stopped the vantage6-node1-user Node.
@@ -458,7 +456,7 @@ after you choose the node, it will print out the following messages:
 
 ## Update the API key of your node
 
-If you get a new API key for a node from the server administrator, or if the organization administrator creates a new API key, you need to reset the API key in the node configuration file.
+If you get a new API key for a node from the server administrator, or you reset the API key in the vantage6 UI, you need to update the API key in the node configuration file.
 
 For that, you can run the command:
 
@@ -556,7 +554,7 @@ In the log, we have to look for the node authentication message:
 - Use the `v6 node start` command to start a node.
 - Use the `v6 node attach --name xxx` command to show the logs of the node `xxx`.
 - Use the `v6 node stop` command to stop a node.
-- Use the `v6 node set-api-key` command to reset the API key of a node.
+- Use the `v6 node set-api-key` command to set a new API key of a node.
 - Use the `v6 node files` command to check the location of the node configuration file.
-- The commands similar to the ones presented for the node are also available for `v6 server` and `v6 algorithm-store`. 
+- The commands similar to the ones presented for the node are also available for `v6 server` and `v6 algorithm-store`.
 ::::::::::::::::::::::::::::::::::::::::::::::::
