@@ -31,6 +31,34 @@ However, often researchers are not interested in the personal records that make 
 in the *insights* derived from it. This raises an intriguing question: Can we unlock these valuable
 insights in a manner that upholds and respects privacy standards?
 
+In classic data analysis, all data is copied over into a single place. This makes it very easy to use
+conventional data analysis software and tools to gain insights.
+
+![In classic analysis all the data is brought together](fig/classic%20analysis.jpg){alt='Two tables with data are moved to a central location'}
+
+Unfortunately this way of working does not respect the privacy of the people contained within the
+dataset. All their personal details end up at another party.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Other problems with copying data
+
+Discuss in groups what other issues you see with handling the data by copying everything into one
+central place.
+
+:::::::::::::::: solution
+
+You might think of multiple issues. Some examples:
+
+- The original data owner loses control of the data
+- Results in multiple versions of the data
+- What to do when the data needs to be updated?
+- If there was consent in the first place, how can you retract consent?
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+
 ## Introducing the landscape of PETs
 
 Privacy enhancing technologies (PETs) are a way to gain valuable
