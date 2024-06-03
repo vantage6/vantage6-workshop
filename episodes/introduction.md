@@ -97,10 +97,12 @@ TODO: Example of data leakage in simple aggregated case
 
 ## Federated learning
 
-Federated learning is a specific type of data analysis where a multiple machine learning models are
-trained at the data locations (called "clients" in this case). Only the updates of the models (the
-gradients)
-are sent back to a central server, which aggregates these into the final model.
+The term federated learning was introduced in 2016 by researchers at Google
+[(McMahan et al.)](https://doi.org/10.48550/arXiv.1602.05629) and refers to a "loose federation of
+participating devices (which we refer to as clients) which are coordinated by a central server.” In 
+traditional federated learning, the clients train machine learning models, and only the updates of
+the models are sent back to the central server. The central server combines the updates from all the
+individual clients into one final machine learning model.
 
 There are caveats to using this type of data analysis though. Although the data transmitted from the
 clients to the server are an aggregation of the raw data, researchers have found a way to use this
