@@ -18,7 +18,7 @@ exercises: 2
 - Understand horizontal vs vertical partitioning
 - Decompose a simple analysis in a federated way
 - Understand that there is paperwork to be done (DPIA etc.)
-  ::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Problem statement
 
