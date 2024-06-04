@@ -29,7 +29,7 @@ license: 'CC-BY 4.0'
 # Link to the source repository for this lesson
 source: 'https://github.com/vantage6/vantage6-workshop'
 
-# Default branch of your lesson
+# Default branch of your lesson materials (recommended CC-BY 4.0)
 branch: 'main'
 
 # Who to contact if there are any issues
@@ -60,6 +60,7 @@ contact: 'd.smits@esciencecenter.nl'
 # Order of episodes in your lesson
 episodes: 
 - introduction.md
+- 2-understanding-v6.md
 
 # Information for Learners
 learners: 
