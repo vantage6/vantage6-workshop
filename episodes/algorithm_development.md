@@ -301,7 +301,7 @@ the `test.py` file, since the mock client has exactly the same syntax as the rea
 You can find the revised JSON file on the page with the algorithm details
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
+:::::::::::
 ## Publish your algorithm in the algorithm store
 
 In previous lessons, we have discussed how to run algorithms from the algorithm store.
@@ -340,7 +340,7 @@ repository?
 You can find the revised JSON file on the page with the algorithm details
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
+::::::::
 ## Next steps
 
 Congratulations! You have successfully developed your first algorithm. You have learned
