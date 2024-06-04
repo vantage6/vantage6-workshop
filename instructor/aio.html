@@ -243,6 +243,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="algorithm_development.html">6. Algorithm development</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -2042,7 +2054,7 @@ What are the available commands?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>If the vantage6 CLI has been correctly installed, by running:</p>
 <div class="codewrapper sourceCode" id="cb4">
@@ -2519,7 +2531,7 @@ of the node you just created, without using the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>We can update the API key in the configuration file:</li>
@@ -2580,6 +2592,505 @@ the node configuration file.</li>
 <li>The commands similar to the ones presented for the node are also
 available for <code>v6 server</code> and
 <code>v6 algorithm-store</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-algorithm_development"><p>Content from <a href="algorithm_development.html">Algorithm development</a></p>
+<hr>
+<p>Last updated on 2024-06-04 |
+        
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/algorithm_development.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What do the algorithm tools in vantage6 provide?</li>
+<li>How do you create a personalized boilerplate using the v6 cli?</li>
+<li>What is the process for adapting the boilerplate into a simple
+algorithm?</li>
+<li>How can you test your algorithm using the mock client?</li>
+<li>How do you build your algorithm into a docker image?</li>
+<li>How do you set up a local test environment using the v6 cli
+(<code>v6 dev</code>)?</li>
+<li>How can you publish your algorithm in the algorithm store?</li>
+<li>How can you run your algorithm?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Understand the available algorithm tools</li>
+<li>Create a personalized boilerplate using the v6 cli</li>
+<li>Adapt the boilerplate into a simple algorithm</li>
+<li>Test your algorithm using the mock client</li>
+<li>Build your algorithm into a docker image</li>
+<li>Set up a local test environment using the v6 cli
+(<code>v6 dev</code>)</li>
+<li>Publish your algorithm in the algorithm store</li>
+<li>Run your algorithm in the UI</li>
+<li>Run your algorithm with the Python client</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<hr class="half-width">
+<p>The goal of this lesson is to develop a simple average algorithm, and
+walk through all the steps from creating the proper code up until
+running it in the User Interface and via the Python client. We will
+start by explaining how the algorithm interacts with the vantage6
+infrastructure. Then, you will start to build your own algorithm, then
+test and run it.</p>
+</section><section id="algorithm-tools"><h2 class="section-heading">Algorithm tools<a class="anchor" aria-label="anchor" href="#algorithm-tools"></a>
+</h2>
+<hr class="half-width">
+<p>The vantage6 infrastructure provides a set of tools to help you
+develop your algorithm. You can install the algorithm tools with:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">pip</span> install vantage6-algorithm-tools</span></code></pre>
+</div>
+<p>The algorithm tools provide the following for you:</p>
+<ul>
+<li>
+<strong>Algorithm client</strong>: this client can be used to
+interact with the server, e.g. to create a subtask, retrieve results, or
+get the organizations participating in the collaboration.</li>
+<li>
+<strong>Data</strong>: the tools provide a way to load the data from
+the node and provide it to the algorithm as a Pandas dataframe.</li>
+<li>
+<strong>Input</strong>: the tools read the input from the node and
+provide it to the arguments of the algorithm function.</li>
+<li>
+<strong>Environment variables</strong>: the tools get the
+environment variables from the node and pass them on to the
+algorithm</li>
+<li>
+<strong>Token</strong>: the algorithm tools ensure that the
+algorithm uses the security token to be able to get the allowed
+resources from the server.</li>
+<li>
+<strong>Output</strong>: the output from the algorithm functions is
+written to the proper file, so that the node will send it back to the
+server.</li>
+</ul>
+<p>Many of these functionalites are handled by using Docker file mounts,
+which are read from and written to by the algorithm tools.</p>
+<p>For more information about the algorithm tools, please check out the
+relevant <a href="https://docs.vantage6.ai/en/main/algorithms/concepts.html" class="external-link">documentation</a>.</p>
+</section><section id="create-a-simple-algorithm"><h2 class="section-heading">Create a simple algorithm<a class="anchor" aria-label="anchor" href="#create-a-simple-algorithm"></a>
+</h2>
+<hr class="half-width">
+<p>Vantage6 requires the functions in the algorithm to be at the base
+level of a Python package that is defined within the Docker image. These
+requirements can be cumbersome to get right if you have to write all the
+code yourself. Fortunately, vantage6 provides tools to create a
+boilerplate for you, so that you can focus on the development of your
+algorithm functions rather than worry about the infrastructure.</p>
+<p>To create a personalized boilerplate, use the vantage6 CLI. If you
+haven’t done so yet, install it with:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">pip</span> install vantage6</span></code></pre>
+</div>
+<p>Then, create a new boilerplate with:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">v6</span> algorithm create</span></code></pre>
+</div>
+<p>If you later want to modify your answers, you can do so by
+running:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">v6</span> algorithm update <span class="at">--change-answers</span></span></code></pre>
+</div>
+<p>This is recommended to do whenever you want to change something like
+the name of the function, as it will ensure that it will be updated in
+all places it was mentioned.</p>
+<p>The update command can also be used to update your algorithm to a new
+version, even after you have implemented your functions. This is helpful
+when there is new functionality or changes in vantage6 that require
+algorithms to update.</p>
+<div id="challenge-create-a-personalized-boilerplate" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-personalized-boilerplate" class="callout-inner">
+<h3 class="callout-title">Challenge: Create a personalized
+boilerplate<a class="anchor" aria-label="anchor" href="#challenge-create-a-personalized-boilerplate"></a>
+</h3>
+<div class="callout-content">
+<p>Create a personalized template to start developing your average
+algorithm</p>
+<ul>
+<li>We need both a central and a partial function.</li>
+<li>The central function should get an algorithm client to communicate
+with the server, but it does not need data.</li>
+<li>The partial function does not need an algorithm client, but it
+should get one database from the node.</li>
+<li>Both functions should have a <code>column</code> argument - the
+average over this column will be calculated.</li>
+<li>(Optional) Use the advanced options to create a Github pipeline that
+creates and pushes your Docker image every time you commit to main.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">Output</h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>The personalized boilerplate should be successfully created.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Your personalized boilerplate is now ready to be adapted into a
+simple algorithm. We are now going to implement the average algorithm in
+several steps. Note that the README file in the boilerplate also
+provides a checklist that you can follow to implement the rest of the
+algorithm; however we are going to guide you through the process in this
+lesson.</p>
+<div class="section level3">
+<h3 id="implement-the-algorithm-functions">Implement the algorithm functions<a class="anchor" aria-label="anchor" href="#implement-the-algorithm-functions"></a>
+</h3>
+<p>We are going to implement the central and partial functions. The
+easiest is to start with the partial function. Using the Pandas
+dataframe that is provided by the algorithm tools, the following should
+be extracted for the requested column:</p>
+<ul>
+<li>The number of rows that contains a number</li>
+<li>The sum of all these numbers</li>
+</ul>
+<p>The boilerplate code for the central function already a large part of
+the code that will be required to gather the results from the partial
+functions. To compute the final average, we will need to:</p>
+<ul>
+<li>Modify how the subtasks are created - we need to provide the column
+to the partial functions</li>
+<li>Combine the results from the partial functions to compute the
+average</li>
+</ul>
+<p>Remember that both functions should return the results as valid JSON
+serializable objects - we recommend returning a Python dictionary.</p>
+</div>
+<div class="section level3">
+<h3 id="test-your-algorithm-using-the-mock-client">Test your algorithm using the mock client<a class="anchor" aria-label="anchor" href="#test-your-algorithm-using-the-mock-client"></a>
+</h3>
+<p>As discussed before, the algorithm tools contain an algorithm client
+that helps the algorithm container to communicate with the server. When
+testing your algorithm, it would be cumbersome to test your algorithm in
+the real infrastructure on every code change, as this requires you to
+build your algorithm image, ensure all nodes in your collaboration are
+online, etc. To facilitate the testing phase, the algorithm tools also
+provide a mock client. This client can be used to test your algorithm
+locally without having to start up the server and nodes. The mock client
+provides the same functions as the algorithm client, but instead of
+communicating with the server, it simply returns a smart mock response.
+The mock client does <strong>not</strong> mock the output of the
+algorithm functions, but actually calls them with test data. This way,
+you can easily test your algorithm functions locally without worrying
+about the infrastructure.</p>
+<p>Your personalized template already contains a
+<code>test/test.py</code> file that contains most of the code to test
+your algorithm.</p>
+<div id="challenge-implement-the-functions-and-test-them" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-implement-the-functions-and-test-them" class="callout-inner">
+<h3 class="callout-title">Challenge: Implement the functions and test
+them<a class="anchor" aria-label="anchor" href="#challenge-implement-the-functions-and-test-them"></a>
+</h3>
+<div class="callout-content">
+<p>Implement your partial and central functions as described above.</p>
+<p>Adapt and run <code>test.py</code> to test your function
+implementation:</p>
+<ul>
+<li>Create a Python environment and run <code>pip install -e .</code>.
+This installs the local Python package and also the algorithm tools
+(which contain the mock client).</li>
+<li>Adjust <code>test.py</code> to compute the average over the
+<strong>age</strong> column. Do this both for the test of the central
+and of the partial function</li>
+<li>Run <code>test.py</code> to test your functions.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Output</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>You output of <code>test.py</code> should look something like:</p>
+<pre><code>[{'id': 0, 'name': 'mock-0', 'domain': 'mock-0.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=0', 'users': '/api/user?organization_id=0', 'tasks': '/api/task?init_org_id=0', 'nodes': '/api/node?organization_id=0', 'runs': '/api/run?organization_id=0'}, {'id': 1, 'name': 'mock-1', 'domain': 'mock-1.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=1', 'users': '/api/user?organization_id=1', 'tasks': '/api/task?init_org_id=1', 'nodes': '/api/node?organization_id=1', 'runs': '/api/run?organization_id=1'}]
+info &gt; Defining input parameters
+info &gt; Creating subtask for all organizations in the collaboration
+info &gt; Waiting for results
+info &gt; Mocking waiting for results
+info &gt; Results obtained!
+info &gt; Mocking waiting for results
+[{'average': 34.666666666666664}]
+{'id': 2, 'runs': '/api/run?task_id=2', 'results': '/api/results?task_id=2', 'status': 'completed', 'name': 'mock', 'databases': ['mock'], 'description': 'mock', 'image': 'mock_image', 'init_user': {'id': 1, 'link': '/api/user/1', 'methods': ['GET', 'DELETE', 'PATCH']}, 'init_org': {'id': 0, 'link': '/api/organization/0', 'methods': ['GET', 'PATCH']}, 'parent': None, 'collaboration': {'id': 1, 'link': '/api/collaboration/1', 'methods': ['DELETE', 'PATCH', 'GET']}, 'job_id': 1, 'children': None}
+info &gt; Mocking waiting for results
+[{'sum': 624.0, 'count': 18}, {'sum': 624.0, 'count': 18}]</code></pre>
+<p>Hence, the average age is 34.666!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="build-your-algorithm-into-a-docker-image"><h2 class="section-heading">Build your algorithm into a docker image<a class="anchor" aria-label="anchor" href="#build-your-algorithm-into-a-docker-image"></a>
+</h2>
+<hr class="half-width">
+<p>Your algorithm boilerplate contains a <code>Dockerfile</code> in the
+root folder. You can build your algorithm into a docker image by
+running:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> your-image-name .</span></code></pre>
+</div>
+<p>in the directory where your <code>Dockerfile</code> resides.</p>
+<p>Note that if you have selected the advanced options when creating
+your boilerplate, you had the option to include a Github action pipeline
+that built the Docker image for you every time a commit is pushed to
+main. This is the preferred way of working for real-world projects with
+open-source algorithm implementations.</p>
+<div id="challenge-implement-the-functions-and-test-them-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-implement-the-functions-and-test-them-1" class="callout-inner">
+<h3 class="callout-title">Challenge: Implement the functions and test
+them<a class="anchor" aria-label="anchor" href="#challenge-implement-the-functions-and-test-them-1"></a>
+</h3>
+<div class="callout-content">
+<p>Build an algorithm image with the name:
+<code>harbor2.vantage6.ai/workshop/average:&lt;myname&gt;</code>. Push
+it to the repository.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">Output</h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<p>If your name is Jane Smith, you may have done the following in the
+base directory of your algorithm (where the Dockerfile is):</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> harbor2.vantage6.ai/workshop/average:jsmith .</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">docker</span> push harbor2.vantage6.ai/workshop/average:jsmith</span></code></pre>
+</div>
+<p>Both commands should execute without errors.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="set-up-a-local-test-environment"><h2 class="section-heading">Set up a local test environment<a class="anchor" aria-label="anchor" href="#set-up-a-local-test-environment"></a>
+</h2>
+<hr class="half-width">
+<p>When the algorithm image is built, it is recommended to test locally
+if it also works with an actual server and nodes - not just using the
+mock client. The easiest way to set up a server and a few nodes locally
+with:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">v6</span> dev create-demo-network</span></code></pre>
+</div>
+<p>This command creates a vantage6 server configuration, and then
+registers a collaboration with 3 organizations in it. It registers a
+node for each organization and finally, it creates the vantage6 node
+configuration for each node with the correct API key.</p>
+<p>The other available commands are:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Start the server and nodes</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">v6</span> dev start-demo-network</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Stop the server and nodes</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">v6</span> dev stop-demo-network</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># Remove the server and nodes</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="ex">v6</span> dev remove-demo-network</span></code></pre>
+</div>
+<p>In the previous lesson, you have learned how to run an algorithm
+using the Python client. Now, you can run your own algorithm using the
+Python client!</p>
+<!-- TODO link to lesson 5 where Python client is discussed -->
+<div id="challenge-test-your-algorithm-on-a-local-vantage6-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-test-your-algorithm-on-a-local-vantage6-network" class="callout-inner">
+<h3 class="callout-title">Challenge: Test your algorithm on a local
+vantage6 network<a class="anchor" aria-label="anchor" href="#challenge-test-your-algorithm-on-a-local-vantage6-network"></a>
+</h3>
+<div class="callout-content">
+<p>Create and start a local vantage6 network with the
+<code>v6 dev</code> commands. Then, run your algorithm using the Python
+client. You can find the command to run your algorithm in the
+<code>test.py</code> file, since the mock client has exactly the same
+syntax as the real client.</p>
+<!-- TODO an alternative is to do this all locally, but that only works if vdev has UI + algorithm store -->
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">Output</h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<p>You can find the revised JSON file on the page with the algorithm
+details</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="publish-your-algorithm-in-the-algorithm-store"><h2 class="section-heading">Publish your algorithm in the algorithm store<a class="anchor" aria-label="anchor" href="#publish-your-algorithm-in-the-algorithm-store"></a>
+</h2>
+<hr class="half-width">
+<p>In previous lessons, we have discussed how to run algorithms from the
+algorithm store. Now, it is time to publish your own algorithm in the
+algorithm store. This is required if you want to run your algorithm in
+the user interface: the user interface gathers information about how to
+run the algorithm from the algorithm store. For example, this helps the
+UI to construct a dropdown of available functions, and to know what
+arguments the function expects.</p>
+<!--
+TODO link in first sentence to lesson where algorithm store is discussed (lesson 3) -->
+<p>The boilerplate you create should already contain an
+<code>algorithm_store.json</code> file that contains a JSON description
+of your algorithm - how many databases each function uses, for
+example.</p>
+<p>You can put the algorithm in the store by selecting the algorithm
+store in the UI, then clicking on the “Add algorithm” button. You can
+then upload the <code>algorithm_store.json</code> file in the top. After
+uploading it, you can change the details of the algorithm before
+submitting it.</p>
+<div id="challenge-add-your-algorithm-to-the-algorithm-store" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-add-your-algorithm-to-the-algorithm-store" class="callout-inner">
+<h3 class="callout-title">Challenge: Add your algorithm to the algorithm
+store<a class="anchor" aria-label="anchor" href="#challenge-add-your-algorithm-to-the-algorithm-store"></a>
+</h3>
+<div class="callout-content">
+<p>Upload your algorithm to the algorithm store. Submit the
+<code>algorithm_store.json</code>, check the filled in details, and
+submit the algorithm.</p>
+<p>Then, can you download the revised JSON file so you can update it in
+your algorithm repository?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">Output</h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div class="accordion-body">
+<p>You can find the revised JSON file on the page with the algorithm
+details</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="next-steps"><h2 class="section-heading">Next steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
+</h2>
+<hr class="half-width">
+<p>Congratulations! You have successfully developed your first
+algorithm. You have learned how to create a personalized boilerplate,
+implement the algorithm functions, and run the algorithm using the
+Python client and the UI. The resulting algorithm, however, is not
+suitable yet for real-world use. For instance, if a node contains only a
+single data point for a given column, there are no guards implemented
+that prevent that such sensitive data is shared with the server. Here,
+we describe a few next steps that are usually important to take before
+your algorithm is ready for real-world use:</p>
+<ul>
+<li>
+<strong>Privacy filters</strong>: implement privacy filters to
+ensure that sensitive data is not shared with the server.</li>
+<li>
+<strong>Error handling</strong>: implement error handling to ensure
+that the algorithm does not crash when unexpected input is provided.
+Note that there are <a href="https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.algorithm.tools.exceptions.html#module-vantage6.algorithm.tools.exceptions" class="external-link">custom
+vantage6 errors</a> that you can raise to provide more information about
+what went wrong.</li>
+<li>
+<strong>Documentation</strong>: document your algorithm so that
+others can understand how to use it.</li>
+</ul>
+<p>Other next steps could be to extend the algorithm with more
+functionality, such as allowing to calculate the average over multiple
+columns, or to add a <code>group_by</code> argument to compute the
+average per group. Alternatively, you can have a look at other
+algorithms in the algorithm store to see if you can understand and/or
+improve them.</p>
+<p>In the final lesson of this course, you will have the opportunity to
+work on your own projects. Maybe you can also use that opportunity to
+further develop your algorithm!</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Use <code>v6 algorithm create</code> to create a personalized
+boilerplate</li>
+<li>Implement the central and partial functions</li>
+<li>Build your algorithm into a docker image</li>
+<li>Test it with the mock client and generate a local test environment
+with <code>v6 dev</code>
+</li>
+<li>Publish your algorithm in the algorithm store to run it in the
+UI</li>
 </ul>
 </div>
 </div>
