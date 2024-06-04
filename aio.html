@@ -206,6 +206,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="chapter3.html">3. Running a PET analysis without programming on vantage6</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -810,7 +822,7 @@ different parts?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
@@ -910,7 +922,460 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
 </div>
-</div></section>
+</div></section><section id="aio-chapter3"><p>Content from <a href="chapter3.html">Running a PET analysis without programming on vantage6</a></p>
+<hr>
+<p>Last updated on 2024-06-04 |
+        
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chapter3.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What is a common collaboration scenario where the same institution
+is involved in multiple collaborations?</li>
+<li>How to check the status of a given collaboration within
+vantage6?</li>
+<li>How to link an algorithm store to a given collaboration?</li>
+<li>How to request a task based on a given algorithm through vantage6’s
+UI?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Explore specific data analysis scenarios that further illustrate the
+concept of collaboration</li>
+<li>Understand the concept of ‘algorithm trustworthiness’ in the context
+of a vantage6 collaboration</li>
+<li>Understand v6’s algorithm-store current and envisioned features</li>
+<li>Understand the UI-based approach for performing a data analysis
+through the given scenarios</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="vantage6-user-interface-basics"><h2 class="section-heading">Vantage6 user interface basics<a class="anchor" aria-label="anchor" href="#vantage6-user-interface-basics"></a>
+</h2>
+<hr class="half-width">
+<p>To navigate vantage6’s UI seamlessly, it’s essential to grasp the
+platform’s fundamental concepts and their interconnections, as the UI
+design reflects these relationships. The following is a simplified model
+of vantage6 concepts, where a <code>1-n</code> relationship means that
+the entity on the left side of the relationship is related to one or
+more entities on the right side. For instance, a
+<strong>collaboration</strong> involves one or more
+<strong>nodes</strong>, but each <strong>node</strong> can only be
+linked to exactly one <strong>collaboration</strong>. An
+<code>n-n</code> relationship is a many-to-many relationship: for
+instance, a <strong>collaboration</strong> can involve multiple
+<strong>organizations</strong>, and at the same time, each
+<strong>organization</strong> can participate in multiple
+<strong>collaborations</strong>.</p>
+<figure><img src="fig/chapter3/v6_entitites_simplified.png" alt="Vantage6 core concepts" class="figure mx-auto d-block"><div class="figcaption">Vantage6 core concepts</div>
+</figure><p>Given the above, the following are the most important concepts to be
+considered for this episode:</p>
+<ul>
+<li>
+<p><strong>Organization</strong>: a group of users that share a
+common goal or interest (e.g., a consortium, an institute, etc.).</p>
+<ul>
+<li>An organization has zero or more <strong>users</strong> who can
+perform certain actions.</li>
+<li>An organization can have multiple <strong>nodes</strong>, one for
+each <strong>collaboration</strong> it is part of.</li>
+</ul>
+</li>
+<li>
+<p><strong>Collaboration</strong>: a collection of one or more
+<strong>organizations</strong> working together towards a shared
+objective.</p>
+<ul>
+<li>In a specific <strong>collaboration</strong>, each participating
+<strong>organization</strong> needs one <strong>node</strong> to compute
+<strong>tasks</strong>; In another <strong>collaboration</strong>, the
+same <strong>organization</strong> must have a separate
+<strong>node</strong> for this <strong>collaboration</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Node</strong>: the component with access to the
+organization data, which also executes algorithms on it. It represents
+the individual organizations’ contributions to the network.</p></li>
+<li><p><strong>Task</strong>: a request, created by
+<strong>users</strong> (with a given set of <strong>roles</strong>) for
+the execution of a given <strong>algorithm</strong> on one or more
+organizations within a collaboration. These execution requests are
+handled by the corresponding organizations’
+<strong>node</strong>.</p></li>
+<li>
+<p><strong>User</strong>: a person who can perform certain actions
+in vantage6.</p>
+<ul>
+<li>A user can only belong to one <strong>organization</strong>.</li>
+<li>A user can have multiple <strong>roles</strong> and can be assigned
+with extra permissions not covered by the roles.</li>
+<li>A user can create <strong>tasks</strong> for one or more
+<strong>organizations</strong> within a
+<strong>collaboration</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Role</strong>: a collection of rules that define the
+permissions of a user (it will be further explored on Chapter
+4).</p></li>
+<li><p><strong>Result</strong>: the output generated by the execution of
+an <strong>algorithm</strong> as part of a
+<strong>task</strong>.</p></li>
+<li><p><strong>Algorithm</strong>: computational models or processes
+that are executed on data. Compatible algorithms are those that adhere
+to the Vantage6 framework, enabling them to be securely distributed to
+<strong>nodes</strong> for execution.</p></li>
+</ul>
+<div class="section level3">
+<h3 id="where-are-these-concepts-in-the-ui">Where are these concepts in the UI?<a class="anchor" aria-label="anchor" href="#where-are-these-concepts-in-the-ui"></a>
+</h3>
+<p>After logging in to the vantage6 UI, you will see the start page.</p>
+<figure><img src="fig/chapter3/ui_start_page.png" alt="vantage6 UI start page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI start page</div>
+</figure><p>There are some collaborations displayed on the start page. Clicking
+one of the collaborations will show the tasks of that collaboration.</p>
+<figure><img src="fig/chapter3/ui_task_page.png" alt="vantage6 UI tasks page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI tasks page</div>
+</figure><p>The start page also contains a button <code>Administration</code> in
+the top right corner. Clicking on this button will redirect you to the
+administration page.</p>
+<p>On the administration page, you can manage the entities of vantage6.
+The entities are divided into tabs: <code>Organizations</code>,
+<code>Collaborations</code>, <code>Roles</code>, <code>Users</code>, and
+<code>Nodes</code>. You can click on an entity to see more details or to
+edit the entity. We will get back to this later in more detail.</p>
+<figure><img src="fig/chapter3/ui_admin_page.png" alt="vantage6 UI administration page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI administration page</div>
+</figure><div id="challenge-1-get-familiar-with-the-vantage6-ui" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-1-get-familiar-with-the-vantage6-ui" class="callout-inner">
+<h3 class="callout-title">Challenge 1: Get familiar with the vantage6
+UI<a class="anchor" aria-label="anchor" href="#challenge-1-get-familiar-with-the-vantage6-ui"></a>
+</h3>
+<div class="callout-content">
+<p>Log in to the vantage6 UI and navigate to the
+<code>Administration</code> page. Familiarize yourself with the entities
+in the administration page.</p>
+<p>Can you find the <code>Organizations</code>,
+<code>Collaborations</code>, <code>Roles</code>, <code>Users</code>, and
+<code>Nodes</code> tabs?</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations"><h2 class="section-heading">From theory to practice: a hypothetical case study using vantage6
+collaborations<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations"></a>
+</h2>
+<hr class="half-width">
+<p>As previously discussed, in vantage6 a collaboration refers to an
+agreement between two or more parties to participate in a study or to
+answer a research question together. This concept is central to the
+Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party
+involved in a collaboration remains autonomous, meaning they retain
+control over their data and can decide how much of their data to
+contribute to the collaboration’s global model and which algorithms are
+allowed for execution.</p>
+<p>To illustrate this, let’s analyze a hypothetical scenario: two
+international research projects relying on vantage6 technology on the
+same server:</p>
+<ul>
+<li>The first one, <strong>PhY2024</strong> (Prevalence of hypertension
+and its association with lifestyle), requires determining the average
+systolic and diastolic blood pressure levels of the population across
+France, Spain, and The Netherlands.</li>
+<li>The second, <strong>GHT</strong> (Global Health Trends), requires
+determining the Average BMI across The Netherlands, Spain, and
+Germany.</li>
+</ul>
+<p>Although both projects are unrelated and independent from each other,
+the data from Spain and The Netherlands -required by both- is provided
+by the same large-scale cohort studies, namely CANTABRIA (Spain) and
+LIFELINES (The Netherlands). However, legal agreements dictate that each
+project is granted access solely to the data essential for its intended
+purposes (gaining access to the whole set of variables study increases
+risks of inference attacks). Data from the French and German population
+(for <strong>PhY2024</strong> and <strong>GHT</strong> studies), on the
+other hand, will be provided by the GAZEL and GNC prospective cohort
+studies.</p>
+<p>Following vantage6’s concepts, this scenario would involve two
+collaborations, one for each research project. As described in previous
+episodes, a vantage6 node is needed for each collaboration.
+Consequently, as illustrated in the diagram below, both CANTABRIA and
+LIFELINES organizations require two vantage6 data-node instances each.
+Since each data node defines its own rules for data access and algorithm
+usage, this ensures that analyses from various collaborations, even
+those involving shared organizations/datasets, will not conflict with
+one another.</p>
+<figure><img src="fig/chapter3/orgs_n_collabs_scenario.png" alt="Hypothetical collaborations scenario" class="figure mx-auto d-block"><div class="figcaption">Hypothetical collaborations scenario</div>
+</figure><div class="section level3">
+<h3 id="algorithms-trustworthiness-in-a-federated-setting">Algorithms trustworthiness in a federated setting<a class="anchor" aria-label="anchor" href="#algorithms-trustworthiness-in-a-federated-setting"></a>
+</h3>
+<p>While a vantage6-supported research infrastructure like the one
+described above offers a strong defense against many data privacy risks,
+there remains one crucial security aspect that falls outside the
+platform’s scope: the validation of the code that will run on this
+infrastructure. For instance, the administrators of the nodes running
+within each organization are responsible for defining which algorithms
+(i.e., <a href="https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options" class="external-link">which
+container images</a>) will be allowed for execution on the respective
+collaborations. As this is a critical and complex task that entails
+activities like code analysis and verification, working with algorithms
+from trusted sources is the primary line of defense against potential
+threats.</p>
+<p>Vantage6’s algorithm store feature aims to enhance trustworthiness by
+offering a centralized platform for managing pre-registered algorithms.
+This serves as an alternative to using algorithms from unknown authors
+or those lacking transparency regarding their development process and
+status. The algorithm store currently allows researchers to explore
+which algorithms are available and how to run them. This, along with its
+integration with vantage6’s UI, streamlines task execution requests
+within collaborations.</p>
+<p>As of the time of writing this tutorial, efforts are underway to
+integrate additional information to the algorithm metadata such as
+creators and code reviewers. Moreover, plans are in place to incorporate
+the algorithm review process into the publication procedure for any
+algorithms in the store.</p>
+</div>
+<div class="section level3">
+<h3 id="running-a-pet-privacy-enhancing-technology-analysis-without-programming">Running a PET (privacy-enhancing technology) analysis without
+programming!<a class="anchor" aria-label="anchor" href="#running-a-pet-privacy-enhancing-technology-analysis-without-programming"></a>
+</h3>
+<p>In this episode, you will perform a PET analysis on an existing
+vantage6 collaboration (based on ‘dummy’ nodes) that resembles the two
+described above. For reference, the datasets of each organization can be
+seen here (TODO).</p>
+<div id="challenge-2-understanding-a-simple-federated-algorithm" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2-understanding-a-simple-federated-algorithm" class="callout-inner">
+<h3 class="callout-title">Challenge 2: understanding a simple federated
+algorithm<a class="anchor" aria-label="anchor" href="#challenge-2-understanding-a-simple-federated-algorithm"></a>
+</h3>
+<div class="callout-content">
+<p>First, let’s take a look at one of the federated algorithms
+-available on the vantage6’s community store- that will be used in this
+episode: <a href="https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py" class="external-link">a
+federated average</a>.</p>
+<p>Analyze the algorithm based on the code and its comments and answer
+the following questions:</p>
+<ul>
+<li>How are the <code>central_average</code> and
+<code>partial_average</code> functions related?</li>
+<li>Why does the <code>central_average</code> function, unlike
+<code>partial_average</code>, doesn’t get any data as an input?</li>
+<li>Analyze and discuss the potential outcomes if a Task to execute
+<code>central_average</code> is initiated within a collaboration where
+one of the nodes is offline.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="challenge-3-exploring-the-status-of-existing-collaborations-configured-on-a-vantage6-server" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-3-exploring-the-status-of-existing-collaborations-configured-on-a-vantage6-server" class="callout-inner">
+<h3 class="callout-title">Challenge 3: exploring the status of existing
+collaborations configured on a vantage6 server<a class="anchor" aria-label="anchor" href="#challenge-3-exploring-the-status-of-existing-collaborations-configured-on-a-vantage6-server"></a>
+</h3>
+<div class="callout-content">
+<p>Below are the administrator credential of GHT and PhY24
+collaborations (passwords will be given by the instructors).</p>
+<table class="table">
+<thead><tr class="header">
+<th>User</th>
+<th>Roles</th>
+<th>Collaboration</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>PhY24-admin</td>
+<td>Collaboration Admin</td>
+<td>PhY24</td>
+</tr>
+<tr class="even">
+<td>GHT-admin</td>
+<td>Collaboration Admin</td>
+<td>GHT</td>
+</tr>
+</tbody>
+</table>
+<p>Using these credentials check the status of both collaborations.
+Given this and your algorithm analysis from Challenge #2 answer the
+following:</p>
+<ol style="list-style-type: decimal">
+<li>Which collaborations are ready for creating a Task for the
+<strong>federated average</strong> algorithm?</li>
+<li>If one of the collaborations is not ready, which organization you
+would need to contact in order to make it ready for executing the
+algorithm too?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">Solution steps</h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>To check the status of the nodes of each collaboration:</p>
+<ol style="list-style-type: decimal">
+<li>Log in to each one with the given credentials</li>
+<li>Click on ‘Administration’ on the top of the UI</li>
+<li>select ‘Collaborations’ on the left panel, and then select the
+corresponding collaboration.</li>
+<li>If there are ‘offline’ nodes, click on the ‘Nodes’ panel on the left
+and check when these were seen for the last time.</li>
+</ol>
+<figure><img src="fig/chapter3/collab-status-offline.png" alt="Collaboration status" class="figure mx-auto d-block"><div class="figcaption">Collaboration status</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-4-adding-an-algorithm-store-to-an-organization" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-4-adding-an-algorithm-store-to-an-organization" class="callout-inner">
+<h3 class="callout-title">Challenge 4: adding an algorithm store to an
+organization<a class="anchor" aria-label="anchor" href="#challenge-4-adding-an-algorithm-store-to-an-organization"></a>
+</h3>
+<div class="callout-content">
+<p>In order to execute the <strong>average algorithm</strong> on a given
+collaboration, considering the previous discussion on algorithm
+trustwortiness, you need to first register an algorithm store on it
+first. Use the credentials given for Challenge #4 to register the
+‘community store’, which contains the said algorithm:
+<code>https://store.cotopaxi.vantage6.ai</code></p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Solution steps</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>You will now link the ‘community-store’ to the collaboration whose
+nodes are ready for it.</p>
+<ol style="list-style-type: decimal">
+<li>Login into the organization using the corresponding credentials from
+above.</li>
+<li>Click on ‘Administration’ on the top of the UI, select
+‘Collaborations’ on the left panel, and then select the corresponding
+collaboration.</li>
+<li>Click on ‘+ Add algorithm store’</li>
+<li>Add the vantage6’s community store. Use any descrption as name, and
+provide community store URL:
+<code>https://store.cotopaxi.vantage6.ai</code>
+</li>
+<li>Make sure the store is now shown on the collaboration details: <img src="fig/chapter3/community-store-entry.png" alt="Community store entry on the collaboration details" class="figure">
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-5-your-first-algorithm-execution-as-a-researcher" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-5-your-first-algorithm-execution-as-a-researcher" class="callout-inner">
+<h3 class="callout-title">Challenge 5: your first algorithm execution as
+a researcher<a class="anchor" aria-label="anchor" href="#challenge-5-your-first-algorithm-execution-as-a-researcher"></a>
+</h3>
+<div class="callout-content">
+<p>Now, you’ll take on the role of the researcher within the
+collaboration for which you’ve just established the algorithm store.
+With this role, you will finally request the execution of the
+algorithm.</p>
+<ol style="list-style-type: decimal">
+<li>
+<p>log in as a researcher using the corresponding credentials
+below:</p>
+<table class="table">
+<thead><tr class="header">
+<th>User</th>
+<th>Roles</th>
+<th>Collaboration</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>PhY24-rs1</td>
+<td>Researcher</td>
+<td>PhY24</td>
+</tr>
+<tr class="even">
+<td>GHT-rs1</td>
+<td>Researcher</td>
+<td>GHT</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Select the collaboration given on the front page, and select
+‘Tasks’ from the panel on the left. <img src="fig/chapter3/collab-researcher-view.png" alt="Collaboration researcher view" class="figure"></p></li>
+<li>
+<p>If you have set up everything correctly, the ‘Average’ algorithm
+should be now listed under the ‘<em>Select which algorithm you want to
+run</em>’ dropdown menu. Select it, and provide a name and a
+description.</p>
+<figure><img src="fig/chapter3/task-alg-selection.png" alt="Algorithm selection" class="figure mx-auto d-block"><div class="figcaption">Algorithm selection</div>
+</figure>
+</li>
+<li>
+<p>Now the UI will let you choose between the two functions you
+explored in Challenge #1. First, try to run the
+<code>partial_average</code> on all the nodes individually.</p>
+<figure><img src="fig/chapter3/task-partial-on-individial-orgs.png" alt="Running a function on all nodes" class="figure mx-auto d-block"><div class="figcaption">Running a function on all nodes</div>
+</figure>
+</li>
+<li><p>Select the ‘default’ database, choose any numerical column as a
+parameter, and then click on ‘Submit’.</p></li>
+<li><p>The task you just requested should be listed with a ‘pending’
+status. Once finished, explore and download the provided results: <img src="fig/chapter3/task-results.png" alt="alt text" class="figure"></p></li>
+</ol>
+<p>Based on these results, answer the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>If you repeat the same exercise but with the
+<code>central_average</code> function (refer to Challenge #2 if needed),
+which organization nodes should you choose this time to actually
+calculate the overall (across all the datasets) average? Experiment with
+this and discuss the results with the instructors.</p></li>
+<li><p>What would happen if you select an alpha-numerical column (e.g.,
+‘participant_pseudo_id’)? Do this experiment and explore the generated
+error logs. Discuss with the instructors how these logs can be used to
+diagnose any task execution issues.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</div>
+</section></section>
 </div>
     </main>
 </div>
