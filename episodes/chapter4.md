@@ -1,7 +1,7 @@
 ---
 title: "Managing vantage6 server via the user interface"
 teaching: 2
-exercises: 3
+exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -25,7 +25,6 @@ exercises: 3
 - Be able to create a new organization using the vantage6 UI
 - Be able to create a new user using the vantage6 UI
 - Be able to create a new collaboration using the vantage6 UI
-- Be able to reset an api key for a node
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -140,7 +139,7 @@ Note that the role `Collaboration Admin` does not have the permission to create 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-In this section, we will go through the steps to create a new organization, a new user, a new collaboration and reset an api key for a node using the vantage6 UI.
+In this section, we will go through the steps to create a new organization, a new user and a new collaboration using the vantage6 UI.
 
 First you need to log in to the vantage6 UI, and then go to the `Administration` page. You can find the `Administration` button in the top right corner of the start page.
 
@@ -182,7 +181,7 @@ A collaboration is a collection of one or more organizations. Let's create a new
 ![Create a new collaboration](fig/create_collab_01.png)
 
 4. Click on the `Submit` button to create the new collaboration.
-    * After submitting the form, you may see a dialog box to ask you to download the API key (on MacOS) or a dialog points out that the API key has been downloaded (on Windows). The API key is used to authenticate the nodes in the collaboration. Later we will see how to reset the API key for a node.
+    * After submitting the form, you may see a dialog box to ask you to download the API key (on MacOS) or a dialog points out that the API key has been downloaded (on Windows). The API key is used to authenticate the nodes in the collaboration.
 
 ![Download API keys](fig/create_collab_02.png)
 
@@ -194,7 +193,10 @@ You will see a message:
 >
 > Please distribute each of these keys privately to each of the organizations. Note that they may reset their API key so that no-one but them knows it.
 
-5. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
+You will need this API key to register the nodes of the organizations in the collaboration. For more details, see [the chapter of setting up a vantage6 node](./chapter6.md).
+
+
+1. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
     * You will see what organizations are participating in the collaboration.
     * You will see the nodes of the organizations that are registered in the collaboration. If no nodes are registered, you can register them manually by clicking the `Register missing nodes` button.
     * You can also see the algorithm store available for the collaboration. You can add a algorithm store for the collaboration by clicking the `Add algorithm store` button.
@@ -202,45 +204,12 @@ You will see a message:
 
 ![Collaboration details](fig/create_collab_03.png)
 
-### Reset API key for a node
-If you want to reset the API key for a node, you can do so by following these steps:
-
-1. Click on the `Nodes` tab in the administration page.
-2. Click on the tab of the node you want to reset the API key for in the list of nodes.
-
-![Reset API key for a node](fig/reset_api_key_01.png)
-
-3. Click on the `Reset API key` button.
-    * You will see a dialog box to ask you to download the new API key.
-
-![Download new API key](fig/reset_api_key_02.png)
-
-You will see a message:
-
-> API key download
->
-> Your API key has been reset. Please read your new key in the file that has been downloaded.
-
-At this point, put the new API key in your node configuration file and restart the node to connect to the server again.
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 3: Manage vantage6 project using the UI
-
-Go the administration page in the vantage6 UI and try to create a new organization, a new user, and a new collaboration. Also, try to reset the API key for a node.
-
-1. Can you create a new organization, a new user, and a new collaboration?
-2. Can you reset the API key for a node?
-3. Which steps are challenging for you?
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Vantage6 entities are `Users`, `Organizations`, `Collaborations`, `Roles`, `Nodes`, and `Tasks`.
 - Vantage6 uses a permission system to control who can do what in the system.
 - Vantage6 has default roles like  `Root`, `Collaboration Admin`, `Organization Admin`, `Researcher`, and `Viewer`.
-- Vantage6 UI can be used to manage the entities of vantage6, like creating a new organization, a new user, a new collaboration, and resetting an api key for a node.
+- Vantage6 UI can be used to manage the entities of vantage6, like creating a new organization, a new user, or a new collaboration.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
