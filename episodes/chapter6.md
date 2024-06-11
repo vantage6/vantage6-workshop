@@ -95,53 +95,6 @@ v6 --help
 If the installation is successful, it will print out a message explaining the CLI usage.
 
 
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 1: Install vantage6 CLI
-
-Check the hardware and software requirements and install the vantage6 CLI package in your Python environment.
-
-Make sure you create a new virtual or conda environment for vantage6 CLI installation.
-
-Run the command `v6 --help` to verify the installation. What are the available commands?
-
-::: solution
-
-If the vantage6 CLI has been correctly installed, by running:
-
-```bash
-v6 --help
-```
-
-the following messages will be printed:
-
-```bash
-
-Usage: v6 [OPTIONS] COMMAND [ARGS]...
-
-  The `v6` command line interface allows you to manage your vantage6
-  infrastructure.
-
-  It provides a number of subcommands to help you with this task.
-
-Options:
-  --help  Show this message and exit.
-
-Commands:
-  algorithm        Manage your vantage6 algorithms.
-  algorithm-store  Manage your vantage6 algorithm store server instances.
-  dev              Quickly manage a test network with a server and...
-  node             Manage your vantage6 node instances.
-  server           Manage your vantage6 server instances.
-  test             Execute tests on your vantage6 infrastructure.
-```
-You can see that vantage6 CLI provides commands to manage the server (`v6 server`), node (`v6 node`) and algorithms (`v6 algorithm`) and algorithm store (`algorithm-store`).
-
-:::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
 ## `v6 node` commands
 
 The vantage6 CLI provides the `v6 node` command to manage the vantage6 node instances.
