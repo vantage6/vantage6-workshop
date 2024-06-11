@@ -2,53 +2,154 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
+The vantage6 has requirements on hardware and software to run its server and node instances. As for the detailed requirements, please refer to the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/requirements.html).
 
-## Data Sets
+For now, we just need to focus on the software setup.
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+## Software setup
 
-## Software Setup
+This lesson requires the following software to be installed on your system:
 
-::::::::::::::::::::::::::::::::::::::: discussion
+- Operating system: Ubuntu 18.04+ , MacOS Big Sur+, or Windows 10+
+- Docker (always latest version)
+- Conda (latest version)
+- Python
+    - Python v3.10 for vantage6 version 3.8.0 or higher
+    - Python v3.7 for other lower versions of vantage6
+- Python packages:
+    - jupyterlab
+    - vantage6
+    - vantage6-client
+    - vantage6-algorithm-tools
 
-### Details
+### Docker
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+We recommend installing [Docker Desktop](https://www.docker.com/products/docker-desktop/) on your system, which is the easiest way to install Docker.
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+You can follow the official instructions to install Docker Desktop on [MacOS](https://docs.docker.com/desktop/install/mac-install/), [Windows](https://docs.docker.com/desktop/install/windows-install/), or [Linux](https://docs.docker.com/desktop/install/linux-install/).
 
-:::::::::::::::: spoiler
+After installing the Docker Desktop, open the application, and then verify the installation by running the command in your terminal:
 
-### Windows
+```bash
+docker version
+```
 
-Use PuTTY
+```Output
+Client:
+ Version:           26.1.4
+ API version:       1.45
+ Go version:        go1.21.11
+ Git commit:        5650f9b
+ Built:             Wed Jun  5 11:26:02 2024
+ OS/Arch:           darwin/arm64
+ Context:           desktop-linux
 
-::::::::::::::::::::::::
+Server: Docker Desktop 4.31.0 (153195)
+ Engine:
+  Version:          26.1.4
+  API version:      1.45 (minimum version 1.24)
+  Go version:       go1.21.11
+  Git commit:       de5c9cf
+  Built:            Wed Jun  5 11:29:12 2024
+  OS/Arch:          linux/arm64
+  Experimental:     false
+ containerd:
+  Version:          1.6.33
+  GitCommit:        d2d58213f83a351ca8f528a95fbd145f5654e957
+ runc:
+  Version:          1.1.12
+  GitCommit:        v1.1.12-0-g51d5e94
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+```
 
-:::::::::::::::: spoiler
+The above output shows a successful installation and will vary based on your system. Make sure you see versions for both `Client` and `Server`.
 
-### MacOS
+If you cannot see the `Server` version, you have to open the Docker Desktop application first, then run the command again.
 
-Use Terminal.app
+### Conda
 
-::::::::::::::::::::::::
+There are several ways to install Conda on your system. For this lesson, we recommend using Miniconda installer.
+
+Follow the [official instructions](https://docs.anaconda.com/free/miniconda/#quick-command-line-install) to install Miniconda on Windows, MacOS, or Linux.
+
+Open a **new** terminal window and verify the installation by running the command:
+
+```bash
+conda --version
+```
+
+```Output
+conda 24.4.0
+```
+
+It's OK if the version number is different as long as you can create a Python environment as shown in the next step.
+
+If you see an error message, you may need to restart your terminal or computer.
 
 
-:::::::::::::::: spoiler
+### Python environment and Python packages
 
-### Linux
+Now build a new Python environment using conda and install the required Python packages.
 
-Use Terminal
+```bash
+# Create a new conda environment
+conda create -n v6-workshop python=3.10
 
-::::::::::::::::::::::::
+# Activate the new environment
+conda activate v6-workshop
 
+# Install the required Python packages
+pip install jupyterlab vantage6 vantage6-client vantage6-algorithm-tools
+```
+
+1. Verify the installation of `jupyterlab`:
+
+```bash
+jupyter lab
+```
+
+Make sure the JupyterLab opens in your browser.
+
+
+2. Verify the installation of `vantage6`:
+
+```bash
+v6 --help
+```
+
+```Output
+Usage: v6 [OPTIONS] COMMAND [ARGS]...
+
+  The `v6` command line interface allows you to manage your vantage6
+  infrastructure.
+
+  It provides a number of subcommands to help you with this task.
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  algorithm        Manage your vantage6 algorithms.
+  algorithm-store  Manage your vantage6 algorithm store server instances.
+  dev              Quickly manage a test network with a server and...
+  node             Manage your vantage6 node instances.
+  server           Manage your vantage6 server instances.
+  test             Execute tests on your vantage6 infrastructure.
+```
+
+If the installation is successful, it will print out a message explaining the usage.
+
+3. Verify the installation of `vantage6-client` and `vantage6-algorithm-tools`:
+
+```bash
+python -c "import vantage6.client"
+python -c "import vantage6.algorithm"
+```
+
+If there is no output and no error message, the installation is successful.
+
+
+
+**Congratulations 🎉** You have successfully set up all required software for this lesson!
