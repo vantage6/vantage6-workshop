@@ -1,7 +1,7 @@
 ---
 title: "Setting up a vantage6 node"
 teaching: 1
-exercises: 4
+exercises: 3
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -202,7 +202,7 @@ In the printed message, you will see not only the path of the configuration file
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 2: Create a new node configuration
+## Challenge 1: Create a new node configuration
 
 1. Create a new node configuration using the `v6 node new` command.
 2. Find the path to the configuration file using the `v6 node files` command. Open the configuration file with a text editor and check the configuration options. Are they correct?
@@ -353,7 +353,7 @@ From there, you can see the running status of the node, the connection to the se
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 3: Start a node and watch the logs
+## Challenge 2: Start a node and watch the logs
 
 1. Start the node you just created using the `v6 node start` command.
 2. Watch the logs of the node using the `v6 node attach --name xxx` command. Observe the logs and see if the node is running correctly.
@@ -469,7 +469,7 @@ To make the new API key effective, you need to restart the node by running the c
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: Update the API key of a node
+## Challenge 3: Update the API key of a node
 
 1. How do you update the API key of a node? Try to update the API key of the node you just created, without using the `v6 node set-api-key` command.
 2. How do you make sure the new API key is effective?
