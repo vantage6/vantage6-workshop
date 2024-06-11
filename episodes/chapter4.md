@@ -1,7 +1,7 @@
 ---
 title: "Managing vantage6 server via the user interface"
 teaching: 2
-exercises: 1
+exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -143,6 +143,20 @@ You will need this API key to register the nodes of the organizations in the col
 
 ![Collaboration details](fig/create_collab_03.png)
 
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 2: Manage vantage6 project using the UI
+
+Go to the administration page in the vantage6 UI, and try to do the following:
+
+1. Create a new organization
+2. Create a new user
+3. Create a new collaboration
+
+Which steps are challenging for you?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
