@@ -206,6 +206,7 @@ In the printed message, you will see not only the path of the configuration file
 
 1. Create a new node configuration using the `v6 node new` command.
 2. Find the path to the configuration file using the `v6 node files` command. Open the configuration file with a text editor and check the configuration options. Are they correct?
+3. Add some missing options to your configuration file. You can find all options in the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
