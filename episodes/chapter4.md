@@ -1,13 +1,11 @@
 ---
 title: "Managing vantage6 server via the user interface"
 teaching: 2
-exercises: 2
+exercises: 1
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What are the administrative entities in vantage6?
-- What is the relation between the entities in vantage6?
 - What is the permission system in vantage6?
 - What are the default roles in vantage6?
 - How to create a new organization using vantage6 user interface (UI)?
@@ -18,8 +16,6 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand the types of administrative entities in vantage6
-- Understand the relation between the administrative entities of vantage6
 - Understand the permission system of vantage6
 - Understand the default roles in vantage6
 - Be able to create a new organization using the vantage6 UI
@@ -29,66 +25,9 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-## Vantage6 entities and their relations
-
-There are several entities in vantage6, such as users, organizations, tasks, etc. These entities are created by users that have sufficient permission to do so and are stored in a database that is managed by the central server.
-
-The administrative entities in vantage6 are:
-
-- **User**: a person who can perform certain actions in vantage6.
-    - A user can only belong to one **organization**.
-    - A user can have multiple **roles** and can be assigned with extra permissions not covered by the roles.
-    - A user can create **tasks** for one or more **organizations** within a **collaboration**.
-- **Organization**: an orgarnization to which users belong
-    - An organization can have zero and more **users**.
-    - An organization can have multiple **nodes**.
-- **Collaboration**: a collection of one or more **organizations**.
-    - In a specific **collaboration**, each participating **organization** needs one **node** to compute **tasks**; In another **collaboration**, the same **organization** must have a separate **node** for this **collaboration**.
-    - A collaboration can contain zero or more **studies**.
-    - A **study** is a subset of organizations from the collaboration that are involved in a specific research question. By setting up studies, it can be easier to send tasks to a subset of the organizations in a collaboration and to keep track of the results of these analyses.
-- **Role**: a collection of rules that define the permissions of a user.
-    - A user can have multiple roles.
-    - The permissions of the user are defined by the assigned **rules**.
-    - **Rules** define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own,  organization, collaboration, global), and the resource (e.g. users, orgarnizations).
-- **Node**: an application that can execute **tasks**.
-- **Task**: a task that is executed by one or more **nodes**.
-    - A task should use an algorithm run for each organization involved in the task. The results are part of such an algorithm run.
-    - A task can be part of a **study** or a **collaboration**.
-
-The following diagram is simplified relations between these entities. A `1-n` relationship means that the entity on the left side of the relationship can have multiple entities on the right side. For instance, a single organization can have multiple vantage6 users, but a single user always belongs to one organization. There is one `0-n` relationship between roles and organizations, since a role can be coupled to an organization, but it doesn’t have to be. An `n-n` relationship is a many-to-many relationship: for instance, a collaboration can contain multiple organizations, and an organization can participate in multiple collaborations.
-
-![vantage6 relations between entities](fig/v6_entities.png)
-
-### Where are the entities in the UI?
-
-After logging in to the vantage6 UI, you will see the start page.
-
-![vantage6 UI start page](fig/ui_start_page.png)
-
-There are some collbarations displayed on the start page. Clicking one of the collaborations will show the tasks of that collaboration.
-
-![vantage6 UI tasks page](fig/ui_task_page.png)
-
-The start page also contains a button `Administration` in the top right corner. Clicking on this button will redirect you to the administration page.
-
-In the administration page, you can manage the entities of vantage6. The entities are divided into tabs: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. We will get back to this later in more detail.
-
-![vantage6 UI administration page](fig/ui_admin_page.png)
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 1: Get familiar with the vantage6 UI
-
-Log in to the vantage6 UI and navigate to the `Administration` page. Familiarize yourself with the entities in the administration page.
-
-Can you find the `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes` tabs?
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
 ## Vantage6 permission system
 
-vantage6 uses a permission system to control who can do what in the system. The permission system is based on **roles**, which are collections of rules that define the permissions of a user. A user can have multiple roles, and the permissions of the user are defined by the assigned **rules**.
+Vantage6 uses a permission system to control who can do what in the system. The permission system is based on **roles**, which are collections of rules that define the permissions of a user. A user can have multiple roles, and the permissions of the user are defined by the assigned **rules**.
 
 The permission rules define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own,  organization, collaboration, global), and the resource (e.g. users, orgarnizations). Users can be assigned anywhere between zero and all of these permission rules. For example, having the rules with `create` in the scope `organization` for the resource `users` means that the user can create users for the organization they belong to.
 
@@ -110,13 +49,13 @@ The permission structure allows for a lot of flexibility, but it can be complex 
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 2: What can you do in vantage6?
+## Challenge 1: What can you do in vantage6?
 
 Go the administration page in the vantage6 UI, check the permissions that you have, and answer the following questions:
 
 1. What is your role in vantage6?
 2. Do you have the permissions to create a new organization, a new user or a new collaboration?
-3. Do you have the permission to remove an existing organization, a user, or a collboration?
+3. Do you have the permission to remove an existing organization, a user, or a collaboration?
 
 :::::::::::::::::::::::: solution
 
@@ -207,7 +146,6 @@ You will need this API key to register the nodes of the organizations in the col
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Vantage6 entities are `Users`, `Organizations`, `Collaborations`, `Roles`, `Nodes`, and `Tasks`.
 - Vantage6 uses a permission system to control who can do what in the system.
 - Vantage6 has default roles like  `Root`, `Collaboration Admin`, `Organization Admin`, `Researcher`, and `Viewer`.
 - Vantage6 UI can be used to manage the entities of vantage6, like creating a new organization, a new user, or a new collaboration.
