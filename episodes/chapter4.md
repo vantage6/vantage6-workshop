@@ -135,7 +135,7 @@ You will see a message:
 You will need this API key to register the nodes of the organizations in the collaboration. For more details, see [the chapter of setting up a vantage6 node](./chapter6.md).
 
 
-1. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
+5. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
     * You will see what organizations are participating in the collaboration.
     * You will see the nodes of the organizations that are registered in the collaboration. If no nodes are registered, you can register them manually by clicking the `Register missing nodes` button.
     * You can also see the algorithm store available for the collaboration. You can add a algorithm store for the collaboration by clicking the `Add algorithm store` button.
