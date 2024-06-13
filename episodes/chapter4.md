@@ -132,10 +132,9 @@ You will see a message:
 >
 > Please distribute each of these keys privately to each of the organizations. Note that they may reset their API key so that no-one but them knows it.
 
-You will need this API key to register the nodes of the organizations in the collaboration. For more details, see [the chapter of setting up a vantage6 node](./chapter6.md).
+You will need the API keys when you run the nodes to authenticate with the vantage6 server. We will discuss this in [the chapter of setting up a vantage6 node](./chapter6.md).
 
-
-5. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
+1. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
     * You will see what organizations are participating in the collaboration.
     * You will see the nodes of the organizations that are registered in the collaboration. If no nodes are registered, you can register them manually by clicking the `Register missing nodes` button.
     * You can also see the algorithm store available for the collaboration. You can add a algorithm store for the collaboration by clicking the `Add algorithm store` button.
@@ -148,7 +147,7 @@ You will need this API key to register the nodes of the organizations in the col
 
 ## Challenge 2: Manage vantage6 project using the UI
 
-Go to the administration page in the vantage6 UI, and try to do the following:
+Go to the administration page in the vantage6 UI, and do the following:
 
 1. Create a new organization
 2. Create a new user
@@ -162,6 +161,6 @@ Which steps are challenging for you?
 
 - Vantage6 uses a permission system to control who can do what in the system.
 - Vantage6 has default roles like  `Root`, `Collaboration Admin`, `Organization Admin`, `Researcher`, and `Viewer`.
-- Vantage6 UI can be used to manage the entities of vantage6, like creating a new organization, a new user, or a new collaboration.
+- Vantage6 UI can be used to manage the entities of vantage6, like creating or deleting an organization, a user, or a collaboration.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

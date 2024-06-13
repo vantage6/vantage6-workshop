@@ -206,7 +206,10 @@ In the printed message, you will see not only the path of the configuration file
 
 1. Create a new node configuration using the `v6 node new` command.
 2. Find the path to the configuration file using the `v6 node files` command. Open the configuration file with a text editor and check the configuration options. Are they correct?
-3. Add some missing options to your configuration file. You can find all options in the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options).
+3. Open your configuration file, do the following:
+    - add a new database in the format of `excel`,
+    - enable the encryption,
+    - find the missing options in your file by comparing with the option template in the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -494,8 +497,8 @@ To make the new API key effective, you need to restart the node by running the c
 
 ## Challenge 3: Update the API key of a node
 
-1. How to reset the API key of a node via the vantage6 UI? Try to reset the API key of a node you just created.
-2. How do you update the API key of a node? Try to update the API key of the node you just created, without using the `v6 node set-api-key` command.
+1. Reset the API key of the node you just created in the vantage6 UI
+2. Update the API key of the node you just created, without using the `v6 node set-api-key` command.
 3. How do you make sure the new API key is effective?
 
 ::: solution
