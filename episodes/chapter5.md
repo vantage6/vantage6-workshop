@@ -21,18 +21,16 @@ exercises:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+# Vantage6 Python client - basic concepts
 
-## Python client
-
-The Vantage6 Python client is a library designed to facilitate interaction with the Vantage6 server, enabling automation of various tasks such as creating computation tasks, managing organizations, collaborations, users, and collecting results. It communicates with the server through its API, handling encryption and decryption of data for secure operations. The client aims to comprehensively support all aspects of server communication, making it a crucial tool for users looking to leverage the full capabilities of the Vantage6 platform programmatically.
+The vantage6 Python client is a library designed to facilitate interaction with the vantage6 server, enabling automation of various tasks such as creating computation tasks, managing organizations, collaborations, users, and collecting results. It communicates with the server through its API, handling encryption and decryption of data for secure operations. The client aims to comprehensively support all aspects of server communication, making it a crucial tool for users looking to leverage the full capabilities of the vantage6 platform programmatically.
 
 ### Client configuration
 
 ``` python
 # config.py
 
-server_url = "https://MY VANTAGE6 SERVER" # e.g. https://cotopaxi.vantage6.ai or
-                                          # http://localhost for a local dev server
+server_url = "https://<vantage6-server-address>" 
 server_port = 443 
 server_api = "/api" 
 
@@ -152,6 +150,7 @@ input_ = {
     'kwargs': {'column_name': 'age'}
 }
 ```
+
 Once you have defined your task input, you can create and start it by also specifying (using identifiers) on which organizations and for which collaboration, it will be executed. In the following example, the partial_average function of the 'containerized' algorithm on the 'harbor2.vantage6.ai/demo/average' would be executed on the vantage6 nodes created, for the organizations #12 and #23, when setting up the collaboration #45.
 
 ```Python
@@ -168,95 +167,47 @@ average_task = client.task.create(
 )
 ```
 
-
-
+# Working on the hypothetical case study programatically
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Challenge 1 - Check the server's API version and installing the right client
+## Challenge 1 - Setup the node client
 
-It is important to install the Python client with the same version as the vantage6 server you are talking to.
-Check your server version by going to `https://SERVER_DOMAIN_NAME/api/version`. 
+The goal of this first challenge is to create a Python script for performing tasks on the case study explored on Chapter 3. It is important to install the Python client with the same version as the vantage6 server you are talking to.  Check your server version by going to `https://SERVER_DOMAIN_NAME/api/version`, using the url of the vantage6 server from Chapter 3.
 
-Create a python environment (conda or venv)
-
-Then you can install the `vantage6-client` with:
+Create and activate a python environment (conda, venv, etc) and install the `vantage6-client` for this particular server version:
 
     pip install vantage6==<version>
 
-where you add the version you want to install. You may also leave out
-the version to install the most recent version.
+Use one of the researcher credentials and server URL given to you for Episode 3 to create a configuration file and a script to connect to the server (as described on the guidelines above). 
 
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-## Challenge 2 - Setting up authentication
-
-This section and the following sections introduce some minimal examples for administrative tasks that you can perform with our. We start by authenticating.
-Look for one of the users with researcher privileges given on episode #3.
-
-
-Now, a basic client that uses the authentication data
-
-
+Execute the script check that the connection is performed successfuly. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
-![alt text](fig/chapter5/auth-screenshot.png)
+![Expected output](fig/chapter5/auth-screenshot.png)
 :::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Challenge 3: use the client to find the identifiers of your collaboration and its organizations
+### Challenge 2: use the client to find the identifiers of your collaboration and its organizations
 
-. Given the collaborations scenarion from episode three, 
-![Hypothetical collaborations scenario](fig/chapter3/orgs_n_collabs_scenario.png)
+Use the researcher credentials given to you for Chapter 3, to get the identifiers of the two collaborations you worked with in it. Use this information for getting the identifiers of the organizations that belong to each collaboration. Refer to the __Python client - basic concepts__ section to do this.
 
-Extend the previous code where the a client object was successfully created. You need to run the federated algorithm 'algx' on the collaboration PhY-project, using only the data from the Lifelines and Cantabria nodes. Use the API to get this information:
-
-
-````
- python -i client.py 
-````
+|  User     |  Roles        |  Collaboration   |
+|-----------|---------------|------------------|
+|PhY24-rs1  | Researcher    |PhY24             |
+|GHT-rs1    | Researcher    |GHT               |
 
 
-````python
-client.collaboration.list(fields=['id', 'name', 'organizations'])
-client.organization.list(fields=['id', 'name'])
-````
+Now, try to identify, programatically, which nodes are active on each collaboration. Hint: use the `client.node` resource. Remember that you can use the `help()` function to see how to get the details of the nodes of a given organization.
 
 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
--   you have a Python session with an authenticated Client object, as created in `authentication`.
--   you already have the algorithm you want to run available as a container in a docker registry (see
-    [here](https://vantage6.discourse.group/t/developing-a-new-algorithm/31) for more details on developing your own algorithm)
--   the nodes are configured to look at the right database - ** they have the same label and database
 
-In this manual, we\'ll use the averaging algorithm from `harbor2.vantage6.ai/demo/average`, so the second requirement is met.
-We\'ll assume the nodes in your collaboration have been configured to look as something like:
-
-``` yaml
-databases:
-   - label: default
-     uri: /path/to/my/example.csv
-     type: csv
-   - label: my_other_database
-     uri: /path/to/my/example2.csv
-     type: excel
-```
-
-The third requirement is met when all nodes have the same labels in their configuration. As an end-user running the algorithm, you\'ll need
-to align with the node owner about which database name is used for the
-database you are interested in. For more details, see `how to configure <configure-node>`{.interpreted-text role="ref"} your node.
-
-**Determining which collaboration / organizations to create a task for**
-
-First, you\'ll want to determine which collaboration to submit this task
-to, and which organizations from this collaboration you want to be
-involved in the analysis.
-
-Find the ID of your collaboration
+:::::::::::::::::::::::: solution
 
 ``` python
 >>> client.collaboration.list(fields=['id', 'name', 'organizations'])
@@ -266,9 +217,11 @@ Find the ID of your collaboration
     {'id': 4, 'name': 'PhY-research', 'organizations': '/api/organization?collaboration_id=4'}, 
     {'id': 5, 'name': 'GHT_consortium', 'organizations': '/api/organization?collaboration_id=5'}
 ]
+````
 
-Knowing the ID of the collaboration, now find the identifiers of the organizations that are participating on it:
+Knowing the ID of the collaboration, you can find the identifiers of the organizations that are participating on it:
 
+``` python
 >>> client.organization.list(collaboration=4)
 
 [
@@ -277,67 +230,32 @@ Knowing the ID of the collaboration, now find the identifiers of the organizatio
     {'address1': '', 'studies': '/api/study?organization_id=5', 'users': '/api/user?organization_id=5', 'zipcode': '', 'domain': '', 'tasks': '/api/task?init_org_id=5', 'public_key': '', 'name': 'GAZEL_organization', 'address2': '', 'nodes': '/api/node?organization_id=5', 'country': 'France', 'collaborations': '/api/collaboration?organization_id=5', 'runs': '/api/run?organization_id=5', 'id': 5}, 
     {'address1': '', 'studies': '/api/study?organization_id=7', 'users': '/api/user?organization_id=7', 'zipcode': '', 'domain': '', 'tasks': '/api/task?init_org_id=7', 'public_key': '', 'name': 'PhY24-consortium', 'address2': '', 'nodes': '/api/node?organization_id=7', 'country': '', 'collaborations': '/api/collaboration?organization_id=7', 'runs': '/api/run?organization_id=7', 'id': 7}
 ]
+````
 
 Getting the status of an organization node for a given collaboration. The following returns the nodes (there is a node for each collaboration the organization contributes to).
 
+``` python
 >>> client.node.list(organization=4)
 
 [
-    {'config': [], 'last_seen': '2024-06-18T06:57:48.114072', 'organization': {'id': 4, 'link': '/api/organization/4', 'methods': ['PATCH', 'GET']}, 'collaboration': {'id': 4, 'link': '/api/collaboration/4', 'methods': ['GET', 'PATCH', 'DELETE']}, 'name': 'PhY-research - LIFELINES_organization', 'status': 'offline', 'type': 'node', 'ip': None, 'id': 13}, 
-    {'config': [], 'last_seen': None, 'organization': {'id': 4, 'link': '/api/organization/4', 'methods': ['PATCH', 'GET']}, 'collaboration': {'id': 5, 'link': '/api/collaboration/5', 'methods': ['GET', 'PATCH', 'DELETE']}, 'name': 'GHT_consortium - LIFELINES_organization', 'status': None, 'type': 'node', 'ip': None, 'id': 18}
+    {'config': [], 'last_seen': '2024-06-18T06:57:48.114072', 
+    'organization': {'id': 4, 'link': '/api/organization/4', 
+    'methods': ['PATCH', 'GET']}, 
+    'collaboration': {'id': 4, 'link': '/api/collaboration/4', 
+    'methods': ['GET', 'PATCH', 'DELETE']}, 
+    'name': 'PhY-research - LIFELINES_organization', 'status': 'offline', 
+    'type': 'node', 'ip': None, 'id': 13}, 
+    {'config': [], 'last_seen': None, 
+    'organization': {'id': 4, 'link': '/api/organization/4', 
+    'methods': ['PATCH', 'GET']}, 
+    'collaboration': {'id': 5, 'link': '/api/collaboration/5', 
+    'methods': ['GET', 'PATCH', 'DELETE']}, 
+    'name': 'GHT_consortium - LIFELINES_organization', 'status': None, 
+    'type': 'node', 'ip': None, 'id': 18}
 ]
+````
 
-
-In this example, we see that the collaboration called `example_collab1` has three organizations associated with it, of which the organization id\'s are `2`, `3` and `4`. To figure out the names of these organizations, we run:
-
-``` python
->>> client.organization.list(fields=['id', 'name'])
-
-
-OUTDATED
-[{'id': 1, 'name': 'root'}, {'id': 2, 'name': 'example_org1'},
- {'id': 3, 'name': 'example_org2'}, {'id': 4, 'name': 'example_org3'}]
-
-
-UPDATED:
-
-[{'id': 3, 'name': 'CANTABRIA_organization', 'collaborations': '/api/collaboration?organization_id=3'}, 
- {'id': 4, 'name': 'LIFELINES_organization', 'collaborations': '/api/collaboration?organization_id=4'}, 
- {'id': 5, 'name': 'GAZEL_organization', 'collaborations': '/api/collaboration?organization_id=5'}, 
- {'id': 6, 'name': 'GNC_organization', 'collaborations': '/api/collaboration?organization_id=6'}, 
- {'id': 7, 'name': 'PhY24-consortium', 'collaborations': '/api/collaboration?organization_id=7'}, 
- {'id': 8, 'name': 'GHT-Consortium', 'collaborations': '/api/collaboration?organization_id=8'}]
-
-
-
->>> client.organization.list(fields=['id', 'name','collaborations','nodes'])
-
-[
- {'id': 3, 'name': 'CANTABRIA_organization', 'collaborations': '/api/collaboration?organization_id=3', 'nodes': '/api/node?organization_id=3'}, 
- {'id': 4, 'name': 'LIFELINES_organization', 'collaborations': '/api/collaboration?organization_id=4', 'nodes': '/api/node?organization_id=4'}, 
- {'id': 5, 'name': 'GAZEL_organization', 'collaborations': '/api/collaboration?organization_id=5', 'nodes': '/api/node?organization_id=5'}, 
- {'id': 6, 'name': 'GNC_organization', 'collaborations': '/api/collaboration?organization_id=6', 'nodes': '/api/node?organization_id=6'}, 
- {'id': 7, 'name': 'PhY24-consortium', 'collaborations': '/api/collaboration?organization_id=7', 'nodes': '/api/node?organization_id=7'}, 
- {'id': 8, 'name': 'GHT-Consortium', 'collaborations': '/api/collaboration?organization_id=8', 'nodes': '/api/node?organization_id=8'}]
-
-
-
-
-```
-
-
-
-
-i.e. this collaboration consists of the organizations `example_org1`
-(with id `2`), `example_org2` (with id `3`) and `example_org3` (with id
-`4`).
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-
-
-
+:::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Challenge 4: Creating a task that runs the central algorithm**
