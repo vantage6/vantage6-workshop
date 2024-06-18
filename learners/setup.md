@@ -2,7 +2,7 @@
 title: Setup
 ---
 
-The vantage6 has requirements on hardware and software to run its server and node instances. As for the detailed requirements, please refer to the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/requirements.html).
+Vantage6 has hardware and software requirements in order to run the vantage6 node(s) and/or server. As for the detailed requirements, please refer to the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/requirements.html).
 
 For now, we just need to focus on the software setup.
 
@@ -10,12 +10,11 @@ For now, we just need to focus on the software setup.
 
 This lesson requires the following software to be installed on your system:
 
-- Operating system: Ubuntu 18.04+ , MacOS Big Sur+, or Windows 10+
-- Docker (always latest version)
+- Recommended operating system: Ubuntu 20.04+ , MacOS Big Sur+, or Windows 10+
+- Docker Desktop (always latest version)
 - Conda (latest version)
 - Python
     - Python v3.10 for vantage6 version 3.8.0 or higher
-    - Python v3.7 for other lower versions of vantage6
 - Python packages:
     - jupyterlab
     - vantage6
@@ -27,6 +26,11 @@ This lesson requires the following software to be installed on your system:
 We recommend installing [Docker Desktop](https://www.docker.com/products/docker-desktop/) on your system, which is the easiest way to install Docker.
 
 You can follow the official instructions to install Docker Desktop on [MacOS](https://docs.docker.com/desktop/install/mac-install/), [Windows](https://docs.docker.com/desktop/install/windows-install/), or [Linux](https://docs.docker.com/desktop/install/linux-install/).
+
+::: callout
+#### Linux users
+If you have Docker Engine installed on your Linux system and want to use it instead of Docker Desktop, you must make sure that it can run Docker containers without `sudo`. For that, please check the [guide](https://docs.docker.com/engine/install/linux-postinstall/) for more information.
+:::
 
 After installing the Docker Desktop, open the application, and then verify the installation by running the command in your terminal:
 
