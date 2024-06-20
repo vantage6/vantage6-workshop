@@ -34,7 +34,7 @@ vantage6 is a platform to execute  privacy enhancing techniques (PETs). Several 
 
 In vantage6, a **client** can pose a question to the central **server**. Each organization with sensitive data contributes one **node** to the network. The nodes collect the computation request from the server and fetches the **algorithm** to answer it. When the algorithm completes, the node sends the aggregated results back to the server.
 
-![High level overview of the vantage6 infrastructure. Client(s) and Node(s) communicate through the Server. Nodes are able to communicate directly with each other when the optional VPN feature is enabled.](fig/vantage6_basic_schema.svg)
+![High level overview of the vantage6 infrastructure. Client(s) and Node(s) communicate through the Server. Nodes are able to communicate directly with each other when the optional VPN feature is enabled.](fig/v6_basic_schema.svg)
 
 On a technical level, vantage6 may be seen as a container orchestration tool for privacy preserving analyses. It deploys a network of containerized applications that together ensure insights can be exchanged without sharing record-level data.
 
