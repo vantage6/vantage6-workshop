@@ -52,7 +52,7 @@ Even though a vantage6 node can be installed and run on Linux, Windows and Mac, 
 
 The following software must be installed before installing the vantage6 node:
 
-- Operating system: Ubuntu 18.04+ , MacOS Big Sur+, or Windows 10+
+- Recommended Operating system: Ubuntu 20.04+, MacOS Big Sur+, or Windows 10+
 - Python
     - Python v3.10 for vantage6 version 3.8.0 or higher
     - Python v3.7 for other lower versions of vantage6
