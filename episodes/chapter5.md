@@ -165,20 +165,40 @@ average_task = client.task.create(
 )
 ```
 
+### Getting a task result
+
+A client's task execution request is asynchronous. This means that once the `client.task.create()` method is invoked, the task will begin running in the background, returning the control to the Python program immediately (i.e., without waiting for the task to complete).
+
+This means that your client program needs to wait until the task is completed, so you can get access to the results (or to the error details, if something goes wrong).
+
+You can use the `client.wait_for_result()` method to make the program execution wait until the task is completed. For that, you need the ID of the task you just created, which was included in the dictionary returned by the `client.task.create()` method. For the task execution request of the code snippet above, this will look like:
+
+``` python
+print("Waiting for results")
+task_id = average_task['id']
+result = client.wait_for_results(task_id)
+```
+Since the above will pause the execution of the program until the task is completed, you can include instructions for retrieving the results immediately afterward:
+
+``` python
+result_info = client.result.from_task(task_id=task_id)
+```
+
+
 # Working on the hypothetical case study programatically
 
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Challenge 1 - Setup the node client
 
-The goal of this first challenge is to create a Python script for performing tasks on the case study explored on Chapter 3. It is important to install the Python client with the same version as the vantage6 server you are talking to.  Check your server version by going to `https://SERVER_DOMAIN_NAME/api/version`, using the url of the vantage6 server from Chapter 3.
+The goal of this first challenge is to create a Python script for performing tasks on Chapter 3's collaboration projects. Before installing the vantage6 libraries (which include the client) it is important to check that these are compatible with the server you will talk to. Check the version of the server you worked with in Chapter 3 by accessing its URL including '/api/version' as a suffix (e.g., `https://SERVER_DOMAIN_NAME/api/version`). 
 
-Create and activate a python environment (conda, venv, etc) and install the `vantage6-client` for this particular server version:
+Create and activate a Python environment (using conda, venv, etc) and install the `vantage6-client` for this particular server version:
 
-    pip install vantage6==<version>
+```bash
+   $ pip install vantage6==<version>
+```
 
-Use one of the researcher credentials and server URL given to you for Episode 3 to create a configuration file and a script to connect to the server (as described on the guidelines above). 
-
-Execute the script check that the connection is performed successfuly. 
+Use one of the researcher credentials and the server URL from Episode 3 to create a configuration file and a script for connecting to the server, following the guidelines provided above. Run the script and check that the connection is performed successfully. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -191,7 +211,9 @@ Execute the script check that the connection is performed successfuly.
 
 ### Challenge 2: use the client to find the identifiers of your collaboration and its organizations
 
-Use the researcher credentials given to you for Chapter 3, to get the identifiers of the two collaborations you worked with in it. Use this information for getting the identifiers of the organizations that belong to each collaboration. Refer to the __Python client - basic concepts__ section to do this.
+Use the researcher credentials from Episode 3, to get the identifiers of the two collaborations from this chapter's scenario. Use this information to get the identifiers of the organizations that belong to each collaboration. 
+
+Refer to the __Python client - basic concepts__ section above to do this.
 
 |  User     |  Roles        |  Collaboration   |
 |-----------|---------------|------------------|
@@ -210,16 +232,17 @@ Now, try to identify, programatically, which nodes are active on each collaborat
 ``` python
 >>> client.collaboration.list(fields=['id', 'name', 'organizations'])
 
-
 [
     {'id': 4, 'name': 'PhY-research', 'organizations': '/api/organization?collaboration_id=4'}, 
     {'id': 5, 'name': 'GHT_consortium', 'organizations': '/api/organization?collaboration_id=5'}
 ]
-````
 
-Knowing the ID of the collaboration, you can find the identifiers of the organizations that are participating on it:
+```
+
+By knowing the ID of the collaboration, you can find the identifiers of the organizations that are participating on it:
 
 ``` python
+
 >>> client.organization.list(collaboration=4)
 
 [
@@ -228,9 +251,9 @@ Knowing the ID of the collaboration, you can find the identifiers of the organiz
     {'address1': '', 'studies': '/api/study?organization_id=5', 'users': '/api/user?organization_id=5', 'zipcode': '', 'domain': '', 'tasks': '/api/task?init_org_id=5', 'public_key': '', 'name': 'GAZEL_organization', 'address2': '', 'nodes': '/api/node?organization_id=5', 'country': 'France', 'collaborations': '/api/collaboration?organization_id=5', 'runs': '/api/run?organization_id=5', 'id': 5}, 
     {'address1': '', 'studies': '/api/study?organization_id=7', 'users': '/api/user?organization_id=7', 'zipcode': '', 'domain': '', 'tasks': '/api/task?init_org_id=7', 'public_key': '', 'name': 'PhY24-consortium', 'address2': '', 'nodes': '/api/node?organization_id=7', 'country': '', 'collaborations': '/api/collaboration?organization_id=7', 'runs': '/api/run?organization_id=7', 'id': 7}
 ]
-````
+```
 
-Getting the status of an organization node for a given collaboration. The following returns the nodes (there is a node for each collaboration the organization contributes to).
+Getting the status of an organization node for a given collaboration: The following returns the nodes (there is a node for each collaboration the organization contributes to).
 
 ``` python
 >>> client.node.list(organization=4)
@@ -251,116 +274,29 @@ Getting the status of an organization node for a given collaboration. The follow
     'name': 'GHT_consortium - LIFELINES_organization', 'status': None, 
     'type': 'node', 'ip': None, 'id': 18}
 ]
-````
+```
 
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Challenge 4: Creating a task that runs the central algorithm**
+## Challenge 3: Creating a task that runs a partial algorithm**
 
-Now, we have two options: create a task that will run the central part of an algorithm (which runs on one node and may spawns subtasks on other
-nodes), or create a task that will (only) run the partial methods (which are run on each node). Typically, the partial methods only run the node
-local analysis (e.g. compute the averages per node), whereas the central methods performs aggregation of those results as well (e.g. starts the partial analyses and then computes the overall average). First, let us create a task that runs the central part of the `harbor2.vantage6.ai/demo/average` algorithm:
+The following is the information of a new algorithm **(TODO a new algorithm should be created for this)**, that you need to use on the collaboration whose 100% of its nodes are active:
 
-``` python
-input_ = {
-    'method': 'central_average',
-    'kwargs': {'column_name': 'age'}
-}
+- Image: harbor2.vantage6.ai/**TODO**alg_xxyy
+- Functions: central(), partial()
+- Algorithm source code: github.com/**TODO**/repo/alg_xxyy
 
-average_task = client.task.create(
-   collaboration=1,
-   organizations=[2,3],
-   name="an-awesome-task",
-   image="harbor2.vantage6.ai/demo/average",
-   description='',
-   input_=input_,
-   databases=[
-      {'label': 'default'}
-   ]
-)
-```
+Using the guidelines given in the __Python client - basic concepts__ section above, use the client to create a task for executing the `partial()` function on all the nodes. Check in the source code what the parameters of this function are, and define their input accordingly. For the database selection, all the nodes use the one labeled as 'default'.
 
+Include the necessary code to wait until the new task is completed, and to get and print the results. Discuss the output with the instructors.
 
-Note that the `kwargs` we specified in the `input_` are specific to this algorithm: this algorithm expects an argument `column_name` to be
-defined, and will compute the average over the column with that name.
-Furthermore, note that here we created a task for collaboration with id `1` (i.e. our `example_collab1`) and the organizations with id `2` and `3` (i.e. `example_org1` and `example_org2`). I.e. the algorithm need not necessarily be run on *all* the organizations involved in the collaboration.
+::::::::::::::::::::::::::::::::::::::::::::::::
 
-Finally, note that you should provide any databases that you want to use via the `databases` argument. In the example above, we use the `default`
-database; using the `my_other_database` database can be done by simply specifying that label in the dictionary. If you have a SQL or SPARQL
-database, you should also provide a `query` argument, e.g.
+::::::::::::::::::::::::::::::::::::: challenge
+## Challenge 4: Create a task that runs a central  function, and figure out why it failed**
 
-``` python
-databases=[
-   {'label': 'default', 'query': 'SELECT * FROM my_table'}
-]
-```
-
-Similarly, you can define a `sheet_name` for Excel databases if you want
-to read data from a specific worksheet. Check `help(client.task.create)`
-for more information.
-
-
-
-
-**Creating a task that runs the partial algorithm**
-
-You might be interested to know output of the partial algorithm (in this
-example: the averages for the \'age\' column for each node). In that
-case, you can run only the partial algorithm, omitting the aggregation
-that the central part of the algorithm will normally do:
-
-``` python
-input_ = {
-    'method': 'partial_average',
-    'kwargs': {'column_name': 'age'},
-}
-
-average_task = client.task.create(collaboration=1,
-                                  organizations=[2,3],
-                                  name="an-awesome-task",
-                                  image="harbor2.vantage6.ai/demo/average",
-                                  description='',
-                                  input_=input_)
-```
-
-**Inspecting the results**
-
-Of course, it will take a little while to run your algorithm. You can
-use the following code snippet to run a loop that checks the server
-every 3 seconds to see if the task has been completed:
-
-``` python
-print("Waiting for results")
-task_id = average_task['id']
-result = client.wait_for_results(task_id)
-```
-
-You can also check the status of the task using:
-
-``` python
-task_info = client.task.get(task_id, include_results=True)
-```
-
-and then retrieve the results
-
-``` python
-result_info = client.result.from_task(task_id=task_id)
-```
-
-The number of results may be different depending on what you run, but
-for the central average algorithm in this example, the results would be:
-
-``` python
->>> result_info
-[{'average': 53.25}]
-```
-
-while for the partial algorithms, dispatched to two nodes, the results
-would be:
-
-``` python
->>> result_info
-[{'sum': 253, 'count': 4}, {'sum': 173, 'count': 4}]
-```
+Using the Python client, create a new task with the same algorithm from Challenge #3. This time, launch the `central()` function. As you will see, this time the task failed. Using the client, try to find out which of the nodes involved on the task execution failed and the error message. Discuss with the instructors, based on the algorithm source code and the error message the cause of the error, and what should be done to fix it.
+**(TODO This requires the new algorithm or the data on one of the nodes to cause an error)**
+**TODO: I'm still not sure how to do this with the v6 client - this would be included at the beginning**
 ::::::::::::::::::::::::::::::::::::::::::::::::
