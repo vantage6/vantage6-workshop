@@ -5,27 +5,22 @@ exercises:
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
-- What is a common collaboration scenario where the same institution is involved in multiple collaborations?
-- How to check the status of a given collaboration within vantage6?
-- How to link an algorithm store to a given collaboration?
-- How to request a task based on a given algorithm through vantage6's UI?
+- How to check the status of a given collaboration within vantage6, programatically, using the Python client?
+- How to request a task based on a given algorithm, programatically, through vantage6's Python client?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explore specific data analysis scenarios that further illustrate the concept of collaboration
-- Understand the concept of 'algorithm trustworthiness' in the context of a vantage6 collaboration
-- Understand v6's algorithm-store current and envisioned features
-- Understand the UI-based approach for performing a data analysis through the given scenarios 
+- Understand the programmatic approach for performing a data analysis through a given scenario.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 # Vantage6 Python client - basic concepts
 
-The vantage6 Python client is a library designed to facilitate interaction with the vantage6 server, enabling automation of various tasks such as creating computation tasks, managing organizations, collaborations, users, and collecting results. It communicates with the server through its API, handling encryption and decryption of data for secure operations. The client aims to comprehensively support all aspects of server communication, making it a crucial tool for users looking to leverage the full capabilities of the vantage6 platform programmatically.
+The vantage6 Python client is a library designed to facilitate interaction with the vantage6 server, to perform various tasks such as creating computation tasks, managing organizations, collaborations, users, and collecting results. It communicates with the server through its REST API, handling encryption and decryption of data for secure operations. The client aims to comprehensively support all aspects of server communication, making it a useful tool for users looking to leverage the full capabilities of the vantage6 platform programmatically.
 
-### Client configuration
+Creating an instance of the vantage6 Python client is relatively straightforward, requiring only (after installing the corresponding libraries) to define the server connection details: server URL, login credentials, and the organization's private key (if encryption is being used). For simplicity, these settings can be defined on a separate Python module like the following:
 
 ``` python
 # config.py
@@ -40,7 +35,7 @@ password = "MY PASSWORD"
 organization_key = "" # Path to the encryption key, if encryption is enabled
 ```
 
-### Creating a client instance
+Once you have created the Python module with the configuration settings, you can create the client instance as follows:
 
 ``` python
 from vantage6.client import UserClient as Client
@@ -60,7 +55,7 @@ client.setup_encryption(config.organization_key)
 
 ### Using the client
 
-The client instace, once created, offers a set of attributes that correspond to the vantage6 core concepts (See concept map). 
+The client instance, once created, offers a set of attributes that correspond to the vantage6 core concepts (See Chapter #3's concept map):
 
 - `client.user`
 - `client.organization`
@@ -73,7 +68,7 @@ The client instace, once created, offers a set of attributes that correspond to 
 - `client.node`
 
 
-Each of these attributes, in turn, provides an abstraction of the CRUD (Create, Read, Update and Delete) operations that can be performed to its corresponding concept. Please note that some resources do not provide all four, and that these operations are constrained to the privileges of the credentials used when creating the client instance:
+Each of these attributes, in turn, provides an abstraction of the CRUD (Create, Read, Update, and Delete) operations that can be performed to its corresponding concept*:
 
 ```Python
 # Get all the instances of the given '<resource>' in the server. For example, client.task.organization() returns all the organizations registered on the server.
@@ -91,8 +86,9 @@ client.<resource>.delete()
 # Get an specific instance of the given '<resource>'.
 client.<resource>.get()
 ````
+(*) Please note that some resources do not provide all four operations and that these are constrained by the privileges of the credentials used when creating the client instance.
 
-The parameters of the methods above differ depending on the kind of `<resource>` you are working on. To get these details, you can launch a Python interactive session that runs the client creation script above, and then use the 'help' command. For example, by doing this for `client.organization`, you will find that you can filter the list of organizations (among others) by name, country and collaboration.
+The parameters of the methods above vary based on the type of `<resource>` you are working with. To get these details, you can launch a Python interactive session that runs the client creation script above, and use the 'help' command with it. For example, by using this command for `client.organization`, you will find that you can filter the list of organizations (among others) by name, country, and collaboration:
 
 ```Python
 python -i client.py
@@ -113,9 +109,9 @@ python -i client.py
  
 ```
 
-For consistency, all the methods of the client API use identifiers rather than names. So, if you want to perform a certain operation for a given resource, you will need to get these identifers first.
+From parameters like the ones described above, it is important to note that -for the sake of consistency- the client methods use identifiers rather than names. This implies that, for example, to filter the organizations that belong to a a given collaboration, you need to know the collaboration's identifier first. 
 
-For example, if you need to know the identifiers the collaborations you have access to, you can use the `list()` function of the `client.collaboration` resource:
+You can get these identifiers through the UI, or through the client. For example, if you need to know the identifiers of the collaborations you have access to, you can use the `list()` function of the `client.collaboration` resource:
 
 ``` Python
 # Get all the details of all the collaborations you have access to:
@@ -125,7 +121,7 @@ client.collaboration.list()
 client.collaboration.list(fields=['id', 'name'])
 ```
 
-To get the details organizations that are part of a given collaboration
+Let's say that with the above you found that the collaboration you need to work with has 45 as an identifier. With this, you can get the details of the organizations that are part of it as follows:
 
 ``` Python
 # Get all the organizations that are part of a collaboration whose identifier is 45:
@@ -139,7 +135,9 @@ client.organization.list(collaboration=45, fields=['id', 'name'])
 
 To create a new task, that is to say, to request the execution of an algorithm on a given organization, in the context of a particular organization, you can use the `create()` method of the `client.task` resource.
 
-As an input for the task creation, a dictionary with 'method' and 'kwargs' keys is required. The 'method' value must contain the name of the function to be executed. The 'kwargs' value must be another dictionary with the properties required by the algorithm. For example, if you want to create a task with the *federated average* algorithm (see original [source code here](https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py)), the input would look like this:
+This `create()` method requires a dictionary with `method` and `kwargs` keys as an input. 
+
+As an input for the task creation, a dictionary with 'method' and 'kwargs' keys is required. The value of `method` must contain the name of the function to be executed. The `kwargs` value must be another dictionary with the properties required by the algorithm. For example, if you want to create a task with the *federated average* algorithm (see original [source code here](https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py)), the input would look like this:
 
 ```Python
 """
