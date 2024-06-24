@@ -43,6 +43,12 @@ algorithm. Now, you can add privacy filters to your algorithm.
   configuration options in the [documentation](https://docs.vantage6.ai) to provide
   environment variables to your algorithm.
 - What else could you do to protect the privacy of the data?
+- When the privacy filters are triggered, use one of the [vantage6
+  exceptions](https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.algorithm.tools.exceptions.html)
+  to return an error message.
+
+Hint: the [contingency table algorithm](https://github.com/vantage6/v6-crosstab-py)
+already has a few privacy filters implemented. You can use this algorithm as an example.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -66,7 +72,8 @@ algorithm. For this challenge, learn how to document your algorithm.
 
 In the [previous lesson](./algorithm_development.md), you have created a simple
 algorithm. In this challenge, modify the algorithm in the algorithm store to include
-a visualization of the results.
+a visualization of the results. You can do this in the UI by modifying your algorithm
+in the algorithm store.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -78,7 +85,6 @@ In the [previous lesson](./algorithm_development.md), you have created a simple
 average algorithm. In this challenge, expand your algorithm to calculate the one or
 more of the following:
 
-- Median
 - Standard deviation
 - Minimum
 - Maximum
