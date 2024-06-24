@@ -1,7 +1,7 @@
 ---
 title: "Algorithm development"
 teaching: 10
-exercises: 2
+exercises: 5
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -302,17 +302,15 @@ You can find the revised JSON file on the page with the algorithm details
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::
+
 ## Publish your algorithm in the algorithm store
 
-In previous lessons, we have discussed how to run algorithms from the algorithm store.
+[Previously](./chapter3.md), we have discussed how to run algorithms from the algorithm store.
 Now, it is time to publish your own algorithm in the algorithm store. This is required
 if you want to run your algorithm in the user interface: the user interface gathers
 information about how to run the algorithm from the algorithm store. For example, this
 helps the UI to construct a dropdown of available functions, and to know what arguments
 the function expects.
-
-<!--
-TODO link in first sentence to lesson where algorithm store is discussed (lesson 3) -->
 
 The boilerplate you create should already contain an `algorithm_store.json` file that
 contains a JSON description of your algorithm - how many databases each function uses,
@@ -341,6 +339,7 @@ You can find the revised JSON file on the page with the algorithm details
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 ::::::::
+
 ## Next steps
 
 Congratulations! You have successfully developed your first algorithm. You have learned
