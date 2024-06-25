@@ -306,5 +306,4 @@ Include the necessary code to wait until the new task is completed, and to get a
 
 Using the Python client, create a new task with the same algorithm from Challenge #3. This time, launch the `central()` function. As you will see, this time the task failed. Using the client, try to find out which of the nodes involved on the task execution failed and the error message. Discuss with the instructors, based on the algorithm source code and the error message the cause of the error, and what should be done to fix it.
 **(TODO This requires the new algorithm or the data on one of the nodes to cause an error)**
-**TODO: I'm still not sure how to do this with the v6 client - this would be included at the beginning**
 ::::::::::::::::::::::::::::::::::::::::::::::::
