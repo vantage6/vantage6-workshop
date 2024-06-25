@@ -8,13 +8,12 @@ For now, we just need to focus on the software setup.
 
 ## Software setup
 
-This lesson requires the following software to be installed on your system:
+Vantage6 requires the following software to be installed on your system. In this lesson, we will explain how to install it:
 
 - Recommended operating system: Ubuntu 20.04+ , MacOS Big Sur+, or Windows 10+
 - Docker Desktop (always latest version)
 - Conda (latest version)
-- Python
-    - Python v3.10 for vantage6 version 3.8.0 or higher
+- Python v3.10
 - Python packages:
     - jupyterlab
     - vantage6
@@ -78,7 +77,7 @@ There are several ways to install Conda on your system. For this lesson, we reco
 
 Follow the [official instructions](https://docs.anaconda.com/free/miniconda/#quick-command-line-install) to install Miniconda on Windows, MacOS, or Linux.
 
-Open a **new** terminal window and verify the installation by running the command:
+After installing Miniconda, open a **new** terminal window and verify the installation by running the command:
 
 ```bash
 conda --version
