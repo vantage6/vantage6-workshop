@@ -18,9 +18,11 @@ exercises:
 
 # Vantage6 Python client - basic concepts
 
-The vantage6 Python client is a library designed to facilitate interaction with the vantage6 server, to perform various tasks such as creating computation tasks, managing organizations, collaborations, users, and collecting results. It communicates with the server through its REST API, handling encryption and decryption of data for secure operations. The client aims to comprehensively support all aspects of server communication, making it a useful tool for users looking to leverage the full capabilities of the vantage6 platform programmatically.
+The vantage6 Python client is a library designed to facilitate interaction with the vantage6 server, to perform various tasks such as creating computation tasks, managing organizations, collaborations, users, and collecting results. It is a versatile alternative to the web-based user interface which enable users and administrators to manage resources programatically, e.g., for automating actions or integrating them on other applications. It communicates with the server through its REST API, handling encryption and decryption of data for secure operations.
 
-Creating an instance of the vantage6 Python client is relatively straightforward, requiring only (after installing the corresponding libraries) to define the server connection details: server URL, login credentials, and the organization's private key (if encryption is being used). For simplicity, these settings can be defined on a separate Python module like the following:
+Creating an instance of the vantage6 Python client is relatively straightforward, requiring only (after installing the corresponding libraries) to define the server connection details: server URL, login credentials, and the organization's private key (if encryption is being used). In case the server has the [two-factor authentication](https://docs.vantage6.ai/en/stable/technical-documentation/features/server/2fa.html) (2FA) enabled you should also enter the corresponding time-based one-time password accordingly.
+
+For simplicity, these settings can be defined on a separate Python module like the following:
 
 ``` python
 # config.py
@@ -32,7 +34,7 @@ server_api = "/api"
 username = "MY USERNAME"
 password = "MY PASSWORD"
 
-organization_key = "" # Path to the encryption key, if encryption is enabled
+organization_key = "" # Path to the encryption key, if encryption is enabled.
 ```
 
 Once you have created the Python module with the configuration settings, you can create the client instance as follows:
@@ -49,7 +51,7 @@ client = Client(config.server_url, config.server_port, config.server_api,
                 log_level='debug')
 client.authenticate(config.username, config.password)
 
-# Optional: setup the encryption, if you have an organization_key
+# Setup the encryption, if you have an organization_key. If not, use an empty string (as the one given to 'organization_key' the config.py example)
 client.setup_encryption(config.organization_key)
 ```
 
