@@ -51,8 +51,14 @@ client = Client(config.server_url, config.server_port, config.server_api,
                 log_level='debug')
 client.authenticate(config.username, config.password)
 
-# Setup the encryption, if you have an organization_key. If not, use an empty string (as the one given to 'organization_key' the config.py example)
-client.setup_encryption(config.organization_key)
+# Setup the encryption, if you have an organization_key (e.g., use the one set on the config.py file). If not, use None.
+# Note that this will be optional in future versions (no need to use setup_encription at all when no organization keys are used) when Change Request vantage6/vantage6#1302 is addressed.
+
+#client.setup_encryption(config.organization_key)
+client.setup_encryption(None)
+
+
+
 ```
 
 ### Using the client
