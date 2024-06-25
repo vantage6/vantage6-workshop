@@ -207,8 +207,7 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#data-sets">Data Sets</a></li>
-<li><a href="#software-setup">Software Setup</a></li>
+        <ul><li><a href="#software-setup">Software setup</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -328,83 +327,187 @@ any links that you are not going to use.
  -->
 
 
-      <section id="setup"><p>FIXME: Setup instructions live in this document. Please specify the
-tools and the data sets the Learner needs to have installed.</p>
-<section id="data-sets"><h2 class="section-heading">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a>
+      <section id="setup"><p>Vantage6 has hardware and software requirements in order to run the
+vantage6 node(s) and/or server. As for the detailed requirements, please
+refer to the <a href="https://docs.vantage6.ai/en/main/node/requirements.html" class="external-link">vantage6
+documentation</a>.</p>
+<p>For now, we just need to focus on the software setup.</p>
+<section id="software-setup"><h2 class="section-heading">Software setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
 </h2>
-<hr class="half-width"><!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
---><p>Download the <a href="https://example.com/FIXME" class="external-link">data zip file</a>
-and unzip it to your Desktop</p>
-</section><section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
-</h2>
-<hr class="half-width"><div id="details" class="callout discussion">
+<hr class="half-width"><p>Vantage6 requires the following software to be installed on your
+system. In this lesson, we will explain how to install it:</p>
+<ul><li>Recommended operating system: Ubuntu 20.04+ , MacOS Big Sur+, or
+Windows 10+</li>
+<li>Docker Desktop (always latest version)</li>
+<li>Conda (latest version)</li>
+<li>Python v3.10</li>
+<li>Python packages:
+<ul><li>jupyterlab</li>
+<li>vantage6</li>
+<li>vantage6-client</li>
+<li>vantage6-algorithm-tools</li>
+</ul></li>
+</ul><div class="section level3">
+<h3 id="docker">Docker<a class="anchor" aria-label="anchor" href="#docker"></a></h3>
+<p>We recommend installing <a href="https://www.docker.com/products/docker-desktop/" class="external-link">Docker
+Desktop</a> on your system, which is the easiest way to install
+Docker.</p>
+<p>You can follow the official instructions to install Docker Desktop on
+<a href="https://docs.docker.com/desktop/install/mac-install/" class="external-link">MacOS</a>,
+<a href="https://docs.docker.com/desktop/install/windows-install/" class="external-link">Windows</a>,
+or <a href="https://docs.docker.com/desktop/install/linux-install/" class="external-link">Linux</a>.</p>
+<div id="linux-users" class="callout">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="details" class="callout-inner">
-<h3 class="callout-title">Details<a class="anchor" aria-label="anchor" href="#details"></a>
+<div id="linux-users" class="callout-inner">
+<h3 class="callout-title">Linux users<a class="anchor" aria-label="anchor" href="#linux-users"></a>
 </h3>
 <div class="callout-content">
-<p>Setup for different systems can be presented in dropdown menus via a
-<code>spoiler</code> tag. They will join to this discussion block, so
-you can give a general overview of the software used in this lesson here
-and fill out the individual operating systems (and potentially add more,
-e.g. online setup) in the solutions blocks.</p>
+<p>If you have Docker Engine installed on your Linux system and want to
+use it instead of Docker Desktop, you must make sure that it can run
+Docker containers without <code>sudo</code>. For that, please check the
+<a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">guide</a>
+for more information.</p>
 </div>
 </div>
 </div>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Windows
-  </h3>
-</button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
-<div class="accordion-body">
-<p>Use PuTTY</p>
+<p>After installing the Docker Desktop, open the application, and then
+verify the installation by running the command in your terminal:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">docker</span> version</span></code></pre>
 </div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Client:
+ Version:           26.1.4
+ API version:       1.45
+ Go version:        go1.21.11
+ Git commit:        5650f9b
+ Built:             Wed Jun  5 11:26:02 2024
+ OS/Arch:           darwin/arm64
+ Context:           desktop-linux
+
+Server: Docker Desktop 4.31.0 (153195)
+ Engine:
+  Version:          26.1.4
+  API version:      1.45 (minimum version 1.24)
+  Go version:       go1.21.11
+  Git commit:       de5c9cf
+  Built:            Wed Jun  5 11:29:12 2024
+  OS/Arch:          linux/arm64
+  Experimental:     false
+ containerd:
+  Version:          1.6.33
+  GitCommit:        d2d58213f83a351ca8f528a95fbd145f5654e957
+ runc:
+  Version:          1.1.12
+  GitCommit:        v1.1.12-0-g51d5e94
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0</code></pre>
 </div>
+<p>The above output shows a successful installation and will vary based
+on your system. Make sure you see versions for both <code>Client</code>
+and <code>Server</code>.</p>
+<p>If you cannot see the <code>Server</code> version, you have to open
+the Docker Desktop application first, then run the command again.</p>
 </div>
+<div class="section level3">
+<h3 id="conda">Conda<a class="anchor" aria-label="anchor" href="#conda"></a></h3>
+<p>There are several ways to install Conda on your system. For this
+lesson, we recommend using Miniconda installer.</p>
+<p>Follow the <a href="https://docs.anaconda.com/free/miniconda/#quick-command-line-install" class="external-link">official
+instructions</a> to install Miniconda on Windows, MacOS, or Linux.</p>
+<p>After installing Miniconda, open a <strong>new</strong> terminal
+window and verify the installation by running the command:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span></code></pre>
 </div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  MacOS
-  </h3>
-</button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
-<div class="accordion-body">
-<p>Use Terminal.app</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>conda 24.4.0</code></pre>
 </div>
+<p>It’s OK if the version number is different as long as you can create
+a Python environment as shown in the next step.</p>
+<p>If you see an error message, you may need to restart your terminal or
+computer.</p>
 </div>
+<div class="section level3">
+<h3 id="python-environment-and-python-packages">Python environment and Python packages<a class="anchor" aria-label="anchor" href="#python-environment-and-python-packages"></a></h3>
+<p>Now build a new Python environment using conda and install the
+required Python packages.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Create a new conda environment</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> v6-workshop python=3.10</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Activate the new environment</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="ex">conda</span> activate v6-workshop</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># Install the required Python packages</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab vantage6 vantage6-client vantage6-algorithm-tools</span></code></pre>
 </div>
+<ol style="list-style-type: decimal"><li>Verify the installation of <code>jupyterlab</code>:</li>
+</ol><div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre>
 </div>
-<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Linux
-  </h3>
-</button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
-<div class="accordion-body">
-<p>Use Terminal</p>
+<p>Make sure the JupyterLab opens in your browser.</p>
+<ol start="2" style="list-style-type: decimal"><li>Verify the installation of <code>vantage6</code>:</li>
+</ol><div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">v6</span> <span class="at">--help</span></span></code></pre>
 </div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Usage: v6 [OPTIONS] COMMAND [ARGS]...
+
+  The `v6` command line interface allows you to manage your vantage6
+  infrastructure.
+
+  It provides a number of subcommands to help you with this task.
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  algorithm        Manage your vantage6 algorithms.
+  algorithm-store  Manage your vantage6 algorithm store server instances.
+  dev              Quickly manage a test network with a server and...
+  node             Manage your vantage6 node instances.
+  server           Manage your vantage6 server instances.
+  test             Execute tests on your vantage6 infrastructure.</code></pre>
 </div>
+<p>If the installation is successful, it will print out a message
+explaining the usage.</p>
+<ol start="3" style="list-style-type: decimal"><li>Verify the installation of <code>vantage6-client</code> and
+<code>vantage6-algorithm-tools</code>:</li>
+</ol><div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import vantage6.client"</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import vantage6.algorithm"</span></span></code></pre>
 </div>
-</div>
+<p>If there is no output and no error message, the installation is
+successful.</p>
+<p><strong>Congratulations 🎉</strong> You have successfully set up all
+required software for this lesson!</p>
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
+</div>
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
