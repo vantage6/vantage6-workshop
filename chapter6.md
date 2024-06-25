@@ -1,7 +1,7 @@
 ---
 title: "Setting up a vantage6 node"
 teaching: 1
-exercises: 4
+exercises: 3
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -10,7 +10,7 @@ exercises: 4
 - How to install vantage6 command line interface?
 - What are the commands available in the vantage6 CLI?
 - How to set up a new vantage6 node?
-- How to update an API key for a node?
+- How to reset and update an API key for a node?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -19,7 +19,7 @@ exercises: 4
 - Understand the requirements for setting up vantage6 node
 - Understand the basic `v6` commands
 - Be able to create a new vantage6 node using `v6` commands
-- Be able to update an API key for a node
+- Be able to reset and update an API key for a node
 - Be able to observe the logs of vantage6 node
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -52,7 +52,7 @@ Even though a vantage6 node can be installed and run on Linux, Windows and Mac, 
 
 The following software must be installed before installing the vantage6 node:
 
-- Operating system: Ubuntu 18.04+ , MacOS Big Sur+, or Windows 10+
+- Recommended Operating system: Ubuntu 20.04+, MacOS Big Sur+, or Windows 10+
 - Python
     - Python v3.10 for vantage6 version 3.8.0 or higher
     - Python v3.7 for other lower versions of vantage6
@@ -93,53 +93,6 @@ v6 --help
 ```
 
 If the installation is successful, it will print out a message explaining the CLI usage.
-
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 1: Install vantage6 CLI
-
-Check the hardware and software requirements and install the vantage6 CLI package in your Python environment.
-
-Make sure you create a new virtual or conda environment for vantage6 CLI installation.
-
-Run the command `v6 --help` to verify the installation. What are the available commands?
-
-::: solution
-
-If the vantage6 CLI has been correctly installed, by running:
-
-```bash
-v6 --help
-```
-
-the following messages will be printed:
-
-```bash
-
-Usage: v6 [OPTIONS] COMMAND [ARGS]...
-
-  The `v6` command line interface allows you to manage your vantage6
-  infrastructure.
-
-  It provides a number of subcommands to help you with this task.
-
-Options:
-  --help  Show this message and exit.
-
-Commands:
-  algorithm        Manage your vantage6 algorithms.
-  algorithm-store  Manage your vantage6 algorithm store server instances.
-  dev              Quickly manage a test network with a server and...
-  node             Manage your vantage6 node instances.
-  server           Manage your vantage6 server instances.
-  test             Execute tests on your vantage6 infrastructure.
-```
-You can see that vantage6 CLI provides commands to manage the server (`v6 server`), node (`v6 node`) and algorithms (`v6 algorithm`) and algorithm store (`algorithm-store`).
-
-:::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## `v6 node` commands
@@ -249,10 +202,14 @@ In the printed message, you will see not only the path of the configuration file
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 2: Create a new node configuration
+## Challenge 1: Create a new node configuration
 
 1. Create a new node configuration using the `v6 node new` command.
 2. Find the path to the configuration file using the `v6 node files` command. Open the configuration file with a text editor and check the configuration options. Are they correct?
+3. Open your configuration file, do the following:
+    - add a new database in the format of `excel`,
+    - enable the encryption,
+    - find the missing options in your file by comparing with the option template in the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -399,7 +356,7 @@ From there, you can see the running status of the node, the connection to the se
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 3: Start a node and watch the logs
+## Challenge 2: Start a node and watch the logs
 
 1. Start the node you just created using the `v6 node start` command.
 2. Watch the logs of the node using the `v6 node attach --name xxx` command. Observe the logs and see if the node is running correctly.
@@ -456,9 +413,33 @@ after you choose the node, it will print out the following messages:
 
 ## Update the API key of your node
 
-If you get a new API key for a node from the server administrator, or you reset the API key in the vantage6 UI, you need to update the API key in the node configuration file.
+### Reset API key for a node via the vantage6 UI
 
-For that, you can run the command:
+If you want to reset the API key for a node, you can do so by following these steps:
+
+1. Login to the vantage6 UI.
+2. Click on the `Nodes` tab in the administration page.
+3. Click on the tab of the node you want to reset the API key for in the list of nodes.
+
+![Reset API key for a node](fig/reset_api_key_01.png)
+
+4. Click on the `Reset API key` button.
+    * You may see a dialog box asking you to download the new API key.
+
+![Download new API key](fig/reset_api_key_02.png)
+
+You will see a message:
+
+> API key download
+>
+> Your API key has been reset. Please read your new key in the file that has been downloaded.
+
+You can open the downloaded text file to copy the new API key. Next, you'll use it to update your node configuration.
+
+
+### Update API key in the node configuration file
+
+You can use v6 CLI to update the API key of a node. For that, you can run the command:
 
 ```bash
 v6 node set-api-key
@@ -473,7 +454,7 @@ then it will ask you which node you want to update the API key of:
    node3
 ```
 
-after you choose the node, it will ask you to enter the new API key:
+after you choose the node, it will ask you to enter the new API key, then you can paste the new API key you just copied from the downloaded file:
 
 ```bash
 ? Select the configuration you want to use: node1
@@ -512,22 +493,23 @@ When you finish the process, the node configuration file will be updated with th
 
 To make the new API key effective, you need to restart the node by running the command `v6 node stop` and then `v6 node start`.
 
-
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: Update the API key of a node
+## Challenge 3: Update the API key of a node
 
-1. How do you update the API key of a node? Try to update the API key of the node you just created, without using the `v6 node set-api-key` command.
-2. How do you make sure the new API key is effective?
+1. Reset the API key of the node you just created in the vantage6 UI
+2. Update the API key of the node you just created, without using the `v6 node set-api-key` command.
+3. How do you make sure the new API key is effective?
 
 ::: solution
-1. We can update the API key in the configuration file:
+1. You can go to the `Nodes` tab in the administration page, then click on the tab of the node you want to reset the API key for, and click on the `Reset API key` button.
+2. We can update the API key in the configuration file:
   - Run the `v6 node files` command to locate the configuration file.
   - Open the configuration file and write the new API key in the `api_key` field.
   - Stop the node with the `v6 node stop` command.
   - Restart the node with the `v6 node start` command.
 
-2. In order to verify the effectiveness of the API key change, we can restart the node with active logging:
+3. In order to verify the effectiveness of the API key change, we can restart the node with active logging:
 ```bash
 v6 node start --attach
 ```
