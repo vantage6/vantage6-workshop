@@ -118,11 +118,11 @@
   Introduction to vantage6
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 55%" class="percentage">
-    55%
+<aside class="col-md-12 lesson-progress"><div style="width: 57%" class="percentage">
+    57%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 55%" aria-valuenow="55" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 57%" aria-valuenow="57" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -243,8 +243,7 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#vantage6-entities-and-their-relations">Vantage6 entities and their relations</a></li>
-<li><a href="#vantage6-permission-system">Vantage6 permission system</a></li>
+        <ul><li><a href="#vantage6-permission-system">Vantage6 permission system</a></li>
 <li><a href="#manage-vantage6-project-using-the-ui">Manage vantage6 project using the UI</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -328,7 +327,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Managing vantage6 server via the user interface</h1>
-        <p>Last updated on 2024-06-04 |
+        <p>Last updated on 2024-06-25 |
         
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chapter4.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -347,9 +346,7 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>What are the administrative entities in vantage6?</li>
-<li>What is the relation between the entities in vantage6?</li>
-<li>What is the permission system in vantage6?</li>
+<ul><li>What is the permission system in vantage6?</li>
 <li>What are the default roles in vantage6?</li>
 <li>How to create a new organization using vantage6 user interface
 (UI)?</li>
@@ -362,130 +359,19 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Understand the types of administrative entities in vantage6</li>
-<li>Understand the relation between the administrative entities of
-vantage6</li>
-<li>Understand the permission system of vantage6</li>
+<ul><li>Understand the permission system of vantage6</li>
 <li>Understand the default roles in vantage6</li>
 <li>Be able to create a new organization using the vantage6 UI</li>
 <li>Be able to create a new user using the vantage6 UI</li>
 <li>Be able to create a new collaboration using the vantage6 UI</li>
-<li>Be able to reset an api key for a node</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<section id="vantage6-entities-and-their-relations"><h2 class="section-heading">Vantage6 entities and their relations<a class="anchor" aria-label="anchor" href="#vantage6-entities-and-their-relations"></a>
+<section id="vantage6-permission-system"><h2 class="section-heading">Vantage6 permission system<a class="anchor" aria-label="anchor" href="#vantage6-permission-system"></a>
 </h2>
-<hr class="half-width"><p>There are several entities in vantage6, such as users, organizations,
-tasks, etc. These entities are created by users that have sufficient
-permission to do so and are stored in a database that is managed by the
-central server.</p>
-<p>The administrative entities in vantage6 are:</p>
-<ul><li>
-<strong>User</strong>: a person who can perform certain actions in
-vantage6.
-<ul><li>A user can only belong to one <strong>organization</strong>.</li>
-<li>A user can have multiple <strong>roles</strong> and can be assigned
-with extra permissions not covered by the roles.</li>
-<li>A user can create <strong>tasks</strong> for one or more
-<strong>organizations</strong> within a
-<strong>collaboration</strong>.</li>
-</ul></li>
-<li>
-<strong>Organization</strong>: an orgarnization to which users
-belong
-<ul><li>An organization can have zero and more <strong>users</strong>.</li>
-<li>An organization can have multiple <strong>nodes</strong>.</li>
-</ul></li>
-<li>
-<strong>Collaboration</strong>: a collection of one or more
-<strong>organizations</strong>.
-<ul><li>In a specific <strong>collaboration</strong>, each participating
-<strong>organization</strong> needs one <strong>node</strong> to compute
-<strong>tasks</strong>; In another <strong>collaboration</strong>, the
-same <strong>organization</strong> must have a separate
-<strong>node</strong> for this <strong>collaboration</strong>.</li>
-<li>A collaboration can contain zero or more
-<strong>studies</strong>.</li>
-<li>A <strong>study</strong> is a subset of organizations from the
-collaboration that are involved in a specific research question. By
-setting up studies, it can be easier to send tasks to a subset of the
-organizations in a collaboration and to keep track of the results of
-these analyses.</li>
-</ul></li>
-<li>
-<strong>Role</strong>: a collection of rules that define the
-permissions of a user.
-<ul><li>A user can have multiple roles.</li>
-<li>The permissions of the user are defined by the assigned
-<strong>rules</strong>.</li>
-<li>
-<strong>Rules</strong> define what each entity is allowed to do,
-based on the operation (view, create, edit, delete, send, receive), the
-scope (own, organization, collaboration, global), and the resource
-(e.g. users, orgarnizations).</li>
-</ul></li>
-<li>
-<strong>Node</strong>: an application that can execute
-<strong>tasks</strong>.</li>
-<li>
-<strong>Task</strong>: a task that is executed by one or more
-<strong>nodes</strong>.
-<ul><li>A task should use an algorithm run for each organization involved in
-the task. The results are part of such an algorithm run.</li>
-<li>A task can be part of a <strong>study</strong> or a
-<strong>collaboration</strong>.</li>
-</ul></li>
-</ul><p>The following diagram is simplified relations between these entities.
-A <code>1-n</code> relationship means that the entity on the left side
-of the relationship can have multiple entities on the right side. For
-instance, a single organization can have multiple vantage6 users, but a
-single user always belongs to one organization. There is one
-<code>0-n</code> relationship between roles and organizations, since a
-role can be coupled to an organization, but it doesn’t have to be. An
-<code>n-n</code> relationship is a many-to-many relationship: for
-instance, a collaboration can contain multiple organizations, and an
-organization can participate in multiple collaborations.</p>
-<figure><img src="fig/v6_entities.png" alt="vantage6 relations between entities" class="figure mx-auto d-block"><div class="figcaption">vantage6 relations between entities</div>
-</figure><div class="section level3">
-<h3 id="where-are-the-entities-in-the-ui">Where are the entities in the UI?<a class="anchor" aria-label="anchor" href="#where-are-the-entities-in-the-ui"></a></h3>
-<p>After logging in to the vantage6 UI, you will see the start page.</p>
-<figure><img src="fig/ui_start_page.png" alt="vantage6 UI start page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI start page</div>
-</figure><p>There are some collbarations displayed on the start page. Clicking
-one of the collaborations will show the tasks of that collaboration.</p>
-<figure><img src="fig/ui_task_page.png" alt="vantage6 UI tasks page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI tasks page</div>
-</figure><p>The start page also contains a button <code>Administration</code> in
-the top right corner. Clicking on this button will redirect you to the
-administration page.</p>
-<p>In the administration page, you can manage the entities of vantage6.
-The entities are divided into tabs: <code>Organizations</code>,
-<code>Collaborations</code>, <code>Roles</code>, <code>Users</code>, and
-<code>Nodes</code>. You can click on an entity to see more details or to
-edit the entity. We will get back to this later in more detail.</p>
-<figure><img src="fig/ui_admin_page.png" alt="vantage6 UI administration page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI administration page</div>
-</figure><div id="challenge-1-get-familiar-with-the-vantage6-ui" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<div id="challenge-1-get-familiar-with-the-vantage6-ui" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Get familiar with the vantage6 UI<a class="anchor" aria-label="anchor" href="#challenge-1-get-familiar-with-the-vantage6-ui"></a>
-</h3>
-<div class="callout-content">
-<p>Log in to the vantage6 UI and navigate to the
-<code>Administration</code> page. Familiarize yourself with the entities
-in the administration page.</p>
-<p>Can you find the <code>Organizations</code>,
-<code>Collaborations</code>, <code>Roles</code>, <code>Users</code>, and
-<code>Nodes</code> tabs?</p>
-</div>
-</div>
-</div>
-</div>
-</section><section id="vantage6-permission-system"><h2 class="section-heading">Vantage6 permission system<a class="anchor" aria-label="anchor" href="#vantage6-permission-system"></a>
-</h2>
-<hr class="half-width"><p>vantage6 uses a permission system to control who can do what in the
+<hr class="half-width"><p>Vantage6 uses a permission system to control who can do what in the
 system. The permission system is based on <strong>roles</strong>, which
 are collections of rules that define the permissions of a user. A user
 can have multiple roles, and the permissions of the user are defined by
@@ -519,12 +405,12 @@ using them in a project.</p>
 <figure><img src="fig/permissions_root.png" alt="vantage6 permissions for the role Root" class="figure mx-auto d-block"><div class="figcaption">vantage6 permissions for the role Root</div>
 </figure><figure><img src="fig/permissions_researcher.png" alt="vantage6 permissions for the role Researcher" class="figure mx-auto d-block"><div class="figcaption">vantage6 permissions for the role
 Researcher</div>
-</figure><div id="challenge-2-what-can-you-do-in-vantage6" class="callout challenge">
+</figure><div id="challenge-1-what-can-you-do-in-vantage6" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-2-what-can-you-do-in-vantage6" class="callout-inner">
-<h3 class="callout-title">Challenge 2: What can you do in vantage6?<a class="anchor" aria-label="anchor" href="#challenge-2-what-can-you-do-in-vantage6"></a>
+<div id="challenge-1-what-can-you-do-in-vantage6" class="callout-inner">
+<h3 class="callout-title">Challenge 1: What can you do in vantage6?<a class="anchor" aria-label="anchor" href="#challenge-1-what-can-you-do-in-vantage6"></a>
 </h3>
 <div class="callout-content">
 <p>Go the administration page in the vantage6 UI, check the permissions
@@ -533,7 +419,7 @@ that you have, and answer the following questions:</p>
 <li>Do you have the permissions to create a new organization, a new user
 or a new collaboration?</li>
 <li>Do you have the permission to remove an existing organization, a
-user, or a collboration?</li>
+user, or a collaboration?</li>
 </ol></div>
 </div>
 </div>
@@ -542,7 +428,7 @@ user, or a collboration?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>Check it with your instructor.</li>
 <li>Yes, you should be able to create a new organization, a new user,
@@ -556,8 +442,8 @@ necessary permissions.</li>
 </section><section id="manage-vantage6-project-using-the-ui"><h2 class="section-heading">Manage vantage6 project using the UI<a class="anchor" aria-label="anchor" href="#manage-vantage6-project-using-the-ui"></a>
 </h2>
 <hr class="half-width"><p>In this section, we will go through the steps to create a new
-organization, a new user, a new collaboration and reset an api key for a
-node using the vantage6 UI.</p>
+organization, a new user and a new collaboration using the vantage6
+UI.</p>
 <p>First you need to log in to the vantage6 UI, and then go to the
 <code>Administration</code> page. You can find the
 <code>Administration</code> button in the top right corner of the start
@@ -623,8 +509,7 @@ collaboration.
 <ul><li>After submitting the form, you may see a dialog box to ask you to
 download the API key (on MacOS) or a dialog points out that the API key
 has been downloaded (on Windows). The API key is used to authenticate
-the nodes in the collaboration. Later we will see how to reset the API
-key for a node.</li>
+the nodes in the collaboration.</li>
 </ul></li>
 </ol><figure><img src="fig/create_collab_02.png" alt="Download API keys" class="figure mx-auto d-block"><div class="figcaption">Download API keys</div>
 </figure><p>You will see a message:</p>
@@ -635,7 +520,10 @@ key for a node.</li>
 organizations. Note that they may reset their API key so that no-one but
 them knows it.</p>
 </blockquote>
-<ol start="5" style="list-style-type: decimal"><li>After creating the collaboration, you can see the details of the
+<p>You will need the API keys when you run the nodes to authenticate
+with the vantage6 server. We will discuss this in <a href="./chapter6.html">the chapter of setting up a vantage6
+node</a>.</p>
+<ol style="list-style-type: decimal"><li>After creating the collaboration, you can see the details of the
 collaboration by clicking on the specific collaboration listed in the
 <code>Collaborations</code> tab.
 <ul><li>You will see what organizations are participating in the
@@ -651,44 +539,21 @@ clicking the <code>Add algorithm store</code> button.</li>
 study by clicking the <code>Add study</code> button.</li>
 </ul></li>
 </ol><figure><img src="fig/create_collab_03.png" alt="Collaboration details" class="figure mx-auto d-block"><div class="figcaption">Collaboration details</div>
-</figure></div>
-<div class="section level3">
-<h3 id="reset-api-key-for-a-node">Reset API key for a node<a class="anchor" aria-label="anchor" href="#reset-api-key-for-a-node"></a></h3>
-<p>If you want to reset the API key for a node, you can do so by
-following these steps:</p>
-<ol style="list-style-type: decimal"><li>Click on the <code>Nodes</code> tab in the administration page.</li>
-<li>Click on the tab of the node you want to reset the API key for in
-the list of nodes.</li>
-</ol><figure><img src="fig/reset_api_key_01.png" alt="Reset API key for a node" class="figure mx-auto d-block"><div class="figcaption">Reset API key for a node</div>
-</figure><ol start="3" style="list-style-type: decimal"><li>Click on the <code>Reset API key</code> button.
-<ul><li>You will see a dialog box to ask you to download the new API
-key.</li>
-</ul></li>
-</ol><figure><img src="fig/reset_api_key_02.png" alt="Download new API key" class="figure mx-auto d-block"><div class="figcaption">Download new API key</div>
-</figure><p>You will see a message:</p>
-<blockquote>
-<p>API key download</p>
-<p>Your API key has been reset. Please read your new key in the file
-that has been downloaded.</p>
-</blockquote>
-<p>At this point, put the new API key in your node configuration file
-and restart the node to connect to the server again.</p>
-<div id="challenge-3-manage-vantage6-project-using-the-ui" class="callout discussion">
+</figure><div id="challenge-2-manage-vantage6-project-using-the-ui" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="challenge-3-manage-vantage6-project-using-the-ui" class="callout-inner">
-<h3 class="callout-title">Challenge 3: Manage vantage6 project using the UI<a class="anchor" aria-label="anchor" href="#challenge-3-manage-vantage6-project-using-the-ui"></a>
+<div id="challenge-2-manage-vantage6-project-using-the-ui" class="callout-inner">
+<h3 class="callout-title">Challenge 2: Manage vantage6 project using the UI<a class="anchor" aria-label="anchor" href="#challenge-2-manage-vantage6-project-using-the-ui"></a>
 </h3>
 <div class="callout-content">
-<p>Go the administration page in the vantage6 UI and try to create a new
-organization, a new user, and a new collaboration. Also, try to reset
-the API key for a node.</p>
-<ol style="list-style-type: decimal"><li>Can you create a new organization, a new user, and a new
-collaboration?</li>
-<li>Can you reset the API key for a node?</li>
-<li>Which steps are challenging for you?</li>
-</ol></div>
+<p>Go to the administration page in the vantage6 UI, and do the
+following:</p>
+<ol style="list-style-type: decimal"><li>Create a new organization</li>
+<li>Create a new user</li>
+<li>Create a new collaboration</li>
+</ol><p>Which steps are challenging for you?</p>
+</div>
 </div>
 </div>
 <div id="keypoints1" class="callout keypoints">
@@ -699,17 +564,13 @@ collaboration?</li>
 <h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Vantage6 entities are <code>Users</code>,
-<code>Organizations</code>, <code>Collaborations</code>,
-<code>Roles</code>, <code>Nodes</code>, and <code>Tasks</code>.</li>
-<li>Vantage6 uses a permission system to control who can do what in the
+<ul><li>Vantage6 uses a permission system to control who can do what in the
 system.</li>
 <li>Vantage6 has default roles like <code>Root</code>,
 <code>Collaboration Admin</code>, <code>Organization Admin</code>,
 <code>Researcher</code>, and <code>Viewer</code>.</li>
 <li>Vantage6 UI can be used to manage the entities of vantage6, like
-creating a new organization, a new user, a new collaboration, and
-resetting an api key for a node.</li>
+creating or deleting an organization, a user, or a collaboration.</li>
 </ul></div>
 </div>
 </div>
@@ -776,7 +637,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/chapter4.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/chapter4.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-06-04",
+  "dateModified": "2024-06-25",
   "datePublished": "2024-06-25"
 }
 
