@@ -34,7 +34,7 @@ you.
 
 ## Challenge: Add privacy filters to your algorithm
 
-In the [previous lesson](./algorithm_development.md), you have created a simple
+In the [previous lesson](./chap7_algo_dev.md), you have created a simple
 algorithm. Now, you can add privacy filters to your algorithm.
 
 - Create an algorithm that does not return the results unless there are more than 10
@@ -56,7 +56,7 @@ already has a few privacy filters implemented. You can use this algorithm as an 
 
 ## Challenge: Document your algorithm
 
-In the [previous lesson](./algorithm_development.md), you have created a simple
+In the [previous lesson](./chap7_algo_dev.md), you have created a simple
 algorithm. For this challenge, learn how to document your algorithm.
 
 - Make sure a documentation template is available in the algorithm repository. If it is
@@ -70,7 +70,7 @@ algorithm. For this challenge, learn how to document your algorithm.
 
 ## Challenge: Visualize the results of your algorithm in the UI
 
-In the [previous lesson](./algorithm_development.md), you have created a simple
+In the [previous lesson](./chap7_algo_dev.md), you have created a simple
 algorithm. In this challenge, modify the algorithm in the algorithm store to include
 a visualization of the results. You can do this in the UI by modifying your algorithm
 in the algorithm store.
@@ -81,7 +81,7 @@ in the algorithm store.
 
 ## Challenge: Expand your average algorithm
 
-In the [previous lesson](./algorithm_development.md), you have created a simple
+In the [previous lesson](./chap7_algo_dev.md), you have created a simple
 average algorithm. In this challenge, expand your algorithm to calculate the one or
 more of the following:
 

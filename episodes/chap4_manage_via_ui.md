@@ -24,12 +24,11 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
 ## Vantage6 permission system
 
 Vantage6 uses a permission system to control who can do what in the system. The permission system is based on **roles**, which are collections of rules that define the permissions of a user. A user can have multiple roles, and the permissions of the user are defined by the assigned **rules**.
 
-The permission rules define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own,  organization, collaboration, global), and the resource (e.g. users, orgarnizations). Users can be assigned anywhere between zero and all of these permission rules. For example, having the rules with `create` in the scope `organization` for the resource `users` means that the user can create users for the organization they belong to.
+The permission rules define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own, organization, collaboration, global), and the resource (e.g. users, orgarnizations). Users can be assigned anywhere between zero and all of these permission rules. For example, having the rules with `create` in the scope `organization` for the resource `user` means that the user can create users for the organization they belong to.
 
 To make it easier to assign permissions, there are also predefined roles:
 
@@ -68,7 +67,6 @@ Go the administration page in the vantage6 UI, check the permissions that you ha
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
 ## Manage vantage6 project using the UI
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
@@ -85,42 +83,45 @@ First you need to log in to the vantage6 UI, and then go to the `Administration`
 ![vantage6 UI administration page](fig/ui_admin_page.png)
 
 ### Create a new organization
+
 It's quite straightforward to create a new organization in vantage6. Here are the steps:
 
 1. Click on the `Organizations` tab in the administration page.
 2. Click on the `Create organization` button.
 3. Fill in the details of the new organization.
-    * The `Upload public key` field is optional. You can upload a public key for the organization if you want to use encryption in the collaboration.
+   - The `Upload public key` field is optional. You can upload a public key for the organization if you want to use encryption in the collaboration.
 4. Click on the `Submit` button to create the new organization.
 
 ![Create a new organization](fig/create_org.png)
 
 ### Create a new user
+
 Now let's create a new user for the organization we just created. Here are the steps:
 
 1. Click on the `Users` tab in the administration page.
 2. Click on the `Create user` button.
 3. Fill in the details of the new user.
-    * You can assign the user to an organization by selecting it from the `Organization` dropdown. Only one organization can be selected.
-    * You can assign roles to the user by selecting them from the `Roles` dropdown. Here we assign the `Researcher` role to the new user. You can give the user more permissions by assigning multiple roles or select the operation boxes in the `Permissions` section.
+   - You can assign the user to an organization by selecting it from the `Organization` dropdown. Only one organization can be selected.
+   - You can assign roles to the user by selecting them from the `Roles` dropdown. Here we assign the `Researcher` role to the new user. You can give the user more permissions by assigning multiple roles or select the operation boxes in the `Permissions` section.
 4. Click on the `Submit` button to create the new user.
 
 ![Create a new user](fig/create_user.png)
 
 ### Create a new collaboration
+
 A collaboration is a collection of one or more organizations. Let's create a new collaboration between two organizations. Here are the steps:
 
 1. Click on the `Collaborations` tab in the administration page.
 2. Click on the `Create collaboration` button.
 3. Fill in the details of the new collaboration.
-    * For `Encrypted` box, you can select whether the collaboration should be encrypted or not.
-    * You can select the organizations that will participate in the collaboration by selecting them from the `Organizations` dropdown.
-    * By default, we select the `Register nodes` box. This will ensure the nodes of the organizations are registered in the collaboration. If you don't select this box, you will have to register the nodes manually later.
+   - For `Encrypted` box, you can select whether the collaboration should be encrypted or not.
+   - You can select the organizations that will participate in the collaboration by selecting them from the `Organizations` dropdown.
+   - By default, we select the `Register nodes` box. This will ensure the nodes of the organizations are registered in the collaboration. If you don't select this box, you will have to register the nodes manually later.
 
 ![Create a new collaboration](fig/create_collab_01.png)
 
 4. Click on the `Submit` button to create the new collaboration.
-    * After submitting the form, you may see a dialog box to ask you to download the API key (on MacOS) or a dialog points out that the API key has been downloaded (on Windows). The API key is used to authenticate the nodes in the collaboration.
+   - After submitting the form, you may see a dialog box to ask you to download the API key (on MacOS) or a dialog points out that the API key has been downloaded (on Windows). The API key is used to authenticate the nodes in the collaboration.
 
 ![Download API keys](fig/create_collab_02.png)
 
@@ -132,16 +133,15 @@ You will see a message:
 >
 > Please distribute each of these keys privately to each of the organizations. Note that they may reset their API key so that no-one but them knows it.
 
-You will need the API keys when you run the nodes to authenticate with the vantage6 server. We will discuss this in [the chapter of setting up a vantage6 node](./chapter6.md).
+You will need the API keys when you run the nodes to authenticate with the vantage6 server. We will discuss this in [Chapter 6](./chap6_setup_node.md).
 
 1. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
-    * You will see what organizations are participating in the collaboration.
-    * You will see the nodes of the organizations that are registered in the collaboration. If no nodes are registered, you can register them manually by clicking the `Register missing nodes` button.
-    * You can also see the algorithm store available for the collaboration. You can add a algorithm store for the collaboration by clicking the `Add algorithm store` button.
-    * You can also see the studies of the collaboration. You can add a study by clicking the `Add study` button.
+   - You will see what organizations are participating in the collaboration.
+   - You will see the nodes of the organizations that are registered in the collaboration. If no nodes are registered, you can register them manually by clicking the `Register missing nodes` button.
+   - You can also see the algorithm store available for the collaboration. You can add a algorithm store for the collaboration by clicking the `Add algorithm store` button.
+   - You can also see the studies of the collaboration. You can add a study by clicking the `Add study` button.
 
 ![Collaboration details](fig/create_collab_03.png)
-
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -160,7 +160,7 @@ Which steps are challenging for you?
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Vantage6 uses a permission system to control who can do what in the system.
-- Vantage6 has default roles like  `Root`, `Collaboration Admin`, `Organization Admin`, `Researcher`, and `Viewer`.
+- Vantage6 has default roles like `Root`, `Collaboration Admin`, `Organization Admin`, `Researcher`, and `Viewer`.
 - Vantage6 UI can be used to manage the entities of vantage6, like creating or deleting an organization, a user, or a collaboration.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
