@@ -59,14 +59,14 @@ contact: 'd.smits@esciencecenter.nl'
 
 # Order of episodes in your lesson
 episodes:
-- introduction.md
-- 2-understanding-v6.md
-- chapter3.md
-- chapter4.md
-- chapter5.md
-- chapter6.md
-- algorithm_development.md
-- chapter8.md
+- chap1_introduction_FL.md
+- chap2_introduction_v6.md
+- chap3_run_analysis_ui.md
+- chap4_manage_via_ui.md
+- chap5_python_client.md
+- chap6_setup_node.md
+- chap7_algo_dev.md
+- chap8_own_project.md
 
 # Information for Learners
 learners:
