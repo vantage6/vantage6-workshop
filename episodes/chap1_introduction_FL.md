@@ -98,6 +98,8 @@ statistics like the mean, or it can be more intricate like a machine learning mo
 Aggregating the data does not ensure complete protection of person-level information, but it
 certainly makes it less likely that this will happen.
 
+![General flow of a federated analysis](fig/federated_sum.jpg)
+
 TODO: Example of data leakage in simple aggregated case
 
 ## Federated learning
@@ -108,6 +110,8 @@ participating devices (which we refer to as clients) which are coordinated by a 
 traditional federated learning, the clients train machine learning models, and only the updates of
 the models are sent back to the central server. The central server combines the updates from all the
 individual clients into one final machine learning model.
+
+![In federated learning only the gradients of models are shared](fig/federated%20learning.jpg)
 
 There are caveats to using this type of data analysis though. Although the data transmitted from the
 clients to the server are an aggregation of the raw data, researchers have found a way to use this
@@ -132,6 +136,8 @@ retrieved.
 
 When combining multiple values using secret sharing, this will result in the parties owning new
 puzzle pieces that when put together will reveal the result of the computation.
+
+![In secure multiparty computation parties collaboratively perform an analysis while holding only encrypted pieces of the data](fig/mpc.jpg)
 
 ::: callout
 
