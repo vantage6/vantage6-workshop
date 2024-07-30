@@ -38,7 +38,7 @@ In classic data analysis, all data is copied over into a single place. This make
 use
 conventional data analysis software and tools to gain insights.
 
-![In classic analysis all the data is brought together](fig/chapter1/classic%20analysis.jpg){alt='Two tables
+![In classic analysis all the data is brought together](fig/chapter1/classic_analysis.jpg){alt='Two tables
 with data are moved to a central location'}
 
 Unfortunately this way of working does not respect the privacy of the people contained within the
