@@ -74,7 +74,7 @@ will in this case be removed so that individuals stay anonymous. Data _pseudonim
 similar process, but in this case, the records will be assigned an id that will make it
 possible to link individuals across datasets.
 
-![Data anonymization](fig%2Fdata_anonymization.jpg){alt='Names are censored before the datasets
+![Data anonymization](fig/chapter1/data_anonymization.jpg){alt='Names are censored before the datasets
 are sent to a central place'}
 
 While data anonymization and pseudonymization are often a good first step, there is no guarantee
