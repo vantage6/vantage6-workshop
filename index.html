@@ -217,7 +217,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Introduction to privacy enhancing technologies (PET)</a>
+        <a href="chap1_introduction_FL.html">1. Introduction to privacy enhancing technologies (PET)</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -226,7 +226,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="2-understanding-v6.html">2. vantage6 basics</a>
+        <a href="chap2_introduction_v6.html">2. vantage6 basics</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -235,7 +235,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="chapter3.html">3. Running a PET analysis without programming on vantage6</a>
+        <a href="chap3_run_analysis_ui.html">3. Running a PET analysis without programming on vantage6</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -244,7 +244,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="chapter4.html">4. Managing vantage6 server via the user interface</a>
+        <a href="chap4_manage_via_ui.html">4. Managing vantage6 server via the user interface</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -253,7 +253,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="chapter5.html">5. Running a PET analysis using the python client</a>
+        <a href="chap5_python_client.html">5. Running a PET analysis using the python client</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -262,7 +262,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="chapter6.html">6. Setting up a vantage6 node</a>
+        <a href="chap6_setup_node.html">6. Setting up a vantage6 node</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -271,7 +271,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="algorithm_development.html">7. Algorithm development</a>
+        <a href="chap7_algo_dev.html">7. Algorithm development</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -280,7 +280,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="chapter8.html">8. Work on your own project</a>
+        <a href="chap8_own_project.html">8. Work on your own project</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -328,17 +328,20 @@
         <!-- START: inst/pkgdown/templates/content-syllabus.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link float-end" href="introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="chap1_introduction_FL.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="introduction.html" rel="next">Next: Introduction to... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="chap1_introduction_FL.html" rel="next">Next: Introduction to... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Setup</h1>
       
 
-<p>This is a new lesson built with <a href="https://carpentries.github.io/sandpaper-docs" class="external-link">The Carpentries
-Workbench</a>.</p>
+<p>This course is a hands-on introduction to the <a href="https://vantage6.ai" class="external-link">vantage6</a> infrastructure for
+privacy-enhanced learning. The course consists of eight modules which
+will teach you what vantage6 is and how you can use it. This page will
+guide you through the installation of the required software before you
+start the course.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -346,10 +349,11 @@ any links that you are not going to use.
 
 
       <section id="setup"><p>Vantage6 has hardware and software requirements in order to run the
-vantage6 node(s) and/or server. As for the detailed requirements, please
-refer to the <a href="https://docs.vantage6.ai/en/main/node/requirements.html" class="external-link">vantage6
-documentation</a>.</p>
-<p>For now, we just need to focus on the software setup.</p>
+vantage6 node(s) and/or server. For detailed requirements, please refer
+to the <a href="https://docs.vantage6.ai/en/main/node/requirements.html" class="external-link">vantage6
+documentation</a>. For this course, your laptop should be able to run
+the software locally without any issues. Therefore, we just need to
+focus on the software setup.</p>
 <section><h2 class="section-heading" id="software-setup">Software setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
 <a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
 <hr class="half-width"><p>Vantage6 requires the following software to be installed on your
@@ -367,9 +371,9 @@ Windows 10+</li>
 </ul></li>
 </ul><div class="section level3">
 <h3 id="docker">Docker<a class="anchor" aria-label="anchor" href="#docker"></a></h3>
-<p>We recommend installing <a href="https://www.docker.com/products/docker-desktop/" class="external-link">Docker
-Desktop</a> on your system, which is the easiest way to install
-Docker.</p>
+<p>We recommend installing Docker Desktop on your system, which is the
+easiest way to install Docker. You can download it <a href="https://www.docker.com/products/docker-desktop" class="external-link">here</a>. Docker
+Desktop is available for MacOS, Windows, and Linux.</p>
 <p>You can follow the official instructions to install Docker Desktop on
 <a href="https://docs.docker.com/desktop/install/mac-install/" class="external-link">MacOS</a>,
 <a href="https://docs.docker.com/desktop/install/windows-install/" class="external-link">Windows</a>,
@@ -384,9 +388,9 @@ or <a href="https://docs.docker.com/desktop/install/linux-install/" class="exter
 <div class="callout-content">
 <p>If you have Docker Engine installed on your Linux system and want to
 use it instead of Docker Desktop, you must make sure that it can run
-Docker containers without <code>sudo</code>. For that, please check the
-<a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">guide</a>
-for more information.</p>
+Docker containers without <code>sudo</code>. Please follow the
+instructions in <a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">this
+guide</a> to set that up.</p>
 </div>
 </div>
 </div>
@@ -428,17 +432,16 @@ Server: Docker Desktop 4.31.0 (153195)
   Version:          0.19.0
   GitCommit:        de40ad0</code></pre>
 </div>
-<p>The above output shows a successful installation and will vary based
-on your system. Make sure you see versions for both <code>Client</code>
-and <code>Server</code>.</p>
-<p>If you cannot see the <code>Server</code> version, you have to open
-the Docker Desktop application first, then run the command again.</p>
+<p>The exact output will vary based on your system. Make sure you see
+versions for both <code>Client</code> and <code>Server</code>.</p>
+<p>If you do not see the <code>Server</code> part, open the Docker
+Desktop application and then run the command again.</p>
 </div>
 <div class="section level3">
 <h3 id="conda">Conda<a class="anchor" aria-label="anchor" href="#conda"></a></h3>
 <p>There are several ways to install Conda on your system. For this
 lesson, we recommend using Miniconda installer.</p>
-<p>Follow the <a href="https://docs.anaconda.com/free/miniconda/#quick-command-line-install" class="external-link">official
+<p>Follow the <a href="https://docs.anaconda.com/free/miniconda/" class="external-link">official
 instructions</a> to install Miniconda on Windows, MacOS, or Linux.</p>
 <p>After installing Miniconda, open a <strong>new</strong> terminal
 window and verify the installation by running the command:</p>
@@ -455,7 +458,7 @@ window and verify the installation by running the command:</p>
 <p>It’s OK if the version number is different as long as you can create
 a Python environment as shown in the next step.</p>
 <p>If you see an error message, you may need to restart your terminal or
-computer.</p>
+even your computer.</p>
 </div>
 <div class="section level3">
 <h3 id="python-environment-and-python-packages">Python environment and Python packages<a class="anchor" aria-label="anchor" href="#python-environment-and-python-packages"></a></h3>
@@ -479,7 +482,7 @@ required Python packages.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre>
 </div>
-<p>Make sure the JupyterLab opens in your browser.</p>
+<p>Make sure JupyterLab opens in your browser.</p>
 <ol start="2" style="list-style-type: decimal"><li>Verify the installation of <code>vantage6</code>:</li>
 </ol><div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -515,7 +518,7 @@ explaining the usage.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import vantage6.client"</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import vantage6.algorithm"</span></span></code></pre>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import vantage6.algorithm.tools"</span></span></code></pre>
 </div>
 <p>If there is no output and no error message, the installation is
 successful.</p>
@@ -527,11 +530,11 @@ any links that you are not going to use.
  -->
 </div>
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link float-end" href="introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="chap1_introduction_FL.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="introduction.html" rel="next">Next: Introduction to... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="chap1_introduction_FL.html" rel="next">Next: Introduction to... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div>
 <!-- END  : inst/pkgdown/templates/content-syllabus.html -->

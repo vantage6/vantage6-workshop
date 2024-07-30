@@ -243,7 +243,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Introduction to privacy enhancing technologies (PET)</a>
+        <a href="chap1_introduction_FL.html">1. Introduction to privacy enhancing technologies (PET)</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -255,7 +255,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="2-understanding-v6.html">2. vantage6 basics</a>
+        <a href="chap2_introduction_v6.html">2. vantage6 basics</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -267,7 +267,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="chapter3.html">3. Running a PET analysis without programming on vantage6</a>
+        <a href="chap3_run_analysis_ui.html">3. Running a PET analysis without programming on vantage6</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -279,7 +279,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="chapter4.html">4. Managing vantage6 server via the user interface</a>
+        <a href="chap4_manage_via_ui.html">4. Managing vantage6 server via the user interface</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -291,7 +291,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="chapter5.html">5. Running a PET analysis using the python client</a>
+        <a href="chap5_python_client.html">5. Running a PET analysis using the python client</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -303,7 +303,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="chapter6.html">6. Setting up a vantage6 node</a>
+        <a href="chap6_setup_node.html">6. Setting up a vantage6 node</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -315,7 +315,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="algorithm_development.html">7. Algorithm development</a>
+        <a href="chap7_algo_dev.html">7. Algorithm development</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -327,7 +327,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="chapter8.html">8. Work on your own project</a>
+        <a href="chap8_own_project.html">8. Work on your own project</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -390,11 +390,11 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction to privacy enhancing technologies (PET)</a></p>
+<section id="aio-chap1_introduction_FL"><p>Content from <a href="chap1_introduction_FL.html">Introduction to privacy enhancing technologies (PET)</a></p>
 <hr>
-<p>Last updated on 2024-06-04 |
+<p>Last updated on 2024-07-30 |
 
-        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap1_introduction_FL.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -469,7 +469,7 @@ copying everything into one central place.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>You might think of multiple issues. Some examples:</p>
 <ul>
@@ -483,6 +483,10 @@ consent?</li>
 </div>
 </div>
 </div>
+<p>In this lesson, we will discuss various privacy-enhancing
+technologies (PET) that can be used to analyze data in a
+privacy-preserving manner, and what the risks associated with different
+technologies are.</p>
 </section><section><h2 class="section-heading" id="data-anonymization-and-pseudonymization">Data anonymization and pseudonymization<a class="anchor" aria-label="anchor" href="#data-anonymization-and-pseudonymization"></a>
 <a class="anchor" aria-label="anchor" href="#data-anonymization-and-pseudonymization"></a>
 </h2>
@@ -535,7 +539,7 @@ individual clients into one final machine learning model.</p>
 Although the data transmitted from the clients to the server are an
 aggregation of the raw data, researchers have found a way to use this
 data to reconstruct the original data. This vulnerability is called
-<em>gradient</em> leakage.</p>
+<em>gradient leakage</em>.</p>
 <figure><img src="fig/gradient_leakage.jpg" alt="An example of gradient leakage" class="figure mx-auto d-block"><div class="figcaption">An example of gradient leakage</div>
 </figure></section><section><h2 class="section-heading" id="secure-multiparty-computation">Secure Multiparty Computation<a class="anchor" aria-label="anchor" href="#secure-multiparty-computation"></a>
 <a class="anchor" aria-label="anchor" href="#secure-multiparty-computation"></a>
@@ -545,15 +549,14 @@ data to reconstruct the original data. This vulnerability is called
 data. One solution is to make sure that no party other than the data
 owner is actually able to see the intermediate data. One branch of
 techniques that can be used for this is Secure Multiparty Computation
-(MPC). With MPC,<br>
-computations are performed collaboratively by multiple parties. Data is
-encrypted in such a way that other parties cannot see the original
-values, but values of multiple parties can still be combined (
-e.g. added or multiplied). A classic technique from the field of MPC is
-secret sharing. With this technique data is encrypted, after which
-pieces of the encryption are sent to the other parties. No single party
-will be able to reconstruct the original value. Only when all parties
-work together, the original value can be retrieved.</p>
+(MPC). With MPC, computations are performed collaboratively by multiple
+parties. Data is encrypted in such a way that other parties cannot see
+the original values, but values of multiple parties can still be
+combined ( e.g. added or multiplied). A classic technique from the field
+of MPC is secret sharing. With this technique data is encrypted, after
+which pieces of the encryption are sent to the other parties. No single
+party will be able to reconstruct the original value. Only when all
+parties work together, the original value can be retrieved.</p>
 <p>When combining multiple values using secret sharing, this will result
 in the parties owning new puzzle pieces that when put together will
 reveal the result of the computation.</p>
@@ -570,11 +573,11 @@ weighs 43 kg, Sara weighs 39, Noor weighs 45. They create secret shares
 for their weights that they give to their peers.</p>
 <table class="table">
 <colgroup>
-<col width="25%">
+<col width="26%">
 <col width="22%">
 <col width="22%">
 <col width="22%">
-<col width="7%">
+<col width="5%">
 </colgroup>
 <thead><tr class="header">
 <th></th>
@@ -600,7 +603,7 @@ for their weights that they give to their peers.</p>
 </tr>
 <tr class="odd">
 <td>Noor generates:</td>
-<td>-19</td>
+<td>19</td>
 <td>-38</td>
 <td>64</td>
 <td>45</td>
@@ -651,11 +654,11 @@ was part of the dataset.</p>
 <hr class="half-width">
 <p>The previously mentioned techniques are not used in isolation, but
 are usually stacked on top of eachother to mitigate the privacy risks
-that are relevant within a certain usecase. Typically, the process
-begins by anonymizing or pseudonymizing the data. With vantage6, the
-data is then placed in a federated setting. You can use the existing
-algorithms available for vantage6, which often incorporate various
-privacy-enhancing techniques.</p>
+that are relevant within the usecase. Typically, the process begins by
+anonymizing or pseudonymizing the data. With vantage6, the data is then
+placed in a federated setting. Then, the data is analyzed using
+federated learning, which may also include, for instance, MPC protocols
+to further safeguard data privacy.</p>
 </section><section><h2 class="section-heading" id="data-partitioning">Data partitioning<a class="anchor" aria-label="anchor" href="#data-partitioning"></a>
 <a class="anchor" aria-label="anchor" href="#data-partitioning"></a>
 </h2>
@@ -664,20 +667,25 @@ privacy-enhancing techniques.</p>
 in the end, the goal of the researchers is often to analyze data <em>as
 if</em> it were available in one big table in one place. There are 2
 main ways in which the dataset can be separated over different sources:
-<strong>horizontal</strong> and <strong>vertical</strong> partioning. In
-horizontal partitioning, this giant table has been snipped in pieces by
-making horizontal cuts. The result is that information of an individual
-record will stay in one place, but the records themselves have been
-scattered around in different locations.</p>
+<strong>horizontal</strong> and <strong>vertical</strong>
+partioning.</p>
+<p>In horizontal partitioning, this giant table has been snipped in
+pieces by making horizontal cuts. The result is that information of an
+individual record will stay in one place, but the records themselves
+have been scattered around in different locations. A common example of
+horizontal partitioning is when different hospitals have the same data
+on different patients.</p>
 <p>In vertical partitioning, the cuts have been made vertically. Columns
-have now been divided over different locations. This type of
+have now been divided over different locations. For example, this would
+be the case if a hospital has data on a set of patients and the GP has
+different information for the same set of patients. This type of
 partitioning is usually more challenging because often a way needs to be
 found to link identities across datasources. Vertical partitioning
 requires different types of privacy enhancing algorithms than horizontal
 partitioning.</p>
-<p>In reality, data can be horizontally and vertically partitioned at
-the same time. It might be necessary to combine multiple techniques in
-order to overcome your problems.</p>
+<p>Data can even be horizontally and vertically partitioned at the same
+time. In these cases, it may be necessary to combine multiple
+techniques.</p>
 </section><section><h2 class="section-heading" id="technology-doesnt-solve-everything">Technology doesn’t solve everything<a class="anchor" aria-label="anchor" href="#technology-doesnt-solve-everything"></a>
 <a class="anchor" aria-label="anchor" href="#technology-doesnt-solve-everything"></a>
 </h2>
@@ -691,7 +699,7 @@ into complying with regulations and building trust.</p>
 <p>Since these projects have a risk of affecting the privacy of
 individuals, a Data Protection Impact Assessment (DPIA) is usually
 required. This is a process that will help identify and minimize privacy
-risks of a project and is required by GDPR.</p>
+risks of a project and is required by the GDPR.</p>
 <p>Apart from procedures required by GDPR there might be other
 regulations in place enforced by the owners of the data
 (e.g. hospitals). The specific situation of a project can affect the way
@@ -717,11 +725,11 @@ technologies you intend to use.</p>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-2-understanding-v6"><p>Content from <a href="2-understanding-v6.html">vantage6 basics</a></p>
+</section></section><section id="aio-chap2_introduction_v6"><p>Content from <a href="chap2_introduction_v6.html">vantage6 basics</a></p>
 <hr>
-<p>Last updated on 2024-06-19 |
+<p>Last updated on 2024-07-30 |
 
-        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/2-understanding-v6.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap2_introduction_v6.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -733,7 +741,7 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>Why to use vantage6?</li>
+<li>Why should I use vantage6?</li>
 <li>How does vantage6 work?</li>
 <li>How do federated algorithms run in vantage6?</li>
 <li>What will be available in vantage6 in the future?</li>
@@ -764,10 +772,10 @@ network</li>
 <h1 id="unique-selling-points-of-vantage6">Unique selling points of vantage6<a class="anchor" aria-label="anchor" href="#unique-selling-points-of-vantage6"></a>
 </h1>
 <p>vantage6 is a platform to execute privacy enhancing techniques
-(PETs). Several alternative platforms for PETS are available, but
+(PETs). Several alternative platforms for PETs are available, but
 vantage6 provides some unique features:</p>
 <ul>
-<li>Open source.</li>
+<li>Open source and free to use.</li>
 <li>Container orchestration for privacy enhancing techniques.</li>
 <li>Easily extensible to different types of data sources.</li>
 <li>Algorithms can be developed in any language.</li>
@@ -785,8 +793,8 @@ contributes one <strong>node</strong> to the network. The nodes collect
 the computation request from the server and fetches the
 <strong>algorithm</strong> to answer it. When the algorithm completes,
 the node sends the aggregated results back to the server.</p>
-<figure><img src="fig/v6_basic_schema.svg" alt="High level overview of the vantage6 infrastructure. Client(s) and Node(s) communicate through the Server. Nodes are able to communicate directly with each other when the optional VPN feature is enabled." class="figure mx-auto d-block"><div class="figcaption">High level overview of the vantage6
-infrastructure. Client(s) and Node(s) communicate through the Server.
+<figure><img src="fig/v6_basic_schema.svg" alt="High level overview of the vantage6 infrastructure. Client(s) and node(s) communicate through the Server. Nodes are able to communicate directly with each other when the optional VPN feature is enabled." class="figure mx-auto d-block"><div class="figcaption">High level overview of the vantage6
+infrastructure. Client(s) and node(s) communicate through the Server.
 Nodes are able to communicate directly with each other when the optional
 VPN feature is enabled.</div>
 </figure><p>On a technical level, vantage6 may be seen as a container
@@ -798,10 +806,10 @@ responsible for, and which subcomponents they contain.</p>
 <div class="section level3">
 <h3 id="server">Server<a class="anchor" aria-label="anchor" href="#server"></a>
 </h3>
-<p>The A (central) <strong>server</strong> that acts as communication
-hub between clients and nodes. The <a href="https://docs.vantage6.ai/en/main/server/index.html" class="external-link">server</a>
+<p>The (central) <strong>server</strong> acts as communication hub
+between clients and nodes. The <a href="https://docs.vantage6.ai/en/main/server/index.html" class="external-link">server</a>
 tracks the status of the computation requests and handles administrative
-functions such as authentication and authorization.It consists of
+functions such as authentication and authorization. It consists of
 multiple applications:</p>
 <ul>
 <li><p><strong>Vantage6 server</strong>: Contains the users,
@@ -813,25 +821,29 @@ images which can be used by clients to request a computation. The node
 will retrieve the algorithm from this registry and execute it. It is
 possible to use public registries for this purpose like <a href="https://hub.docker.com/" class="external-link">Docker hub</a> or <a href="https://ghcr.io" class="external-link">Github Containers</a>. However it is also
 possible to host your own registry, for example a <a href="https://goharbor.io/" class="external-link">Harbor</a> instance.</p></li>
-<li><p><strong>Algorithm store</strong>: Is intended to be used as a
-repository for trusted algorithms within a certain project. <a href="https://docs.vantage6.ai/en/main/algorithm_store/index.html" class="external-link">Algorithm
+<li><p><strong>Algorithm store</strong>: A repository for trusted
+algorithms within a certain project. <a href="https://docs.vantage6.ai/en/main/algorithm_store/index.html" class="external-link">Algorithm
 stores</a> can be coupled to specific collaborations or to all
-collaborations on a given server.</p></li>
+collaborations on a given server. Note that one algorithm store can also
+be linked to multiple servers - you should only create one in your
+project if you need a custom set of algorithms.</p></li>
 <li><p><a href="https://docs.vantage6.ai/en/main/server/optional.html#eduvpn" class="external-link"><strong>EduVPN
-instance</strong></a>: If algorithms need to be able to engage in
-peer-to-peer communication, a VPN server can be set up to help them do
-so.</p></li>
-<li><p><a href="https://docs.vantage6.ai/en/main/server/optional.html#rabbitmq" class="external-link"><strong>RabbitMQ</strong></a>:
-Is used to synchronize the messages between multiple vantage6 server
-instances.</p></li>
+instance</strong></a> (<em>optional</em>): If algorithms need to be able
+to engage in peer-to-peer communication, a VPN server can be set up to
+help them do so.</p></li>
+<li><p><a href="https://docs.vantage6.ai/en/main/server/optional.html#rabbitmq" class="external-link"><strong>RabbitMQ</strong></a>
+(<em>optional</em>): Is used to synchronize the messages between
+multiple vantage6 server instances. This is useful when you have high
+workloads and need to run multiple instances of the server on different
+machines.</p></li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="data-station">Data Station<a class="anchor" aria-label="anchor" href="#data-station"></a>
 </h3>
 <p>The data station hosts the <a href="https://docs.vantage6.ai/en/main/node/index.html" class="external-link">node</a>
-(vantage6-node), that have access to the local data and execute
-algorithms, and a database.</p>
+(vantage6-node), that has access to the local data and execute
+algorithms, and one or more databases.</p>
 <ul>
 <li><p><strong>Vantage6 node</strong>: The node is responsible for
 executing the algorithms on the local data. It protects the data by
@@ -842,7 +854,8 @@ access to local data. For more details see the technical documentation
 of the node.</p></li>
 <li><p><strong>Database</strong>: The database may be in any format that
 the algorithms relevant to your use case support. The currently
-supported database types are listed here.</p></li>
+supported database types are csv, parquet, SQL, Sparql, Excel, and
+OMOP.</p></li>
 </ul>
 </div>
 <div class="section level3">
@@ -856,18 +869,18 @@ to interact with it programatically. There are however a number of
 applications available that make is easier for users to interact with
 the vantage6 server:</p>
 <ul>
-<li><p><strong>User interface</strong> The <a href="https://docs.vantage6.ai/en/main/user/ui.html" class="external-link">user interface</a>
+<li><p><strong>User interface</strong>: The <a href="https://docs.vantage6.ai/en/main/user/ui.html" class="external-link">user interface</a>
 is a web application (hosted at the server) that allows users to
 interact with the server. It is used to create and manage organizations,
 collaborations, users, tasks and algorithms. It also allows users to
 view and download the results of tasks. Use of the user interface
 recommended for ease of use.</p></li>
-<li><p><strong>Python client</strong> The <a href="https://docs.vantage6.ai/en/main/user/pyclient.html" class="external-link">vantage6
+<li><p><strong>Python client</strong>: The <a href="https://docs.vantage6.ai/en/main/user/pyclient.html" class="external-link">vantage6
 python client</a> <python-client> is a Python package that allows users
 to interact with the server from a Python environment. This is
 especially usefull for data scientists who want to integrate vantage6
-into their existing Python workflow.</python-client></p></li>
-<li><p><strong>API</strong> It is also possible to interact with the
+into their workflow.</python-client></p></li>
+<li><p><strong>API</strong>: It is also possible to interact with the
 vantage6-server using the <a href="https://docs.vantage6.ai/en/main/user/api.html" class="external-link">API</a>
 directly.</p></li>
 </ul>
@@ -885,16 +898,23 @@ results.</p></li>
 computations on the local privacy sensitive data.</p></li>
 </ul>
 <figure><img src="fig/algorithm_central_and_subtasks.png" alt="vantage6 central and federated tasks." class="figure mx-auto d-block"><div class="figcaption">vantage6 central and federated tasks.</div>
-</figure><p>Now, let’s see how this works in vantage6. The user creates a task
-for the central part of the algorithm. This is registered at the server,
-and leads to the creation of a central algorithm container on one of the
-nodes. The central algorithm then creates subtasks for the federated
-parts of the algorithm, which again are registered at the server. All
-nodes for which the subtask is intended start their work by executing
-the federated part of the algorithm. The nodes send the results back to
-the server, from where they are picked up by the central algorithm. The
+</figure><p>Now, let’s see what typically happens if a task is created in
+vantage6:</p>
+<ul>
+<li>The user creates a task for the central part of the algorithm. This
+is registered at the server.</li>
+<li>The task registration leads to the creation of a central algorithm
+container on one of the nodes.</li>
+<li>The central algorithm creates subtasks for the federated parts of
+the algorithm, which again are registered at the server.</li>
+<li>All nodes for which the subtask is intended start their work by
+executing the federated part of the algorithm.</li>
+<li>When finished, the nodes send the results back to the server</li>
+<li>Each node’s results are picked up by the central algorithm. The
 central algorithm then computes the final result and sends it to the
-server, where the user can retrieve it</p>
+server</li>
+<li>The user retrieves the result from the server.</li>
+</ul>
 <div id="vantage6-server-vs-central-part-of-an-algorithm" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -933,7 +953,7 @@ average age of the patients.</p>
 following equation:</p>
 <p><span class="math inline">\(\overline{x} =\dfrac{1}n \sum_{i=1}^{n}
 x_i\)</span></p>
-<p>It can be written as follow, to make it ready for a federate
+<p>It can be written as follows, to make it ready for a federate
 computation:</p>
 <p><span class="math inline">\(\overline{x} =\dfrac{1}{n_a+n_b}
 (\sum_{i=1}^{n_a} a_i+\sum_{i=1}^{n_b} b_i)\)</span></p>
@@ -948,7 +968,7 @@ different parts?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
@@ -980,9 +1000,9 @@ following computation:</p>
 <h1 id="future-developments-of-vantage6">Future developments of vantage6<a class="anchor" aria-label="anchor" href="#future-developments-of-vantage6"></a>
 </h1>
 <p>Back in 2018 when the development of vantage6 started, the focus was
-on Federated Learning. Since then, vantage6 has been extended to support
+on federated learning. Since then, vantage6 has been extended to support
 different types of data sources, different types of algorithms and
-improved its usability. Privacy Enhancing Technologies (PET) are a
+improved its user experience. Privacy Enhancing Technologies (PET) are a
 rapidly evolving field. To keep up with the latest developments, the
 vantage6 platform is designed to be flexible and to adapt to new
 developments in the field.</p>
@@ -1010,13 +1030,14 @@ collaboration</li>
 <li>Define privacy guards at algorithm level</li>
 </ul>
 <p>In order to avoid that policies need to be set manually at the nodes,
-we envision a distributed policy system (possibly using Blocakchain) in
-which policies are distributed to the nodes by the server.</p>
+we envision a distributed policy system (possibly using blockchain
+technology) in which policies are distributed to the nodes by the
+server.</p>
 </div>
 <div class="section level2">
 <h2 id="model-repository">Model Repository<a class="anchor" aria-label="anchor" href="#model-repository"></a>
 </h2>
-<p>Currently vantage6 is focused on privacy enhancing techniques. Some
+<p>Currently, vantage6 is focused on privacy enhancing techniques. Some
 of these techniques result in a model that can be used to make
 predictions. We want to extend vantage6 with a model repository in which
 these models can be stored, shared and used. This will make it easier to
@@ -1048,11 +1069,11 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</div></section><section id="aio-chapter3"><p>Content from <a href="chapter3.html">Running a PET analysis without programming on vantage6</a></p>
+</div></section><section id="aio-chap3_run_analysis_ui"><p>Content from <a href="chap3_run_analysis_ui.html">Running a PET analysis without programming on vantage6</a></p>
 <hr>
-<p>Last updated on 2024-06-04 |
+<p>Last updated on 2024-07-30 |
 
-        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chapter3.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap3_run_analysis_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1064,13 +1085,11 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>What is a common collaboration scenario where the same institution
-is involved in multiple collaborations?</li>
+<li>How does a vantage6 collaboration work?</li>
 <li>How to check the status of a given collaboration within
 vantage6?</li>
 <li>How to link an algorithm store to a given collaboration?</li>
-<li>How to request a task based on a given algorithm through vantage6’s
-UI?</li>
+<li>How to run a task through vantage6’s UI?</li>
 </ul>
 </div>
 </div>
@@ -1084,7 +1103,8 @@ UI?</li>
 concept of collaboration</li>
 <li>Understand the concept of ‘algorithm trustworthiness’ in the context
 of a vantage6 collaboration</li>
-<li>Understand v6’s algorithm-store current and envisioned features</li>
+<li>Understand vantagee6’s algorithm-store current and envisioned
+features</li>
 <li>Understand the UI-based approach for performing a data analysis
 through the given scenarios</li>
 </ul>
@@ -1112,8 +1132,8 @@ instance, a <strong>collaboration</strong> can involve multiple
 <strong>organization</strong> can participate in multiple
 <strong>collaborations</strong>.</p>
 <figure><img src="fig/chapter3/v6_entitites_simplified.png" alt="Vantage6 core concepts" class="figure mx-auto d-block"><div class="figcaption">Vantage6 core concepts</div>
-</figure><p>Given the above, the following are the most important concepts to be
-considered for this episode:</p>
+</figure><p>Given the above, the following are the most important concepts for
+this lesson:</p>
 <ul>
 <li>
 <p><strong>Organization</strong>: a group of users that share a
@@ -1138,14 +1158,14 @@ same <strong>organization</strong> must have a separate
 </ul>
 </li>
 <li><p><strong>Node</strong>: the component with access to the
-organization data, which also executes algorithms on it. It represents
-the individual organizations’ contributions to the network.</p></li>
+<strong>organization</strong> data, which also executes algorithms on
+it. It represents the organization’s contributions to the
+network.</p></li>
 <li><p><strong>Task</strong>: a request, created by
-<strong>users</strong> (with a given set of <strong>roles</strong>) for
-the execution of a given <strong>algorithm</strong> on one or more
-organizations within a collaboration. These execution requests are
-handled by the corresponding organizations’
-<strong>node</strong>.</p></li>
+<strong>users</strong> for the execution of a given
+<strong>algorithm</strong> on one or more organizations within a
+collaboration. These execution requests are handled by the corresponding
+organizations’ <strong>node</strong>.</p></li>
 <li>
 <p><strong>User</strong>: a person who can perform certain actions
 in vantage6.</p>
@@ -1159,8 +1179,8 @@ with extra permissions not covered by the roles.</li>
 </ul>
 </li>
 <li><p><strong>Role</strong>: a collection of rules that define the
-permissions of a user (it will be further explored on Chapter
-4).</p></li>
+permissions of a <strong>user</strong> (which will be further explored
+in <a href="./chap4_manage_via_ui.html">Chapter 4</a>).</p></li>
 <li><p><strong>Result</strong>: the output generated by the execution of
 an <strong>algorithm</strong> as part of a
 <strong>task</strong>.</p></li>
@@ -1205,9 +1225,9 @@ in the administration page.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
-collaborations<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations"></a>
-<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations"></a>
+</section><section><h2 class="section-heading" id="from-theory-to-practice-a-case-study-using-vantage6-collaborations">From theory to practice: a case study using vantage6
+collaborations<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-case-study-using-vantage6-collaborations"></a>
+<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-case-study-using-vantage6-collaborations"></a>
 </h2>
 <hr class="half-width">
 <p>As previously discussed, in vantage6 a collaboration refers to an
@@ -1265,19 +1285,17 @@ collaborations. As this is a critical and complex task that entails
 activities like code analysis and verification, working with algorithms
 from trusted sources is the primary line of defense against potential
 threats.</p>
-<p>Vantage6’s algorithm store feature aims to enhance trustworthiness by
+<p>Vantage6’s algorithm store aims to enhance trustworthiness by
 offering a centralized platform for managing pre-registered algorithms.
 This serves as an alternative to using algorithms from unknown authors
 or those lacking transparency regarding their development process and
 status. The algorithm store currently allows researchers to explore
 which algorithms are available and how to run them. This, along with its
 integration with vantage6’s UI, streamlines task execution requests
-within collaborations.</p>
-<p>As of the time of writing this tutorial, efforts are underway to
-integrate additional information to the algorithm metadata such as
-creators and code reviewers. Moreover, plans are in place to incorporate
-the algorithm review process into the publication procedure for any
-algorithms in the store.</p>
+within collaborations. Also, the algorithm store integrates additional
+information to the algorithm metadata such who developed and reviewed
+the algorithm. Only after complying with the review policies of a store,
+a new algorithmn will be published in the store.</p>
 </div>
 <div class="section level3">
 <h3 id="running-a-pet-privacy-enhancing-technology-analysis-without-programming">Running a PET (privacy-enhancing technology) analysis without
@@ -1507,11 +1525,11 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</section></section><section id="aio-chapter4"><p>Content from <a href="chapter4.html">Managing vantage6 server via the user interface</a></p>
+</section></section><section id="aio-chap4_manage_via_ui"><p>Content from <a href="chap4_manage_via_ui.html">Managing vantage6 server via the user interface</a></p>
 <hr>
-<p>Last updated on 2024-06-25 |
+<p>Last updated on 2024-07-30 |
 
-        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chapter4.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap4_manage_via_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1564,7 +1582,7 @@ on the operation (view, create, edit, delete, send, receive), the scope
 (e.g. users, orgarnizations). Users can be assigned anywhere between
 zero and all of these permission rules. For example, having the rules
 with <code>create</code> in the scope <code>organization</code> for the
-resource <code>users</code> means that the user can create users for the
+resource <code>user</code> means that the user can create users for the
 organization they belong to.</p>
 <p>To make it easier to assign permissions, there are also predefined
 roles:</p>
@@ -1614,7 +1632,7 @@ user, or a collaboration?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Check it with your instructor.</li>
@@ -1732,8 +1750,7 @@ organizations. Note that they may reset their API key so that no-one but
 them knows it.</p>
 </blockquote>
 <p>You will need the API keys when you run the nodes to authenticate
-with the vantage6 server. We will discuss this in <a href="./chapter6.html">the chapter of setting up a vantage6
-node</a>.</p>
+with the vantage6 server. We will discuss this in <a href="./chap6_setup_node.html">Chapter 6</a>.</p>
 <ol style="list-style-type: decimal">
 <li>After creating the collaboration, you can see the details of the
 collaboration by clicking on the specific collaboration listed in the
@@ -1798,11 +1815,11 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</section></section><section id="aio-chapter5"><p>Content from <a href="chapter5.html">Running a PET analysis using the python client</a></p>
+</section></section><section id="aio-chap5_python_client"><p>Content from <a href="chap5_python_client.html">Running a PET analysis using the python client</a></p>
 <hr>
-<p>Last updated on 2024-07-09 |
+<p>Last updated on 2024-07-30 |
 
-        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chapter5.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap5_python_client.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1814,10 +1831,9 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How to check the status of a given collaboration within vantage6,
-programatically, using the Python client?</li>
-<li>How to request a task based on a given algorithm, programatically,
-through vantage6’s Python client?</li>
+<li>How to check details of a collaboration using the Python
+client?</li>
+<li>How to run a task through vantage6’s Python client?</li>
 </ul>
 </div>
 </div>
@@ -1842,28 +1858,28 @@ through a given scenario.</li>
 interaction with the vantage6 server, to perform various tasks such as
 creating computation tasks, managing organizations, collaborations,
 users, and collecting results. It is a versatile alternative to the
-web-based user interface which enable users and administrators to manage
-resources programatically, e.g., for automating actions or integrating
-them on other applications. It communicates with the server through its
-REST API, handling encryption and decryption of data for secure
-operations.</p>
+web-based user interface. Data scientists and administrators may use it
+to manage resources programatically, e.g., for automating actions or
+integrating them on other applications. The Python client communicates
+with the server’s REST API, handling encryption and decryption where
+applicable.</p>
 <p>Creating an instance of the vantage6 Python client is relatively
-straightforward, requiring only (after installing the corresponding
-libraries) to define the server connection details: server URL, login
-credentials, and the organization’s private key (if encryption is being
-used). In case the server has the <a href="https://docs.vantage6.ai/en/stable/technical-documentation/features/server/2fa.html" class="external-link">two-factor
+straightforward. After installing its Python package, the user defines
+server connection details: server URL, login credentials, and the
+organization’s private key (if encryption is being used). In case the
+server has <a href="https://docs.vantage6.ai/en/stable/technical-documentation/features/server/2fa.html" class="external-link">two-factor
 authentication</a> (2FA) enabled you should also enter the corresponding
-time-based one-time password accordingly.</p>
-<p>For simplicity, these settings can be defined on a separate Python
-module like the following:</p>
+time-based 6-digit code accordingly.</p>
+<p>To keep your connection details separated and secure, they should be
+defined in a separate Python module:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># config.py</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>server_url <span class="op">=</span> <span class="st">"https://&lt;vantage6-server-address&gt;"</span> </span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>server_port <span class="op">=</span> <span class="dv">443</span> </span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>server_api <span class="op">=</span> <span class="st">"/api"</span> </span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>server_url <span class="op">=</span> <span class="st">"https://&lt;vantage6-server-address&gt;"</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>server_port <span class="op">=</span> <span class="dv">443</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>server_api <span class="op">=</span> <span class="st">"/api"</span></span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>username <span class="op">=</span> <span class="st">"MY USERNAME"</span></span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>password <span class="op">=</span> <span class="st">"MY PASSWORD"</span></span>
@@ -1887,12 +1903,8 @@ settings, you can create the client instance as follows:</p>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>client.authenticate(config.username, config.password)</span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co"># Setup the encryption, if you have an organization_key (e.g., use the one set on the config.py file). If not, use None.</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Note that this will be optional in future versions (no need to use setup_encription at all when no organization keys are used) when Change Request vantage6/vantage6#1302 is addressed.</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#client.setup_encryption(config.organization_key)</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>client.setup_encryption(<span class="va">None</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span></code></pre>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#client.setup_encryption(config.organization_key)</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>client.setup_encryption(<span class="va">None</span>)</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="using-the-client">Using the client<a class="anchor" aria-label="anchor" href="#using-the-client"></a>
@@ -1910,6 +1922,8 @@ map):</p>
 <li><code>client.result</code></li>
 <li><code>client.util</code></li>
 <li><code>client.node</code></li>
+<li><code>client.store</code></li>
+<li><code>client.algorithm</code></li>
 </ul>
 <p>Each of these attributes, in turn, provides an abstraction of the
 CRUD (Create, Read, Update, and Delete) operations that can be performed
@@ -1939,34 +1953,34 @@ to its corresponding concept*:</p>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>client.<span class="op">&lt;</span>resource<span class="op">&gt;</span>.get()</span></code></pre>
 </div>
 <p>(*) Please note that some resources do not provide all four
-operations and that these are constrained by the privileges of the
-credentials used when creating the client instance.</p>
+operations. For example, it is not possible to create new rules. Also,
+note that the logged-in user may not be allowed to perform all
+operations.</p>
 <p>The parameters of the methods above vary based on the type of
 <code>&lt;resource&gt;</code> you are working with. To get these
 details, you can launch a Python interactive session that runs the
 client creation script above, and use the ‘help’ command with it. For
-example, by using this command for <code>client.organization</code>, you
-will find that you can filter the list of organizations (among others)
-by name, country, and collaboration:</p>
+example, <code>help(client.organization.list)</code> will show you that
+you can filter the list of organizations (among others) by name,
+country, and collaboration:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>python <span class="op">-</span>i client.py</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">help</span>(client.organization)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">help</span>(client.organization.<span class="bu">list</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="op">|</span>  <span class="bu">list</span>(<span class="va">self</span>, name: <span class="st">'str'</span> <span class="op">=</span> <span class="va">None</span>, country: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>, collaboration: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>, study: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>, page: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>, per_page: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>) <span class="op">-&gt;</span> <span class="st">'list[dict]'</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a> <span class="op">|</span>      List organizations</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a> <span class="op">|</span>      </span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a> <span class="op">|</span>      Parameters</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a> <span class="op">|</span>      <span class="op">----------</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a> <span class="op">|</span>      name: <span class="bu">str</span>, optional</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a> <span class="op">|</span>          Filter by name (<span class="cf">with</span> LIKE operator)</span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a> <span class="op">|</span>      country: <span class="bu">str</span>, optional</span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a> <span class="op">|</span>          Filter by country</span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a> <span class="op">|</span>      collaboration: <span class="bu">int</span>, optional</span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a> <span class="op">|</span>          Filter by collaboration <span class="bu">id</span>. If client.setup_collaboration() was called,</span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a> <span class="op">|</span>          the previously setup collaboration <span class="kw">is</span> used. Default value <span class="kw">is</span> <span class="va">None</span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a> </span></code></pre>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="bu">list</span>(<span class="va">self</span>, name: <span class="st">'str'</span> <span class="op">=</span> <span class="va">None</span>, country: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>, collaboration: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>, study: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>, page: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>, per_page: <span class="st">'int'</span> <span class="op">=</span> <span class="va">None</span>) <span class="op">-&gt;</span> <span class="st">'list[dict]'</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>    List organizations</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>    Parameters</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>    <span class="op">----------</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>    name: <span class="bu">str</span>, optional</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>        Filter by name (<span class="cf">with</span> LIKE operator)</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>    country: <span class="bu">str</span>, optional</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>        Filter by country</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>    collaboration: <span class="bu">int</span>, optional</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>        Filter by collaboration <span class="bu">id</span>. If client.setup_collaboration() was called,</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>        the previously setup collaboration <span class="kw">is</span> used. Default value <span class="kw">is</span> <span class="va">None</span></span></code></pre>
 </div>
 <p>From parameters like the ones described above, it is important to
 note that -for the sake of consistency- the client methods use
@@ -2019,20 +2033,23 @@ code here</a>), the input would look like this:</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">partial_average() is a function defined on the *federated average* algorithm (see algorithm source at https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py). Given that 'colum_name' is the argument required by this function, the value for 'kwargs' key must include a dictionary with this property:</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>input_ <span class="op">=</span> {</span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="st">'method'</span>: <span class="st">'partial_average'</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    <span class="st">'kwargs'</span>: {<span class="st">'column_name'</span>: <span class="st">'age'</span>}</span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>}</span></code></pre>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">partial_average() is a function defined on the *federated average* algorithm (see</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">algorithm source at https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py).</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">Given that 'colum_name' is the argument required by this function, the value for 'kwargs'</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">key must include a dictionary with this property:</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>input_ <span class="op">=</span> {</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    <span class="st">'method'</span>: <span class="st">'partial_average'</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    <span class="st">'kwargs'</span>: {<span class="st">'column_name'</span>: <span class="st">'age'</span>}</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>}</span></code></pre>
 </div>
 <p>Once you have defined your task input, you can create and start it by
 also specifying (using identifiers) on which organizations and for which
 collaboration, it will be executed. In the following example, the
-partial_average function of the ‘containerized’ algorithm on the
+partial_average function of the algorithm
 ‘harbor2.vantage6.ai/demo/average’ would be executed on the vantage6
-nodes created, for the organizations #12 and #23, when setting up the
-collaboration #45.</p>
+nodes created, for the organizations #12 and #23, within collaboration
+#45.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2095,24 +2112,26 @@ results immediately afterward:</p>
 </h3>
 <div class="callout-content">
 <p>The goal of this first challenge is to create a Python script for
-performing tasks on Chapter 3’s collaboration projects. Before
-installing the vantage6 libraries (which include the client) it is
-important to check that these are compatible with the server you will
-talk to. Check the version of the server you worked with in Chapter 3 by
-accessing its URL including ‘/api/version’ as a suffix (e.g.,
+performing tasks on <a href="./chap3_run_analysis_ui.html">Episode
+3</a>‘s collaboration projects. Before installing the vantage6 libraries
+(which include the client) it is important to check that these are
+compatible with the server you will talk to. Check the version of the
+server you worked with in Chapter 3 by accessing its URL
+including’/api/version’ as a suffix (e.g.,
 <code>https://SERVER_DOMAIN_NAME/api/version</code>).</p>
-<p>Create and activate a Python environment (using conda, venv, etc) and
-install the <code>vantage6-client</code> for this particular server
-version:</p>
+<p>Create and activate a Python environment and install the
+<code>vantage6-client</code> for this particular server version:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>   <span class="ex">$</span> pip install vantage6==<span class="op">&lt;</span>version<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> v6-workshop python=3.10  <span class="co"># if you had not created the environment yet in the Setup section</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">conda</span> activate v6-workshop</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">pip</span> install vantage6==<span class="op">&lt;</span>version<span class="op">&gt;</span></span></code></pre>
 </div>
-<p>Use one of the researcher credentials and the server URL from Episode
-3 to create a configuration file and a script for connecting to the
-server, following the guidelines provided above. Run the script and
-check that the connection is performed successfully.</p>
+<p>Use the researcher credentials and the server URL from <a href="./chap3_run_analysis_ui.html">Episode 3</a> to create a
+configuration file and a script for connecting to the server, following
+the guidelines provided above. Run the script and check that the
+connection is performed successfully.</p>
 </div>
 </div>
 </div>
@@ -2138,10 +2157,10 @@ check that the connection is performed successfully.</p>
 identifiers of your collaboration and its organizations<a class="anchor" aria-label="anchor" href="#challenge-2-use-the-client-to-find-the-identifiers-of-your-collaboration-and-its-organizations"></a>
 </h3>
 <div class="callout-content">
-<p>Use the researcher credentials from Episode 3, to get the identifiers
-of the two collaborations from this chapter’s scenario. Use this
-information to get the identifiers of the organizations that belong to
-each collaboration.</p>
+<p>Use the researcher credentials from <a href="./chap3_run_analysis_ui.html">Episode 3</a>, to get the
+identifiers of the two collaborations from this chapter’s scenario. Use
+this information to get the identifiers of the organizations that belong
+to each collaboration.</p>
 <p>Refer to the <strong>Python client - basic concepts</strong> section
 above to do this.</p>
 <table class="table">
@@ -2163,10 +2182,10 @@ above to do this.</p>
 </tr>
 </tbody>
 </table>
-<p>Now, try to identify, programatically, which nodes are active on each
-collaboration. Hint: use the <code>client.node</code> resource. Remember
-that you can use the <code>help()</code> function to see how to get the
-details of the nodes of a given organization.</p>
+<p>Now, try to identify which nodes are active on each collaboration.
+Hint: use the <code>client.node</code> resource. Remember that you can
+use the <code>help()</code> function to see how to get the details of
+the nodes of a given organization.</p>
 </div>
 </div>
 </div>
@@ -2183,7 +2202,7 @@ details of the nodes of a given organization.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> client.collaboration.<span class="bu">list</span>(fields<span class="op">=</span>[<span class="st">'id'</span>, <span class="st">'name'</span>, <span class="st">'organizations'</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>[</span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>    {<span class="st">'id'</span>: <span class="dv">4</span>, <span class="st">'name'</span>: <span class="st">'PhY-research'</span>, <span class="st">'organizations'</span>: <span class="st">'/api/organization?collaboration_id=4'</span>}, </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>    {<span class="st">'id'</span>: <span class="dv">4</span>, <span class="st">'name'</span>: <span class="st">'PhY-research'</span>, <span class="st">'organizations'</span>: <span class="st">'/api/organization?collaboration_id=4'</span>},</span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>    {<span class="st">'id'</span>: <span class="dv">5</span>, <span class="st">'name'</span>: <span class="st">'GHT_consortium'</span>, <span class="st">'organizations'</span>: <span class="st">'/api/organization?collaboration_id=5'</span>}</span>
 <span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>]</span></code></pre>
 </div>
@@ -2196,9 +2215,9 @@ of the organizations that are participating on it:</p>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> client.organization.<span class="bu">list</span>(collaboration<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>[</span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>    {<span class="st">'address1'</span>: <span class="st">''</span>, <span class="st">'studies'</span>: <span class="st">'/api/study?organization_id=3'</span>, <span class="st">'users'</span>: <span class="st">'/api/user?organization_id=3'</span>, <span class="st">'zipcode'</span>: <span class="st">''</span>, <span class="st">'domain'</span>: <span class="st">''</span>, <span class="st">'tasks'</span>: <span class="st">'/api/task?init_org_id=3'</span>, <span class="st">'public_key'</span>: <span class="st">''</span>, <span class="st">'name'</span>: <span class="st">'CANTABRIA_organization'</span>, <span class="st">'address2'</span>: <span class="st">''</span>, <span class="st">'nodes'</span>: <span class="st">'/api/node?organization_id=3'</span>, <span class="st">'country'</span>: <span class="st">'Spain'</span>, <span class="st">'collaborations'</span>: <span class="st">'/api/collaboration?organization_id=3'</span>, <span class="st">'runs'</span>: <span class="st">'/api/run?organization_id=3'</span>, <span class="st">'id'</span>: <span class="dv">3</span>}, </span>
-<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>    {<span class="st">'address1'</span>: <span class="st">''</span>, <span class="st">'studies'</span>: <span class="st">'/api/study?organization_id=4'</span>, <span class="st">'users'</span>: <span class="st">'/api/user?organization_id=4'</span>, <span class="st">'zipcode'</span>: <span class="st">''</span>, <span class="st">'domain'</span>: <span class="st">''</span>, <span class="st">'tasks'</span>: <span class="st">'/api/task?init_org_id=4'</span>, <span class="st">'public_key'</span>: <span class="st">''</span>, <span class="st">'name'</span>: <span class="st">'LIFELINES_organization'</span>, <span class="st">'address2'</span>: <span class="st">''</span>, <span class="st">'nodes'</span>: <span class="st">'/api/node?organization_id=4'</span>, <span class="st">'country'</span>: <span class="st">'The Netherlands'</span>, <span class="st">'collaborations'</span>: <span class="st">'/api/collaboration?organization_id=4'</span>, <span class="st">'runs'</span>: <span class="st">'/api/run?organization_id=4'</span>, <span class="st">'id'</span>: <span class="dv">4</span>}, </span>
-<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>    {<span class="st">'address1'</span>: <span class="st">''</span>, <span class="st">'studies'</span>: <span class="st">'/api/study?organization_id=5'</span>, <span class="st">'users'</span>: <span class="st">'/api/user?organization_id=5'</span>, <span class="st">'zipcode'</span>: <span class="st">''</span>, <span class="st">'domain'</span>: <span class="st">''</span>, <span class="st">'tasks'</span>: <span class="st">'/api/task?init_org_id=5'</span>, <span class="st">'public_key'</span>: <span class="st">''</span>, <span class="st">'name'</span>: <span class="st">'GAZEL_organization'</span>, <span class="st">'address2'</span>: <span class="st">''</span>, <span class="st">'nodes'</span>: <span class="st">'/api/node?organization_id=5'</span>, <span class="st">'country'</span>: <span class="st">'France'</span>, <span class="st">'collaborations'</span>: <span class="st">'/api/collaboration?organization_id=5'</span>, <span class="st">'runs'</span>: <span class="st">'/api/run?organization_id=5'</span>, <span class="st">'id'</span>: <span class="dv">5</span>}, </span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>    {<span class="st">'address1'</span>: <span class="st">''</span>, <span class="st">'studies'</span>: <span class="st">'/api/study?organization_id=3'</span>, <span class="st">'users'</span>: <span class="st">'/api/user?organization_id=3'</span>, <span class="st">'zipcode'</span>: <span class="st">''</span>, <span class="st">'domain'</span>: <span class="st">''</span>, <span class="st">'tasks'</span>: <span class="st">'/api/task?init_org_id=3'</span>, <span class="st">'public_key'</span>: <span class="st">''</span>, <span class="st">'name'</span>: <span class="st">'CANTABRIA_organization'</span>, <span class="st">'address2'</span>: <span class="st">''</span>, <span class="st">'nodes'</span>: <span class="st">'/api/node?organization_id=3'</span>, <span class="st">'country'</span>: <span class="st">'Spain'</span>, <span class="st">'collaborations'</span>: <span class="st">'/api/collaboration?organization_id=3'</span>, <span class="st">'runs'</span>: <span class="st">'/api/run?organization_id=3'</span>, <span class="st">'id'</span>: <span class="dv">3</span>},</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>    {<span class="st">'address1'</span>: <span class="st">''</span>, <span class="st">'studies'</span>: <span class="st">'/api/study?organization_id=4'</span>, <span class="st">'users'</span>: <span class="st">'/api/user?organization_id=4'</span>, <span class="st">'zipcode'</span>: <span class="st">''</span>, <span class="st">'domain'</span>: <span class="st">''</span>, <span class="st">'tasks'</span>: <span class="st">'/api/task?init_org_id=4'</span>, <span class="st">'public_key'</span>: <span class="st">''</span>, <span class="st">'name'</span>: <span class="st">'LIFELINES_organization'</span>, <span class="st">'address2'</span>: <span class="st">''</span>, <span class="st">'nodes'</span>: <span class="st">'/api/node?organization_id=4'</span>, <span class="st">'country'</span>: <span class="st">'The Netherlands'</span>, <span class="st">'collaborations'</span>: <span class="st">'/api/collaboration?organization_id=4'</span>, <span class="st">'runs'</span>: <span class="st">'/api/run?organization_id=4'</span>, <span class="st">'id'</span>: <span class="dv">4</span>},</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>    {<span class="st">'address1'</span>: <span class="st">''</span>, <span class="st">'studies'</span>: <span class="st">'/api/study?organization_id=5'</span>, <span class="st">'users'</span>: <span class="st">'/api/user?organization_id=5'</span>, <span class="st">'zipcode'</span>: <span class="st">''</span>, <span class="st">'domain'</span>: <span class="st">''</span>, <span class="st">'tasks'</span>: <span class="st">'/api/task?init_org_id=5'</span>, <span class="st">'public_key'</span>: <span class="st">''</span>, <span class="st">'name'</span>: <span class="st">'GAZEL_organization'</span>, <span class="st">'address2'</span>: <span class="st">''</span>, <span class="st">'nodes'</span>: <span class="st">'/api/node?organization_id=5'</span>, <span class="st">'country'</span>: <span class="st">'France'</span>, <span class="st">'collaborations'</span>: <span class="st">'/api/collaboration?organization_id=5'</span>, <span class="st">'runs'</span>: <span class="st">'/api/run?organization_id=5'</span>, <span class="st">'id'</span>: <span class="dv">5</span>},</span>
 <span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>    {<span class="st">'address1'</span>: <span class="st">''</span>, <span class="st">'studies'</span>: <span class="st">'/api/study?organization_id=7'</span>, <span class="st">'users'</span>: <span class="st">'/api/user?organization_id=7'</span>, <span class="st">'zipcode'</span>: <span class="st">''</span>, <span class="st">'domain'</span>: <span class="st">''</span>, <span class="st">'tasks'</span>: <span class="st">'/api/task?init_org_id=7'</span>, <span class="st">'public_key'</span>: <span class="st">''</span>, <span class="st">'name'</span>: <span class="st">'PhY24-consortium'</span>, <span class="st">'address2'</span>: <span class="st">''</span>, <span class="st">'nodes'</span>: <span class="st">'/api/node?organization_id=7'</span>, <span class="st">'country'</span>: <span class="st">''</span>, <span class="st">'collaborations'</span>: <span class="st">'/api/collaboration?organization_id=7'</span>, <span class="st">'runs'</span>: <span class="st">'/api/run?organization_id=7'</span>, <span class="st">'id'</span>: <span class="dv">7</span>}</span>
 <span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>]</span></code></pre>
 </div>
@@ -2211,19 +2230,19 @@ the organization contributes to).</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> client.node.<span class="bu">list</span>(organization<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>[</span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>    {<span class="st">'config'</span>: [], <span class="st">'last_seen'</span>: <span class="st">'2024-06-18T06:57:48.114072'</span>, </span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>    <span class="st">'organization'</span>: {<span class="st">'id'</span>: <span class="dv">4</span>, <span class="st">'link'</span>: <span class="st">'/api/organization/4'</span>, </span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>    <span class="st">'methods'</span>: [<span class="st">'PATCH'</span>, <span class="st">'GET'</span>]}, </span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>    <span class="st">'collaboration'</span>: {<span class="st">'id'</span>: <span class="dv">4</span>, <span class="st">'link'</span>: <span class="st">'/api/collaboration/4'</span>, </span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>    <span class="st">'methods'</span>: [<span class="st">'GET'</span>, <span class="st">'PATCH'</span>, <span class="st">'DELETE'</span>]}, </span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>    <span class="st">'name'</span>: <span class="st">'PhY-research - LIFELINES_organization'</span>, <span class="st">'status'</span>: <span class="st">'offline'</span>, </span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>    <span class="st">'type'</span>: <span class="st">'node'</span>, <span class="st">'ip'</span>: <span class="va">None</span>, <span class="st">'id'</span>: <span class="dv">13</span>}, </span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>    {<span class="st">'config'</span>: [], <span class="st">'last_seen'</span>: <span class="va">None</span>, </span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>    <span class="st">'organization'</span>: {<span class="st">'id'</span>: <span class="dv">4</span>, <span class="st">'link'</span>: <span class="st">'/api/organization/4'</span>, </span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>    <span class="st">'methods'</span>: [<span class="st">'PATCH'</span>, <span class="st">'GET'</span>]}, </span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>    <span class="st">'collaboration'</span>: {<span class="st">'id'</span>: <span class="dv">5</span>, <span class="st">'link'</span>: <span class="st">'/api/collaboration/5'</span>, </span>
-<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>    <span class="st">'methods'</span>: [<span class="st">'GET'</span>, <span class="st">'PATCH'</span>, <span class="st">'DELETE'</span>]}, </span>
-<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>    <span class="st">'name'</span>: <span class="st">'GHT_consortium - LIFELINES_organization'</span>, <span class="st">'status'</span>: <span class="va">None</span>, </span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>    {<span class="st">'config'</span>: [], <span class="st">'last_seen'</span>: <span class="st">'2024-06-18T06:57:48.114072'</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>    <span class="st">'organization'</span>: {<span class="st">'id'</span>: <span class="dv">4</span>, <span class="st">'link'</span>: <span class="st">'/api/organization/4'</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>    <span class="st">'methods'</span>: [<span class="st">'PATCH'</span>, <span class="st">'GET'</span>]},</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>    <span class="st">'collaboration'</span>: {<span class="st">'id'</span>: <span class="dv">4</span>, <span class="st">'link'</span>: <span class="st">'/api/collaboration/4'</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>    <span class="st">'methods'</span>: [<span class="st">'GET'</span>, <span class="st">'PATCH'</span>, <span class="st">'DELETE'</span>]},</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>    <span class="st">'name'</span>: <span class="st">'PhY-research - LIFELINES_organization'</span>, <span class="st">'status'</span>: <span class="st">'offline'</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>    <span class="st">'type'</span>: <span class="st">'node'</span>, <span class="st">'ip'</span>: <span class="va">None</span>, <span class="st">'id'</span>: <span class="dv">13</span>},</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>    {<span class="st">'config'</span>: [], <span class="st">'last_seen'</span>: <span class="va">None</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>    <span class="st">'organization'</span>: {<span class="st">'id'</span>: <span class="dv">4</span>, <span class="st">'link'</span>: <span class="st">'/api/organization/4'</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>    <span class="st">'methods'</span>: [<span class="st">'PATCH'</span>, <span class="st">'GET'</span>]},</span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>    <span class="st">'collaboration'</span>: {<span class="st">'id'</span>: <span class="dv">5</span>, <span class="st">'link'</span>: <span class="st">'/api/collaboration/5'</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>    <span class="st">'methods'</span>: [<span class="st">'GET'</span>, <span class="st">'PATCH'</span>, <span class="st">'DELETE'</span>]},</span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>    <span class="st">'name'</span>: <span class="st">'GHT_consortium - LIFELINES_organization'</span>, <span class="st">'status'</span>: <span class="va">None</span>,</span>
 <span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>    <span class="st">'type'</span>: <span class="st">'node'</span>, <span class="st">'ip'</span>: <span class="va">None</span>, <span class="st">'id'</span>: <span class="dv">18</span>}</span>
 <span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a>]</span></code></pre>
 </div>
@@ -2286,11 +2305,11 @@ error)</strong></p>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div></section><section id="aio-chapter6"><p>Content from <a href="chapter6.html">Setting up a vantage6 node</a></p>
+</div></section><section id="aio-chap6_setup_node"><p>Content from <a href="chap6_setup_node.html">Setting up a vantage6 node</a></p>
 <hr>
-<p>Last updated on 2024-06-25 |
+<p>Last updated on 2024-07-30 |
 
-        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chapter6.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap6_setup_node.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -2302,11 +2321,11 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>What are the requirements for a vantage6 node?</li>
-<li>How to install vantage6 command line interface?</li>
-<li>What are the commands available in the vantage6 CLI?</li>
-<li>How to set up a new vantage6 node?</li>
-<li>How to reset and update an API key for a node?</li>
+<li>What are the requirements to install a node?</li>
+<li>How to install the command line interface (CLI)?</li>
+<li>Which commands are available in the CLI?</li>
+<li>How to set up a new node?</li>
+<li>How to reset and update an API key?</li>
 </ul>
 </div>
 </div>
@@ -2362,6 +2381,9 @@ compute power for a descriptive statistical algorithm than for a machine
 learning model.</p>
 <p>Even though a vantage6 node can be installed and run on Linux,
 Windows and Mac, Linux is the recommended OS.</p>
+<p>In this lesson, you will use your laptop, but in a production
+scenario, we recommend to use a server or virtual machine to run the
+node.</p>
 </div>
 <div class="section level3">
 <h3 id="software-requirements">Software requirements<a class="anchor" aria-label="anchor" href="#software-requirements"></a>
@@ -2381,6 +2403,9 @@ environment for vantage6 node</li>
 </li>
 <li>Docker (always latest version)</li>
 </ul>
+<p>You should already have installed the requirements before coming to
+this lesson. They are detailed in the <a href="index.html#setup">Setup
+section</a>.</p>
 <div id="docker-installation" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -2391,8 +2416,8 @@ environment for vantage6 node</li>
 <div class="callout-content">
 <ul>
 <li><p>For Linux users, some <a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">post-installation
-steps</a> may be required. Vantage6 needs to be able to run docker
-without sudo, and these steps ensure just that.</p></li>
+steps</a> may be required (as also mentioned in the <a href="index.html#setup">setup section</a>). Vantage6 needs to be able to run
+docker without sudo, and these steps ensure just that.</p></li>
 <li><p>For Windows users, if you are using Docker Desktop, it may be
 preferable to limit the amount of memory Docker can use - in some cases
 it may otherwise consume much memory and slow down the system. This may
@@ -2408,18 +2433,17 @@ be achieved as described <a href="https://stackoverflow.com/questions/62405765/m
 <hr class="half-width">
 <p>The Python package <code>vantage6</code> provides a command-line
 interface (CLI) to manage the vantage6 infrastructure.</p>
-<p>To install this CLI package, run the command in your Python
-environment,</p>
+<p>To install this CLI package, run the following command in your Python
+environment, provided you had not done so already in the <a href="index.html#setup">Setup section</a>:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># First go to your python virtual environment</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">conda</span> activate myenv</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> v6-workshop python=3.10</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">conda</span> activate v6-workshop</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Then install the package</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="ex">pip</span> install vantage6</span></code></pre>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="ex">pip</span> install vantage6</span></code></pre>
 </div>
 <p>To verify the installed CLI, run the command,</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -2494,7 +2518,7 @@ process in a step-by-step manner:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">?</span> Please enter a configuration-name: node1</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">?</span> Enter given api-key: <span class="pp">***</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">?</span> The base-URL of the server: https://portal.cotopaxi.vantage6.ai/</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">?</span> The base-URL of the server: https://cotopaxi.vantage6.ai/</span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">?</span> Enter port to which the server listens: 5000</span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="ex">?</span> Path of the api: /api</span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="ex">?</span> Task directory path: <span class="pp">***</span>/vantage6/node/node1</span>
@@ -2512,17 +2536,22 @@ process in a step-by-step manner:</p>
 <span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="ex">?</span> Enable encryption<span class="pp">?</span> No</span></code></pre>
 </div>
 <p>It is important to note the meaning of following configuration
-parameters: - The <code>api-key</code> is the API key that you created
-in vantage6 UI (see chapter 4) or you recieved from the vantage6 server
-administrator. It is used to authenticate the node at the server. - The
-<code>base-URL of the server</code> is the URL of the vantage6 server.
-If you are running the server on your local machine using Docker, the
-URL has to be set to <code>http://host.docker.internal</code>. - The
-<code>path of the api</code> is the path of the API of the server. It is
-usually <code>/api</code>. - The <code>database URI</code> is the path
-of the database file. You can add multiple databases by repeating the
-process. The database type can be ‘csv’, ‘parquet’, ‘sql’, ‘sparql’,
-‘excel’ or ‘omop’.</p>
+parameters:</p>
+<ul>
+<li>The <code>api-key</code> is the API key that you created in vantage6
+UI in <a href="./chap4_manage_via_ui.html">Chapter 4</a> or you received
+from the vantage6 server administrator. It is used to authenticate the
+node at the server.</li>
+<li>The <code>base-URL of the server</code> is the URL of the vantage6
+server. If you are running the server on your local machine using
+Docker, the URL has to be set to <code>http://localhost</code>
+</li>
+<li>The <code>path of the api</code> is the path of the API of the
+server. It is usually <code>/api</code>.</li>
+<li>The <code>database URI</code> is the path of the database file. You
+can add multiple databases by repeating the process. The database type
+can be ‘csv’, ‘parquet’, ‘sql’, ‘sparql’, ‘excel’ or ‘omop’.</li>
+</ul>
 <p>To see all configuration options, please check <a href="https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options" class="external-link uri">https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options</a>.</p>
 <p>When you finish the configuration, you will see the following
 message:</p>
@@ -2919,7 +2948,7 @@ UI</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>You can go to the <code>Nodes</code> tab in the administration page,
@@ -2952,6 +2981,25 @@ restart the node with active logging:</li>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="ex">2024-05-30</span> 14:41:13 <span class="at">-</span> common         <span class="at">-</span> INFO     <span class="at">-</span> Successfully authenticated</span></code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p>In this lesson we have focussed on the CLI commands to manage the
+vantage6 node. Note that the commands to manage the server
+(<code>v6 server</code>) and the algorithm store
+(<code>v6 algorithm-store</code>) are similar to the ones presented for
+the node. However, they are less commonly used for production scenarios
+where administrators often prefer to deploy via <code>nginx</code> or
+<code>docker compose</code>. We will not cover those commands in this
+course.</p>
 </div>
 </div>
 </div>
@@ -2992,11 +3040,11 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</section></section><section id="aio-algorithm_development"><p>Content from <a href="algorithm_development.html">Algorithm development</a></p>
+</section></section><section id="aio-chap7_algo_dev"><p>Content from <a href="chap7_algo_dev.html">Algorithm development</a></p>
 <hr>
-<p>Last updated on 2024-07-08 |
+<p>Last updated on 2024-07-30 |
 
-        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/algorithm_development.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap7_algo_dev.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -3051,8 +3099,8 @@ algorithm?</li>
 walk through all the steps from creating the proper code up until
 running it in the User Interface and via the Python client. We will
 start by explaining how the algorithm interacts with the vantage6
-infrastructure. Then, you will start to build your own algorithm, then
-test and run it.</p>
+infrastructure. Then, you will start to build, test and run your own
+algorithm.</p>
 </section><section><h2 class="section-heading" id="algorithm-tools">Algorithm tools<a class="anchor" aria-label="anchor" href="#algorithm-tools"></a>
 <a class="anchor" aria-label="anchor" href="#algorithm-tools"></a>
 </h2>
@@ -3071,8 +3119,9 @@ develop your algorithm. You can install the algorithm tools with:</p>
 interact with the server, e.g. to create a subtask, retrieve results, or
 get the organizations participating in the collaboration.</li>
 <li>
-<strong>Data</strong>: the tools provide a way to load the data from
-the node and provide it to the algorithm as a Pandas dataframe.</li>
+<strong>Data loading</strong>: the tools provide a way to load the
+data from the node and provide it to the algorithm as a Pandas
+dataframe.</li>
 <li>
 <strong>Input</strong>: the tools read the input from the node and
 provide it to the arguments of the algorithm function.</li>
@@ -3085,12 +3134,10 @@ algorithm</li>
 algorithm uses the security token to be able to get the allowed
 resources from the server.</li>
 <li>
-<strong>Output</strong>: the output from the algorithm functions is
-written to the proper file, so that the node will send it back to the
+<strong>Output handling</strong>: the output from the algorithm
+functions is written to a file such that the node will send back to the
 server.</li>
 </ul>
-<p>Many of these functionalites are handled by using Docker file mounts,
-which are read from and written to by the algorithm tools.</p>
 <p>For more information about the algorithm tools, please check out the
 relevant <a href="https://docs.vantage6.ai/en/main/algorithms/concepts.html" class="external-link">documentation</a>.</p>
 </section><section><h2 class="section-heading" id="create-a-simple-algorithm">Create a simple algorithm<a class="anchor" aria-label="anchor" href="#create-a-simple-algorithm"></a>
@@ -3108,9 +3155,11 @@ haven’t done so yet, install it with:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">pip</span> install vantage6</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> v6-workshop python=3.10</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">conda</span> activate v6-workshop</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">pip</span> install vantage6</span></code></pre>
 </div>
-<p>Then, create a new boilerplate with:</p>
+<p>Then, create a new algorithm boilerplate repository with:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3130,12 +3179,12 @@ all places it was mentioned.</p>
 version, even after you have implemented your functions. This is helpful
 when there is new functionality or changes in vantage6 that require
 algorithms to update.</p>
-<div id="challenge-create-a-personalized-boilerplate" class="callout challenge">
+<div id="challenge-1-create-a-personalized-boilerplate" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-create-a-personalized-boilerplate" class="callout-inner">
-<h3 class="callout-title">Challenge: Create a personalized boilerplate<a class="anchor" aria-label="anchor" href="#challenge-create-a-personalized-boilerplate"></a>
+<div id="challenge-1-create-a-personalized-boilerplate" class="callout-inner">
+<h3 class="callout-title">Challenge 1: Create a personalized boilerplate<a class="anchor" aria-label="anchor" href="#challenge-1-create-a-personalized-boilerplate"></a>
 </h3>
 <div class="callout-content">
 <p>Create a personalized template to start developing your average
@@ -3157,11 +3206,9 @@ creates and pushes your Docker image every time you commit to main.</li>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Output
-  </h4>
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The personalized boilerplate should be successfully created.</p>
 </div>
@@ -3172,8 +3219,8 @@ creates and pushes your Docker image every time you commit to main.</li>
 simple algorithm. We are now going to implement the average algorithm in
 several steps. Note that the README file in the boilerplate also
 provides a checklist that you can follow to implement the rest of the
-algorithm; however we are going to guide you through the process in this
-lesson.</p>
+algorithm - however, in this lesson we are going to guide you through
+these steps.</p>
 <div class="section level3">
 <h3 id="implement-the-algorithm-functions">Implement the algorithm functions<a class="anchor" aria-label="anchor" href="#implement-the-algorithm-functions"></a>
 </h3>
@@ -3212,17 +3259,17 @@ provides the same functions as the algorithm client, but instead of
 communicating with the server, it simply returns a smart mock response.
 The mock client does <strong>not</strong> mock the output of the
 algorithm functions, but actually calls them with test data. This way,
-you can easily test your algorithm functions locally without worrying
-about the infrastructure.</p>
+you can easily test locally if your algorithm functions give the answer
+you expect without worrying about the infrastructure.</p>
 <p>Your personalized template already contains a
 <code>test/test.py</code> file that contains most of the code to test
 your algorithm.</p>
-<div id="challenge-implement-the-functions-and-test-them" class="callout challenge">
+<div id="challenge-2-implement-the-functions-and-test-them" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-implement-the-functions-and-test-them" class="callout-inner">
-<h3 class="callout-title">Challenge: Implement the functions and test them<a class="anchor" aria-label="anchor" href="#challenge-implement-the-functions-and-test-them"></a>
+<div id="challenge-2-implement-the-functions-and-test-them" class="callout-inner">
+<h3 class="callout-title">Challenge 2: Implement the functions and test them<a class="anchor" aria-label="anchor" href="#challenge-2-implement-the-functions-and-test-them"></a>
 </h3>
 <div class="callout-content">
 <p>Implement your partial and central functions as described above.</p>
@@ -3243,11 +3290,9 @@ and of the partial function</li>
 <div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
-  Output
-  </h4>
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>You output of <code>test.py</code> should look something like:</p>
 <pre><code>[{'id': 0, 'name': 'mock-0', 'domain': 'mock-0.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=0', 'users': '/api/user?organization_id=0', 'tasks': '/api/task?init_org_id=0', 'nodes': '/api/node?organization_id=0', 'runs': '/api/run?organization_id=0'}, {'id': 1, 'name': 'mock-1', 'domain': 'mock-1.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=1', 'users': '/api/user?organization_id=1', 'tasks': '/api/task?init_org_id=1', 'nodes': '/api/node?organization_id=1', 'runs': '/api/run?organization_id=1'}]
@@ -3272,41 +3317,36 @@ info &gt; Mocking waiting for results
 </h2>
 <hr class="half-width">
 <p>Your algorithm boilerplate contains a <code>Dockerfile</code> in the
-root folder. You can build your algorithm into a docker image by
-running:</p>
+root folder. You can build your algorithm into a docker image by running
+something like:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> your-image-name .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">cd</span> /go/to/directory/with/dockerfile</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> your-image-name .</span></code></pre>
 </div>
-<p>in the directory where your <code>Dockerfile</code> resides.</p>
-<p>Note that if you have selected the advanced options when creating
-your boilerplate, you had the option to include a Github action pipeline
-that built the Docker image for you every time a commit is pushed to
-main. This is the preferred way of working for real-world projects with
-open-source algorithm implementations.</p>
-<div id="challenge-implement-the-functions-and-test-them-1" class="callout challenge">
+<div id="challenge-3-implement-the-functions-and-test-them" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-implement-the-functions-and-test-them-1" class="callout-inner">
-<h3 class="callout-title">Challenge: Implement the functions and test them<a class="anchor" aria-label="anchor" href="#challenge-implement-the-functions-and-test-them-1"></a>
+<div id="challenge-3-implement-the-functions-and-test-them" class="callout-inner">
+<h3 class="callout-title">Challenge 3: Implement the functions and test them<a class="anchor" aria-label="anchor" href="#challenge-3-implement-the-functions-and-test-them"></a>
 </h3>
 <div class="callout-content">
 <p>Build an algorithm image with the name:
-<code>harbor2.vantage6.ai/workshop/average:&lt;myname&gt;</code>. Push
-it to the repository.</p>
+<code>harbor2.vantage6.ai/workshop/average:&lt;myname&gt;</code>.
+Replace <code>myname</code> with the first letter of your first name and
+your last name (e.g. <code>lmessi</code> for Lionel Messi). Push it to
+the repository.</p>
 </div>
 </div>
 </div>
 <div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">
-  Output
-  </h4>
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>If your name is Jane Smith, you may have done the following in the
 base directory of your algorithm (where the Dockerfile is):</p>
@@ -3351,16 +3391,15 @@ configuration for each node with the correct API key.</p>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># Remove the server and nodes</span></span>
 <span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="ex">v6</span> dev remove-demo-network</span></code></pre>
 </div>
-<p>In the previous lesson, you have learned how to run an algorithm
-using the Python client. Now, you can run your own algorithm using the
-Python client!</p>
-<!-- TODO link to lesson 5 where Python client is discussed -->
-<div id="challenge-test-your-algorithm-on-a-local-vantage6-network" class="callout challenge">
+<p>In <a href="./chap5_python_client.html">Chapter 5</a>, you have
+learned how to run an algorithm using the Python client. Now, you can
+run your own algorithm using the Python client!</p>
+<div id="challenge-4-test-your-algorithm-on-a-local-vantage6-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-test-your-algorithm-on-a-local-vantage6-network" class="callout-inner">
-<h3 class="callout-title">Challenge: Test your algorithm on a local vantage6 network<a class="anchor" aria-label="anchor" href="#challenge-test-your-algorithm-on-a-local-vantage6-network"></a>
+<div id="challenge-4-test-your-algorithm-on-a-local-vantage6-network" class="callout-inner">
+<h3 class="callout-title">Challenge 4: Test your algorithm on a local vantage6 network<a class="anchor" aria-label="anchor" href="#challenge-4-test-your-algorithm-on-a-local-vantage6-network"></a>
 </h3>
 <div class="callout-content">
 <p>Create and start a local vantage6 network with the
@@ -3375,14 +3414,12 @@ syntax as the real client.</p>
 <div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4">
-  Output
-  </h4>
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<p>You can find the revised JSON file on the page with the algorithm
-details</p>
+<p>Your algorithm should give the same results as when you tested it
+with the mock client.</p>
 </div>
 </div>
 </div>
@@ -3391,13 +3428,14 @@ details</p>
 <a class="anchor" aria-label="anchor" href="#publish-your-algorithm-in-the-algorithm-store"></a>
 </h2>
 <hr class="half-width">
-<p><a href="./chapter3.html">Previously</a>, we have discussed how to
-run algorithms from the algorithm store. Now, it is time to publish your
-own algorithm in the algorithm store. This is required if you want to
-run your algorithm in the user interface: the user interface gathers
-information about how to run the algorithm from the algorithm store. For
-example, this helps the UI to construct a dropdown of available
-functions, and to know what arguments the function expects.</p>
+<p><a href="./chap3_run_analysis_ui.html">Previously</a>, we have
+discussed how to run algorithms from the algorithm store. Now, it is
+time to publish your own algorithm in the algorithm store. This is
+required if you want to run your algorithm in the user interface: the
+user interface gathers information about how to run the algorithm from
+the algorithm store. For example, this helps the UI to construct a
+dropdown of available functions, and to know what arguments the function
+expects.</p>
 <p>The boilerplate you create should already contain an
 <code>algorithm_store.json</code> file that contains a JSON description
 of your algorithm - how many databases each function uses, for
@@ -3407,12 +3445,12 @@ store in the UI, then clicking on the “Add algorithm” button. You can
 then upload the <code>algorithm_store.json</code> file in the top. After
 uploading it, you can change the details of the algorithm before
 submitting it.</p>
-<div id="challenge-add-your-algorithm-to-the-algorithm-store" class="callout challenge">
+<div id="challenge-5-add-your-algorithm-to-the-algorithm-store" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-add-your-algorithm-to-the-algorithm-store" class="callout-inner">
-<h3 class="callout-title">Challenge: Add your algorithm to the algorithm store<a class="anchor" aria-label="anchor" href="#challenge-add-your-algorithm-to-the-algorithm-store"></a>
+<div id="challenge-5-add-your-algorithm-to-the-algorithm-store" class="callout-inner">
+<h3 class="callout-title">Challenge 5: Add your algorithm to the algorithm store<a class="anchor" aria-label="anchor" href="#challenge-5-add-your-algorithm-to-the-algorithm-store"></a>
 </h3>
 <div class="callout-content">
 <p>Upload your algorithm to the algorithm store. Submit the
@@ -3426,11 +3464,9 @@ your algorithm repository?</p>
 <div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5">
-  Output
-  </h4>
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>You can find the revised JSON file on the page with the algorithm
 details</p>
@@ -3500,11 +3536,11 @@ UI</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-chapter8"><p>Content from <a href="chapter8.html">Work on your own project</a></p>
+</section></section><section id="aio-chap8_own_project"><p>Content from <a href="chap8_own_project.html">Work on your own project</a></p>
 <hr>
-<p>Last updated on 2024-07-08 |
+<p>Last updated on 2024-07-30 |
 
-        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chapter8.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap8_own_project.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -3558,9 +3594,9 @@ have prepared for you.</p>
 algorithm<a class="anchor" aria-label="anchor" href="#challenge-add-privacy-filters-to-your-algorithm"></a>
 </h3>
 <div class="callout-content">
-<p>In the <a href="./algorithm_development.html">previous lesson</a>,
-you have created a simple algorithm. Now, you can add privacy filters to
-your algorithm.</p>
+<p>In the <a href="./chap7_algo_dev.html">previous lesson</a>, you have
+created a simple algorithm. Now, you can add privacy filters to your
+algorithm.</p>
 <ul>
 <li>Create an algorithm that does not return the results unless there
 are more than 10 data points.</li>
@@ -3585,9 +3621,9 @@ this algorithm as an example.</p>
 <h3 class="callout-title">Challenge: Document your algorithm<a class="anchor" aria-label="anchor" href="#challenge-document-your-algorithm"></a>
 </h3>
 <div class="callout-content">
-<p>In the <a href="./algorithm_development.html">previous lesson</a>,
-you have created a simple algorithm. For this challenge, learn how to
-document your algorithm.</p>
+<p>In the <a href="./chap7_algo_dev.html">previous lesson</a>, you have
+created a simple algorithm. For this challenge, learn how to document
+your algorithm.</p>
 <ul>
 <li>Make sure a documentation template is available in the algorithm
 repository. If it is not, you can generate it using the
@@ -3607,11 +3643,11 @@ and adapt it to your needs.</li>
 algorithm in the UI<a class="anchor" aria-label="anchor" href="#challenge-visualize-the-results-of-your-algorithm-in-the-ui"></a>
 </h3>
 <div class="callout-content">
-<p>In the <a href="./algorithm_development.html">previous lesson</a>,
-you have created a simple algorithm. In this challenge, modify the
-algorithm in the algorithm store to include a visualization of the
-results. You can do this in the UI by modifying your algorithm in the
-algorithm store.</p>
+<p>In the <a href="./chap7_algo_dev.html">previous lesson</a>, you have
+created a simple algorithm. In this challenge, modify the algorithm in
+the algorithm store to include a visualization of the results. You can
+do this in the UI by modifying your algorithm in the algorithm
+store.</p>
 </div>
 </div>
 </div>
@@ -3623,9 +3659,9 @@ algorithm store.</p>
 <h3 class="callout-title">Challenge: Expand your average algorithm<a class="anchor" aria-label="anchor" href="#challenge-expand-your-average-algorithm"></a>
 </h3>
 <div class="callout-content">
-<p>In the <a href="./algorithm_development.html">previous lesson</a>,
-you have created a simple average algorithm. In this challenge, expand
-your algorithm to calculate the one or more of the following:</p>
+<p>In the <a href="./chap7_algo_dev.html">previous lesson</a>, you have
+created a simple average algorithm. In this challenge, expand your
+algorithm to calculate the one or more of the following:</p>
 <ul>
 <li>Standard deviation</li>
 <li>Minimum</li>
