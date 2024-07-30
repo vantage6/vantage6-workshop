@@ -38,7 +38,7 @@ In classic data analysis, all data is copied over into a single place. This make
 use
 conventional data analysis software and tools to gain insights.
 
-![In classic analysis all the data is brought together](fig/classic%20analysis.jpg){alt='Two tables
+![In classic analysis all the data is brought together](fig/chapter1/classic%20analysis.jpg){alt='Two tables
 with data are moved to a central location'}
 
 Unfortunately this way of working does not respect the privacy of the people contained within the
@@ -98,7 +98,7 @@ statistics like the mean, or it can be more intricate like a machine learning mo
 Aggregating the data does not ensure complete protection of person-level information, but it
 certainly makes it less likely that this will happen.
 
-![General flow of a federated analysis](fig/federated_sum.jpg)
+![General flow of a federated analysis](fig/chapter1/federated%20sum.jpg)
 
 TODO: Example of data leakage in simple aggregated case
 
@@ -111,13 +111,13 @@ traditional federated learning, the clients train machine learning models, and o
 the models are sent back to the central server. The central server combines the updates from all the
 individual clients into one final machine learning model.
 
-![In federated learning only the gradients of models are shared](fig/federated%20learning.jpg)
+![In federated learning only the gradients of models are shared](fig/chapter1/federated%20learning.jpg)
 
 There are caveats to using this type of data analysis though. Although the data transmitted from the
 clients to the server are an aggregation of the raw data, researchers have found a way to use this
 data to reconstruct the original data. This vulnerability is called _gradient leakage_.
 
-![An example of gradient leakage](fig/gradient_leakage.jpg)
+![An example of gradient leakage](fig/chapter1/gradient_leakage.jpg)
 
 ## Secure Multiparty Computation
 
@@ -137,7 +137,7 @@ retrieved.
 When combining multiple values using secret sharing, this will result in the parties owning new
 puzzle pieces that when put together will reveal the result of the computation.
 
-![In secure multiparty computation parties collaboratively perform an analysis while holding only encrypted pieces of the data](fig/mpc.jpg)
+![In secure multiparty computation parties collaboratively perform an analysis while holding only encrypted pieces of the data](fig/chapter1/mpc.jpg)
 
 ::: callout
 
@@ -179,6 +179,9 @@ selection of inputs with random noise. A single individual will then always be a
 their data has contributed to the final result. An individual has _plausible deniability_ with
 regards to whether it was part of the dataset.
 
+![Differential privacy replaces a subset of the data with random values](fig/chapter1/differential%20privacy.jpg)
+
+
 ## Blocks upon blocks
 
 The previously mentioned techniques are not used in isolation, but are usually stacked on top of
@@ -209,6 +212,8 @@ of privacy enhancing algorithms than horizontal partitioning.
 
 Data can even be horizontally and vertically partitioned at the same time. In these cases, it may be
 necessary to combine multiple techniques.
+
+![Horizontal and vertical partitioning refers to how data is separated](fig/chapter1/horizontal_vertical_partitioning.jpg)
 
 ## Technology doesn't solve everything
 
