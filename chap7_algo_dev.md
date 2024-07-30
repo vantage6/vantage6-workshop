@@ -36,8 +36,8 @@ exercises: 5
 The goal of this lesson is to develop a simple average algorithm, and walk through
 all the steps from creating the proper code up until running it in the User Interface
 and via the Python client. We will start by explaining how the algorithm
-interacts with the vantage6 infrastructure. Then, you will start to build your own
-algorithm, then test and run it.
+interacts with the vantage6 infrastructure. Then, you will start to build, test and run
+your own algorithm.
 
 ## Algorithm tools
 
@@ -53,7 +53,7 @@ The algorithm tools provide the following for you:
 - **Algorithm client**: this client can be used to interact with the server, e.g.
   to create a subtask, retrieve results, or get the organizations participating in the
   collaboration.
-- **Data**: the tools provide a way to load the data from the node and provide it
+- **Data loading**: the tools provide a way to load the data from the node and provide it
   to the algorithm as a Pandas dataframe.
 - **Input**: the tools read the input from the node and provide it to the arguments
   of the algorithm function.
@@ -61,11 +61,8 @@ The algorithm tools provide the following for you:
   and pass them on to the algorithm
 - **Token**: the algorithm tools ensure that the algorithm uses the security token
   to be able to get the allowed resources from the server.
-- **Output**: the output from the algorithm functions is written to the proper file, so
-  that the node will send it back to the server.
-
-Many of these functionalites are handled by using Docker file mounts, which are read
-from and written to by the algorithm tools.
+- **Output handling**: the output from the algorithm functions is written to a file such
+  that the node will send back to the server.
 
 For more information about the algorithm tools, please check out the relevant
 [documentation][algo-concepts].
@@ -82,10 +79,12 @@ To create a personalized boilerplate, use the vantage6 CLI. If you haven't done 
 install it with:
 
 ```bash
+conda create -n v6-workshop python=3.10
+conda activate v6-workshop
 pip install vantage6
 ```
 
-Then, create a new boilerplate with:
+Then, create a new algorithm boilerplate repository with:
 
 ```bash
 v6 algorithm create
@@ -106,7 +105,7 @@ functionality or changes in vantage6 that require algorithms to update.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Create a personalized boilerplate
+## Challenge 1: Create a personalized boilerplate
 
 Create a personalized template to start developing your average algorithm
 
@@ -122,7 +121,7 @@ Create a personalized template to start developing your average algorithm
 
 :::::::::::::::::::::::: solution
 
-## Output
+## Solution
 
 The personalized boilerplate should be successfully created.
 
@@ -132,8 +131,8 @@ The personalized boilerplate should be successfully created.
 Your personalized boilerplate is now ready to be adapted into a simple algorithm. We
 are now going to implement the average algorithm in several steps. Note that the README
 file in the boilerplate also provides a checklist that you can follow to implement the
-rest of the algorithm; however we are going to guide you through the process in this
-lesson.
+rest of the algorithm - however, in this lesson we are going to guide you through these
+steps.
 
 ### Implement the algorithm functions
 
@@ -167,14 +166,15 @@ without having to start up the server and nodes. The mock client provides the sa
 functions as the algorithm client, but instead of communicating with the server, it
 simply returns a smart mock response. The mock client does **not** mock the output
 of the algorithm functions, but actually calls them with test data. This way, you can
-easily test your algorithm functions locally without worrying about the infrastructure.
+easily test locally if your algorithm functions give the answer you expect without
+worrying about the infrastructure.
 
 Your personalized template already contains a `test/test.py` file that contains
 most of the code to test your algorithm.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Implement the functions and test them
+## Challenge 2: Implement the functions and test them
 
 Implement your partial and central functions as described above.
 
@@ -188,7 +188,7 @@ Adapt and run `test.py` to test your function implementation:
 
 :::::::::::::::::::::::: solution
 
-## Output
+## Solution
 
 You output of `test.py` should look something like:
 
@@ -214,29 +214,24 @@ Hence, the average age is 34.666!
 ## Build your algorithm into a docker image
 
 Your algorithm boilerplate contains a `Dockerfile` in the root folder. You can build
-your algorithm into a docker image by running:
+your algorithm into a docker image by running something like:
 
 ```bash
+cd /go/to/directory/with/dockerfile
 docker build -t your-image-name .
 ```
 
-in the directory where your `Dockerfile` resides.
-
-Note that if you have selected the advanced options when creating your boilerplate,
-you had the option to include a Github action pipeline that built the Docker image for
-you every time a commit is pushed to main. This is the preferred way of working for
-real-world projects with open-source algorithm implementations.
-
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Implement the functions and test them
+## Challenge 3: Implement the functions and test them
 
 Build an algorithm image with the name: `harbor2.vantage6.ai/workshop/average:<myname>`.
-Push it to the repository.
+Replace `myname` with the first letter of your first name and your last name (e.g.
+`lmessi` for Lionel Messi). Push it to the repository.
 
 :::::::::::::::::::::::: solution
 
-## Output
+## Solution
 
 If your name is Jane Smith, you may have done the following in the base directory of
 your algorithm (where the Dockerfile is):
@@ -279,14 +274,12 @@ v6 dev stop-demo-network
 v6 dev remove-demo-network
 ```
 
-In the previous lesson, you have learned how to run an algorithm using the Python
+In [Chapter 5](./chap5_python_client.md), you have learned how to run an algorithm using the Python
 client. Now, you can run your own algorithm using the Python client!
-
-<!-- TODO link to lesson 5 where Python client is discussed -->
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Test your algorithm on a local vantage6 network
+## Challenge 4: Test your algorithm on a local vantage6 network
 
 Create and start a local vantage6 network with the `v6 dev` commands. Then, run your
 algorithm using the Python client. You can find the command to run your algorithm in
@@ -296,16 +289,16 @@ the `test.py` file, since the mock client has exactly the same syntax as the rea
 
 :::::::::::::::::::::::: solution
 
-## Output
+## Solution
 
-You can find the revised JSON file on the page with the algorithm details
+Your algorithm should give the same results as when you tested it with the mock client.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::
 
 ## Publish your algorithm in the algorithm store
 
-[Previously](./chapter3.md), we have discussed how to run algorithms from the algorithm store.
+[Previously](./chap3_run_analysis_ui.md), we have discussed how to run algorithms from the algorithm store.
 Now, it is time to publish your own algorithm in the algorithm store. This is required
 if you want to run your algorithm in the user interface: the user interface gathers
 information about how to run the algorithm from the algorithm store. For example, this
@@ -323,7 +316,7 @@ submitting it.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Add your algorithm to the algorithm store
+## Challenge 5: Add your algorithm to the algorithm store
 
 Upload your algorithm to the algorithm store. Submit the `algorithm_store.json`, check
 the filled in details, and submit the algorithm.
@@ -333,7 +326,7 @@ repository?
 
 :::::::::::::::::::::::: solution
 
-## Output
+## Solution
 
 You can find the revised JSON file on the page with the algorithm details
 

@@ -6,11 +6,11 @@ exercises: 3
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What are the requirements for a vantage6 node?
-- How to install vantage6 command line interface?
-- What are the commands available in the vantage6 CLI?
-- How to set up a new vantage6 node?
-- How to reset and update an API key for a node?
+- What are the requirements to install a node?
+- How to install the command line interface (CLI)?
+- Which commands are available in the CLI?
+- How to set up a new node?
+- How to reset and update an API key?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -24,13 +24,11 @@ exercises: 3
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
 Vantage6 node is the software that runs on a data station. It allows the data owner to share their data within the vantage6 network in a privacy-preserving way. Also, it is responsible for the execution of the federated learning tasks and the communication with the vantage6 server.
 
 Each organization that is involved in a federated learning collaboration has its own node in that collaboration. They should therefore install the node software on a virtual machine hosted in their own infrastructure. The node should have access to the data that is used in the federated learning collaboration.
 
 This chapter will explain how to set up and run the vantage6 node software.
-
 
 ## Requirements on hardware and software
 
@@ -47,6 +45,7 @@ The hardware requirements of vantage6 node also depend on the algorithms that th
 
 Even though a vantage6 node can be installed and run on Linux, Windows and Mac, Linux is the recommended OS.
 
+In this lesson, you will use your laptop, but in a production scenario, we recommend to use a server or virtual machine to run the node.
 
 ### Software requirements
 
@@ -54,31 +53,37 @@ The following software must be installed before installing the vantage6 node:
 
 - Recommended Operating system: Ubuntu 20.04+, MacOS Big Sur+, or Windows 10+
 - Python
-    - Python v3.10 for vantage6 version 3.8.0 or higher
-    - Python v3.7 for other lower versions of vantage6
-    - Highly recommended to create a new, clean virtual or conda environment for vantage6 node
+  - Python v3.10 for vantage6 version 3.8.0 or higher
+  - Python v3.7 for other lower versions of vantage6
+  - Highly recommended to create a new, clean virtual or conda environment for vantage6 node
 - Docker (always latest version)
 
-::: callout
-## ⚠️ Docker installation
-  - For Linux users, some [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) may be required. Vantage6 needs to be able to run docker without sudo, and these steps ensure just that.
+You should already have installed the requirements before coming to this lesson. They
+are detailed in the [Setup section](../setup.md).
 
-  - For Windows users, if you are using Docker Desktop, it may be preferable to limit the amount of memory Docker can use - in some cases it may otherwise consume much memory and slow down the system. This may be achieved as described [here](https://stackoverflow.com/questions/62405765/memory-allocation-to-docker-containers-after-moving-to-wsl-2-in-windows).
+::: callout
+
+## ⚠️ Docker installation
+
+- For Linux users, some [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) may be required (as also mentioned in the [setup section](../setup.md)). Vantage6 needs to be able to run docker without sudo, and these steps ensure just that.
+
+- For Windows users, if you are using Docker Desktop, it may be preferable to limit the amount of memory Docker can use - in some cases it may otherwise consume much memory and slow down the system. This may be achieved as described [here](https://stackoverflow.com/questions/62405765/memory-allocation-to-docker-containers-after-moving-to-wsl-2-in-windows).
+
 :::
 
 ## Installation
 
 The Python package `vantage6` provides a command-line interface (CLI) to manage the vantage6 infrastructure.
 
-To install this CLI package, run the command in your Python environment,
+To install this CLI package, run the following command in your Python environment, provided
+you had not done so already in the [Setup section](../setup.md):
 
 ```bash
 # First go to your python virtual environment
-
-conda activate myenv
+conda create -n v6-workshop python=3.10
+conda activate v6-workshop
 
 # Then install the package
-
 pip install vantage6
 ```
 
@@ -87,13 +92,14 @@ To verify the installed CLI, run the command,
 ```bash
 v6
 ```
+
 or
+
 ```bash
 v6 --help
 ```
 
 If the installation is successful, it will print out a message explaining the CLI usage.
-
 
 ## `v6 node` commands
 
@@ -127,7 +133,6 @@ For example, to create a new node configuration, you can run the command `v6 nod
 
 ⚠️ Please make sure Docker is running when you're using the `v6 node` commands.
 
-
 ## Configure a new node
 
 We will now create a new node configuration using the `v6 node new` command.
@@ -144,7 +149,7 @@ The command will show a wizard to guide you through the configuration process in
 ```bash
 ? Please enter a configuration-name: node1
 ? Enter given api-key: ***
-? The base-URL of the server: https://portal.cotopaxi.vantage6.ai/
+? The base-URL of the server: https://cotopaxi.vantage6.ai/
 ? Enter port to which the server listens: 5000
 ? Path of the api: /api
 ? Task directory path: ***/vantage6/node/node1
@@ -163,11 +168,11 @@ The command will show a wizard to guide you through the configuration process in
 ```
 
 It is important to note the meaning of following configuration parameters:
-  - The `api-key` is the API key that you created in vantage6 UI (see chapter 4) or you recieved from the vantage6 server administrator. It is used to authenticate the node at the server.
-  - The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://host.docker.internal`.
-  - The `path of the api` is the path of the API of the server. It is usually `/api`.
-  - The `database URI` is the path of the database file. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
 
+- The `api-key` is the API key that you created in vantage6 UI in [Chapter 4](./chap4_manage_via_ui.md) or you received from the vantage6 server administrator. It is used to authenticate the node at the server.
+- The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://localhost`
+- The `path of the api` is the path of the API of the server. It is usually `/api`.
+- The `database URI` is the path of the database file. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
 
 To see all configuration options, please check https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options.
 
@@ -179,7 +184,6 @@ When you finish the configuration, you will see the following message:
 ```
 
 It means that the node configuration file is created successfully, and it also gives the path of the configuration file.
-
 
 ### Where is the node configuration file?
 
@@ -207,9 +211,9 @@ In the printed message, you will see not only the path of the configuration file
 1. Create a new node configuration using the `v6 node new` command.
 2. Find the path to the configuration file using the `v6 node files` command. Open the configuration file with a text editor and check the configuration options. Are they correct?
 3. Open your configuration file, do the following:
-    - add a new database in the format of `excel`,
-    - enable the encryption,
-    - find the missing options in your file by comparing with the option template in the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options).
+   - add a new database in the format of `excel`,
+   - enable the encryption,
+   - find the missing options in your file by comparing with the option template in the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -256,7 +260,6 @@ then it will start the node and print out the following messages:
 ```
 
 🎉 Now, the node is started successfully!
-
 
 ## Watch the logs
 
@@ -353,7 +356,6 @@ then it will print out the logs of the node in the console:
 
 From there, you can see the running status of the node, the connection to the server, the databases, the websocket connection, and the incoming tasks.
 
-
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 2: Start a node and watch the logs
@@ -424,7 +426,7 @@ If you want to reset the API key for a node, you can do so by following these st
 ![Reset API key for a node](fig/reset_api_key_01.png)
 
 4. Click on the `Reset API key` button.
-    * You may see a dialog box asking you to download the new API key.
+   - You may see a dialog box asking you to download the new API key.
 
 ![Download new API key](fig/reset_api_key_02.png)
 
@@ -435,7 +437,6 @@ You will see a message:
 > Your API key has been reset. Please read your new key in the file that has been downloaded.
 
 You can open the downloaded text file to copy the new API key. Next, you'll use it to update your node configuration.
-
 
 ### Update API key in the node configuration file
 
@@ -502,14 +503,17 @@ To make the new API key effective, you need to restart the node by running the c
 3. How do you make sure the new API key is effective?
 
 ::: solution
+
 1. You can go to the `Nodes` tab in the administration page, then click on the tab of the node you want to reset the API key for, and click on the `Reset API key` button.
 2. We can update the API key in the configuration file:
-  - Run the `v6 node files` command to locate the configuration file.
-  - Open the configuration file and write the new API key in the `api_key` field.
-  - Stop the node with the `v6 node stop` command.
-  - Restart the node with the `v6 node start` command.
+
+- Run the `v6 node files` command to locate the configuration file.
+- Open the configuration file and write the new API key in the `api_key` field.
+- Stop the node with the `v6 node stop` command.
+- Restart the node with the `v6 node start` command.
 
 3. In order to verify the effectiveness of the API key change, we can restart the node with active logging:
+
 ```bash
 v6 node start --attach
 ```
@@ -526,9 +530,18 @@ In the log, we have to look for the node authentication message:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+::: callout
 
+In this lesson we have focussed on the CLI commands to manage the vantage6 node. Note
+that the commands to manage the server (`v6 server`) and the algorithm store (`v6 algorithm-store`)
+are similar to the ones presented for the node. However, they are less commonly used
+for production scenarios where administrators often prefer to deploy via `nginx` or
+`docker compose`. We will not cover those commands in this course.
+
+:::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
+
 - Install the vantage6 CLI package by running `pip install vantage6`.
 - Use the `v6 --help` command to see the available commands of the vantage6 CLI.
 - Use the `v6 node` command to manage the vantage6 node instances.
@@ -539,4 +552,5 @@ In the log, we have to look for the node authentication message:
 - Use the `v6 node set-api-key` command to set a new API key of a node.
 - Use the `v6 node files` command to check the location of the node configuration file.
 - The commands similar to the ones presented for the node are also available for `v6 server` and `v6 algorithm-store`.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
