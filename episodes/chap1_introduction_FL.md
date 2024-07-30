@@ -18,6 +18,7 @@ exercises: 2
 - Understand horizontal vs vertical partitioning
 - Decompose a simple analysis in a federated way
 - Understand that there is paperwork to be done (DPIA etc.)
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Problem statement
@@ -30,7 +31,7 @@ because of its sensitive nature. This is why there are privacy regulations in pl
 
 However, often researchers are not interested in the personal records that make up the data, but
 rather
-in the *insights* derived from it. This raises an intriguing question: Can we unlock these valuable
+in the _insights_ derived from it. This raises an intriguing question: Can we unlock these valuable
 insights in a manner that upholds and respects privacy standards?
 
 In classic data analysis, all data is copied over into a single place. This makes it very easy to
@@ -62,10 +63,14 @@ You might think of multiple issues. Some examples:
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
+In this lesson, we will discuss various privacy-enhancing technologies (PET) that can be used to
+analyze data in a privacy-preserving manner, and what the risks associated with different
+technologies are.
+
 ## Data anonymization and pseudonymization
 
-The first step in the process is often *data anonymization*. Personal identifiable information
-will in this case be removed so that individuals stay anonymous. Data *pseudonimization* is a
+The first step in the process is often _data anonymization_. Personal identifiable information
+will in this case be removed so that individuals stay anonymous. Data _pseudonimization_ is a
 similar process, but in this case, the records will be assigned an id that will make it
 possible to link individuals across datasets.
 
@@ -86,7 +91,7 @@ There are different ways in which privacy risks can be mitigated. We will focus 
 federated analysis. In a federated setting, the data with the data owner, who keeps full control
 over it. In this case, it is not the data that travels, but the analysis itself. The system sends
 a query or instruction to the data and only the results will get back to the user.
-The results are often akin to a form of *aggregation* of the data. This can be in the shape of
+The results are often akin to a form of _aggregation_ of the data. This can be in the shape of
 traditional
 statistics like the mean, or it can be more intricate like a machine learning model.
 
@@ -99,14 +104,14 @@ TODO: Example of data leakage in simple aggregated case
 
 The term federated learning was introduced in 2016 by researchers at Google
 [(McMahan et al.)](https://doi.org/10.48550/arXiv.1602.05629) and refers to a "loose federation of
-participating devices (which we refer to as clients) which are coordinated by a central server.” In 
+participating devices (which we refer to as clients) which are coordinated by a central server.” In
 traditional federated learning, the clients train machine learning models, and only the updates of
 the models are sent back to the central server. The central server combines the updates from all the
 individual clients into one final machine learning model.
 
 There are caveats to using this type of data analysis though. Although the data transmitted from the
 clients to the server are an aggregation of the raw data, researchers have found a way to use this
-data to reconstruct the original data. This vulnerability is called *gradient* leakage.
+data to reconstruct the original data. This vulnerability is called _gradient leakage_.
 
 ![An example of gradient leakage](fig/gradient_leakage.jpg)
 
@@ -115,7 +120,7 @@ data to reconstruct the original data. This vulnerability is called *gradient* l
 There are different solutions to prevent the reconstruction of raw data. One solution is to make
 sure that no party other than the data owner is actually able to see the intermediate data. One
 branch
-of techniques that can be used for this is Secure Multiparty Computation (MPC). With MPC,  
+of techniques that can be used for this is Secure Multiparty Computation (MPC). With MPC,
 computations are performed collaboratively by multiple parties. Data is encrypted in such a way that
 other parties cannot see the original values, but values of multiple parties can still be combined (
 e.g. added or
@@ -137,15 +142,15 @@ Mees weighs 43 kg, Sara weighs 39, Noor weighs 45.
 They create secret shares for their weights that they give to their peers.
 
 |                 | Mees receives | Sara receives | Noor receives | Sum |
-|-----------------|---------------|---------------|---------------|-----|
+| --------------- | ------------- | ------------- | ------------- | --- |
 | Mees generates: | -11           | 50            | 4             | 43  |
 | Sara generates: | -12           | 17            | 34            | 39  |
-| Noor generates: | -19           | -38           | 64            | 45  |
+| Noor generates: | 19            | -38           | 64            | 45  |
 
 They sum their shares:
 
 |      |     |
-|------|-----|
+| ---- | --- |
 | Mees | -4  |
 | Sara | 29  |
 | Noor | 102 |
@@ -165,32 +170,39 @@ weighs.
 An aggregation is differentially private when someone cannot infer whether a particular individual
 was used in the computation. A way to make a result more differentially private is to replace a
 selection of inputs with random noise. A single individual will then always be able to deny that
-their data has contributed to the final result. An individual has *plausible deniability* with
-regards to whether it was
-part of the dataset.
+their data has contributed to the final result. An individual has _plausible deniability_ with
+regards to whether it was part of the dataset.
 
 ## Blocks upon blocks
+
 The previously mentioned techniques are not used in isolation, but are usually stacked on top of
-eachother to mitigate the privacy risks that are relevant within a certain usecase.
+eachother to mitigate the privacy risks that are relevant within the usecase.
 Typically, the process begins by anonymizing or pseudonymizing the data. With vantage6, the data is
-then placed in a federated setting. You can use the existing algorithms available for vantage6,
-which often incorporate various privacy-enhancing techniques.
+then placed in a federated setting. Then, the data is analyzed using federated learning,
+which may also include, for instance, MPC protocols to further safeguard data privacy.
 
 ## Data partitioning
+
 Data sharing challenges come in many different shapes and sizes, but in the end, the goal of the
-researchers is often to analyze data *as if* it were available in one big table in one place.
+researchers is often to analyze data _as if_ it were available in one big table in one place.
 There are 2 main ways in which the dataset can be separated over different sources: **horizontal**
-and **vertical** partioning. In horizontal partitioning, this giant table has been snipped in pieces
+and **vertical** partioning.
+
+In horizontal partitioning, this giant table has been snipped in pieces
 by making horizontal cuts. The result is that information of an individual record will stay in one
-place, but the records themselves have been scattered around in different locations.
+place, but the records themselves have been scattered around in different locations. A
+common example of horizontal partitioning is when different hospitals have the same
+data on different patients.
 
 In vertical partitioning, the cuts have been made vertically. Columns have now been divided over
-different locations. This type of partitioning is usually more challenging because often a way needs
+different locations. For example, this would be the case if a hospital has data on a set of patients
+and the GP has different information for the same set of patients.
+This type of partitioning is usually more challenging because often a way needs
 to be found to link identities across datasources. Vertical partitioning requires different types
 of privacy enhancing algorithms than horizontal partitioning.
 
-In reality, data can be horizontally and vertically partitioned at the same time. It might be
-necessary to combine multiple techniques in order to overcome your problems.
+Data can even be horizontally and vertically partitioned at the same time. In these cases, it may be
+necessary to combine multiple techniques.
 
 ## Technology doesn't solve everything
 
@@ -204,7 +216,7 @@ Since these projects have a risk of affecting the privacy of individuals, a Data
 Assessment (DPIA)
 is usually required. This is a process that will help identify and minimize privacy risks of a
 project
-and is required by GDPR.
+and is required by the GDPR.
 
 Apart from procedures required by GDPR there might be other regulations in place enforced by the
 owners of the data (e.g. hospitals). The specific situation of a project can affect the way in which
