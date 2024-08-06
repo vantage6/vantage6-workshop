@@ -4,7 +4,7 @@ title: Setup
 
 **Before you jump to the installation instructions, consider the following**. This course can be divided into two parts, depending on wether you are only participating in the first part or both parts the setup requirements are different:
 
-- part one, chapters 1 to 4, is about understanding and using vantage6 through the User Interface (UI). In case you are *only* participating in the part one, you need a web browser and internet in order to access the vantage6 UI. You can skip this lesson and start the course right away.
+- part one, chapters 1 to 4, is about understanding and using vantage6 through the User Interface (UI). In case you are *only* participating in the part one, you need a web browser and internet in order to access the vantage6 UI. You can skip this setup episode and start the course right away.
 - part two, chapters 5 to 8, is more advanced and requires programming experience. Your laptop should be able to run the all the vantage6 software components locally. In this episode, we will guide you through the installation. Please make sure to complete the installation before starting the course.
 
 
