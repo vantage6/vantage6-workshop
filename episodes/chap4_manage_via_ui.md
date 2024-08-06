@@ -30,6 +30,8 @@ Vantage6 uses a permission system to control who can do what in the system. The 
 
 The permission rules define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own, organization, collaboration, global), and the resource (e.g. users, organizations). Users can be assigned anywhere between zero and all of these permission rules. For example, having the rules with `create` in the scope `organization` for the resource `user` means that the user can create users for the organization they belong to.
 
+Note that not every resource has all scopes and/or operations. For example, the `organization` resource has neither the `own` scope nor the `delete` operation.
+
 To make it easier to assign permissions, there are also predefined roles:
 
 - Root: has all permissions (👉 see image below)
@@ -89,7 +91,7 @@ It's quite straightforward to create a new organization in vantage6. Here are th
 1. Click on the `Organizations` tab in the administration page.
 2. Click on the `Create organization` button.
 3. Fill in the details of the new organization.
-   - The `Upload public key` field is optional. You can upload a public key for the organization if you want to use encryption in the collaboration.
+   - The `Upload public key` field is optional. You can upload a public key for the organization if you want to use encryption in the collaboration. But note that we DO NOT use encryption in this course.
 4. Click on the `Submit` button to create the new organization.
 
 ![Create a new organization](fig/create_org.png)
@@ -137,7 +139,7 @@ You will need the API keys when you run the nodes to authenticate with the vanta
 
 5. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
    - You will see what organizations are participating in the collaboration.
-   - You will see the nodes of the organizations that are registered in the collaboration. If no nodes are registered, you can register them manually by clicking the `Register missing nodes` button.
+   - You will see the nodes of the organizations that are registered in the collaboration. In case one or more organizations did not register their nodes when creating or updating the collaboration, you can register them manually by clicking the `Register missing nodes` button.
    - You can also see the algorithm store available for the collaboration. You can add a algorithm store for the collaboration by clicking the `Add algorithm store` button.
    - You can also see the studies of the collaboration. You can add a study by clicking the `Add study` button.
 
@@ -150,8 +152,9 @@ You will need the API keys when you run the nodes to authenticate with the vanta
 Go to the administration page in the vantage6 UI, and do the following:
 
 1. Create a new organization
-2. Create a new user
-3. Create a new collaboration
+2. Create a new user (`Researcher` role plus the permission to view his own task)
+3. Check what permissions you have, can you create a new user and grant him the permissions you don't have?
+4. Create a new collaboration
 
 Which steps are challenging for you?
 
