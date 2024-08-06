@@ -128,12 +128,11 @@ branch
 of techniques that can be used for this is Secure Multiparty Computation (MPC). With MPC,
 computations are performed collaboratively by multiple parties. Data is encrypted in such a way that
 other parties cannot see the original values, but values of multiple parties can still be combined (
-e.g. added or
-multiplied).
+e.g. added or multiplied).
 A classic technique from the field of MPC is secret sharing. With this technique data is encrypted,
 after which pieces of the encryption are sent to the other parties. No single party will be able to
-reconstruct the original value. Only when all parties work together, the original value can be
-retrieved.
+reconstruct the original value. Only when a certain minimum of parties work together (n-1 in many cases) 
+the original value can be retrieved.
 
 When combining multiple values using secret sharing, this will result in the parties owning new
 puzzle pieces that when put together will reveal the result of the computation.
@@ -176,7 +175,9 @@ weighs.
 
 An aggregation is differentially private when someone cannot infer whether a particular individual
 was used in the computation. A way to make a result more differentially private is to replace a
-selection of inputs with random noise. A single individual will then always be able to deny that
+selection of inputs with random noise. Given the dataset is large enough, and the noise is distributed
+appropriately for the data, this will approximately retain the same statistical properties as the
+original dataset. Because of this noise, a single individual will then always be able to deny that
 their data has contributed to the final result. An individual has _plausible deniability_ with
 regards to whether it was part of the dataset.
 
@@ -189,7 +190,9 @@ The previously mentioned techniques are not used in isolation, but are usually s
 eachother to mitigate the privacy risks that are relevant within the usecase.
 Typically, the process begins by anonymizing or pseudonymizing the data. With vantage6, the data is
 then placed in a federated setting. Then, the data is analyzed using federated learning,
-which may also include, for instance, MPC protocols to further safeguard data privacy.
+which may also include, for instance, MPC protocols to further safeguard data privacy. Additionally,
+noise may be added to the raw data as well before it is analyzed, using techniques from differential
+privacy.
 
 ## Data partitioning
 
@@ -212,7 +215,11 @@ to be found to link identities across datasources. Vertical partitioning require
 of privacy enhancing algorithms than horizontal partitioning.
 
 Data can even be horizontally and vertically partitioned at the same time. In these cases, it may be
-necessary to combine multiple techniques.
+necessary to combine multiple techniques. For example, you might want to combine census data with
+medical records from hospitals. This is vertically partitioned because the census and medical features
+are stored in different places. On top of that, you might want to combine multiple hospitals, that
+all store their records separately. Since the medical records are physically separated as well, it is
+horizontally partitioned.
 
 ![Horizontal and vertical partitioning refers to how data is separated](fig/chapter1/horizontal_vertical_partitioning.jpg)
 
