@@ -15,5 +15,5 @@
 "episodes/chap8_own_project.md" "5854278e7bee52f4bba1338867c0a877" "site/built/chap8_own_project.md" "2024-07-30"
 "instructors/instructor-notes.md" "cae72b6712578d74a49fea7513099f8c" "site/built/instructor-notes.md" "2023-03-16"
 "learners/reference.md" "1c7cc4e229304d9806a13f69ca1b8ba4" "site/built/reference.md" "2023-03-16"
-"learners/setup.md" "1712f5c91f4e9a76d43d3c03fd7fc61a" "site/built/setup.md" "2024-07-30"
+"learners/setup.md" "2e49637805988df57c48957e88a17753" "site/built/setup.md" "2024-08-06"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2022-04-22"

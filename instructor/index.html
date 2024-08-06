@@ -450,99 +450,113 @@ any links that you are not going to use.
  --></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><p>Vantage6 has hardware and software requirements in order to run the
-vantage6 node(s) and/or server. For detailed requirements, please refer
-to the <a href="https://docs.vantage6.ai/en/main/node/requirements.html" class="external-link">vantage6
-documentation</a>. For this course, your laptop should be able to run
-the software locally without any issues. Therefore, we just need to
-focus on the software setup.</p>
+      </section><section id="setup"><p><strong>Before you jump to the installation instructions, consider
+the following</strong>. This course can be divided into two parts,
+depending on wether you are only participating in the first part or both
+parts the setup requirements are different:</p>
+<ul><li>part one, chapters 1 to 4, is about understanding and using vantage6
+through the User Interface (UI). In case you are <em>only</em>
+participating in the part one, you need a web browser and internet in
+order to access the vantage6 UI. You can skip this setup episode and
+start the course right away.</li>
+<li>part two, chapters 5 to 8, is more advanced and requires programming
+experience. Your laptop should be able to run the all the vantage6
+software components locally. In this episode, we will guide you through
+the installation. Please make sure to complete the installation before
+starting the course.</li>
+</ul><div id="need-additional-help" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="need-additional-help" class="callout-inner">
+<h3 class="callout-title">Need additional help?<a class="anchor" aria-label="anchor" href="#need-additional-help"></a>
+</h3>
+<div class="callout-content">
+<p>Have you followed the instructions in this lesson and still have
+issues with the installation?</p>
+<p>Please reach out to us on the <a href="https://discord.gg/yAyFf6Y" class="external-link">vantage6 Discord channels</a>. Or
+alternatively, you can send an email to <a href="mailto:f.martin@iknl.nl">f.martin@iknl.nl</a> or <a href="mailto:d.smits@esciencecenter.nl">d.smits@esciencecenter.nl</a>.</p>
+</div>
+</div>
+</div>
 <section><h2 class="section-heading" id="software-setup">Software setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
 <a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
 <hr class="half-width"><p>Vantage6 requires the following software to be installed on your
 system. In this lesson, we will explain how to install it:</p>
 <ul><li>Recommended operating system: Ubuntu 20.04+ , MacOS Big Sur+, or
 Windows 10+</li>
-<li>Docker Desktop (always latest version)</li>
-<li>Conda (latest version)</li>
+<li>Docker Desktop (Windows, MacOS) or the Docker Engine (Linux)</li>
+<li>Miniconda (latest version)</li>
 <li>Python v3.10</li>
 <li>Python packages:
-<ul><li>jupyterlab</li>
-<li>vantage6</li>
-<li>vantage6-client</li>
-<li>vantage6-algorithm-tools</li>
+<ul><li><a href="https://pypi.org/project/jupyterlab/" class="external-link">jupyterlab</a></li>
+<li><a href="https://pypi.org/project/vantage6/" class="external-link">vantage6==4.7.x</a></li>
+<li><a href="https://pypi.org/project/vantage6-client/" class="external-link">vantage6-client==4.7.x</a></li>
+<li><a href="https://pypi.org/project/vantage6-algorithm-tools/" class="external-link">vantage6-algorithm-tools==4.7.x</a></li>
 </ul></li>
+<li>A code editor <a href="https://code.visualstudio.com/" class="external-link">Visual Studio
+Code</a>, <a href="https://www.jetbrains.com/pycharm/" class="external-link">PyCharm</a> or
+something similar</li>
 </ul><div class="section level3">
 <h3 id="docker">Docker<a class="anchor" aria-label="anchor" href="#docker"></a></h3>
+<div class="section level4">
+<h4 id="windows-and-macos">Windows and MacOS<a class="anchor" aria-label="anchor" href="#windows-and-macos"></a></h4>
 <p>We recommend installing Docker Desktop on your system, which is the
-easiest way to install Docker. You can download it <a href="https://www.docker.com/products/docker-desktop" class="external-link">here</a>. Docker
-Desktop is available for MacOS, Windows, and Linux.</p>
+easiest way to install Docker. You can download it from the <a href="https://www.docker.com/products/docker-desktop" class="external-link">Docker
+website</a>. Docker Desktop is available for MacOS, Windows, and
+Linux.</p>
 <p>You can follow the official instructions to install Docker Desktop on
-<a href="https://docs.docker.com/desktop/install/mac-install/" class="external-link">MacOS</a>,
-<a href="https://docs.docker.com/desktop/install/windows-install/" class="external-link">Windows</a>,
-or <a href="https://docs.docker.com/desktop/install/linux-install/" class="external-link">Linux</a>.</p>
-<div id="linux-users" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
+<a href="https://docs.docker.com/desktop/install/mac-install/" class="external-link">MacOS</a>
+or <a href="https://docs.docker.com/desktop/install/windows-install/" class="external-link">Windows</a>.</p>
 </div>
-<div id="linux-users" class="callout-inner">
-<h3 class="callout-title">Linux users<a class="anchor" aria-label="anchor" href="#linux-users"></a>
-</h3>
-<div class="callout-content">
-<p>If you have Docker Engine installed on your Linux system and want to
-use it instead of Docker Desktop, you must make sure that it can run
-Docker containers without <code>sudo</code>. Please follow the
-instructions in <a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">this
+<div class="section level4">
+<h4 id="linux">Linux<a class="anchor" aria-label="anchor" href="#linux"></a></h4>
+<p>We recommend installing the Docker Engine on your Linux system. You
+can follow the official instructions to install Docker Engine for <a href="https://docs.docker.com/desktop/install/linux-install/" class="external-link">Linux</a>.
+After the installation, make sure that it can run Docker containers
+without <code>sudo</code>. Please follow the instructions in <a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">this
 guide</a> to set that up.</p>
-</div>
-</div>
-</div>
-<p>After installing the Docker Desktop, open the application, and then
-verify the installation by running the command in your terminal:</p>
+<p>Alternatively, you can install Docker Desktop on your Linux system.
+You can follow the official instructions to install Docker Desktop for
+<a href="https://docs.docker.com/desktop/install/linux-install/" class="external-link">Linux</a>.</p>
+<hr><p>After installing the Docker Desktop or Docker engine, open your
+terminal, and then verify the installation by running the command:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">docker</span> version</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Client:
- Version:           26.1.4
- API version:       1.45
- Go version:        go1.21.11
- Git commit:        5650f9b
- Built:             Wed Jun  5 11:26:02 2024
- OS/Arch:           darwin/arm64
- Context:           desktop-linux
+<pre class="output" tabindex="0"><code>Hello from Docker!
+This message shows that your installation appears to be working correctly.
 
-Server: Docker Desktop 4.31.0 (153195)
- Engine:
-  Version:          26.1.4
-  API version:      1.45 (minimum version 1.24)
-  Go version:       go1.21.11
-  Git commit:       de5c9cf
-  Built:            Wed Jun  5 11:29:12 2024
-  OS/Arch:          linux/arm64
-  Experimental:     false
- containerd:
-  Version:          1.6.33
-  GitCommit:        d2d58213f83a351ca8f528a95fbd145f5654e957
- runc:
-  Version:          1.1.12
-  GitCommit:        v1.1.12-0-g51d5e94
- docker-init:
-  Version:          0.19.0
-  GitCommit:        de40ad0</code></pre>
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/</code></pre>
 </div>
-<p>The exact output will vary based on your system. Make sure you see
-versions for both <code>Client</code> and <code>Server</code>.</p>
-<p>If you do not see the <code>Server</code> part, open the Docker
-Desktop application and then run the command again.</p>
+</div>
 </div>
 <div class="section level3">
-<h3 id="conda">Conda<a class="anchor" aria-label="anchor" href="#conda"></a></h3>
+<h3 id="miniconda">(Mini)conda<a class="anchor" aria-label="anchor" href="#miniconda"></a></h3>
 <p>There are several ways to install Conda on your system. For this
-lesson, we recommend using Miniconda installer.</p>
+course, we recommend using Miniconda installer. However if you already
+have Anaconda installed, you can use it as well.</p>
 <p>Follow the <a href="https://docs.anaconda.com/free/miniconda/" class="external-link">official
 instructions</a> to install Miniconda on Windows, MacOS, or Linux.</p>
 <p>After installing Miniconda, open a <strong>new</strong> terminal
@@ -576,7 +590,7 @@ required Python packages.</p>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="ex">conda</span> activate v6-workshop</span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># Install the required Python packages</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab vantage6 vantage6-client vantage6-algorithm-tools</span></code></pre>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab vantage6==4.7.x vantage6-client==4.7.x vantage6-algorithm-tools==4.7.x</span></code></pre>
 </div>
 <ol style="list-style-type: decimal"><li>Verify the installation of <code>jupyterlab</code>:</li>
 </ol><div class="codewrapper sourceCode" id="cb6">
