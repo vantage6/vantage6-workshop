@@ -87,21 +87,28 @@ Internet Movie Database (IMDB).
 
 ## Federated data analysis
 
-There are different ways in which privacy risks can be mitigated. We will focus on the idea of
-federated analysis. In a federated setting, the data with the data owner, who keeps full control
-over it. In this case, it is not the data that travels, but the analysis itself. The system sends
-a query or instruction to the data and only the results will get back to the user.
+There are different ways in which privacy risks can be mitigated. For example, a well-known technique
+is to send the data to a trusted third party (TTP). In this case, the data is sent to an trusted neutral
+party. The data can then be analyzed at that location in a traditional way. There are issues with
+this technique however. When the data is copied to the TTP, the original owner loses control over it. Another
+issue with it is that this technique results in a single point of failure. If the security at the TTP is
+breached, all the data it handled could be exposed.
+
+Instead, we will focus on the idea of federated analysis. In a federated setting, the data with the data owner,
+ who keeps full control over it. In this case, it is not the data that travels, but the analysis itself. 
+ The system sends a query or instruction to the data and only the results will get back to the user.
 The results are often akin to a form of _aggregation_ of the data. This can be in the shape of
-traditional
-statistics like the mean, or it could be a combination of aggregations to form a more complicated
-analysis.
+traditional statistics like the mean, or it can be more intricate like a machine learning model.
 
 Aggregating the data does not ensure complete protection of person-level information, but it
-certainly makes it less likely that this will happen.
+certainly makes it less likely that this will happen. It is usually the case that the larger 
+the dataset, the lower the risk of data leakage. For instance, if you would like to take the mean of
+all records that fit a certain requirement, like age > 90, and there happens to be only one
+records that fits the requirement, the aggregation will be equal to the raw values.
+
 
 ![In federated analysis, an aggregation of the local data is sent to a central point. At the central point the local aggregations are combined. This can also be a small step in a larger analysis.](fig/chapter1/federated_sum.jpg)
 
-TODO: Example of data leakage in simple aggregated case
 
 ## Federated learning
 
@@ -232,16 +239,29 @@ privacy enhancing technologies, a lot of work goes into complying with regulatio
 trust.
 
 Since these projects have a risk of affecting the privacy of individuals, a Data Protection Impact
-Assessment (DPIA)
-is usually required. This is a process that will help identify and minimize privacy risks of a
-project
-and is required by the GDPR.
+Assessment (DPIA) is usually required. This is a process that will help identify and minimize privacy risks of a
+project and is required by the GDPR. There is already a [DPIA available for vantage6](https://vantage6.ai/documents/28/DPIA_vantage6_version2023.pdf)
 
 Apart from procedures required by GDPR there might be other regulations in place enforced by the
-owners of the data (e.g. hospitals). The specific situation of a project can affect the way in which
+owners of the data (e.g. hospitals). For healthcare specifically there will be the 
+[European Health Data Space (EHDS)](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space_en).
+ EHDS builds upon the GDPR and ensures the exchange and reuse of healthcare data in a safe and secure way.
+
+The specific situation of a project can affect the way in which
 the data is allowed to be processed. Some privacy enhancing technologies might be allowed in one
 project but prohibited in another. It is always important to stay transparent about privacy risks
 of the technologies you intend to use.
+
+Another factor in performing PET analysis is *data harmonization*. All parties need to make sure that
+their data is in the right shape to be combined. For instance, if you have two datasets where one
+stores the height of patients in a column "height" in centimeters, and another dataset where it is stored
+in meters in the column "patient_height" you cannot perform your analysis. You will need to make sure
+all datasets follow the same standards and schemas in order to process them together. There are a
+couple of datastandards out there to help you with that, such as [OMOP CDM](https://www.ohdsi.org/data-standardization/) 
+or [FHIR](https://hl7.org/fhir/) together with [SNOMED-CT](https://www.snomed.org/).
+
+In conclusion, PETs will help you to extract useful insights from sensitive data, but there are other factors
+to keep in mind as well.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
