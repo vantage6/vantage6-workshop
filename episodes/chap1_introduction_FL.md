@@ -268,5 +268,3 @@ of the process. It is also important to consider other factors such as regulatio
 - TODO
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-[r-markdown]: https://rmarkdown.rstudio.com/
