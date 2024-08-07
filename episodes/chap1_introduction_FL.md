@@ -260,8 +260,8 @@ all datasets follow the same standards and schemas in order to process them toge
 couple of datastandards out there to help you with that, such as [OMOP CDM](https://www.ohdsi.org/data-standardization/) 
 or [FHIR](https://hl7.org/fhir/) together with [SNOMED-CT](https://www.snomed.org/).
 
-In conclusion, PETs will help you to extract useful insights from sensitive data, but there are other factors
-to keep in mind as well.
+In conclusion, PETs will help you to extract valuable insights from sensitive data, but they are only one aspect
+of the process. It is also important to consider other factors such as regulations and data preprocessing.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
