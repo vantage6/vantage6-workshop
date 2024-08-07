@@ -24,9 +24,9 @@ exercises: 3
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Vantage6 node is the software that runs on a data station. It allows the data owner to share their data within the vantage6 network in a privacy-preserving way. Also, it is responsible for the execution of the federated learning tasks and the communication with the vantage6 server.
+Vantage6 node is the software that runs on a data station. It allows the data owner to share their data within the vantage6 network in a privacy enhancing way. Also, it is responsible for the execution of the federated learning tasks and the communication with the vantage6 server.
 
-Each organization that is involved in a federated learning collaboration has its own node in that collaboration. They should therefore install the node software on a virtual machine hosted in their own infrastructure. The node should have access to the data that is used in the federated learning collaboration.
+Each organization that is involved in a federated learning collaboration has its own node in that collaboration. They should therefore install the node software on a (virtual) machine hosted in their own infrastructure. The machine should have access to the data that is used in the federated learning collaboration.
 
 This chapter will explain how to set up and run the vantage6 node software.
 
@@ -88,12 +88,6 @@ pip install vantage6
 ```
 
 To verify the installed CLI, run the command,
-
-```bash
-v6
-```
-
-or
 
 ```bash
 v6 --help
@@ -171,8 +165,8 @@ It is important to note the meaning of following configuration parameters:
 
 - The `api-key` is the API key that you created in vantage6 UI in [Chapter 4](./chap4_manage_via_ui.md) or you received from the vantage6 server administrator. It is used to authenticate the node at the server.
 - The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://localhost`
-- The `path of the api` is the path of the API of the server. It is usually `/api`.
-- The `database URI` is the path of the database file. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
+- The `path of the api` is the path of the API of the server. By default it is `/api`.
+- The `database URI` is the path of the database file containing the sensitive data. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
 
 To see all configuration options, please check https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options.
 
@@ -212,14 +206,13 @@ In the printed message, you will see not only the path of the configuration file
 2. Find the path to the configuration file using the `v6 node files` command. Open the configuration file with a text editor and check the configuration options. Are they correct?
 3. Open your configuration file, do the following:
    - add a new database in the format of `excel`,
-   - enable the encryption,
    - find the missing options in your file by comparing with the option template in the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Start a node
 
-Before starting a vantage6 node, you need to make sure the vantage6 server is running and the internet connection is stable.
+Before starting a vantage6 node, you need to make sure the vantage6 server and Docker are running.
 
 To start a node, you can run the command `v6 node start`:
 
@@ -251,9 +244,7 @@ then it will start the node and print out the following messages:
 [warn ] - private key file provided ***/private_key.pem, but does not exists
 [info ] - Setting up databases
 [info ] -   Processing csv database default: ***/data.csv
-[debug] -   - non file-based database added
 [info ] -   Processing csv database default: ***/data.csv
-[debug] -   - non file-based database added
 [info ] - Running Docker container
 [info ] - Node container was successfully started!
 [info ] - To see the logs, run: v6 node attach --name node1
