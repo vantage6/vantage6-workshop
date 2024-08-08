@@ -163,7 +163,7 @@ The command will show a wizard to guide you through the configuration process in
 
 It is important to note the meaning of following configuration parameters:
 
-- The `api-key` is the API key that you created in vantage6 UI in [Chapter 4](./chap4_manage_via_ui.md) or you received from the vantage6 server administrator. It is used to authenticate the node at the server.
+- The `api-key` is the API key that you downloaded from vantage6 UI in [Chapter 4](./chap4_manage_via_ui.md). It is used to authenticate the node at the server.
 - The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://localhost`
 - The `path of the api` is the path of the API of the server. By default it is `/api`.
 - The `database URI` is the path of the database file containing the sensitive data. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
