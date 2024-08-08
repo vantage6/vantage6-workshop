@@ -971,7 +971,7 @@ different parts?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
@@ -1387,7 +1387,7 @@ algorithm too?</li>
   Solution steps
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>To check the status of the nodes of each collaboration:</p>
 <ol style="list-style-type: decimal">
@@ -1429,7 +1429,7 @@ first. Use the credentials given for Challenge #4 to register the
   Solution steps
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>You will now link the ‘community-store’ to the collaboration whose
 nodes are ready for it.</p>
@@ -1532,7 +1532,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-chap4_manage_via_ui"><p>Content from <a href="chap4_manage_via_ui.html">Managing vantage6 server via the user interface</a></p>
 <hr>
-<p>Last updated on 2024-07-30 |
+<p>Last updated on 2024-08-08 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap4_manage_via_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 4 minutes</p>
@@ -1585,11 +1585,16 @@ the assigned <strong>rules</strong>.</p>
 <p>The permission rules define what each entity is allowed to do, based
 on the operation (view, create, edit, delete, send, receive), the scope
 (own, organization, collaboration, global), and the resource
-(e.g. users, orgarnizations). Users can be assigned anywhere between
-zero and all of these permission rules. For example, having the rules
-with <code>create</code> in the scope <code>organization</code> for the
+(e.g. users, organizations). Users can be assigned anywhere between zero
+and all of these permission rules. For example, having the rules with
+<code>create</code> in the scope <code>organization</code> for the
 resource <code>user</code> means that the user can create users for the
 organization they belong to.</p>
+<p>Note that not every resource has all scopes and/or operations. For
+example, the <code>collaboration</code> resource does not have
+<code>create</code> operation for the <code>organization</code> scope,
+as it does not make sense to create a collaboration that only your own
+organization can participate in.</p>
 <p>To make it easier to assign permissions, there are also predefined
 roles:</p>
 <ul>
@@ -1692,7 +1697,8 @@ page.</li>
 <ul>
 <li>The <code>Upload public key</code> field is optional. You can upload
 a public key for the organization if you want to use encryption in the
-collaboration.</li>
+collaboration. But note that we DO NOT use encryption in this
+course.</li>
 </ul>
 </li>
 <li>Click on the <code>Submit</code> button to create the new
@@ -1772,8 +1778,9 @@ organizations. Note that they may reset their API key so that no-one but
 them knows it.</p>
 </blockquote>
 <p>You will need the API keys when you run the nodes to authenticate
-with the vantage6 server. We will discuss this in <a href="./chap6_setup_node.html">Chapter 6</a>.</p>
-<ol style="list-style-type: decimal">
+with the vantage6 server. Please save the API keys properly, we will
+need it in <a href="./chap6_setup_node.html">Chapter 6</a>.</p>
+<ol start="5" style="list-style-type: decimal">
 <li>After creating the collaboration, you can see the details of the
 collaboration by clicking on the specific collaboration listed in the
 <code>Collaborations</code> tab.
@@ -1781,9 +1788,11 @@ collaboration by clicking on the specific collaboration listed in the
 <li>You will see what organizations are participating in the
 collaboration.</li>
 <li>You will see the nodes of the organizations that are registered in
-the collaboration. If no nodes are registered, you can register them
-manually by clicking the <code>Register missing nodes</code>
-button.</li>
+the collaboration. In case one or more organizations did not register
+their nodes when creating or updating the collaboration, you can
+register them manually by clicking the
+<code>Register missing nodes</code> button. Note that this button is not
+visible if all nodes are registered.</li>
 <li>You can also see the algorithm store available for the
 collaboration. You can add a algorithm store for the collaboration by
 clicking the <code>Add algorithm store</code> button.</li>
@@ -1805,7 +1814,10 @@ study by clicking the <code>Add study</code> button.</li>
 following:</p>
 <ol style="list-style-type: decimal">
 <li>Create a new organization</li>
-<li>Create a new user</li>
+<li>Create a new user (<code>Researcher</code> role plus the permission
+to view their own task)</li>
+<li>Check what permissions you have, can you create a new user and grant
+them the permissions you don’t have?</li>
 <li>Create a new collaboration</li>
 </ol>
 <p>Which steps are challenging for you?</p>
@@ -2162,7 +2174,7 @@ connection is performed successfully.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <figure><img src="../fig/chapter5/auth-screenshot.png" alt="Expected output" class="figure mx-auto d-block"><div class="figcaption">Expected output</div>
 </figure>
@@ -2216,7 +2228,7 @@ the nodes of a given organization.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
