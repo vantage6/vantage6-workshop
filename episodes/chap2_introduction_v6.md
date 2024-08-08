@@ -188,7 +188,7 @@ Currently, vantage6 is focused on privacy enhancing techniques. Some of these te
 
 ## Build Services
 
-Algorithms in vantage6 are shipped as container images. Currently, this image can be build by the user or some external process. We want to extend vantage6 with a build service that can build the container image for you. This will make it easier to develop and deploy algorithms in vantage6 but more importantly, it will enhance the security of the platform as they are build in a controlled environment.
+Algorithms in vantage6 are shipped as container images. Currently, this image can be built by the user or some external process. We want to extend vantage6 with a build service that can build the container image for you. This will make it easier to develop and deploy algorithms in vantage6 but more importantly, it will enhance the security of the platform as they are build in a controlled environment.
 
 ::: keypoints
 These are the keypoints
