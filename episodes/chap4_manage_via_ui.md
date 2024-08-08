@@ -135,7 +135,7 @@ You will see a message:
 >
 > Please distribute each of these keys privately to each of the organizations. Note that they may reset their API key so that no-one but them knows it.
 
-You will need the API keys when you run the nodes to authenticate with the vantage6 server. We will discuss this in [Chapter 6](./chap6_setup_node.md).
+You will need the API keys when you run the nodes to authenticate with the vantage6 server. Please save the API keys properly, we will need it in [Chapter 6](./chap6_setup_node.md).
 
 5. After creating the collaboration, you can see the details of the collaboration by clicking on the specific collaboration listed in the `Collaborations` tab.
    - You will see what organizations are participating in the collaboration.
