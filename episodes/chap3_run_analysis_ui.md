@@ -113,7 +113,7 @@ First, let's take a look at one of the federated algorithms -available on the va
 Analyze the algorithm based on the code and its comments and answer the following questions:
 
 - How are the `central_average` and `partial_average` functions related?
-- Why does the `central_average` function, unlike `partial_average`, doesn't get any data as an input?
+- Why does the `central_average` function, unlike `partial_average`, **not** get any data as an input?
 - Analyze and discuss the potential outcomes if a Task to execute `central_average` is initiated within a collaboration where one of the nodes is offline.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
