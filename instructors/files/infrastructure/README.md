@@ -55,6 +55,15 @@ For exercises to create tasks:
 - A node configuration file for each of the nodes, with two datafiles attached to it:
   one with data based on the SEER data, and one with random test data (both in CSV format).
 
+For exercises to manage resources:
+
+- One user per participant
+  - username is `jdoe_admin` if participant is called John Doe
+  - password is always `Password123!`
+- Three organizations per participant, one of them they are member of
+- Two collaborations, both containing the organization of the partipipant and one of
+  the two other dummy organizations
+
 ### Cleanup
 
 Run the `workshop-delete-resources` script to delete everything that was created.
