@@ -49,3 +49,11 @@ docs/
 # translation temp files
 po/*~
 .idea/
+
+# infrastructure
+# setup secrets
+instructors/files/infrastructure/config.py
+# output (e.g. node config files)
+instructors/files/infrastructure/output/
+# other
+__pycache__/

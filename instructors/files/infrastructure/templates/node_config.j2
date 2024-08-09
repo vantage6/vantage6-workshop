@@ -1,0 +1,23 @@
+api_key: {{ api_key }}
+api_path: /api
+databases:
+  - label: default
+    uri: {{ default_data_file_path }}
+    type: csv
+  - label: kaplan_meier
+    uri: {{ km_data_file_path }}
+    type: csv
+encryption:
+  enabled: false
+  private_key: null
+logging:
+  backup_count: 5
+  datefmt: '%Y-%m-%d %H:%M:%S'
+  file: {{ log_file }}
+  format: '%(asctime)s - %(name)-14s - %(levelname)-8s - %(message)s'
+  level: DEBUG
+  max_size: 1024
+  use_console: true
+port: 443
+server_url: https://server.workshop.vantage6.ai
+task_dir: {{ task_dir }}
