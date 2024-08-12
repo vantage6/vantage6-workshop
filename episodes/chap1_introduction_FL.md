@@ -93,12 +93,13 @@ over it. In this case, it is not the data that travels, but the analysis itself.
 a query or instruction to the data and only the results will get back to the user.
 The results are often akin to a form of _aggregation_ of the data. This can be in the shape of
 traditional
-statistics like the mean, or it can be more intricate like a machine learning model.
+statistics like the mean, or it could be a combination of aggregations to form a more complicated
+analysis.
 
 Aggregating the data does not ensure complete protection of person-level information, but it
 certainly makes it less likely that this will happen.
 
-![General flow of a federated analysis](fig/chapter1/federated%20sum.jpg)
+![In federated analysis, an aggregation of the local data is sent to a central point. At the central point the local aggregations are combined. This can also be a small step in a larger analysis.](fig/chapter1/federated_sum.jpg)
 
 TODO: Example of data leakage in simple aggregated case
 
@@ -111,7 +112,7 @@ traditional federated learning, the clients train machine learning models, and o
 the models are sent back to the central server. The central server combines the updates from all the
 individual clients into one final machine learning model.
 
-![In federated learning only the gradients of models are shared](fig/chapter1/federated%20learning.jpg)
+![In federated learning only the gradients of models are shared](fig/chapter1/federated_learning.jpg)
 
 There are caveats to using this type of data analysis though. Although the data transmitted from the
 clients to the server are an aggregation of the raw data, researchers have found a way to use this
@@ -179,7 +180,7 @@ selection of inputs with random noise. A single individual will then always be a
 their data has contributed to the final result. An individual has _plausible deniability_ with
 regards to whether it was part of the dataset.
 
-![Differential privacy replaces a subset of the data with random values](fig/chapter1/differential%20privacy.jpg)
+![Differential privacy replaces a subset of the data with random values](fig/chapter1/differential_privacy.jpg)
 
 
 ## Blocks upon blocks
