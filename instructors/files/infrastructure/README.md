@@ -10,16 +10,15 @@ What these scripts do not do, is deployment of the workshop vantage6 server and 
 nodes. The server was manually deployed on an Azure App Service, and the nodes were
 deployed on Azure Virtual Machines.
 
-<!-- TODO: script to deploy the nodes should still be written - include that here? -->
-
 ### Script to create resources
 
 1. Make sure that the server is deployed before running the scripts and that you have a
    user account with root permissions.
 1. Clone this repo and go to the directory where this README is located.
 1. Activate your python env where vantage6 is installed (v4.6+)
-1. **Modify the resources in the `workshop_resources` directory**. You should update the
+1. **Modify the participants.csv in the `workshop_resources` directory**. You should update the
    workshop participants list to include the names of the participants of the workshop.
+   _Do not commit this_ for privacy reasons.
    The other resources do not need to be modified - but you can if you e.g. prefer
    other names for organizations and collaborations. At present, the scripts work
    for **up to 35 participants**. If you have more participants, you will need to
@@ -67,6 +66,38 @@ For exercises to manage resources:
 ### Cleanup
 
 Run the `workshop-delete-resources` script to delete everything that was created.
+
+### Node Management
+
+Where and how the node and server are deployed is not part of this public documentation.
+To manage the nodes, login to the VM where they are deployed and use the following
+commands to manage them:
+
+```bash
+source .bashrc
+conda activate vantage6
+
+# start all nodes
+node_names=$(v6 node list | sed '1,3d' | sed '$ d' | awk '{print $1}')
+for node_name in $node_names; do
+  v6 node start -n $node_name;
+done
+
+# stop all nodes
+v6 node stop --all
+```
+
+Ensure that the node config files and data files are in the appropriate directory:
+
+```bash
+# copy data files to VM
+username=X
+ip=W.X.Y.Z
+scp infrastructure/data_files/* ${username}@${ip}:/data
+
+# After creating node config files
+scp infrastructure/output/node_configs/* ${username}@${ip}:~/.config/vantage6/node
+```
 
 ### Just before workshop
 
