@@ -118,7 +118,7 @@ There are caveats to using this type of data analysis though. Although the data 
 clients to the server are an aggregation of the raw data, researchers have found a way to use this
 data to reconstruct the original data. This vulnerability is called _gradient leakage_.
 
-![An example of gradient leakage](fig/chapter1/gradient_leakage.jpg)
+![An example of gradient leakage. The order might not be correct but the images are still very close to the originals.](fig/chapter1/gradient_leakage.jpg)
 
 ## Secure Multiparty Computation
 
