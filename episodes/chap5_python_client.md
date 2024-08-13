@@ -6,22 +6,25 @@ exercises:
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-With the Python client:
+In the context of the Python client:
 
 - How to connect to the vantage6 server?
-- How to use the `Client` object?
-- How to check details of a collaboration?
-- How to start a task?
+- How to explore the `Client` object?
+- How to check details of a collaborations?
+- How to start a compute task?
 - How to collect the results of a finished computation?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-After completing this episode, participants should be able to…
+After completing this episode, you will be able to:
 
-- Connect to the vantage6 server using the Python client.
 - Understand the basic concepts of the vantage6 Python client.
+
+use the Python client to …
+
+- Connect to the vantage6 server.
 - Use the Python client to get details of a collaboration.
 - Create a task using the Python client.
 - Collect the results of a finished computation using the Python client.
@@ -33,7 +36,7 @@ After completing this episode, participants should be able to…
 
 
 # Prerequisite
- Make sure you completed the [Setup Episode](../index.md) before starting this episode.
+Make sure you completed the [Setup Episode](../index.md) before starting this episode. Some basic knowledge of Python is also required to complete the exercises in this episode.
 
 :::::::::::::::::
 
@@ -56,9 +59,9 @@ If your organization uses a different programming language, you can always creat
 
 
 ## Connect & authenticate
-Creating an instance of the vantage6 Python client is relatively straightforward. The user defines server connection details: server URL, login credentials, and the organization's private key in case encryption is used in the collaboration. In case the server has [two-factor authentication (docs.vantage6.ai)](https://docs.vantage6.ai/en/stable/technical-documentation/features/server/2fa.html) (2FA) enabled you should also enter the corresponding time-based 6-digit code accordingly.
+Creating an instance of the vantage6 Python client is relatively straightforward. The user defines server connection details: server address, login credentials, and the organization's private key in case [encryption (docs.vantage6.ai)](https://docs.vantage6.ai/en/main/features/inter-component/encryption.html) is used in the collaboration. In case the server has [two-factor authentication (docs.vantage6.ai)](https://docs.vantage6.ai/en/stable/technical-documentation/features/server/2fa.html) (2FA) enabled, you should also enter the corresponding time-based 6-digit code accordingly.
 
-To avoid leaking your username and/or password by accident, they can be defined in a separate Python file (e.g., `config.py`), which is then imported into the main script.
+To avoid leaking your username and/or password by accident, they can be defined in a separate Python file (e.g., `config.py`), which is then imported into the main script. This way, the main script does not contain any sensitive information.
 
 ```python
 # config.py
@@ -71,7 +74,8 @@ username = "MY USERNAME"
 password = "MY PASSWORD"
 
 # Path to the private key, if encryption is enabled. Can be None if
-# not used. Note that this key is the organization's private key.
+# not used. Note that this key is the organization's private key. In
+# case of this workshop we do not use encryption, so this can be None.
 organization_key = None
 ```
 
@@ -98,6 +102,15 @@ client.authenticate(config.username, config.password)
 # omitted or `config.organization_key` should be set to None
 client.setup_encryption(config.organization_key)
 ```
+
+
+::: callout
+
+The output of the exercises will be shown in the terminal, but you can also run the exercises in a Jupyter notebook.
+
+In case you are using a Jupyter notebook the `client.py` script should be in the top cell of your notebook. Running this cell is then the equivalent of the command `python [-i] client.py` that is used in the solutions.
+
+:::
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -163,11 +176,11 @@ also described in the [official documentation (docs.vantage6.ai)](https://docs.v
 
 | Resource              | Description                                                                 |
 |-----------------------|-----------------------------------------------------------------------------|
-| `client.user`         | Manage users including your own details                           |
-| `client.organization` | Manage organizations                  |
-| `client.rule`         | View all available rules                          |
-| `client.role`         | Manage roles that are collections of rules                           |
-| `client.collaboration`| Manage collaborations                  |
+| `client.user`         | Manage users including your own user details                           |
+| `client.organization` | Manage organizations or the organization that you are part of|
+| `client.rule`         | View all available permission rules |
+| `client.role`         | Manage roles (are collections of rules) |
+| `client.collaboration`| Manage collaborations |
 | `client.task`         | Create new tasks and view their run data |
 | `client.result`       | Obtain results from the tasks |
 | `client.util`         | Provides utility functions for the vantage6 Python client. For example to reset your password.             |
@@ -184,7 +197,7 @@ with the server return a dictionary with the requested information.
 
 ### Permissions
 
-Note that the logged-in user may not be allowed to perform all operations or view all
+Note that the authenticated user may not be allowed to perform all operations or view all
 resources. The server will only allow the user to perform operations on the resources
 that the user has permission to perform.
 
@@ -196,7 +209,8 @@ to list the organizations within all collaboration its organization participates
 
 ### The 5 basic operations
 
-Most resources provide five basic operations: get, list, create, update, and delete.
+Most resources provide at least five basic operations: get, list, create, update, and
+delete.
 
 ::::::::::::::::::::::::::::::::::::: tab
 
@@ -204,24 +218,24 @@ Most resources provide five basic operations: get, list, create, update, and del
 Get a specific *resource* with `client.<resource>.get(<id>)`. For example:
 
 ```Python
-client.organization.get(166)
+client.organization.get(1)
 ```
 ```output
 {
-    'nodes': '/api/node?organization_id=166',
+    'nodes': '/api/node?organization_id=1',
     'public_key': '',
-    'studies': '/api/study?organization_id=166',
+    'studies': '/api/study?organization_id=1',
     'name': 'Huckleberry Holdings',
-    'tasks': '/api/task?init_org_id=166',
+    'tasks': '/api/task?init_org_id=1',
     'address2': '',
-    'users': '/api/user?organization_id=166',
+    'users': '/api/user?organization_id=1',
     'domain': 'huckleberryholdings.mc',
     'country': 'Monaco',
     'zipcode': '98000',
-    'runs': '/api/run?organization_id=166',
+    'runs': '/api/run?organization_id=1',
     'address1': '4747 Huckleberry Ln',
-    'id': 166,
-    'collaborations': '/api/collaboration?organization_id=166'
+    'id': 1,
+    'collaborations': '/api/collaboration?organization_id=1'
 }
 ```
 
@@ -232,18 +246,19 @@ Get all *resource* items that the user is allowed to see with
 ```Python
 client.organization.list()
 ```
+
+The output should look similar to the following:
 ```output
 [
-    {'id': 168, 'name': 'Lychee Labs', ...},
-    {'id': 158, 'name': 'Pineapple Paradigm', ...},
-    {'id': 155, 'name': 'Huckleberry Hub', ...},
-    {'id': 140, 'name': 'Mango Matrix', ...},
-    {'id': 128, 'name': 'Apple Innovations', ...},
-    {'id': 170, 'name': 'eScience center', ...},
-    {'id': 165, 'name': 'Grapefruit Group', ...},
-    {'id': 145, 'name': 'Raspberry Revolution', ...},
-    {'id': 136, 'name': 'Ivy Berry Solutions', ...},
-    {'id': 166, 'name': 'Huckleberry Holdings', ...}
+    {'id': 1, 'name': 'Huckleberry Holdings', ...}
+    {'id': 2, 'name': 'Lychee Labs', ...},
+    {'id': 3, 'name': 'Pineapple Paradigm', ...},
+    {'id': 4, 'name': 'Huckleberry Hub', ...},
+    {'id': 5, 'name': 'Mango Matrix', ...},
+    {'id': 6, 'name': 'Apple Innovations', ...},
+    {'id': 7, 'name': 'eScience center', ...},
+    {'id': 8, 'name': 'Grapefruit Group', ...},
+    {'id': 9, 'name': 'Raspberry Revolution', ...},
 ]
 ```
 
