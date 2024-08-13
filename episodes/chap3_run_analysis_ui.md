@@ -73,13 +73,27 @@ On the administration page, you can manage the entities of vantage6. The entitie
 
 ## Challenge 1: Get familiar with the vantage6 UI
 
-Log in to the vantage6 UI and navigate to the `Administration` page. Familiarize yourself with the entities in the administration page.
+Log in to the Vantage6 UI using the credentials below (the password will be given by the instructors). Once logged in, navigate to the administration page to familiarize yourself with the entities there. Then, try to update your email, first name, and last name, but do not change your username, as it will be needed for some of the follow-up challenges.
 
-Can you find the `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes` tabs?
+|  User     |  Roles        |
+|-----------|---------------|
+|PhY24-rs1  | Researcher    |
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## From theory to practice: a case study using vantage6 collaborations
+:::::::::::::::::::::::: solution
+
+## Solution
+
+![User-entity - edit option](fig/chapter3/user-edit.png)
+
+:::::::::::::::::::::::::::::::::
+
+
+
+
+## From theory to practice: a hypothetical case study using vantage6 collaborations
 
 As previously discussed, in vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
 
