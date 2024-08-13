@@ -55,7 +55,7 @@ Given the above, the following are the most important concepts for this lesson:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Get familiar with the vantage6 UI
+## Mapping vantage6 to "real life"
 Let's imagine a usecase where you would like to study an illness accross
 3 different academic hospitals in the Netherlands: VUmc, Maastricht UMC+, and UMC Utrecht.
 
