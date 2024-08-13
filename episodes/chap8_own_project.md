@@ -47,8 +47,24 @@ algorithm. Now, you can add privacy filters to your algorithm.
   exceptions](https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.algorithm.tools.exceptions.html)
   to return an error message.
 
-Hint: the [contingency table algorithm](https://github.com/vantage6/v6-crosstab-py)
+:::::::::::::::: hint
+
+The [contingency table algorithm](https://github.com/vantage6/v6-crosstab-py)
 already has a few privacy filters implemented. You can use this algorithm as an example.
+
+::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge: Use your own data the v6 dev network
+
+The algorithm that you created in the [previous lesson](./chap7_algo_dev.md) uses
+dummy data. In this challenge, you will use your own data in the `v6 dev` network.
+
+Locate and modify the node configuration files. Before starting the algorithm, how can
+you make sure that the data is available to the nodes?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
