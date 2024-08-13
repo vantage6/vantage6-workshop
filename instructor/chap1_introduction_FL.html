@@ -352,7 +352,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to privacy enhancing technologies (PET)</h1>
-        <p>Last updated on 2024-07-30 |
+        <p>Last updated on 2024-08-13 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap1_introduction_FL.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -408,7 +408,7 @@ insights in a manner that upholds and respects privacy standards?</p>
 <p>In classic data analysis, all data is copied over into a single
 place. This makes it very easy to use conventional data analysis
 software and tools to gain insights.</p>
-<figure><img src="../fig/classic%20analysis.jpg" alt="Two tables with data are moved to a central location" class="figure mx-auto d-block"><div class="figcaption">In classic analysis all the data is brought
+<figure><img src="../fig/chapter1/classic_analysis.jpg" alt="Two tables with data are moved to a central location" class="figure mx-auto d-block"><div class="figcaption">In classic analysis all the data is brought
 together</div>
 </figure><p>Unfortunately this way of working does not respect the privacy of the
 people contained within the dataset. All their personal details end up
@@ -454,7 +454,7 @@ Personal identifiable information will in this case be removed so that
 individuals stay anonymous. Data <em>pseudonimization</em> is a similar
 process, but in this case, the records will be assigned an id that will
 make it possible to link individuals across datasets.</p>
-<figure><img src="../fig%2Fdata_anonymization.jpg" alt="Names are censored before the datasets are sent to a central place" class="figure mx-auto d-block"><div class="figcaption">Data anonymization</div>
+<figure><img src="../fig/chapter1/data_anonymization.jpg" alt="Names are censored before the datasets are sent to a central place" class="figure mx-auto d-block"><div class="figcaption">Data anonymization</div>
 </figure><p>While data anonymization and pseudonymization are often a good first
 step, there is no guarantee that the data will never be reidentified. A
 famous example of reidentification is the story of the <a href="https://en.wikipedia.org/wiki/Netflix_Prize" class="external-link">Netflix prize</a>.
@@ -473,12 +473,16 @@ case, it is not the data that travels, but the analysis itself. The
 system sends a query or instruction to the data and only the results
 will get back to the user. The results are often akin to a form of
 <em>aggregation</em> of the data. This can be in the shape of
-traditional statistics like the mean, or it can be more intricate like a
-machine learning model.</p>
+traditional statistics like the mean, or it could be a combination of
+aggregations to form a more complicated analysis.</p>
 <p>Aggregating the data does not ensure complete protection of
 person-level information, but it certainly makes it less likely that
 this will happen.</p>
-<p>TODO: Example of data leakage in simple aggregated case</p>
+<figure><img src="../fig/chapter1/federated_sum.jpg" alt="In federated analysis, an aggregation of the local data is sent to a central point. At the central point the local aggregations are combined. This can also be a small step in a larger analysis." class="figure mx-auto d-block"><div class="figcaption">In federated analysis, an aggregation of the
+local data is sent to a central point. At the central point the local
+aggregations are combined. This can also be a small step in a larger
+analysis.</div>
+</figure><p>TODO: Example of data leakage in simple aggregated case</p>
 </section><section><h2 class="section-heading" id="federated-learning">Federated learning<a class="anchor" aria-label="anchor" href="#federated-learning"></a>
 <a class="anchor" aria-label="anchor" href="#federated-learning"></a></h2>
 <hr class="half-width"><p>The term federated learning was introduced in 2016 by researchers at
@@ -489,12 +493,16 @@ server.” In traditional federated learning, the clients train machine
 learning models, and only the updates of the models are sent back to the
 central server. The central server combines the updates from all the
 individual clients into one final machine learning model.</p>
-<p>There are caveats to using this type of data analysis though.
+<figure><img src="../fig/chapter1/federated_learning.jpg" alt="In federated learning only the gradients of models are shared" class="figure mx-auto d-block"><div class="figcaption">In federated learning only the gradients of
+models are shared</div>
+</figure><p>There are caveats to using this type of data analysis though.
 Although the data transmitted from the clients to the server are an
 aggregation of the raw data, researchers have found a way to use this
 data to reconstruct the original data. This vulnerability is called
 <em>gradient leakage</em>.</p>
-<figure><img src="../fig/gradient_leakage.jpg" alt="An example of gradient leakage" class="figure mx-auto d-block"><div class="figcaption">An example of gradient leakage</div>
+<figure><img src="../fig/chapter1/gradient_leakage.jpg" alt="An example of gradient leakage. The order might not be correct but the images are still very close to the originals." class="figure mx-auto d-block"><div class="figcaption">An example of gradient leakage. The order might
+not be correct but the images are still very close to the
+originals.</div>
 </figure></section><section><h2 class="section-heading" id="secure-multiparty-computation">Secure Multiparty Computation<a class="anchor" aria-label="anchor" href="#secure-multiparty-computation"></a>
 <a class="anchor" aria-label="anchor" href="#secure-multiparty-computation"></a></h2>
 <hr class="half-width"><p>There are different solutions to prevent the reconstruction of raw
@@ -512,7 +520,10 @@ parties work together, the original value can be retrieved.</p>
 <p>When combining multiple values using secret sharing, this will result
 in the parties owning new puzzle pieces that when put together will
 reveal the result of the computation.</p>
-<div id="secret-sharing-an-example" class="callout">
+<figure><img src="../fig/chapter1/mpc.jpg" alt="In secure multiparty computation parties collaboratively perform an analysis while holding only encrypted pieces of the data" class="figure mx-auto d-block"><div class="figcaption">In secure multiparty computation parties
+collaboratively perform an analysis while holding only encrypted pieces
+of the data</div>
+</figure><div id="secret-sharing-an-example" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -571,7 +582,9 @@ inputs with random noise. A single individual will then always be able
 to deny that their data has contributed to the final result. An
 individual has <em>plausible deniability</em> with regards to whether it
 was part of the dataset.</p>
-</section><section><h2 class="section-heading" id="blocks-upon-blocks">Blocks upon blocks<a class="anchor" aria-label="anchor" href="#blocks-upon-blocks"></a>
+<figure><img src="../fig/chapter1/differential_privacy.jpg" alt="Differential privacy replaces a subset of the data with random values" class="figure mx-auto d-block"><div class="figcaption">Differential privacy replaces a subset of the
+data with random values</div>
+</figure></section><section><h2 class="section-heading" id="blocks-upon-blocks">Blocks upon blocks<a class="anchor" aria-label="anchor" href="#blocks-upon-blocks"></a>
 <a class="anchor" aria-label="anchor" href="#blocks-upon-blocks"></a></h2>
 <hr class="half-width"><p>The previously mentioned techniques are not used in isolation, but
 are usually stacked on top of eachother to mitigate the privacy risks
@@ -605,7 +618,9 @@ partitioning.</p>
 <p>Data can even be horizontally and vertically partitioned at the same
 time. In these cases, it may be necessary to combine multiple
 techniques.</p>
-</section><section><h2 class="section-heading" id="technology-doesnt-solve-everything">Technology doesn’t solve everything<a class="anchor" aria-label="anchor" href="#technology-doesnt-solve-everything"></a>
+<figure><img src="../fig/chapter1/horizontal_vertical_partitioning.jpg" alt="Horizontal and vertical partitioning refers to how data is separated" class="figure mx-auto d-block"><div class="figcaption">Horizontal and vertical partitioning refers to
+how data is separated</div>
+</figure></section><section><h2 class="section-heading" id="technology-doesnt-solve-everything">Technology doesn’t solve everything<a class="anchor" aria-label="anchor" href="#technology-doesnt-solve-everything"></a>
 <a class="anchor" aria-label="anchor" href="#technology-doesnt-solve-everything"></a></h2>
 <hr class="half-width"><p>You have now learned about various technologies for analyzing data
 while preserving privacy of individuals. However, it should be
@@ -698,7 +713,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/chap1_introduction_FL.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/chap1_introduction_FL.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-07-30",
+  "dateModified": "2024-08-13",
   "datePublished": "2024-08-13"
 }
 
