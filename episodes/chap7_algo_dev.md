@@ -98,13 +98,20 @@ def partial_function(df1: pd.DataFrame, df2: pd.DataFrame, column: str):
 
 ```
 
-### Interaction with the node and server
+### Wrapping the algorithm functions
 
 The algorithm client and data loading tools provide you with the vantage6 tools in the
-algorithm code itself. However, the algorithm tools also ensure that all the necessary
-information is passed to the algorithm, and that the output is returned to the server.
-Mostly this is 'magic' that happens in the background, but you should be aware that
-the following things are taken care of:
+algorithm code itself. However, the algorithm tools also provide an interface between
+the algorithm and the node, which we call the algorithm wrapper. The wrapper ensures
+that all the necessary information is passed to the algorithm, and that the output is
+returned to the server. Mostly this is 'magic' that happens in the background. It is
+important to know about it though, as it can help you understand how the algorithm
+interacts with the vantage6 infrastructure, and you can use the wrapper to e.g. pass
+environment variables to the algorithm.
+
+![Algorithm wrapper](fig/chapter7/algorithm_wrapper.png)
+
+The following items are handled by the wrapper:
 
 - **Input handling**: the algorithm tools read the input from the node and provide it
   to the arguments of the algorithm function. In the example above, the `column` argument
@@ -115,6 +122,8 @@ the following things are taken care of:
   you want to pass the database connection string to the algorithm.
 - **Token**: the algorithm tools ensure that the algorithm uses the security token
   to be able to get the allowed resources from the server.
+- **Data**: while the actual data is handled by the `@data` decorator, the algorithm tools
+  provide the decorator with environment variables so that it knows where to find the data.
 - **Output handling**: the output from the algorithm functions is written to a file
   that the node will send back to the server.
 
@@ -253,6 +262,11 @@ We provide a [pandas dataframe](https://pandas.pydata.org/pandas-docs/stable/ref
 :::::::::::::::::::::::: solution
 
 ## Solution
+
+You can find the solution in the
+[workshop-average-boilerplate repository](https://github.com/vantage6/workshop-average-boilerplate/tree/implemented-functions).
+This branch contains the implementation of the average algorithm. Below is a description
+of what you need to change compared to the boilerplate you generated in Challenge 1.
 
 In your central function:
 
@@ -570,6 +584,11 @@ function to group the data.
 
 :::::::::::::::::::::::: solution
 
+A working solution is provided in the
+[workshop-average-boilerplate repository](https://github.com/vantage6/workshop-average-boilerplate/tree/advanced-challenge).
+Of course, multiple solutions are possible. Below is a description of what you need to
+change compared to the algorithm implementation you created in Challenge 2.
+
 Your partial function may now look like this:
 
 ```python
@@ -622,8 +641,8 @@ And when running this, the final results are:
 
 Gold medal winners are older than silver medal winners. Practice makes perfect!
 
-In case you want to be perfect, practice some more. Be creative and think of other
-questions you can answer with this dataset!
+In case you also aspire to be perfect, feel free to practice some more. Be creative and
+think of other questions you can answer with this dataset!
 
 ::::::::::::::::::::::::::::::::::
 
@@ -669,7 +688,7 @@ simply run the algorithm on the prepared data.
 
 For algorithm developers, the sessions mean that you should then split your algorithm
 functions into data preparation, analysis, postprocessing, etc. The vantage6 team will
-make sure that proper documentation is available to help you with this transition.
+make sure that proper documentation will be available to help you with this transition.
 
 ### Algorithm build service
 
