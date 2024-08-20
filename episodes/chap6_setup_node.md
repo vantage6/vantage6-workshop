@@ -141,7 +141,7 @@ The command will show a wizard to guide you through the configuration process in
 ```bash
 ? Please enter a configuration-name: node1
 ? Enter given api-key: ***
-? The base-URL of the server: https://cotopaxi.vantage6.ai/
+? The base-URL of the server: https://server.workshop.vantage6.ai
 ? Enter port to which the server listens: 5000
 ? Path of the api: /api
 ? Task directory path: ***/vantage6/node/node1
