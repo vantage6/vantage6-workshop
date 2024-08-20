@@ -51,12 +51,16 @@ In this lesson, you will use your laptop, but in a production scenario, we recom
 
 The following software must be installed before installing the vantage6 node:
 
-- Recommended Operating system: Ubuntu 20.04+, MacOS Big Sur+, or Windows 10+
-- Python
-  - Python v3.10 for vantage6 version 3.8.0 or higher
-  - Python v3.7 for other lower versions of vantage6
-  - Highly recommended to create a new, clean virtual or conda environment for vantage6 node
-- Docker (always latest version)
+- Recommended operating system: Ubuntu 20.04+ , MacOS Big Sur+, or Windows 10+
+- Docker Desktop (Windows, MacOS) or the Docker Engine (Linux)
+- Miniconda (latest version)
+- Python v3.10
+- Python packages:
+  - [jupyterlab](https://pypi.org/project/jupyterlab/)
+  - [vantage6==4.7.x](https://pypi.org/project/vantage6/)
+  - [vantage6-client==4.7.x](https://pypi.org/project/vantage6-client/)
+  - [vantage6-algorithm-tools==4.7.x](https://pypi.org/project/vantage6-algorithm-tools/)
+- A code editor [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm/) or something similar
 
 You should already have installed the requirements before coming to this lesson. They are detailed in the [Setup section](../setup.md).
 
