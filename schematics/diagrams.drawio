@@ -483,7 +483,7 @@
         <mxCell id="vTHJU8s-n8bcqjjZv1Ft-7" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.gear;" vertex="1" parent="ZfySOu8i3EVlC0t5nygD-1">
           <mxGeometry x="1114" y="1397" width="35" height="35" as="geometry" />
         </mxCell>
-        <mxCell id="vTHJU8s-n8bcqjjZv1Ft-11" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Node R&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;(Org N)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fontSize=17;fillColor=#d5e8d4;strokeColor=#82b366;align=left;" vertex="1" parent="ZfySOu8i3EVlC0t5nygD-1">
+        <mxCell id="vTHJU8s-n8bcqjjZv1Ft-11" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Node R&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;(Org 2)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fontSize=17;fillColor=#d5e8d4;strokeColor=#82b366;align=left;" vertex="1" parent="ZfySOu8i3EVlC0t5nygD-1">
           <mxGeometry x="1278" y="1230" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="vTHJU8s-n8bcqjjZv1Ft-13" value="" style="group" vertex="1" connectable="0" parent="ZfySOu8i3EVlC0t5nygD-1">
