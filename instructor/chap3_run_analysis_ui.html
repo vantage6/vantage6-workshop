@@ -346,7 +346,7 @@ collaborations</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Running a PET analysis without programming on vantage6</h1>
-        <p>Last updated on 2024-08-13 |
+        <p>Last updated on 2024-08-20 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap3_run_analysis_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -458,7 +458,44 @@ an <strong>algorithm</strong> as part of a
 that are executed on data. Compatible algorithms are those that adhere
 to the Vantage6 framework, enabling them to be securely distributed to
 <strong>nodes</strong> for execution.</p></li>
-</ul><div class="section level3">
+</ul><div id="mapping-vantage6-to-real-life" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="mapping-vantage6-to-real-life" class="callout-inner">
+<h3 class="callout-title">Mapping vantage6 to “real life”<a class="anchor" aria-label="anchor" href="#mapping-vantage6-to-real-life"></a>
+</h3>
+<div class="callout-content">
+<p>Let’s imagine a usecase where you would like to study an illness
+accross 3 different academic hospitals in the Netherlands: VUmc,
+Maastricht UMC+, and UMC Utrecht.</p>
+<p>You are going to study together with one other person in your group
+named Daphne.</p>
+<p>How would these entities map to your potential usecase?</p>
+<ol style="list-style-type: decimal"><li>Which organizations would be part of the collaboration?</li>
+<li>How many nodes would you run?</li>
+<li>How many users would be created?</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<ol style="list-style-type: decimal"><li>In this case the organizations would be the academic hospitals as
+well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht
+<em>and</em> your organization.</li>
+<li>One node for every academic hospital, so 3</li>
+<li>There will be 2 users running tasks. Additionally there could be
+more users for administrating the collaboration.</li>
+</ol></div>
+</div>
+</div>
+</div>
+<div class="section level3">
 <h3 id="where-are-these-concepts-in-the-ui">Where are these concepts in the UI?<a class="anchor" aria-label="anchor" href="#where-are-these-concepts-in-the-ui"></a></h3>
 <p>After logging in to the vantage6 UI, you will see the start page.</p>
 <figure><img src="../fig/chapter3/ui_start_page.png" alt="vantage6 UI start page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI start page</div>
@@ -474,13 +511,12 @@ The entities are divided into tabs: <code>Organizations</code>,
 <code>Nodes</code>. You can click on an entity to see more details or to
 edit the entity. We will get back to this later in more detail.</p>
 <figure><img src="../fig/chapter3/ui_admin_page.png" alt="vantage6 UI administration page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI administration page</div>
-</figure><div id="challenge-1-get-familiar-with-the-vantage6-ui" class="callout discussion">
+</figure><div id="get-familiar-with-the-vantage6-ui" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="challenge-1-get-familiar-with-the-vantage6-ui" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Get familiar with the vantage6
-UI<a class="anchor" aria-label="anchor" href="#challenge-1-get-familiar-with-the-vantage6-ui"></a>
+<div id="get-familiar-with-the-vantage6-ui" class="callout-inner">
+<h3 class="callout-title">Get familiar with the vantage6 UI<a class="anchor" aria-label="anchor" href="#get-familiar-with-the-vantage6-ui"></a>
 </h3>
 <div class="callout-content">
 <p>Log in to the Vantage6 UI using the credentials below (the password
@@ -496,12 +532,12 @@ challenges.</p>
 </tr></tbody></table></div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <figure><img src="../fig/chapter3/user-edit.png" alt="User-entity - edit option" class="figure mx-auto d-block"><div class="figcaption">User-entity - edit option</div>
 </figure></div>
@@ -640,12 +676,12 @@ algorithm too?</li>
 </ol></div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Solution steps </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Solution steps </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>To check the status of the nodes of each collaboration:</p>
 <ol style="list-style-type: decimal"><li>Log in to each one with the given credentials</li>
@@ -677,12 +713,12 @@ first. Use the credentials given for Challenge #4 to register the
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Solution steps </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Solution steps </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>You will now link the ‘community-store’ to the collaboration whose
 nodes are ready for it.</p>
@@ -822,7 +858,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/chap3_run_analysis_ui.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/chap3_run_analysis_ui.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-08-13",
+  "dateModified": "2024-08-20",
   "datePublished": "2024-08-20"
 }
 
