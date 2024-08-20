@@ -416,12 +416,12 @@ If you want to reset the API key for a node, you can do so by following these st
 2. Click on the `Nodes` tab in the administration page.
 3. Click on the tab of the node you want to reset the API key for in the list of nodes.
 
-![Reset API key for a node](fig/reset_api_key_01.png)
+![Reset API key for a node](fig/chapter6/reset_api_key_01.png)
 
 4. Click on the `Reset API key` button.
    - You may see a dialog box asking you to download the new API key.
 
-![Download new API key](fig/reset_api_key_02.png)
+![Download new API key](fig/chapter6/reset_api_key_02.png)
 
 You will see a message:
 
