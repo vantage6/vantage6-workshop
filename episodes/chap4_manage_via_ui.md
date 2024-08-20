@@ -80,9 +80,9 @@ Note that the role `Collaboration Admin` does not have the permission to create 
 
 In this section, we will go through the steps to create a new organization, a new user and a new collaboration using the vantage6 UI.
 
-First you need to log in to the vantage6 UI, and then go to the `Administration` page. You can find the `Administration` button in the top right corner of the start page.
+First you need to log in to the vantage6 UI, and then go to the `Administration` page. You can find the `Administration` tab in the left side of the start page. Clicking on the `Administration` tab will show you all tabs for vantage6 entities.
 
-![vantage6 UI administration page](fig/ui_admin_page.png)
+![vantage6 UI administration page](fig/chapter4/ui_admin_page.png)
 
 ### Create a new organization
 
@@ -94,7 +94,7 @@ It's quite straightforward to create a new organization in vantage6. Here are th
    - The `Upload public key` field is optional. You can upload a public key for the organization if you want to use encryption in the collaboration. But note that we DO NOT use encryption in this course.
 4. Click on the `Submit` button to create the new organization.
 
-![Create a new organization](fig/create_org.png)
+![Create a new organization](fig/chapter4/create_org.png)
 
 ### Create a new user
 
@@ -107,7 +107,7 @@ Now let's create a new user for the organization we just created. Here are the s
    - You can assign roles to the user by selecting them from the `Roles` dropdown. Here we assign the `Researcher` role to the new user. You can give the user more permissions by assigning multiple roles or select the operation boxes in the `Permissions` section.
 4. Click on the `Submit` button to create the new user.
 
-![Create a new user](fig/create_user.png)
+![Create a new user](fig/chapter4/create_user.png)
 
 ### Create a new collaboration
 
@@ -120,12 +120,12 @@ A collaboration is a collection of one or more organizations. Let's create a new
    - You can select the organizations that will participate in the collaboration by selecting them from the `Organizations` dropdown.
    - By default, we select the `Register nodes` box. This will ensure the nodes of the organizations are registered in the collaboration. If you don't select this box, you will have to register the nodes manually later.
 
-![Create a new collaboration](fig/create_collab_01.png)
+![Create a new collaboration](fig/chapter4/create_collab_01.png)
 
 4. Click on the `Submit` button to create the new collaboration.
    - After submitting the form, you may see a dialog box to ask you to download the API key (on MacOS) or a dialog points out that the API key has been downloaded (on Windows). The API key is used to authenticate the nodes in the collaboration.
 
-![Download API keys](fig/create_collab_02.png)
+![Download API keys](fig/chapter4/create_collab_02.png)
 
 You will see a message:
 
@@ -143,7 +143,7 @@ You will need the API keys when you run the nodes to authenticate with the vanta
    - You can also see the algorithm store available for the collaboration. You can add a algorithm store for the collaboration by clicking the `Add algorithm store` button.
    - You can also see the studies of the collaboration. You can add a study by clicking the `Add study` button.
 
-![Collaboration details](fig/create_collab_03.png)
+![Collaboration details](fig/chapter4/create_collab_03.png)
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
