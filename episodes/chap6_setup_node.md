@@ -58,8 +58,7 @@ The following software must be installed before installing the vantage6 node:
   - Highly recommended to create a new, clean virtual or conda environment for vantage6 node
 - Docker (always latest version)
 
-You should already have installed the requirements before coming to this lesson. They
-are detailed in the [Setup section](../setup.md).
+You should already have installed the requirements before coming to this lesson. They are detailed in the [Setup section](../setup.md).
 
 ::: callout
 
@@ -75,8 +74,7 @@ are detailed in the [Setup section](../setup.md).
 
 The Python package `vantage6` provides a command-line interface (CLI) to manage the vantage6 infrastructure.
 
-To install this CLI package, run the following command in your Python environment, provided
-you had not done so already in the [Setup section](../setup.md):
+To install this CLI package, run the following command in your Python environment, provided you had not done so already in the [Setup section](../setup.md):
 
 ```bash
 # First go to your python virtual environment
