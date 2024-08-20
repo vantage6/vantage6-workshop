@@ -52,7 +52,8 @@ The vantage6 **server** acts as communication hub between clients and nodes. The
 
 - **Docker registry**: Contains algorithms stored in container images which can be used by clients to request a computation. The node will retrieve the algorithm from this registry and execute it. It is possible to use public registries for this purpose like [Docker hub](https://hub.docker.com/) or [Github Containers](https://ghcr.io). However it is also possible to host your own registry, for example a [Harbor](https://goharbor.io/) instance.
 
-- **Algorithm store**: A repository for trusted algorithms within a certain project. [Algorithm stores](https://docs.vantage6.ai/en/main/algorithm_store/index.html) can be coupled to specific collaborations or to all collaborations on a given server. Note that one algorithm store can also be linked to multiple servers - you should only create one in your project if you need a custom set of algorithms.
+- **Algorithm store**: A repository for trusted algorithms within a certain project. [Algorithm stores](https://docs.vantage6.ai/en/main/algorithm_store/index.html) can be coupled to specific collaborations or to all collaborations on a given server. Note that one algorithm store can also be linked to multiple servers - you should only create one in your project if you need a custom set of algorithms. 
+- While the container images of the algorithms are hosted in the aforementioned Docker registry, the algorithm store contains metadata for identifying and use such container images. 
 
 - [**EduVPN instance**](https://docs.vantage6.ai/en/main/server/optional.html#eduvpn) (_optional_): If algorithms need to be able to engage in peer-to-peer communication, a VPN server can be set up to help them do so.
 
@@ -62,7 +63,7 @@ The vantage6 **server** acts as communication hub between clients and nodes. The
 
 The data station hosts the [node](https://docs.vantage6.ai/en/main/node/index.html) (vantage6-node), that has access to the local data and execute algorithms, and one or more databases.
 
-- **Vantage6 node**: The node is responsible for executing the algorithms on the local data. It protects the data by allowing only specified algorithms to be executed after verifying their origin. The node is responsible for picking up the task, executing the algorithm and sending the results back to the server. The node needs access to local data. For more details see the technical documentation of the node.
+- **Vantage6 node**: The node is responsible for executing the algorithms on the local data. It protects the data by allowing only specified algorithms to be executed after verifying their origin. The node is responsible for picking up the task and running them in parallel, executing the algorithm and sending the results back to the server. The node needs access to local data. For more details see the [technical documentation of the node](https://docs.vantage6.ai/en/main/node/index.html).
 
 - **Database**: The database may be in any format that the algorithms relevant to your use case support. The currently supported database types are csv, parquet, SQL, Sparql, Excel, and OMOP.
 
