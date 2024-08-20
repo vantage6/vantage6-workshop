@@ -191,5 +191,9 @@ Currently, vantage6 is focused on privacy enhancing techniques. Some of these te
 Algorithms in vantage6 are shipped as container images. Currently, this image can be built by the user or some external process. We want to extend vantage6 with a build service that can build the container image for you. This will make it easier to develop and deploy algorithms in vantage6 but more importantly, it will enhance the security of the platform as they are build in a controlled environment.
 
 ::: keypoints
-These are the keypoints
+- vantage6 is an open source platform to execute PET analysis.
+- A client is used to interact with the system.
+- A central server orchestrates the execution of algorithms.
+- The nodes contain the data and execute the computation.
+- The algorithms in vantage6 have a federated part, running on local data, and a central part, aggregating the results.
 :::
