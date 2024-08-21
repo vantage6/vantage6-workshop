@@ -27,7 +27,7 @@ exercises: 3
 To navigate vantage6's UI seamlessly, it's essential to grasp the platform's fundamental concepts and their interconnections, as the UI design reflects these relationships. These fundamental concepts are defined as follows:
 
 - An **Organization** is a group of users that share a common goal or interest (e.g., a consortium, an institute, etc.). 
-- A **Collaboration** involves one or more **organizations** working together towards a shared objective.
+- A **Collaboration** involves one or more **organizations** working together towards a shared objective. 
 - A **Node** is a vantage6 component with access to the **organization** data, which is capable of executes algorithms on it. It represents the organization's contributions to the network.
 - A **Task** is a request for the execution of a given analysis **algorithm** on one or more **organizations** within a **collaboration**. These execution requests are handled by the corresponding organizations' **nodes**.
 - An **user** is a person that belongs to one **organization** who can create **tasks** for one or more **organizations** within a **collaboration**.
@@ -42,6 +42,12 @@ The following diagram illustrates what a collaboration between two organizations
 The following diagram expand the previous scenario further: what if `Organization 1` needs to participate on an additional **collaboration** with another **organization** (e.g., `Organization 2`)? In this case, `Organization 1` will have two running nodes, one for each collaboration. Moreover, as also depicted on the diagram below, each **collaboration** can make use of one or more **algorithm stores**:
 
 ![](fig/chapter3/v6-core-concepts-illustrated.drawio.png)
+
+
+Finally, the concept of **study** is an important one to be considered when using vantage6 for data analysis. A **study** is a subset of organizations from a given collaboration that are involved in a specific research question. By setting up studies, it can be easier to send tasks to a subset of the organizations in a collaboration and to keep track of the results of these analyses. For example, in the `Collaboration W` below there are six organizations involved. It may happen that in this particular collaboration there are two different research questions. One involves data from organizations 1, 2, 3 and 4; wheras the other is based on data from organizations 4, 5 and 6. Upon setting up the studies `Study Alpha` and `Study Beta`, as a resarcher you can choose three different targets for your data analysis tasks: the whole `Collaboration W` organization (hence, on nodes `A` to `F`), the `Study Alpha` (nodes `A` to `D`) or the `Study Beta` (nodes `D` to `F`).
+
+![](fig/chapter3/v6-concepts-study.png)
+
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
