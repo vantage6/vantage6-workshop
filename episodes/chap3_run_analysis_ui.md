@@ -34,9 +34,10 @@ To navigate vantage6's UI seamlessly, it's essential to grasp the platform's fun
 - An **algorithm** is a computational model or process -that adhere to the vantage6 framework-, which can be securely distributed to **nodes** for execution on the corresponding organization's data.
 - An **algorithm store** is a centralized platform for managing pre-registered **algorithms**. This serves as an alternative to using algorithms from unknown authors or those lacking transparency regarding their development process and status.
 
-The following diagram illustrates what a collaboration between two organizations would look like. In this scenario, users from both organizations -with the right roles- would be able to request the execution of multiple **tasks** on `Collaboration A`, based on one of the **algorithms** registered on a given **algorithm store**.
+The diagram below illustrates a collaboration between two organizations. In this scenario, users from `Organization 1` and `Organization 3` —with the appropriate credentials— can request the execution of tasks within Collaboration A. These **tasks** will, in turn, execute one of the **algorithms** registered in an **algorithm store** trusted by the collaboration.
 
-![](fig/chapter3/v6-task-and-user-concepts-illustrated.drawio.png)
+
+![](fig/chapter3/collaboration_animated_exp.gif)
 
 
 The following diagram expand the previous scenario further: what if `Organization 1` needs to participate on an additional **collaboration** with another **organization** (e.g., `Organization 2`)? In this case, `Organization 1` will have two running nodes, one for each collaboration. Moreover, as also depicted on the diagram below, each **collaboration** can make use of one or more **algorithm stores**:
