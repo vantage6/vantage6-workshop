@@ -44,7 +44,10 @@ The following diagram expand the previous scenario further: what if `Organizatio
 ![](fig/chapter3/v6-core-concepts-illustrated.drawio.png)
 
 
-Finally, the concept of **study** is an important one to be considered when using vantage6 for data analysis. A **study** is a subset of organizations from a given collaboration that are involved in a specific research question. By setting up studies, it can be easier to send tasks to a subset of the organizations in a collaboration and to keep track of the results of these analyses. For example, in the `Collaboration W` below there are six organizations involved. It may happen that in this particular collaboration there are two different research questions. One involves data from organizations 1, 2, 3 and 4; wheras the other is based on data from organizations 4, 5 and 6. Upon setting up the studies `Study Alpha` and `Study Beta`, as a resarcher you can choose three different targets for your data analysis tasks: the whole `Collaboration W` organization (hence, on nodes `A` to `F`), the `Study Alpha` (nodes `A` to `D`) or the `Study Beta` (nodes `D` to `F`).
+Finally, the concept of **study** is an important one when using vantage6 for data analysis. A **study** represents a subset of organizations within a given collaboration that are engaged in a specific research question. By setting up studies, you can more efficiently assign tasks to a specific group of organizations within a collaboration and better manage the results of these analyses. 
+
+For example, consider the `Collaboration W` below, which includes six organizations. This collaboration might involve two distinct research questions: one that requires data from organizations 1, 2, 3, and 4, and another that focuses on data from organizations 4, 5, and 6. By establishing `Study Alpha` and `Study Beta`, you, as a researcher, can target your data analysis tasks in three different ways: you can address the entire `Collaboration W` (including nodes `A` to `F`), focus on `Study Alpha` (nodes `A` to `D`), or concentrate on `Study Beta` (nodes `D` to `F`).
+
 
 ![](fig/chapter3/v6-concepts-study.png)
 
