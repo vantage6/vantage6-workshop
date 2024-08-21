@@ -100,11 +100,6 @@ On the administration page, you can manage the entities of vantage6. The entitie
 
 Log in to the Vantage6 UI using the credentials below (the password will be given by the instructors). Once logged in, navigate to the administration page to familiarize yourself with the entities there. Then, try to update your email, first name, and last name, but do not change your username, as it will be needed for some of the follow-up challenges.
 
-|  User     |  Roles        |
-|-----------|---------------|
-|PhY24-rs1  | Researcher    |
-
-
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
@@ -119,13 +114,6 @@ Log in to the Vantage6 UI using the credentials below (the password will be give
 
 
 ## From theory to practice: a hypothetical case study using vantage6 collaborations
-
-
-gender	age	height	weight	isOverweight	ageGroup
-
-
-
-
 
 As previously discussed, in vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
 
@@ -160,13 +148,13 @@ Analyze the algorithm based on the code and its comments and answer the followin
 
 - How are the `central_average` and `partial_average` functions related?
 - Why does the `central_average` function, unlike `partial_average`, **not** get any data as an input?
-- Analyze and discuss the potential outcomes if a Task to execute `central_average` is initiated within a collaboration where one of the nodes is offline.
+- Analyze and discuss the potential outcomes if a Task to execute `central_average` is initiated within a collaboration or study where one of the nodes is offline.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 3: exploring the status of the collaboration and the studies configured on a vantage6 server
+## Challenge 3: exploring the status of the collaboration its related studies
 
 The instructors will provide you credentials for accessing as a researcher of one of the institutions from the collaboration.
 
@@ -196,35 +184,38 @@ To check the status of the nodes of each collaboration:
 
 ## Challenge 4: your first algorithm execution as a researcher
 
-Now, you'll take on the role of the researcher within the collaboration for which you've just established the algorithm store. With this role, you will finally request the execution of the algorithm.
+Now, you'll play the role of the researcher within the collaboration you have just examined. With this role, you will finally request the execution of the algorithm.
 
-1. log in as a researcher using the corresponding credentials below:
+1. Log in with the credentials provided by the instructors.
 
-   | User      | Roles      | Collaboration |
-   | --------- | ---------- | ------------- |
-   | PhY24-rs1 | Researcher | PhY24         |
-   | GHT-rs1   | Researcher | GHT           |
+2. Select `Analyze` on the Administration option from the panel on the left, and then select your collaboration.
 
-2. Select the collaboration given on the front page, and select 'Tasks' from the panel on the left.
-   ![Collaboration researcher view](fig/chapter3/collab-researcher-view.png)
+3. Select `+ Create task` to create a new task on your collaboration.
 
-3. If you have set up everything correctly, the 'Average' algorithm should be now listed under the '_Select which algorithm you want to run_' dropdown menu. Select it, and provide a name and a description.
+   ![](fig/chapter3/create-task.png)
 
-   ![Algorithm selection](fig/chapter3/task-alg-selection.png)
+4. As the first step, you can choose between running the task on the entire collaboration, or on one particular study (i.e., on a subset of the collaboration's institutions). Choose the study that, according to your analysis on Challenge #3, is still NOT ready to execute a _federated average_ task.
 
-4. Now the UI will let you choose between the two functions you explored in Challenge #1. First, try to run the `partial_average` on all the nodes individually.
+   ![](fig/chapter3/select-study.png)
 
-   ![Running a function on all nodes](fig/chapter3/task-partial-on-individial-orgs.png)
+5. The 'Average' algorithm should be listed under the '_Select which algorithm you want to run_' dropdown menu. Select it, and provide a name and a description.
 
-5. Select the 'default' database, choose any numerical column as a parameter, and then click on 'Submit'.
+   ![](fig/chapter3/alg-selection.png)
 
-6. The task you just requested should be listed with a 'pending' status. Once finished, explore and download the provided results:
-   ![alt text](fig/chapter3/task-results.png)
+6. Now the UI will let you choose between the two functions you explored in Challenge #2. For now try to run the `partial_average`, selecting ALL the organizations.
 
+   ![](fig/chapter3/selecting-alg-and-nodes.png)
+
+7. Select the 'default' database, choose any numerical column relevant for the study you selected, and then click on 'Submit'.
+
+8.  The task you just requested should be listed with a 'pending' status. Once finished, explore and download the provided results.
+   
 Based on these results, answer the following:
 
-1. If you repeat the same exercise but with the `central_average` function (refer to Challenge #2 if needed), which organization nodes should you choose this time to actually calculate the overall (across all the datasets) average? Experiment with this and discuss the results with the instructors.
+1. What just happened? Did the `partial_average` function fail or not?
 
-2. What would happen if you select an alpha-numerical column (e.g., 'participant_pseudo_id')? Do this experiment and explore the generated error logs. Discuss with the instructors how these logs can be used to diagnose any task execution issues.
+2. If you do the same process, this time on the study that is ready for new task, and using the `central_average` function (refer to Challenge #2 if needed), which organization or organizations should you choose this time? Experiment with this and discuss the results with the instructors.
+
+3. What would happen if you select an alpha-numerical column (e.g., 'gender')? Do this experiment and explore the generated error logs. Discuss with the instructors how these logs can be used to diagnose any task execution issues.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
