@@ -123,7 +123,7 @@ To illustrate this, let's analyze a hypothetical scenario: an international coll
 
 - _The Effect of Gender on Height Development Across Various Age Groups_  **(GGA2024)**.
 
-The first study, **AGOT2024**, involves the analysis of age and weight-related data available on a subset of the institutions participating on the collaboration. Likewise, **GGA2024** involves the analysis of age and height related data from a different (and potentially overlapping) subset of the collaboration's participants. The diagram below illustrates the kind of configuration you will be working with. Keep in mind that your configuration may have different node and collaboration names, an different study subsets.
+The first study, **AGOT2024**, involves the analysis of age and weight-related data available on a subset of the institutions participating in the collaboration. Likewise, **GGA2024** involves the analysis of age and height-related data from a different (and potentially overlapping) subset of the collaboration's participants. The diagram below illustrates the kind of configuration you will be working with. Keep in mind that your configuration may have different node and collaboration names, an different study subsets.
 
 
 ![Hypothetical collaborations scenario](fig/chapter3/case-study-example.drawio.png)
