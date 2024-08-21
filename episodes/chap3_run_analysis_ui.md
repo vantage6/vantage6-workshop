@@ -120,18 +120,25 @@ Log in to the Vantage6 UI using the credentials below (the password will be give
 
 ## From theory to practice: a hypothetical case study using vantage6 collaborations
 
+
+gender	age	height	weight	isOverweight	ageGroup
+
+
+
+
+
 As previously discussed, in vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
 
-To illustrate this, let's analyze a hypothetical scenario: two international research projects relying on vantage6 technology on the same server:
+To illustrate this, let's analyze a hypothetical scenario: an international collaboration project of multiple health research institutes, working together on two studies:
 
-- The first one, **PhY2024** (Prevalence of hypertension and its association with lifestyle), requires determining the average systolic and diastolic blood pressure levels of the population across France, Spain, and The Netherlands.
-- The second, **GHT** (Global Health Trends), requires determining the Average BMI across The Netherlands, Spain, and Germany.
+- _Age-Related Variations in Overweight Prevalence: A Comparative Study Across Gender and Age Groups_ **(AGOT2024)** .
 
-Although both projects are unrelated and independent from each other, the data from Spain and The Netherlands -required by both- is provided by the same large-scale cohort studies, namely CANTABRIA (Spain) and LIFELINES (The Netherlands). However, legal agreements dictate that each project is granted access solely to the data essential for its intended purposes (gaining access to the whole set of variables study increases risks of inference attacks). Data from the French and German population (for **PhY2024** and **GHT** studies), on the other hand, will be provided by the GAZEL and GNC prospective cohort studies.
+- _The Effect of Gender on Height Development Across Various Age Groups_  **(GGA2024)**.
 
-Following vantage6's concepts, this scenario would involve two collaborations, one for each research project. As described in previous episodes, a vantage6 node is needed for each collaboration. Consequently, as illustrated in the diagram below, both CANTABRIA and LIFELINES organizations require two vantage6 data-node instances each. Since each data node defines its own rules for data access and algorithm usage, this ensures that analyses from various collaborations, even those involving shared organizations/datasets, will not conflict with one another.
+The first study, **AGOT2024**, involves the analysis of age and weight-related data available on a subset of the institutions participating on the collaboration. Likewise, **GGA2024** involves the analysis of age and height related data from a different (and potentially overlapping) subset of the collaboration's participants. The diagram below illustrates the kind of configuration you will be working with. Keep in mind that your configuration may have different node and collaboration names, an different study subsets.
 
-![Hypothetical collaborations scenario](fig/chapter3/orgs_n_collabs_scenario.png)
+
+![Hypothetical collaborations scenario](fig/chapter3/case-study-example.drawio.png)
 
 ### Algorithms trustworthiness in a federated setting
 
@@ -159,19 +166,14 @@ Analyze the algorithm based on the code and its comments and answer the followin
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 3: exploring the status of existing collaborations configured on a vantage6 server
+## Challenge 3: exploring the status of the collaboration and the studies configured on a vantage6 server
 
-Below are the administrator credential of GHT and PhY24 collaborations (passwords will be given by the instructors).
+The instructors will provide you credentials for accessing as a researcher of one of the institutions from the collaboration.
 
-| User        | Roles               | Collaboration |
-| ----------- | ------------------- | ------------- |
-| PhY24-admin | Collaboration Admin | PhY24         |
-| GHT-admin   | Collaboration Admin | GHT           |
+Using these credentials see which institutions were asigned to the two studies. Also check the status of the corresponding nodes. Given this and your algorithm analysis from Challenge #2 answer the following:
 
-Using these credentials check the status of both collaborations. Given this and your algorithm analysis from Challenge #2 answer the following:
-
-1. Which collaborations are ready for creating a Task for the **federated average** algorithm?
-2. If one of the collaborations is not ready, which organization you would need to contact in order to make it ready for executing the algorithm too?
+1. Which study is ready for creating a Task for the **federated average** algorithm?
+2. If one of the studies is not ready, which organization you would need to contact in order to make it ready for executing the algorithm too?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
