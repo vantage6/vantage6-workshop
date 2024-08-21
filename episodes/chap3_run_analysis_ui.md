@@ -194,30 +194,7 @@ To check the status of the nodes of each collaboration:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: adding an algorithm store to an organization
-
-In order to execute the **average algorithm** on a given collaboration, considering the previous discussion on algorithm trustwortiness, you need to first register an algorithm store on it first. Use the credentials given for Challenge #4 to register the 'community store', which contains the said algorithm: `https://store.cotopaxi.vantage6.ai`
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::: solution
-
-## Solution steps
-
-You will now link the 'community-store' to the collaboration whose nodes are ready for it.
-
-1. Login into the organization using the corresponding credentials from above.
-2. Click on 'Administration' on the top of the UI, select 'Collaborations' on the left panel, and then select the corresponding collaboration.
-3. Click on '+ Add algorithm store'
-4. Add the vantage6's community store. Use any descrption as name, and provide community store URL: `https://store.cotopaxi.vantage6.ai`
-5. Make sure the store is now shown on the collaboration details:
-   ![Community store entry on the collaboration details](fig/chapter3/community-store-entry.png)
-
-:::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 5: your first algorithm execution as a researcher
+## Challenge 4: your first algorithm execution as a researcher
 
 Now, you'll take on the role of the researcher within the collaboration for which you've just established the algorithm store. With this role, you will finally request the execution of the algorithm.
 
