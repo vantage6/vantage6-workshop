@@ -176,8 +176,8 @@ Using these credentials see which institutions were asigned to the two studies. 
 To check the status of the nodes of each collaboration:
 
 1. Log in to each one with the given credentials
-2. Click on 'Administration' on the top of the UI
-3. select 'Collaborations' on the left panel, and then select the corresponding collaboration.
+2. Click on 'Administration' on the left panel of the UI
+3. select 'Collaborations', and then select the corresponding collaboration.
 4. If there are 'offline' nodes, click on the 'Nodes' panel on the left and check when these were seen for the last time.
 
 ![Collaboration status](fig/chapter3/collab-status-offline.png)
