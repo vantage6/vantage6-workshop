@@ -55,17 +55,9 @@ The vantage6 **server** acts as communication hub between clients and nodes. The
 - **Algorithm store**: A repository for trusted algorithms within a certain project. [Algorithm stores](https://docs.vantage6.ai/en/main/algorithm_store/index.html) can be coupled to specific collaborations or to all collaborations on a given server. Note that one algorithm store can also be linked to multiple servers - you should only create one in your project if you need a custom set of algorithms. 
 - While the container images of the algorithms are hosted in the aforementioned Docker registry, the algorithm store contains metadata for identifying and use such container images. 
 
-- [**EduVPN instance**](https://docs.vantage6.ai/en/main/server/optional.html#eduvpn) (_optional_): If algorithms need to be able to engage in peer-to-peer communication, a VPN server can be set up to help them do so.
-
-- [**RabbitMQ**](https://docs.vantage6.ai/en/main/server/optional.html#rabbitmq) (_optional_): Is used to synchronize the messages between multiple vantage6 server instances. This is useful when you have high workloads and need to run multiple instances of the server on different machines.
-
 ### Data Station
 
-The data station hosts the [node](https://docs.vantage6.ai/en/main/node/index.html) (vantage6-node), that has access to the local data and execute algorithms, and one or more databases.
-
-- **Vantage6 node**: The node is responsible for executing the algorithms on the local data. It protects the data by allowing only specified algorithms to be executed after verifying their origin. The node is responsible for picking up the task and running them in parallel, executing the algorithm and sending the results back to the server. The node needs access to local data. For more details see the [technical documentation of the node](https://docs.vantage6.ai/en/main/node/index.html).
-
-- **Database**: The database may be in any format that the algorithms relevant to your use case support. The currently supported database types are csv, parquet, SQL, Sparql, Excel, and OMOP.
+The data station hosts the local data and the [node](https://docs.vantage6.ai/en/main/node/index.html) (vantage6-node). The **Vantage6 node** is responsible for executing the algorithms on the local data. It protects the data by allowing only specified algorithms to be executed after verifying their origin. The node is responsible for picking up the task and running them in parallel, executing the algorithm and sending the results back to the server. For more details see the [technical documentation of the node](https://docs.vantage6.ai/en/main/node/index.html).
 
 ### Client
 
@@ -76,8 +68,6 @@ The vantage6 server is an API, which means that there are many ways to interact 
 - **User interface**: The [user interface](https://docs.vantage6.ai/en/main/user/ui.html) is a web application (hosted at the server) that allows users to interact with the server. It is used to create and manage organizations, collaborations, users, tasks and algorithms. It also allows users to view and download the results of tasks. Use of the user interface recommended for ease of use.
 
 - **Python client**: The [vantage6 python client](https://docs.vantage6.ai/en/main/user/pyclient.html) <python-client> is a Python package that allows users to interact with the server from a Python environment. This is especially usefull for data scientists who want to integrate vantage6 into their workflow.
-
-- **API**: It is also possible to interact with the vantage6-server using the [API](https://docs.vantage6.ai/en/main/user/api.html) directly.
 
 ## How algorithms run in vantage6
 
