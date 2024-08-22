@@ -24,47 +24,49 @@ exercises: 3
 
 ## Vantage6 user interface basics
 
-To navigate vantage6's UI seamlessly, it's essential to grasp the platform's fundamental concepts and their interconnections, as the UI design reflects these relationships. The following is a simplified model of vantage6 concepts, where a `1-n` relationship means that the entity on the left side of the relationship is related to one or more entities on the right side. For instance, a **collaboration** involves one or more **nodes**, but each **node** can only be linked to exactly one **collaboration**. An `n-n` relationship is a many-to-many relationship: for instance, a **collaboration** can involve multiple **organizations**, and at the same time, each **organization** can participate in multiple **collaborations**.
+To navigate vantage6's UI seamlessly, it's essential to grasp the platform's fundamental concepts and their interconnections, as the UI design reflects these relationships. These fundamental concepts are defined as follows:
 
-![Vantage6 core concepts](fig/chapter3/v6_entitites_simplified.png)
+- An **Organization** is a group of users that share a common goal or interest (e.g., a consortium, an institute, etc.). 
+- A **Collaboration** involves one or more **organizations** working together towards a shared objective. 
+- A **Node** is a vantage6 component with access to the **organization** data, which is capable of executes algorithms on it. It represents the organization's contributions to the network.
+- A **Task** is a request for the execution of a given analysis **algorithm** on one or more **organizations** within a **collaboration**. These execution requests are handled by the corresponding organizations' **nodes**.
+- An **user** is a person that belongs to one **organization** who can create **tasks** for one or more **organizations** within a **collaboration**.
+- An **algorithm** is a computational model or process -that adhere to the vantage6 framework-, which can be securely distributed to **nodes** for execution on the corresponding organization's data.
+- An **algorithm store** is a centralized platform for managing pre-registered **algorithms**. This serves as an alternative to using algorithms from unknown authors or those lacking transparency regarding their development process and status.
 
-Given the above, the following are the most important concepts for this lesson:
+The diagram below illustrates a collaboration between two organizations. In this scenario, users from `Organization 1` and `Organization 3` — with the appropriate credentials — can request the execution of **tasks** within *Collaboration A*. In this case, a user from `Organization 1` might request the execution of an **algorithm** (previously registered in an **algorithm store** trusted by the collaboration) across all participating organization nodes. In response, each node from the involved organizations executes the **algorithm** on its local data. The resulting (aggregated) data is then sent back to the server, where it can be accessed by the requesting user.
 
-- **Organization**: a group of users that share a common goal or interest (e.g., a consortium, an institute, etc.).
 
-  - An organization has zero or more **users** who can perform certain actions.
-  - An organization can have multiple **nodes**, one for each **collaboration** it is part of.
+![](fig/chapter3/collaboration_animated_exp.gif)
 
-- **Collaboration**: a collection of one or more **organizations** working together towards a shared objective.
 
-  - In a specific **collaboration**, each participating **organization** needs one **node** to compute **tasks**; In another **collaboration**, the same **organization** must have a separate **node** for this **collaboration**.
+The following diagram expand the previous scenario further: what if `Organization 1` needs to participate on an additional **collaboration** with another **organization** (e.g., `Organization 2`)? In this case, `Organization 1` will have two running nodes, one for each collaboration. Moreover, as also depicted on the diagram below, each **collaboration** can make use of one or more **algorithm stores**:
 
-- **Node**: the component with access to the **organization** data, which also executes algorithms on it. It represents the organization's contributions to the network.
+![](fig/chapter3/v6-core-concepts-illustrated.drawio.png)
 
-- **Task**: a request, created by **users** for the execution of a given **algorithm** on one or more organizations within a collaboration. These execution requests are handled by the corresponding organizations' **node**.
 
-- **User**: a person who can perform certain actions in vantage6.
+Finally, the concept of **study** is an important one when using vantage6 for data analysis. A **study** represents a subset of organizations within a given collaboration that are engaged in a specific research question. By setting up studies, you can more efficiently assign tasks to a specific group of organizations within a collaboration and better manage the results of these analyses. 
 
-  - A user can only belong to one **organization**.
-  - A user can have multiple **roles** and can be assigned with extra permissions not covered by the roles.
-  - A user can create **tasks** for one or more **organizations** within a **collaboration**.
+For example, consider the `Collaboration W` below, which includes six organizations. This collaboration might involve two distinct research questions: one that requires data from organizations 1, 2, 3, and 4, and another that focuses on data from organizations 4, 5, and 6. By establishing `Study Alpha` and `Study Beta`, you, as a researcher, can target your data analysis tasks in three different ways: you can address the entire `Collaboration W` (including nodes `A` to `F`), focus on `Study Alpha` (nodes `A` to `D`), or concentrate on `Study Beta` (nodes `D` to `F`).
 
-- **Role**: a collection of rules that define the permissions of a **user** (which will be further explored in [Chapter 4](./chap4_manage_via_ui.md)).
-- **Result**: the output generated by the execution of an **algorithm** as part of a **task**.
-- **Algorithm**: computational models or processes that are executed on data. Compatible algorithms are those that adhere to the Vantage6 framework, enabling them to be securely distributed to **nodes** for execution.
+
+![](fig/chapter3/v6-concepts-study.png)
+
+
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Mapping vantage6 to "real life"
-Let's imagine a usecase where you would like to study an illness accross
-3 different academic hospitals in the Netherlands: VUmc, Maastricht UMC+, and UMC Utrecht.
 
-You are going to study together with one other person in your group named Daphne.
+Let's consider a scenario where you, on behalf of your research institute, want to conduct a new study on a particular illness across three major academic hospitals in the Netherlands: VUmc in Amsterdam, Maastricht UMC+, and UMC Utrecht, as these have valuable data related to the illness. Consider the following:
 
-How would these entities map to your potential usecase?
+- Your research institute has an existing collaboration (with a different purpose, not related with yours) with UMC Utrecht and UMC Groningen. Hence, there is a vantage6 node already running on your institution for the said collaboration.
+- You will be conducting this study with a colleague from your institute named Daphne. Both of you are already registered on the organization but without access to the existing collaborations.
 
-1. Which organizations would be part of the collaboration?
-2. How many nodes would you run?
+How would the concepts described above map to your potential use case?
+
+1. Which organizations will you need to add to your collaboration?
+2. How many new nodes would you need to set up and on which organizations?
 3. How many users would be created?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -73,9 +75,9 @@ How would these entities map to your potential usecase?
 
 ## Solution
 
-1. In this case the organizations would be the academic hospitals as well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht *and* your organization.
-2. One node for every academic hospital, so 3
-3. There will be 2 users running tasks. Additionally there could be more users for administrating the collaboration.
+1. In this case the organizations would be the academic hospitals as well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht *and* your research institue. Note that UMC Utrecht must be added to the new collaboration despite being already part of an existing one.
+2. One node for every academic hospital, so 3. Note that UMC Utrecht needs a new node despite already having one, as the existing one is for a different collaboration.
+3. There is no need to create new users, as these are already registered on the organization. Note that the users are linked only to the organization, not to the nodes.
 
 :::::::::::::::::::::::::::::::::
 
@@ -102,11 +104,6 @@ On the administration page, you can manage the entities of vantage6. The entitie
 
 Log in to the Vantage6 UI using the credentials below (the password will be given by the instructors). Once logged in, navigate to the administration page to familiarize yourself with the entities there. Then, try to update your email, first name, and last name, but do not change your username, as it will be needed for some of the follow-up challenges.
 
-|  User     |  Roles        |
-|-----------|---------------|
-|PhY24-rs1  | Researcher    |
-
-
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
@@ -124,16 +121,16 @@ Log in to the Vantage6 UI using the credentials below (the password will be give
 
 As previously discussed, in vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
 
-To illustrate this, let's analyze a hypothetical scenario: two international research projects relying on vantage6 technology on the same server:
+To illustrate this, let's analyze a hypothetical scenario: an international collaboration project of multiple health research institutes, working together on two studies:
 
-- The first one, **PhY2024** (Prevalence of hypertension and its association with lifestyle), requires determining the average systolic and diastolic blood pressure levels of the population across France, Spain, and The Netherlands.
-- The second, **GHT** (Global Health Trends), requires determining the Average BMI across The Netherlands, Spain, and Germany.
+- _Age-Related Variations in Overweight Prevalence: A Comparative Study Across Gender and Age Groups_ **(AGOT2024)** .
 
-Although both projects are unrelated and independent from each other, the data from Spain and The Netherlands -required by both- is provided by the same large-scale cohort studies, namely CANTABRIA (Spain) and LIFELINES (The Netherlands). However, legal agreements dictate that each project is granted access solely to the data essential for its intended purposes (gaining access to the whole set of variables study increases risks of inference attacks). Data from the French and German population (for **PhY2024** and **GHT** studies), on the other hand, will be provided by the GAZEL and GNC prospective cohort studies.
+- _The Effect of Gender on Height Development Across Various Age Groups_  **(GGA2024)**.
 
-Following vantage6's concepts, this scenario would involve two collaborations, one for each research project. As described in previous episodes, a vantage6 node is needed for each collaboration. Consequently, as illustrated in the diagram below, both CANTABRIA and LIFELINES organizations require two vantage6 data-node instances each. Since each data node defines its own rules for data access and algorithm usage, this ensures that analyses from various collaborations, even those involving shared organizations/datasets, will not conflict with one another.
+The first study, **AGOT2024**, involves the analysis of age and weight-related data available on a subset of the institutions participating in the collaboration. Likewise, **GGA2024** involves the analysis of age and height-related data from a different (and potentially overlapping) subset of the collaboration's participants. The diagram below illustrates the kind of configuration you will be working with. Keep in mind that your configuration may have different node and collaboration names, an different study subsets.
 
-![Hypothetical collaborations scenario](fig/chapter3/orgs_n_collabs_scenario.png)
+
+![Hypothetical collaborations scenario](fig/chapter3/case-study-example.drawio.png)
 
 ### Algorithms trustworthiness in a federated setting
 
@@ -155,25 +152,20 @@ Analyze the algorithm based on the code and its comments and answer the followin
 
 - How are the `central_average` and `partial_average` functions related?
 - Why does the `central_average` function, unlike `partial_average`, **not** get any data as an input?
-- Analyze and discuss the potential outcomes if a Task to execute `central_average` is initiated within a collaboration where one of the nodes is offline.
+- Analyze and discuss the potential outcomes if a Task to execute `central_average` is initiated within a collaboration or study where one of the nodes is offline.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 3: exploring the status of existing collaborations configured on a vantage6 server
+## Challenge 3: exploring the status of the collaboration its related studies
 
-Below are the administrator credential of GHT and PhY24 collaborations (passwords will be given by the instructors).
+The instructors will provide you credentials for accessing as a researcher of one of the institutions from the collaboration.
 
-| User        | Roles               | Collaboration |
-| ----------- | ------------------- | ------------- |
-| PhY24-admin | Collaboration Admin | PhY24         |
-| GHT-admin   | Collaboration Admin | GHT           |
+Using these credentials see which institutions were asigned to the two studies. Also check the status of the corresponding nodes. Given this and your algorithm analysis from Challenge #2 answer the following:
 
-Using these credentials check the status of both collaborations. Given this and your algorithm analysis from Challenge #2 answer the following:
-
-1. Which collaborations are ready for creating a Task for the **federated average** algorithm?
-2. If one of the collaborations is not ready, which organization you would need to contact in order to make it ready for executing the algorithm too?
+1. Which study is ready for creating a Task for the **federated average** algorithm?
+2. If one of the studies is not ready, which organization you would need to contact in order to make it ready for executing the algorithm too?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -184,8 +176,8 @@ Using these credentials check the status of both collaborations. Given this and 
 To check the status of the nodes of each collaboration:
 
 1. Log in to each one with the given credentials
-2. Click on 'Administration' on the top of the UI
-3. select 'Collaborations' on the left panel, and then select the corresponding collaboration.
+2. Click on 'Administration' on the left panel of the UI
+3. select 'Collaborations', and then select the corresponding collaboration.
 4. If there are 'offline' nodes, click on the 'Nodes' panel on the left and check when these were seen for the last time.
 
 ![Collaboration status](fig/chapter3/collab-status-offline.png)
@@ -194,60 +186,40 @@ To check the status of the nodes of each collaboration:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: adding an algorithm store to an organization
+## Challenge 4: your first algorithm execution as a researcher
 
-In order to execute the **average algorithm** on a given collaboration, considering the previous discussion on algorithm trustwortiness, you need to first register an algorithm store on it first. Use the credentials given for Challenge #4 to register the 'community store', which contains the said algorithm: `https://store.cotopaxi.vantage6.ai`
+Now, you'll play the role of the researcher within the collaboration you have just examined. With this role, you will finally request the execution of the algorithm.
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+1. Log in with the credentials provided by the instructors.
 
-:::::::::::::::::::::::: solution
+2. Select `Analyze` on the Administration option from the panel on the left, and then select your collaboration.
 
-## Solution steps
+3. Select `+ Create task` to create a new task on your collaboration.
 
-You will now link the 'community-store' to the collaboration whose nodes are ready for it.
+   ![](fig/chapter3/create-task.png)
 
-1. Login into the organization using the corresponding credentials from above.
-2. Click on 'Administration' on the top of the UI, select 'Collaborations' on the left panel, and then select the corresponding collaboration.
-3. Click on '+ Add algorithm store'
-4. Add the vantage6's community store. Use any descrption as name, and provide community store URL: `https://store.cotopaxi.vantage6.ai`
-5. Make sure the store is now shown on the collaboration details:
-   ![Community store entry on the collaboration details](fig/chapter3/community-store-entry.png)
+4. As the first step, you can choose between running the task on the entire collaboration, or on one particular study (i.e., on a subset of the collaboration's institutions). Choose the study that, according to your analysis on Challenge #3, is still NOT ready to execute a _federated average_ task.
 
-:::::::::::::::::::::::::::::::::
+   ![](fig/chapter3/select-study.png)
 
-::::::::::::::::::::::::::::::::::::: challenge
+5. The 'Average' algorithm should be listed under the '_Select which algorithm you want to run_' dropdown menu. Select it, and provide a name and a description.
 
-## Challenge 5: your first algorithm execution as a researcher
+   ![](fig/chapter3/alg-selection.png)
 
-Now, you'll take on the role of the researcher within the collaboration for which you've just established the algorithm store. With this role, you will finally request the execution of the algorithm.
+6. Now the UI will let you choose between the two functions you explored in Challenge #2. For now try to run the `partial_average`, selecting ALL the organizations.
 
-1. log in as a researcher using the corresponding credentials below:
+   ![](fig/chapter3/selecting-alg-and-nodes.png)
 
-   | User      | Roles      | Collaboration |
-   | --------- | ---------- | ------------- |
-   | PhY24-rs1 | Researcher | PhY24         |
-   | GHT-rs1   | Researcher | GHT           |
+7. Select the 'default' database, choose any numerical column relevant for the study you selected, and then click on 'Submit'.
 
-2. Select the collaboration given on the front page, and select 'Tasks' from the panel on the left.
-   ![Collaboration researcher view](fig/chapter3/collab-researcher-view.png)
-
-3. If you have set up everything correctly, the 'Average' algorithm should be now listed under the '_Select which algorithm you want to run_' dropdown menu. Select it, and provide a name and a description.
-
-   ![Algorithm selection](fig/chapter3/task-alg-selection.png)
-
-4. Now the UI will let you choose between the two functions you explored in Challenge #1. First, try to run the `partial_average` on all the nodes individually.
-
-   ![Running a function on all nodes](fig/chapter3/task-partial-on-individial-orgs.png)
-
-5. Select the 'default' database, choose any numerical column as a parameter, and then click on 'Submit'.
-
-6. The task you just requested should be listed with a 'pending' status. Once finished, explore and download the provided results:
-   ![alt text](fig/chapter3/task-results.png)
-
+8.  The task you just requested should be listed with a 'pending' status. Once finished, explore and download the provided results.
+   
 Based on these results, answer the following:
 
-1. If you repeat the same exercise but with the `central_average` function (refer to Challenge #2 if needed), which organization nodes should you choose this time to actually calculate the overall (across all the datasets) average? Experiment with this and discuss the results with the instructors.
+1. What just happened? Did the `partial_average` function fail or not?
 
-2. What would happen if you select an alpha-numerical column (e.g., 'participant_pseudo_id')? Do this experiment and explore the generated error logs. Discuss with the instructors how these logs can be used to diagnose any task execution issues.
+2. If you do the same process, this time on the study that is ready for new task, and using the `central_average` function (refer to Challenge #2 if needed), which organization or organizations should you choose this time? Experiment with this and discuss the results with the instructors.
+
+3. What would happen if you select an alpha-numerical column (e.g., 'gender')? Do this experiment and explore the generated error logs. Discuss with the instructors how these logs can be used to diagnose any task execution issues.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
