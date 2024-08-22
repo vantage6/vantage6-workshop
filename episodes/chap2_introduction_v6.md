@@ -108,21 +108,22 @@ It is easy to confuse the vantage6 server with the central part of the algorithm
 ::: challenge
 
 Two centers $A$ and $B$ have the following data regarding the age of a set of patients:
+
 $a = [34, 42, 28, 49]$
 
 $b = [51, 23, 44]$
 
-Each center has a data station and We want to compute the overall average age of the patients.
+Each center has a data station and we want to compute the overall average age of the patients.
 
 ![Architecture.](fig/schema_exercise.png)
 
-Given that we that the the central average can be computed using the following equation:
+Given that we that the central average can be computed by summing up all the values and dividing the sum by the number of values, using the following equation:
 
-$\overline{x} =\dfrac{1}n \sum_{i=1}^{n} x_i$
+$\overline{x} =\dfrac{1}n \sum_{i=1}^{n} x_i = \dfrac{34+42+28+49+51+23+44}7$
 
-It can be written as follows, to make it ready for a federate computation:
+To make it ready for a federate computation, the equation can be rewritten as the sum of the elements of A plus the sum of the elements of B, divided by the number of elements of A plus the number of elements of B:
 
-$\overline{x} =\dfrac{1}{n_a+n_b} (\sum_{i=1}^{n_a} a_i+\sum_{i=1}^{n_b} b_i)$
+$\overline{x} =\dfrac{1}{n_a+n_b} (\sum_{i=1}^{n_a} a_i+\sum_{i=1}^{n_b} b_i) = \dfrac{1}{4+3}[(34+42+28+49)+(51+23+44)]$
 
 Can you determine which part of the infrastructure will execute each part of the computation, and which is the result returned by the different parts?
 
@@ -132,7 +133,7 @@ The Server starts the central task on one of the two nodes (e.g. Data station A)
 
 The node A starts two subtasks, one per node. Node A will run the following computation:
 
-$S_a =\sum_{i=1}^{n_a} a_i$
+$S_a =\sum_{i=1}^{n_a} a_i = (34+42+28+49)$
 
 and it will return the following results to the central task:
 
@@ -142,7 +143,7 @@ $n_a=4$
 
 Node B will run the following computation:
 
-$S_b =\sum_{i=1}^{n_b} a_i$
+$S_b =\sum_{i=1}^{n_b} a_i = (51+23+44)$
 
 and it will return the following results to the central task:
 
