@@ -46,6 +46,7 @@ vantage6 encompasses a project administration system that allows the user to man
 - An **algorithm store** is a centralized platform for managing pre-registered **algorithms**. This serves as an alternative to using algorithms from unknown authors or those lacking transparency regarding their development process and status.
 
 The diagram below illustrates a collaboration between two organizations. In this scenario, users from `Organization 1` and `Organization 3` — with the appropriate credentials — can request the execution of **tasks** within *Collaboration A*. In this case, a user from `Organization 1` might request the execution of an **algorithm** (previously registered in an **algorithm store** trusted by the collaboration) across all participating organization nodes. In response, each node from the involved organizations executes the **algorithm** on its local data. The resulting (aggregated) data is then sent back to the server, where it can be accessed by the requesting user.
+To enhance the security of the communication, messages between organizations can be encrypted. In this case, an organization can have a public key that the other collaborating organizations have to use in order to exchange messages.
 
 
 ![](fig/chapter2/collaboration_animated_exp.gif)
