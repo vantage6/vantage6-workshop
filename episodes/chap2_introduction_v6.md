@@ -237,20 +237,9 @@ For example, it would be possible:
 - Which algorithms are allowed in a collaboration/study
 - Define privacy guards at algorithm level
 
-In order to avoid that policies need to be set manually at the nodes, we envision a distributed policy system (possibly using blockchain technology) in which policies are distributed to the nodes by the server.
 
 ## Model Repository
 
 Currently, vantage6 is focused on privacy enhancing techniques. Some of these techniques result in a model that can be used to make predictions. We want to extend vantage6 with a model repository in which these models can be stored, shared and used. This will make it easier to reuse models and to compare the performance of different models.
 
-## Build Services
-
-Algorithms in vantage6 are shipped as container images. Currently, this image can be built by the user or some external process. We want to extend vantage6 with a build service that can build the container image for you. This will make it easier to develop and deploy algorithms in vantage6 but more importantly, it will enhance the security of the platform as they are build in a controlled environment.
-
-::: keypoints
-- vantage6 is an open source platform to execute PET analysis.
-- A client is used to interact with the system.
-- A vantage6 server orchestrates the execution of algorithms.
-- The nodes contain the data and execute the computation.
-- The algorithms in vantage6 have a federated part, running on local data, and a central part, aggregating the results.
 :::
