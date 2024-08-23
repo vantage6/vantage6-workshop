@@ -242,4 +242,10 @@ For example, it would be possible:
 
 Currently, vantage6 is focused on privacy enhancing techniques. Some of these techniques result in a model that can be used to make predictions. We want to extend vantage6 with a model repository in which these models can be stored, shared and used. This will make it easier to reuse models and to compare the performance of different models.
 
+::: keypoints
+- vantage6 is an open source platform to execute PET analysis.
+- A client is used to interact with the system.
+- A vantage6 server orchestrates the execution of algorithms.
+- The nodes contain the data and execute the computation.
+- The algorithms in vantage6 have a federated part, running on local data, and a central part, aggregating the results.
 :::
