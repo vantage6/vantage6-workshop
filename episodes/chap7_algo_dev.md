@@ -52,10 +52,13 @@ The following sections handle the most important parts of the algorithm tools.
 
 ### Algorithm client
 
-This client can be used to interact with the server, e.g. to create a subtask, retrieve
+The algorithm client provides functionality that is similar to the Python client, but
+can only do a subset of the operations, because the algorithm is not allowed to execute
+operations like creating a collaboration or deleting a user. This client can be used to
+interact with the server, e.g. to create a subtask, retrieve
 results, or get the organizations participating in the collaboration.
 
-Example:
+A typical example of how to use the algorithm client is as follows:
 
 ```python
 from vantage6.algorithm.client import AlgorithmClient
@@ -67,14 +70,14 @@ def central_function(client: AlgorithmClient):
     organizations_in_collaboration = client.organization.list()
 
     task = client.task.create(
-      input_=**my_input,
-      organizations=organizations_in_collaboration,
-      name="Subtask name",
-  )
+        input_=**my_input,
+        organizations=organizations_in_collaboration,
+        name="Subtask name",
+    )
 
-  results = client.wait_for_results(task.get('id'))
+    results = client.wait_for_results(task.get('id'))
 
-  return aggregate_results(results)
+    return aggregate_results(results)
 
 ```
 
@@ -86,6 +89,7 @@ algorithm as a Pandas dataframe.
 Example:
 
 ```python
+import pandas as pd
 from vantage6.algorithm.tools.decorators import data
 
 # Load two data sources from the node
