@@ -87,21 +87,27 @@ Internet Movie Database (IMDB).
 
 ## Federated data analysis
 
-There are different ways in which privacy risks can be mitigated. We will focus on the idea of
-federated analysis. In a federated setting, the data with the data owner, who keeps full control
-over it. In this case, it is not the data that travels, but the analysis itself. The system sends
-a query or instruction to the data and only the results will get back to the user.
+There are different ways in which privacy risks can be mitigated. For example, a well-known technique
+is to send the data to a trusted third party (TTP). The data can then be analyzed at that location in
+a traditional way. However, there are issues with this technique. When the data is copied to the TTP,
+the original owner loses control over it. Another issue with it is that this technique results in a
+single point of failure. If the security at the TTP is breached, all the data it handled could be exposed.
+
+In this course we will focus on federated analysis. In a federated setting, the data with the data owner,
+ who keeps full control over it. In this case, it is not the data that travels, but the analysis itself. 
+ The system sends a query or instruction to the data and only the results will get back to the user.
 The results are often akin to a form of _aggregation_ of the data. This can be in the shape of
-traditional
-statistics like the mean, or it could be a combination of aggregations to form a more complicated
-analysis.
+traditional statistics like the mean, or it can be more intricate like a machine learning model.
 
 Aggregating the data does not ensure complete protection of person-level information, but it
-certainly makes it less likely that this will happen.
+certainly makes it less likely that this will happen. It is usually the case that the larger 
+the dataset, the lower the risk of data leakage. For instance, if you would like to take the mean of
+all records that fit a certain requirement, like age > 90, and there happens to be only one
+records that fits the requirement, the aggregation will be equal to the one matching individual record.
+
 
 ![In federated analysis, an aggregation of the local data is sent to a central point. At the central point the local aggregations are combined. This can also be a small step in a larger analysis.](fig/chapter1/federated_sum.jpg)
 
-TODO: Example of data leakage in simple aggregated case
 
 ## Federated learning
 
@@ -128,12 +134,11 @@ branch
 of techniques that can be used for this is Secure Multiparty Computation (MPC). With MPC,
 computations are performed collaboratively by multiple parties. Data is encrypted in such a way that
 other parties cannot see the original values, but values of multiple parties can still be combined (
-e.g. added or
-multiplied).
+e.g. added or multiplied).
 A classic technique from the field of MPC is secret sharing. With this technique data is encrypted,
 after which pieces of the encryption are sent to the other parties. No single party will be able to
-reconstruct the original value. Only when all parties work together, the original value can be
-retrieved.
+reconstruct the original value. Only when a certain minimum of parties work together (n-1 in many cases) 
+the original value can be retrieved.
 
 When combining multiple values using secret sharing, this will result in the parties owning new
 puzzle pieces that when put together will reveal the result of the computation.
@@ -176,7 +181,9 @@ weighs.
 
 An aggregation is differentially private when someone cannot infer whether a particular individual
 was used in the computation. A way to make a result more differentially private is to replace a
-selection of inputs with random noise. A single individual will then always be able to deny that
+selection of inputs with random noise. Given the dataset is large enough, and the noise is distributed
+appropriately for the data, this will approximately retain the same statistical properties as the
+original dataset. Because of this noise, a single individual will then always be able to deny that
 their data has contributed to the final result. An individual has _plausible deniability_ with
 regards to whether it was part of the dataset.
 
@@ -189,7 +196,9 @@ The previously mentioned techniques are not used in isolation, but are usually s
 eachother to mitigate the privacy risks that are relevant within the usecase.
 Typically, the process begins by anonymizing or pseudonymizing the data. With vantage6, the data is
 then placed in a federated setting. Then, the data is analyzed using federated learning,
-which may also include, for instance, MPC protocols to further safeguard data privacy.
+which may also include, for instance, MPC protocols to further safeguard data privacy. Additionally,
+noise may be added to the raw data as well before it is analyzed, using techniques from differential
+privacy.
 
 ## Data partitioning
 
@@ -212,7 +221,11 @@ to be found to link identities across datasources. Vertical partitioning require
 of privacy enhancing algorithms than horizontal partitioning.
 
 Data can even be horizontally and vertically partitioned at the same time. In these cases, it may be
-necessary to combine multiple techniques.
+necessary to combine multiple techniques. For example, you might want to combine census data with
+medical records from hospitals. This is vertically partitioned because the census and medical features
+are stored in different places. On top of that, you might want to combine multiple hospitals, that
+all store their records separately. Since the medical records are physically separated as well, it is
+horizontally partitioned.
 
 ![Horizontal and vertical partitioning refers to how data is separated](fig/chapter1/horizontal_vertical_partitioning.jpg)
 
@@ -225,21 +238,32 @@ privacy enhancing technologies, a lot of work goes into complying with regulatio
 trust.
 
 Since these projects have a risk of affecting the privacy of individuals, a Data Protection Impact
-Assessment (DPIA)
-is usually required. This is a process that will help identify and minimize privacy risks of a
-project
-and is required by the GDPR.
+Assessment (DPIA) is usually required. This is a process that will help identify and minimize privacy risks of a
+project and is required by the GDPR. There is already a [DPIA available for vantage6](https://vantage6.ai/documents/28/DPIA_vantage6_version2023.pdf)
 
 Apart from procedures required by GDPR there might be other regulations in place enforced by the
-owners of the data (e.g. hospitals). The specific situation of a project can affect the way in which
+owners of the data (e.g. hospitals). For healthcare specifically there will be the 
+[European Health Data Space (EHDS)](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space_en).
+ EHDS builds upon the GDPR and ensures the exchange and reuse of healthcare data in a safe and secure way.
+
+The specific situation of a project can affect the way in which
 the data is allowed to be processed. Some privacy enhancing technologies might be allowed in one
 project but prohibited in another. It is always important to stay transparent about privacy risks
 of the technologies you intend to use.
+
+Another factor in performing PET analysis is *data harmonization*. All parties need to make sure that
+their data is in the right shape to be combined. For instance, if you have two datasets where one
+stores the height of patients in a column "height" in centimeters, and another dataset where it is stored
+in meters in the column "patient_height" you cannot perform your analysis. You will need to make sure
+all datasets follow the same standards and schemas in order to process them together. There are a
+couple of datastandards out there to help you with that, such as [OMOP CDM](https://www.ohdsi.org/data-standardization/) 
+or [FHIR](https://hl7.org/fhir/) together with [SNOMED-CT](https://www.snomed.org/).
+
+In conclusion, PETs will help you to extract valuable insights from sensitive data, but they are only one aspect
+of the process. It is also important to consider other factors such as regulations and data preprocessing.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - TODO
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-[r-markdown]: https://rmarkdown.rstudio.com/
