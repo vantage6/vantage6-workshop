@@ -88,13 +88,12 @@ Internet Movie Database (IMDB).
 ## Federated data analysis
 
 There are different ways in which privacy risks can be mitigated. For example, a well-known technique
-is to send the data to a trusted third party (TTP). In this case, the data is sent to an trusted neutral
-party. The data can then be analyzed at that location in a traditional way. There are issues with
-this technique however. When the data is copied to the TTP, the original owner loses control over it. Another
-issue with it is that this technique results in a single point of failure. If the security at the TTP is
-breached, all the data it handled could be exposed.
+is to send the data to a trusted third party (TTP). The data can then be analyzed at that location in
+a traditional way. However, there are issues with this technique. When the data is copied to the TTP,
+the original owner loses control over it. Another issue with it is that this technique results in a
+single point of failure. If the security at the TTP is breached, all the data it handled could be exposed.
 
-Instead, we will focus on the idea of federated analysis. In a federated setting, the data with the data owner,
+In this course we will focus on federated analysis. In a federated setting, the data with the data owner,
  who keeps full control over it. In this case, it is not the data that travels, but the analysis itself. 
  The system sends a query or instruction to the data and only the results will get back to the user.
 The results are often akin to a form of _aggregation_ of the data. This can be in the shape of
@@ -104,7 +103,7 @@ Aggregating the data does not ensure complete protection of person-level informa
 certainly makes it less likely that this will happen. It is usually the case that the larger 
 the dataset, the lower the risk of data leakage. For instance, if you would like to take the mean of
 all records that fit a certain requirement, like age > 90, and there happens to be only one
-records that fits the requirement, the aggregation will be equal to the raw values.
+records that fits the requirement, the aggregation will be equal to the one matching individual record.
 
 
 ![In federated analysis, an aggregation of the local data is sent to a central point. At the central point the local aggregations are combined. This can also be a small step in a larger analysis.](fig/chapter1/federated_sum.jpg)
