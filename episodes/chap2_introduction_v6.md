@@ -172,7 +172,8 @@ Each center has a data station and we want to compute the overall average age of
 
 ![Architecture.](fig/schema_exercise.png)
 
-Given that we that the central average can be computed by summing up all the values and dividing the sum by the number of values, using the following equation:
+Given that the central average can be computed by summing up all the values and dividing the sum by the number of values, using the following equation:
+
 
 $\overline{x} =\dfrac{1}n \sum_{i=1}^{n} x_i = \dfrac{34+42+28+49+51+23+44}7$
 
