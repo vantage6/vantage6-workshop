@@ -394,7 +394,7 @@
         
 <section id="aio-chap1_introduction_FL"><p>Content from <a href="chap1_introduction_FL.html">Introduction to privacy enhancing technologies (PET)</a></p>
 <hr>
-<p>Last updated on 2024-08-13 |
+<p>Last updated on 2024-09-02 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap1_introduction_FL.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -509,24 +509,35 @@ matching the dataset with film ratings on the Internet Movie Database
 </section><section><h2 class="section-heading" id="federated-data-analysis">Federated data analysis<a class="anchor" aria-label="anchor" href="#federated-data-analysis"></a>
 </h2>
 <hr class="half-width">
-<p>There are different ways in which privacy risks can be mitigated. We
-will focus on the idea of federated analysis. In a federated setting,
-the data with the data owner, who keeps full control over it. In this
-case, it is not the data that travels, but the analysis itself. The
-system sends a query or instruction to the data and only the results
+<p>There are different ways in which privacy risks can be mitigated. For
+example, a well-known technique is to send the data to a trusted third
+party (TTP). The data can then be analyzed at that location in a
+traditional way. However, there are issues with this technique. When the
+data is copied to the TTP, the original owner loses control over it.
+Another issue with it is that this technique results in a single point
+of failure. If the security at the TTP is breached, all the data it
+handled could be exposed.</p>
+<p>In this course we will focus on federated analysis. In a federated
+setting, the data with the data owner, who keeps full control over it.
+In this case, it is not the data that travels, but the analysis itself.
+The system sends a query or instruction to the data and only the results
 will get back to the user. The results are often akin to a form of
 <em>aggregation</em> of the data. This can be in the shape of
-traditional statistics like the mean, or it could be a combination of
-aggregations to form a more complicated analysis.</p>
+traditional statistics like the mean, or it can be more intricate like a
+machine learning model.</p>
 <p>Aggregating the data does not ensure complete protection of
 person-level information, but it certainly makes it less likely that
-this will happen.</p>
+this will happen. It is usually the case that the larger the dataset,
+the lower the risk of data leakage. For instance, if you would like to
+take the mean of all records that fit a certain requirement, like age
+&gt; 90, and there happens to be only one records that fits the
+requirement, the aggregation will be equal to the one matching
+individual record.</p>
 <figure><img src="../fig/chapter1/federated_sum.jpg" alt="In federated analysis, an aggregation of the local data is sent to a central point. At the central point the local aggregations are combined. This can also be a small step in a larger analysis." class="figure mx-auto d-block"><div class="figcaption">In federated analysis, an aggregation of the
 local data is sent to a central point. At the central point the local
 aggregations are combined. This can also be a small step in a larger
 analysis.</div>
-</figure><p>TODO: Example of data leakage in simple aggregated case</p>
-</section><section><h2 class="section-heading" id="federated-learning">Federated learning<a class="anchor" aria-label="anchor" href="#federated-learning"></a>
+</figure></section><section><h2 class="section-heading" id="federated-learning">Federated learning<a class="anchor" aria-label="anchor" href="#federated-learning"></a>
 </h2>
 <hr class="half-width">
 <p>The term federated learning was introduced in 2016 by researchers at
@@ -560,8 +571,9 @@ the original values, but values of multiple parties can still be
 combined ( e.g. added or multiplied). A classic technique from the field
 of MPC is secret sharing. With this technique data is encrypted, after
 which pieces of the encryption are sent to the other parties. No single
-party will be able to reconstruct the original value. Only when all
-parties work together, the original value can be retrieved.</p>
+party will be able to reconstruct the original value. Only when a
+certain minimum of parties work together (n-1 in many cases) the
+original value can be retrieved.</p>
 <p>When combining multiple values using secret sharing, this will result
 in the parties owning new puzzle pieces that when put together will
 reveal the result of the computation.</p>
@@ -650,10 +662,13 @@ to infer how much Mees weighs.</p>
 <p>An aggregation is differentially private when someone cannot infer
 whether a particular individual was used in the computation. A way to
 make a result more differentially private is to replace a selection of
-inputs with random noise. A single individual will then always be able
-to deny that their data has contributed to the final result. An
-individual has <em>plausible deniability</em> with regards to whether it
-was part of the dataset.</p>
+inputs with random noise. Given the dataset is large enough, and the
+noise is distributed appropriately for the data, this will approximately
+retain the same statistical properties as the original dataset. Because
+of this noise, a single individual will then always be able to deny that
+their data has contributed to the final result. An individual has
+<em>plausible deniability</em> with regards to whether it was part of
+the dataset.</p>
 <figure><img src="../fig/chapter1/differential_privacy.jpg" alt="Differential privacy replaces a subset of the data with random values" class="figure mx-auto d-block"><div class="figcaption">Differential privacy replaces a subset of the
 data with random values</div>
 </figure></section><section><h2 class="section-heading" id="blocks-upon-blocks">Blocks upon blocks<a class="anchor" aria-label="anchor" href="#blocks-upon-blocks"></a>
@@ -665,7 +680,9 @@ that are relevant within the usecase. Typically, the process begins by
 anonymizing or pseudonymizing the data. With vantage6, the data is then
 placed in a federated setting. Then, the data is analyzed using
 federated learning, which may also include, for instance, MPC protocols
-to further safeguard data privacy.</p>
+to further safeguard data privacy. Additionally, noise may be added to
+the raw data as well before it is analyzed, using techniques from
+differential privacy.</p>
 </section><section><h2 class="section-heading" id="data-partitioning">Data partitioning<a class="anchor" aria-label="anchor" href="#data-partitioning"></a>
 </h2>
 <hr class="half-width">
@@ -691,7 +708,12 @@ requires different types of privacy enhancing algorithms than horizontal
 partitioning.</p>
 <p>Data can even be horizontally and vertically partitioned at the same
 time. In these cases, it may be necessary to combine multiple
-techniques.</p>
+techniques. For example, you might want to combine census data with
+medical records from hospitals. This is vertically partitioned because
+the census and medical features are stored in different places. On top
+of that, you might want to combine multiple hospitals, that all store
+their records separately. Since the medical records are physically
+separated as well, it is horizontally partitioned.</p>
 <figure><img src="../fig/chapter1/horizontal_vertical_partitioning.jpg" alt="Horizontal and vertical partitioning refers to how data is separated" class="figure mx-auto d-block"><div class="figcaption">Horizontal and vertical partitioning refers to
 how data is separated</div>
 </figure></section><section><h2 class="section-heading" id="technology-doesnt-solve-everything">Technology doesn’t solve everything<a class="anchor" aria-label="anchor" href="#technology-doesnt-solve-everything"></a>
@@ -706,14 +728,31 @@ into complying with regulations and building trust.</p>
 <p>Since these projects have a risk of affecting the privacy of
 individuals, a Data Protection Impact Assessment (DPIA) is usually
 required. This is a process that will help identify and minimize privacy
-risks of a project and is required by the GDPR.</p>
+risks of a project and is required by the GDPR. There is already a <a href="https://vantage6.ai/documents/28/DPIA_vantage6_version2023.pdf" class="external-link">DPIA
+available for vantage6</a></p>
 <p>Apart from procedures required by GDPR there might be other
 regulations in place enforced by the owners of the data
-(e.g. hospitals). The specific situation of a project can affect the way
-in which the data is allowed to be processed. Some privacy enhancing
-technologies might be allowed in one project but prohibited in another.
-It is always important to stay transparent about privacy risks of the
-technologies you intend to use.</p>
+(e.g. hospitals). For healthcare specifically there will be the <a href="https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space_en" class="external-link">European
+Health Data Space (EHDS)</a>. EHDS builds upon the GDPR and ensures the
+exchange and reuse of healthcare data in a safe and secure way.</p>
+<p>The specific situation of a project can affect the way in which the
+data is allowed to be processed. Some privacy enhancing technologies
+might be allowed in one project but prohibited in another. It is always
+important to stay transparent about privacy risks of the technologies
+you intend to use.</p>
+<p>Another factor in performing PET analysis is <em>data
+harmonization</em>. All parties need to make sure that their data is in
+the right shape to be combined. For instance, if you have two datasets
+where one stores the height of patients in a column “height” in
+centimeters, and another dataset where it is stored in meters in the
+column “patient_height” you cannot perform your analysis. You will need
+to make sure all datasets follow the same standards and schemas in order
+to process them together. There are a couple of datastandards out there
+to help you with that, such as <a href="https://www.ohdsi.org/data-standardization/" class="external-link">OMOP CDM</a> or <a href="https://hl7.org/fhir/" class="external-link">FHIR</a> together with <a href="https://www.snomed.org/" class="external-link">SNOMED-CT</a>.</p>
+<p>In conclusion, PETs will help you to extract valuable insights from
+sensitive data, but they are only one aspect of the process. It is also
+important to consider other factors such as regulations and data
+preprocessing.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -972,7 +1011,7 @@ different parts?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
@@ -2139,7 +2178,7 @@ connection is performed successfully.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <figure><img src="../fig/chapter5/auth-screenshot.png" alt="Expected output" class="figure mx-auto d-block"><div class="figcaption">Expected output</div>
 </figure>
@@ -2192,7 +2231,7 @@ the nodes of a given organization.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3188,7 +3227,7 @@ creates and pushes your Docker image every time you commit to main.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The personalized boilerplate should be successfully created.</p>
 </div>
@@ -3271,7 +3310,7 @@ and of the partial function</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>You output of <code>test.py</code> should look something like:</p>
 <pre><code>[{'id': 0, 'name': 'mock-0', 'domain': 'mock-0.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=0', 'users': '/api/user?organization_id=0', 'tasks': '/api/task?init_org_id=0', 'nodes': '/api/node?organization_id=0', 'runs': '/api/run?organization_id=0'}, {'id': 1, 'name': 'mock-1', 'domain': 'mock-1.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=1', 'users': '/api/user?organization_id=1', 'tasks': '/api/task?init_org_id=1', 'nodes': '/api/node?organization_id=1', 'runs': '/api/run?organization_id=1'}]
@@ -3323,7 +3362,7 @@ the repository.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>If your name is Jane Smith, you may have done the following in the
 base directory of your algorithm (where the Dockerfile is):</p>
@@ -3391,7 +3430,7 @@ syntax as the real client.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>Your algorithm should give the same results as when you tested it
 with the mock client.</p>
@@ -3439,7 +3478,7 @@ your algorithm repository?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>You can find the revised JSON file on the page with the algorithm
 details</p>
@@ -3692,8 +3731,8 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/aio.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/aio.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-08-27",
-  "datePublished": "2024-08-27"
+  "dateModified": "2024-09-02",
+  "datePublished": "2024-09-02"
 }
 
   </script><script>
