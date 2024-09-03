@@ -234,8 +234,7 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#vantage6-user-interface-basics">Vantage6 user interface basics</a></li>
-<li><a href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
+        <ul><li><a href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
 collaborations</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -346,7 +345,7 @@ collaborations</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Running a PET analysis without programming on vantage6</h1>
-        <p>Last updated on 2024-08-22 |
+        <p>Last updated on 2024-09-03 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap3_run_analysis_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -390,127 +389,8 @@ through the given scenarios</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="vantage6-user-interface-basics">Vantage6 user interface basics<a class="anchor" aria-label="anchor" href="#vantage6-user-interface-basics"></a></h2>
-<hr class="half-width"><p>To navigate vantage6’s UI seamlessly, it’s essential to grasp the
-platform’s fundamental concepts and their interconnections, as the UI
-design reflects these relationships. These fundamental concepts are
-defined as follows:</p>
-<ul><li>An <strong>Organization</strong> is a group of users that share a
-common goal or interest (e.g., a consortium, an institute, etc.).</li>
-<li>A <strong>Collaboration</strong> involves one or more
-<strong>organizations</strong> working together towards a shared
-objective.</li>
-<li>A <strong>Node</strong> is a vantage6 component with access to the
-<strong>organization</strong> data, which is capable of executes
-algorithms on it. It represents the organization’s contributions to the
-network.</li>
-<li>A <strong>Task</strong> is a request for the execution of a given
-analysis <strong>algorithm</strong> on one or more
-<strong>organizations</strong> within a <strong>collaboration</strong>.
-These execution requests are handled by the corresponding organizations’
-<strong>nodes</strong>.</li>
-<li>An <strong>user</strong> is a person that belongs to one
-<strong>organization</strong> who can create <strong>tasks</strong> for
-one or more <strong>organizations</strong> within a
-<strong>collaboration</strong>.</li>
-<li>An <strong>algorithm</strong> is a computational model or process
--that adhere to the vantage6 framework-, which can be securely
-distributed to <strong>nodes</strong> for execution on the corresponding
-organization’s data.</li>
-<li>An <strong>algorithm store</strong> is a centralized platform for
-managing pre-registered <strong>algorithms</strong>. This serves as an
-alternative to using algorithms from unknown authors or those lacking
-transparency regarding their development process and status.</li>
-</ul><p>The diagram below illustrates a collaboration between two
-organizations. In this scenario, users from <code>Organization 1</code>
-and <code>Organization 3</code> — with the appropriate credentials — can
-request the execution of <strong>tasks</strong> within <em>Collaboration
-A</em>. In this case, a user from <code>Organization 1</code> might
-request the execution of an <strong>algorithm</strong> (previously
-registered in an <strong>algorithm store</strong> trusted by the
-collaboration) across all participating organization nodes. In response,
-each node from the involved organizations executes the
-<strong>algorithm</strong> on its local data. The resulting (aggregated)
-data is then sent back to the server, where it can be accessed by the
-requesting user.</p>
-<figure><img src="fig/chapter3/collaboration_animated_exp.gif" class="figure mx-auto d-block"></figure><p>The following diagram expand the previous scenario further: what if
-<code>Organization 1</code> needs to participate on an additional
-<strong>collaboration</strong> with another
-<strong>organization</strong> (e.g., <code>Organization 2</code>)? In
-this case, <code>Organization 1</code> will have two running nodes, one
-for each collaboration. Moreover, as also depicted on the diagram below,
-each <strong>collaboration</strong> can make use of one or more
-<strong>algorithm stores</strong>:</p>
-<figure><img src="fig/chapter3/v6-core-concepts-illustrated.drawio.png" class="figure mx-auto d-block"></figure><p>Finally, the concept of <strong>study</strong> is an important one
-when using vantage6 for data analysis. A <strong>study</strong>
-represents a subset of organizations within a given collaboration that
-are engaged in a specific research question. By setting up studies, you
-can more efficiently assign tasks to a specific group of organizations
-within a collaboration and better manage the results of these
-analyses.</p>
-<p>For example, consider the <code>Collaboration W</code> below, which
-includes six organizations. This collaboration might involve two
-distinct research questions: one that requires data from organizations
-1, 2, 3, and 4, and another that focuses on data from organizations 4,
-5, and 6. By establishing <code>Study Alpha</code> and
-<code>Study Beta</code>, you, as a researcher, can target your data
-analysis tasks in three different ways: you can address the entire
-<code>Collaboration W</code> (including nodes <code>A</code> to
-<code>F</code>), focus on <code>Study Alpha</code> (nodes <code>A</code>
-to <code>D</code>), or concentrate on <code>Study Beta</code> (nodes
-<code>D</code> to <code>F</code>).</p>
-<figure><img src="fig/chapter3/v6-concepts-study.png" class="figure mx-auto d-block"></figure><div id="mapping-vantage6-to-real-life" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<div id="mapping-vantage6-to-real-life" class="callout-inner">
-<h3 class="callout-title">Mapping vantage6 to “real life”</h3>
-<div class="callout-content">
-<p>Let’s consider a scenario where you, on behalf of your research
-institute, want to conduct a new study on a particular illness across
-three major academic hospitals in the Netherlands: VUmc in Amsterdam,
-Maastricht UMC+, and UMC Utrecht, as these have valuable data related to
-the illness. Consider the following:</p>
-<ul><li>Your research institute has an existing collaboration (with a
-different purpose, not related with yours) with UMC Utrecht and UMC
-Groningen. Hence, there is a vantage6 node already running on your
-institution for the said collaboration.</li>
-<li>You will be conducting this study with a colleague from your
-institute named Daphne. Both of you are already registered on the
-organization but without access to the existing collaborations.</li>
-</ul><p>How would the concepts described above map to your potential use
-case?</p>
-<ol style="list-style-type: decimal"><li>Which organizations will you need to add to your collaboration?</li>
-<li>How many new nodes would you need to set up and on which
-organizations?</li>
-<li>How many users would be created?</li>
-</ol></div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<ol style="list-style-type: decimal"><li>In this case the organizations would be the academic hospitals as
-well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht
-<em>and</em> your research institue. Note that UMC Utrecht must be added
-to the new collaboration despite being already part of an existing
-one.</li>
-<li>One node for every academic hospital, so 3. Note that UMC Utrecht
-needs a new node despite already having one, as the existing one is for
-a different collaboration.</li>
-<li>There is no need to create new users, as these are already
-registered on the organization. Note that the users are linked only to
-the organization, not to the nodes.</li>
-</ol></div>
-</div>
-</div>
-</div>
 <div class="section level3">
-<h3 id="where-are-these-concepts-in-the-ui">Where are these concepts in the UI?<a class="anchor" aria-label="anchor" href="#where-are-these-concepts-in-the-ui"></a></h3>
+<h3 id="administration-concepts-in-the-ui">Administration concepts in the UI<a class="anchor" aria-label="anchor" href="#administration-concepts-in-the-ui"></a></h3>
 <p>After logging in to the vantage6 UI, you will see the start page.</p>
 <figure><img src="fig/chapter3/ui_start_page.png" alt="vantage6 UI start page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI start page</div>
 </figure><p>There are some collaborations displayed on the start page. Clicking
@@ -541,12 +421,12 @@ challenges.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <figure><img src="fig/chapter3/user-edit.png" alt="User-entity - edit option" class="figure mx-auto d-block"><div class="figcaption">User-entity - edit option</div>
 </figure></div>
@@ -554,7 +434,7 @@ challenges.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
+<section><h2 class="section-heading" id="from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
 collaborations<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations"></a></h2>
 <hr class="half-width"><p>As previously discussed, in vantage6 a collaboration refers to an
 agreement between two or more parties to participate in a study or to
@@ -582,32 +462,6 @@ you will be working with. Keep in mind that your configuration may have
 different node and collaboration names, an different study subsets.</p>
 <figure><img src="fig/chapter3/case-study-example.drawio.png" alt="Hypothetical collaborations scenario" class="figure mx-auto d-block"><div class="figcaption">Hypothetical collaborations scenario</div>
 </figure><div class="section level3">
-<h3 id="algorithms-trustworthiness-in-a-federated-setting">Algorithms trustworthiness in a federated setting<a class="anchor" aria-label="anchor" href="#algorithms-trustworthiness-in-a-federated-setting"></a></h3>
-<p>While a vantage6-supported research infrastructure like the one
-described above offers a strong defense against many data privacy risks,
-there remains one crucial security aspect that falls outside the
-platform’s scope: the validation of the code that will run on this
-infrastructure. For instance, the administrators of the nodes running
-within each organization are responsible for defining which algorithms
-(i.e., <a href="https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options" class="external-link">which
-container images</a>) will be allowed for execution on the respective
-collaborations. As this is a critical and complex task that entails
-activities like code analysis and verification, working with algorithms
-from trusted sources is the primary line of defense against potential
-threats.</p>
-<p>Vantage6’s algorithm store aims to enhance trustworthiness by
-offering a centralized platform for managing pre-registered algorithms.
-This serves as an alternative to using algorithms from unknown authors
-or those lacking transparency regarding their development process and
-status. The algorithm store currently allows researchers to explore
-which algorithms are available and how to run them. This, along with its
-integration with vantage6’s UI, streamlines task execution requests
-within collaborations. Also, the algorithm store integrates additional
-information to the algorithm metadata such who developed and reviewed
-the algorithm. Only after complying with the review policies of a store,
-a new algorithmn will be published in the store.</p>
-</div>
-<div class="section level3">
 <h3 id="running-a-pet-privacy-enhancing-technology-analysis-without-programming">Running a PET (privacy-enhancing technology) analysis without
 programming!<a class="anchor" aria-label="anchor" href="#running-a-pet-privacy-enhancing-technology-analysis-without-programming"></a></h3>
 <p>In this episode, you will perform a PET analysis on an existing
@@ -661,12 +515,12 @@ too?</li>
 </ol></div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Solution steps </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Solution steps </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>To check the status of the nodes of each collaboration:</p>
 <ol style="list-style-type: decimal"><li>Log in to each one with the given credentials</li>
@@ -799,7 +653,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/chap3_run_analysis_ui.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/chap3_run_analysis_ui.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-08-22",
+  "dateModified": "2024-09-03",
   "datePublished": "2024-09-03"
 }
 

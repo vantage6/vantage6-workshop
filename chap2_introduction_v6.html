@@ -337,7 +337,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>vantage6 basics</h1>
-        <p>Last updated on 2024-08-08 |
+        <p>Last updated on 2024-09-03 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap2_introduction_v6.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -381,10 +381,10 @@ network</li>
 </div>
 </div>
 <div class="section level1">
-<h1 id="unique-selling-points-of-vantage6">Unique selling points of vantage6<a class="anchor" aria-label="anchor" href="#unique-selling-points-of-vantage6"></a></h1>
+<h1 id="why-choose-vantage6">Why choose vantage6<a class="anchor" aria-label="anchor" href="#why-choose-vantage6"></a></h1>
 <p>vantage6 is a platform to execute privacy enhancing techniques
 (PETs). Several alternative platforms for PETs are available, but
-vantage6 provides some unique features:</p>
+vantage6 is unique as it provides:</p>
 <ul><li>Open source and free to use.</li>
 <li>Container orchestration for privacy enhancing techniques.</li>
 <li>Easily extensible to different types of data sources.</li>
@@ -394,14 +394,143 @@ vantage6 provides some unique features:</p>
 <li>Minimal network requirements at data stations</li>
 </ul></div>
 <div class="section level1">
+<h1 id="project-administration-in-vantage6">Project administration in vantage6<a class="anchor" aria-label="anchor" href="#project-administration-in-vantage6"></a></h1>
+<p>vantage6 encompasses a project administration system that allows the
+user to manage permissions and access to the resources, while assuring
+the protection of the data. The fundamental concepts of the
+administration system are defined as follows:</p>
+<ul><li>An <strong>Organization</strong> is a group of users that share a
+common goal or interest (e.g., a consortium, an institute, etc.).</li>
+<li>A <strong>Collaboration</strong> involves one or more
+<strong>organizations</strong> working together towards a shared
+objective.</li>
+<li>A <strong>Node</strong> is a vantage6 component with access to the
+<strong>organization</strong> data, which is capable of executes
+algorithms on it. It represents the organization’s contributions to the
+network.</li>
+<li>A <strong>Task</strong> is a request for the execution of a given
+analysis <strong>algorithm</strong> on one or more
+<strong>organizations</strong> within a <strong>collaboration</strong>.
+These execution requests are handled by the corresponding organizations’
+<strong>nodes</strong>.</li>
+<li>A <strong>user</strong> is a person that belongs to one
+<strong>organization</strong> who can create <strong>tasks</strong> for
+one or more <strong>organizations</strong> within a
+<strong>collaboration</strong>.</li>
+<li>An <strong>algorithm</strong> is a computational model or process
+-that adhere to the vantage6 framework-, which can be securely
+distributed to <strong>nodes</strong> for execution on the corresponding
+organization’s data.</li>
+<li>An <strong>algorithm store</strong> is a centralized platform for
+managing pre-registered <strong>algorithms</strong>. This serves as an
+alternative to using algorithms from unknown authors or those lacking
+transparency regarding their development process and status.</li>
+</ul><p>The diagram below illustrates a collaboration between two
+organizations. In this scenario, users from <code>Organization 1</code>
+and <code>Organization 3</code> — with the appropriate credentials — can
+request the execution of <strong>tasks</strong> within <em>Collaboration
+A</em>. In this case, a user from <code>Organization 1</code> might
+request the execution of an <strong>algorithm</strong> (previously
+registered in an <strong>algorithm store</strong> trusted by the
+collaboration) across all participating organization nodes. In response,
+each node from the involved organizations executes the
+<strong>algorithm</strong> on its local data. The resulting (aggregated)
+data is then sent back to the server, where it can be accessed by the
+requesting user. To enhance the security of the communication, messages
+between organizations can be encrypted. In this case, an organization
+can have a public key that the other collaborating organizations have to
+use in order to exchange messages.</p>
+<figure><img src="fig/chapter2/collaboration_animated_exp.gif" class="figure mx-auto d-block"></figure><p>The following diagram expand the previous scenario further: what if
+<code>Organization 1</code> needs to participate on an additional
+<strong>collaboration</strong> with another
+<strong>organization</strong> (e.g., <code>Organization 2</code>)? In
+this case, <code>Organization 1</code> will have two running nodes, one
+for each collaboration. Moreover, as also depicted on the diagram below,
+each <strong>collaboration</strong> can make use of one or more
+<strong>algorithm stores</strong>:</p>
+<figure><img src="fig/chapter2/v6-core-concepts-illustrated.drawio.png" class="figure mx-auto d-block"></figure><p>Finally, the concept of <strong>study</strong> is an important one
+when using vantage6 for data analysis. A <strong>study</strong>
+represents a subset of organizations within a given collaboration that
+are engaged in a specific research question. By setting up studies, you
+can more efficiently assign tasks to a specific group of organizations
+within a collaboration and better manage the results of these
+analyses.</p>
+<p>For example, consider the <code>Collaboration W</code> below, which
+includes six organizations. This collaboration might involve two
+distinct research questions: one that requires data from organizations
+1, 2, 3, and 4, and another that focuses on data from organizations 4,
+5, and 6. By establishing <code>Study Alpha</code> and
+<code>Study Beta</code>, you, as a researcher, can target your data
+analysis tasks in three different ways: you can address the entire
+<code>Collaboration W</code> (including nodes <code>A</code> to
+<code>F</code>), focus on <code>Study Alpha</code> (nodes <code>A</code>
+to <code>D</code>), or concentrate on <code>Study Beta</code> (nodes
+<code>D</code> to <code>F</code>).</p>
+<figure><img src="fig/chapter2/v6-concepts-study.png" class="figure mx-auto d-block"></figure><div id="mapping-vantage6-to-real-life" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="mapping-vantage6-to-real-life" class="callout-inner">
+<h3 class="callout-title">Mapping vantage6 to “real life”</h3>
+<div class="callout-content">
+<p>Let’s consider a scenario where you, on behalf of your research
+institute, want to conduct a new study on a particular illness across
+three major academic hospitals in the Netherlands: VUmc in Amsterdam,
+Maastricht UMC+, and UMC Utrecht, as these have valuable data related to
+the illness. Consider the following:</p>
+<ul><li>Your research institute has an existing collaboration (with a
+different purpose, not related with yours) with UMC Utrecht and UMC
+Groningen. Hence, there is a vantage6 node already running on your
+institution for the said collaboration.</li>
+<li>You will be conducting this study with a colleague from your
+institute named Daphne. Both of you are already registered on the
+organization but without access to the existing collaborations.</li>
+</ul><p>How would the concepts described above map to your potential use
+case?</p>
+<ol style="list-style-type: decimal"><li>Which organizations will you need to add to your collaboration?</li>
+<li>How many new nodes would you need to set up and on which
+organizations?</li>
+<li>How many users would be created?</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<ol style="list-style-type: decimal"><li>In this case the organizations would be the academic hospitals as
+well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht
+<em>and</em> your research institute. Note that UMC Utrecht must be
+added to the new collaboration despite being already part of an existing
+one.</li>
+<li>One node for every academic hospital, so 3. Note that UMC Utrecht
+needs a new node despite already having one, as the existing one is for
+a different collaboration.</li>
+<li>There is no need to create new users, as these are already
+registered on the organization. Note that the users are linked only to
+the organization, not to the nodes.</li>
+</ol></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level1">
 <h1 id="the-vantage6-infrastructure">The vantage6 infrastructure<a class="anchor" aria-label="anchor" href="#the-vantage6-infrastructure"></a></h1>
-<p>In vantage6, a <strong>client</strong> can pose a question to the
-central <strong>server</strong>. Each organization with sensitive data
+<p>Now that we have an overview of how vantage6 manages the project
+resources and how it can be used to setup the analysis framework, we can
+see how vantage6 works on a technical level and how the infrastructure
+maps the aforementioned concepts. In vantage6, a user can pose a
+question through a <strong>client</strong> to the vantage6
+<strong>server</strong>. Each organization with sensitive data
 contributes one <strong>node</strong> to the network. The nodes collect
 the computation request from the server and fetches the
-<strong>algorithm</strong> to answer it. When the algorithm completes,
-the node sends the aggregated results back to the server.</p>
-<figure><img src="fig/v6_basic_schema.svg" alt="High level overview of the vantage6 infrastructure. Client(s) and node(s) communicate through the Server. Nodes are able to communicate directly with each other when the optional VPN feature is enabled." class="figure mx-auto d-block"><div class="figcaption">High level overview of the vantage6
+<strong>algorithm</strong> from the <strong>algorithm store</strong> to
+answer it. When the algorithm completes, the node sends the aggregated
+results back to the server.</p>
+<figure><img src="fig/chapter2/v6-infrastructure-illustrated.png" alt="High level overview of the vantage6 infrastructure. Client(s) and node(s) communicate through the Server. Nodes are able to communicate directly with each other when the optional VPN feature is enabled." class="figure mx-auto d-block"><div class="figcaption">High level overview of the vantage6
 infrastructure. Client(s) and node(s) communicate through the Server.
 Nodes are able to communicate directly with each other when the optional
 VPN feature is enabled.</div>
@@ -409,11 +538,11 @@ VPN feature is enabled.</div>
 orchestration tool for privacy preserving analyses. It deploys a network
 of containerized applications that together ensure insights can be
 exchanged without sharing record-level data.</p>
-<p>Lets explain in some more detail what these network actors are
+<p>Let’s explain in some more detail what these network actors are
 responsible for, and which subcomponents they contain.</p>
 <div class="section level3">
 <h3 id="server">Server<a class="anchor" aria-label="anchor" href="#server"></a></h3>
-<p>The (central) <strong>server</strong> acts as communication hub
+<p>The vantage6 <strong>server</strong> acts as communication hub
 between clients and nodes. The <a href="https://docs.vantage6.ai/en/main/server/index.html" class="external-link">server</a>
 tracks the status of the computation requests and handles administrative
 functions such as authentication and authorization. It consists of
@@ -423,50 +552,29 @@ organizations, collaborations, tasks and their results. It handles
 authentication and authorization to the system and acts as the
 communication hub for clients and nodes.</p></li>
 <li><p><strong>Docker registry</strong>: Contains algorithms stored in
-images which can be used by clients to request a computation. The node
-will retrieve the algorithm from this registry and execute it. It is
-possible to use public registries for this purpose like <a href="https://hub.docker.com/" class="external-link">Docker hub</a> or <a href="https://ghcr.io" class="external-link">Github Containers</a>. However it is also
+container images which can be used by clients to request a computation.
+The node will retrieve the algorithm from this registry and execute it.
+It is possible to use public registries for this purpose like <a href="https://hub.docker.com/" class="external-link">Docker hub</a> or <a href="https://ghcr.io" class="external-link">Github Containers</a>. However it is also
 possible to host your own registry, for example a <a href="https://goharbor.io/" class="external-link">Harbor</a> instance.</p></li>
-<li><p><strong>Algorithm store</strong>: A repository for trusted
-algorithms within a certain project. <a href="https://docs.vantage6.ai/en/main/algorithm_store/index.html" class="external-link">Algorithm
-stores</a> can be coupled to specific collaborations or to all
-collaborations on a given server. Note that one algorithm store can also
-be linked to multiple servers - you should only create one in your
-project if you need a custom set of algorithms.</p></li>
-<li><p><a href="https://docs.vantage6.ai/en/main/server/optional.html#eduvpn" class="external-link"><strong>EduVPN
-instance</strong></a> (<em>optional</em>): If algorithms need to be able
-to engage in peer-to-peer communication, a VPN server can be set up to
-help them do so.</p></li>
-<li><p><a href="https://docs.vantage6.ai/en/main/server/optional.html#rabbitmq" class="external-link"><strong>RabbitMQ</strong></a>
-(<em>optional</em>): Is used to synchronize the messages between
-multiple vantage6 server instances. This is useful when you have high
-workloads and need to run multiple instances of the server on different
-machines.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="data-station">Data Station<a class="anchor" aria-label="anchor" href="#data-station"></a></h3>
-<p>The data station hosts the <a href="https://docs.vantage6.ai/en/main/node/index.html" class="external-link">node</a>
-(vantage6-node), that has access to the local data and execute
-algorithms, and one or more databases.</p>
-<ul><li><p><strong>Vantage6 node</strong>: The node is responsible for
+<p>The data station hosts the local data and the <a href="https://docs.vantage6.ai/en/main/node/index.html" class="external-link">node</a>
+(vantage6-node). The <strong>Vantage6 node</strong> is responsible for
 executing the algorithms on the local data. It protects the data by
 allowing only specified algorithms to be executed after verifying their
-origin. The node is responsible for picking up the task, executing the
-algorithm and sending the results back to the server. The node needs
-access to local data. For more details see the technical documentation
-of the node.</p></li>
-<li><p><strong>Database</strong>: The database may be in any format that
-the algorithms relevant to your use case support. The currently
-supported database types are csv, parquet, SQL, Sparql, Excel, and
-OMOP.</p></li>
-</ul></div>
+origin. The node is responsible for picking up the task and running them
+in parallel, executing the algorithm and sending the results back to the
+server. For more details see the <a href="https://docs.vantage6.ai/en/main/node/index.html" class="external-link">technical
+documentation of the node</a>.</p>
+</div>
 <div class="section level3">
 <h3 id="client">Client<a class="anchor" aria-label="anchor" href="#client"></a></h3>
 <p>A user or application who interacts with the vantage6-server. They
 create tasks, retrieve their results, or manage entities at the server
 (i.e. creating or editing users, organizations and collaborations).</p>
 <p>The vantage6 server is an API, which means that there are many ways
-to interact with it programatically. There are however a number of
+to interact with it programmatically. There are however a number of
 applications available that make is easier for users to interact with
 the vantage6 server:</p>
 <ul><li><p><strong>User interface</strong>: The <a href="https://docs.vantage6.ai/en/main/user/ui.html" class="external-link">user interface</a>
@@ -480,10 +588,33 @@ python client</a> <python-client> is a Python package that allows users
 to interact with the server from a Python environment. This is
 especially usefull for data scientists who want to integrate vantage6
 into their workflow.</python-client></p></li>
-<li><p><strong>API</strong>: It is also possible to interact with the
-vantage6-server using the <a href="https://docs.vantage6.ai/en/main/user/api.html" class="external-link">API</a>
-directly.</p></li>
 </ul></div>
+<div class="section level3">
+<h3 id="algorithm-store">Algorithm store<a class="anchor" aria-label="anchor" href="#algorithm-store"></a></h3>
+<p>While a vantage6-supported research infrastructure offers a strong
+defense against many data privacy risks, there remains one crucial
+security aspect that falls outside the platform’s scope: the validation
+of the code that will run on this infrastructure. For instance, the
+administrators of the nodes running within each organization are
+responsible for defining which algorithms (i.e., <a href="https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options" class="external-link">which
+container images</a>) will be allowed for execution on the respective
+collaborations. As this is a critical and complex task that entails
+activities like code analysis and verification, working with algorithms
+from trusted sources is the primary line of defense against potential
+threats.</p>
+<p>Vantage6’s algorithm store is a repository for trusted algorithms
+within a certain project that aims to enhance trustworthiness by
+offering a centralized platform for managing pre-registered algorithms.
+This serves as an alternative to using algorithms from unknown authors
+or those lacking transparency regarding their development process and
+status. The algorithm store currently allows researchers to explore
+which algorithms are available and how to run them. This, streamlines
+task execution requests within collaborations. Also, the algorithm store
+integrates additional information to the algorithm metadata such who
+developed and reviewed the algorithm. Only after complying with the
+review policies of a store, a new algorithm will be published in the
+store.</p>
+</div>
 <div class="section level2">
 <h2 id="how-algorithms-run-in-vantage6">How algorithms run in vantage6<a class="anchor" aria-label="anchor" href="#how-algorithms-run-in-vantage6"></a></h2>
 <p>Federated algorithms can be split in a <strong>federated</strong> and
@@ -516,9 +647,9 @@ server</li>
 <div id="vantage6-server-vs-central-part-of-an-algorithm" class="callout-inner">
 <h3 class="callout-title">vantage6-server vs central part of an algorithm</h3>
 <div class="callout-content">
-<p>It is easy to confuse the central server with the central part of the
-algorithm: the server is the central part of the infrastructure but not
-the place where the central part of the algorithm is executed. The
+<p>It is easy to confuse the vantage6 server with the central part of
+the algorithm: the server is the central part of the infrastructure but
+not the place where the central part of the algorithm is executed. The
 central part is actually executed at one of the nodes, because it gives
 more flexibility: for instance, an algorithm may need heavy compute
 resources to do the aggregation, and it is better to do this at a node
@@ -535,43 +666,49 @@ whenever a new algorithm needs more resources.</p>
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
 <p>Two centers <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> have the following data regarding the
-age of a set of patients: <span class="math inline">\(a = [34, 42, 28,
-49]\)</span></p>
+age of a set of patients:</p>
+<p><span class="math inline">\(a = [34, 42, 28, 49]\)</span></p>
 <p><span class="math inline">\(b = [51, 23, 44]\)</span></p>
-<p>Each center has a data station and We want to compute the overall
+<p>Each center has a data station and we want to compute the overall
 average age of the patients.</p>
 <figure><img src="fig/schema_exercise.png" alt="Architecture." class="figure mx-auto d-block"><div class="figcaption">Architecture.</div>
-</figure><p>Given that we that the the central average can be computed using the
-following equation:</p>
+</figure><p>Given that the central average can be computed by summing up all the
+values and dividing the sum by the number of values, using the following
+equation:</p>
 <p><span class="math inline">\(\overline{x} =\dfrac{1}n \sum_{i=1}^{n}
-x_i\)</span></p>
-<p>It can be written as follows, to make it ready for a federate
-computation:</p>
+x_i = \dfrac{34+42+28+49+51+23+44}7\)</span></p>
+<p>To make it ready for a federate computation, the equation can be
+rewritten as the sum of the elements of A plus the sum of the elements
+of B, divided by the number of elements of A plus the number of elements
+of B:</p>
 <p><span class="math inline">\(\overline{x} =\dfrac{1}{n_a+n_b}
-(\sum_{i=1}^{n_a} a_i+\sum_{i=1}^{n_b} b_i)\)</span></p>
+(\sum_{i=1}^{n_a} a_i+\sum_{i=1}^{n_b} b_i) =
+\dfrac{1}{4+3}[(34+42+28+49)+(51+23+44)]\)</span></p>
 <p>Can you determine which part of the infrastructure will execute each
 part of the computation, and which is the result returned by the
 different parts?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
 <p>The node A starts two subtasks, one per node. Node A will run the
 following computation:</p>
-<p><span class="math inline">\(S_a =\sum_{i=1}^{n_a} a_i\)</span></p>
+<p><span class="math inline">\(S_a =\sum_{i=1}^{n_a} a_i =
+(34+42+28+49)\)</span></p>
 <p>and it will return the following results to the central task:</p>
 <p><span class="math inline">\(S_a=153\)</span></p>
 <p><span class="math inline">\(n_a=4\)</span></p>
 <p>Node B will run the following computation:</p>
-<p><span class="math inline">\(S_b =\sum_{i=1}^{n_b} a_i\)</span></p>
+<p><span class="math inline">\(S_b =\sum_{i=1}^{n_b} a_i =
+(51+23+44)\)</span></p>
 <p>and it will return the following results to the central task:</p>
 <p><span class="math inline">\(S_b=118\)</span></p>
 <p><span class="math inline">\(n_b=3\)</span></p>
@@ -616,11 +753,7 @@ collaboration</li>
 <li>Which users is allowed to run a certain algorithm</li>
 <li>Which algorithms are allowed in a collaboration/study</li>
 <li>Define privacy guards at algorithm level</li>
-</ul><p>In order to avoid that policies need to be set manually at the nodes,
-we envision a distributed policy system (possibly using blockchain
-technology) in which policies are distributed to the nodes by the
-server.</p>
-</div>
+</ul></div>
 <div class="section level2">
 <h2 id="model-repository">Model Repository<a class="anchor" aria-label="anchor" href="#model-repository"></a></h2>
 <p>Currently, vantage6 is focused on privacy enhancing techniques. Some
@@ -628,15 +761,6 @@ of these techniques result in a model that can be used to make
 predictions. We want to extend vantage6 with a model repository in which
 these models can be stored, shared and used. This will make it easier to
 reuse models and to compare the performance of different models.</p>
-</div>
-<div class="section level2">
-<h2 id="build-services">Build Services<a class="anchor" aria-label="anchor" href="#build-services"></a></h2>
-<p>Algorithms in vantage6 are shipped as container images. Currently,
-this image can be built by the user or some external process. We want to
-extend vantage6 with a build service that can build the container image
-for you. This will make it easier to develop and deploy algorithms in
-vantage6 but more importantly, it will enhance the security of the
-platform as they are build in a controlled environment.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -644,8 +768,13 @@ platform as they are build in a controlled environment.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<p>These are the keypoints</p>
-</div>
+<ul><li>vantage6 is an open source platform to execute PET analysis.</li>
+<li>A client is used to interact with the system.</li>
+<li>A vantage6 server orchestrates the execution of algorithms.</li>
+<li>The nodes contain the data and execute the computation.</li>
+<li>The algorithms in vantage6 have a federated part, running on local
+data, and a central part, aggregating the results.</li>
+</ul></div>
 </div>
 </div>
 <!--
@@ -715,7 +844,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/chap2_introduction_v6.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/chap2_introduction_v6.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-08-08",
+  "dateModified": "2024-09-03",
   "datePublished": "2024-09-03"
 }
 
