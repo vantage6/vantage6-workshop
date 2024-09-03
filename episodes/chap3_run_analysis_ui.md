@@ -22,67 +22,8 @@ exercises: 3
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Vantage6 user interface basics
 
-To navigate vantage6's UI seamlessly, it's essential to grasp the platform's fundamental concepts and their interconnections, as the UI design reflects these relationships. These fundamental concepts are defined as follows:
-
-- An **Organization** is a group of users that share a common goal or interest (e.g., a consortium, an institute, etc.). 
-- A **Collaboration** involves one or more **organizations** working together towards a shared objective. 
-- A **Node** is a vantage6 component with access to the **organization** data, which is capable of executes algorithms on it. It represents the organization's contributions to the network.
-- A **Task** is a request for the execution of a given analysis **algorithm** on one or more **organizations** within a **collaboration**. These execution requests are handled by the corresponding organizations' **nodes**.
-- An **user** is a person that belongs to one **organization** who can create **tasks** for one or more **organizations** within a **collaboration**.
-- An **algorithm** is a computational model or process -that adhere to the vantage6 framework-, which can be securely distributed to **nodes** for execution on the corresponding organization's data.
-- An **algorithm store** is a centralized platform for managing pre-registered **algorithms**. This serves as an alternative to using algorithms from unknown authors or those lacking transparency regarding their development process and status.
-
-The diagram below illustrates a collaboration between two organizations. In this scenario, users from `Organization 1` and `Organization 3` — with the appropriate credentials — can request the execution of **tasks** within *Collaboration A*. In this case, a user from `Organization 1` might request the execution of an **algorithm** (previously registered in an **algorithm store** trusted by the collaboration) across all participating organization nodes. In response, each node from the involved organizations executes the **algorithm** on its local data. The resulting (aggregated) data is then sent back to the server, where it can be accessed by the requesting user.
-
-
-![](fig/chapter3/collaboration_animated_exp.gif)
-
-
-The following diagram expand the previous scenario further: what if `Organization 1` needs to participate on an additional **collaboration** with another **organization** (e.g., `Organization 2`)? In this case, `Organization 1` will have two running nodes, one for each collaboration. Moreover, as also depicted on the diagram below, each **collaboration** can make use of one or more **algorithm stores**:
-
-![](fig/chapter3/v6-core-concepts-illustrated.drawio.png)
-
-
-Finally, the concept of **study** is an important one when using vantage6 for data analysis. A **study** represents a subset of organizations within a given collaboration that are engaged in a specific research question. By setting up studies, you can more efficiently assign tasks to a specific group of organizations within a collaboration and better manage the results of these analyses. 
-
-For example, consider the `Collaboration W` below, which includes six organizations. This collaboration might involve two distinct research questions: one that requires data from organizations 1, 2, 3, and 4, and another that focuses on data from organizations 4, 5, and 6. By establishing `Study Alpha` and `Study Beta`, you, as a researcher, can target your data analysis tasks in three different ways: you can address the entire `Collaboration W` (including nodes `A` to `F`), focus on `Study Alpha` (nodes `A` to `D`), or concentrate on `Study Beta` (nodes `D` to `F`).
-
-
-![](fig/chapter3/v6-concepts-study.png)
-
-
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Mapping vantage6 to "real life"
-
-Let's consider a scenario where you, on behalf of your research institute, want to conduct a new study on a particular illness across three major academic hospitals in the Netherlands: VUmc in Amsterdam, Maastricht UMC+, and UMC Utrecht, as these have valuable data related to the illness. Consider the following:
-
-- Your research institute has an existing collaboration (with a different purpose, not related with yours) with UMC Utrecht and UMC Groningen. Hence, there is a vantage6 node already running on your institution for the said collaboration.
-- You will be conducting this study with a colleague from your institute named Daphne. Both of you are already registered on the organization but without access to the existing collaborations.
-
-How would the concepts described above map to your potential use case?
-
-1. Which organizations will you need to add to your collaboration?
-2. How many new nodes would you need to set up and on which organizations?
-3. How many users would be created?
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::: solution
-
-## Solution
-
-1. In this case the organizations would be the academic hospitals as well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht *and* your research institue. Note that UMC Utrecht must be added to the new collaboration despite being already part of an existing one.
-2. One node for every academic hospital, so 3. Note that UMC Utrecht needs a new node despite already having one, as the existing one is for a different collaboration.
-3. There is no need to create new users, as these are already registered on the organization. Note that the users are linked only to the organization, not to the nodes.
-
-:::::::::::::::::::::::::::::::::
-
-
-### Where are these concepts in the UI?
+### Administration concepts in the UI
 
 After logging in to the vantage6 UI, you will see the start page.
 
@@ -131,12 +72,6 @@ The first study, **AGOT2024**, involves the analysis of age and weight-related d
 
 
 ![Hypothetical collaborations scenario](fig/chapter3/case-study-example.drawio.png)
-
-### Algorithms trustworthiness in a federated setting
-
-While a vantage6-supported research infrastructure like the one described above offers a strong defense against many data privacy risks, there remains one crucial security aspect that falls outside the platform's scope: the validation of the code that will run on this infrastructure. For instance, the administrators of the nodes running within each organization are responsible for defining which algorithms (i.e., [which container images](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options)) will be allowed for execution on the respective collaborations. As this is a critical and complex task that entails activities like code analysis and verification, working with algorithms from trusted sources is the primary line of defense against potential threats.
-
-Vantage6's algorithm store aims to enhance trustworthiness by offering a centralized platform for managing pre-registered algorithms. This serves as an alternative to using algorithms from unknown authors or those lacking transparency regarding their development process and status. The algorithm store currently allows researchers to explore which algorithms are available and how to run them. This, along with its integration with vantage6's UI, streamlines task execution requests within collaborations. Also, the algorithm store integrates additional information to the algorithm metadata such who developed and reviewed the algorithm. Only after complying with the review policies of a store, a new algorithmn will be published in the store.
 
 ### Running a PET (privacy-enhancing technology) analysis without programming!
 
