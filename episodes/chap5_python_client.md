@@ -43,12 +43,12 @@ Make sure you completed the [Setup Episode](../index.md) before starting this ep
 # The Python client
 The vantage6 Python client is a library designed to facilitate interaction with the vantage6 server, to perform various tasks such as creating computation tasks, managing organizations, collaborations, users, and collecting results. It is a versatile alternative to the web-based user interface we have used in previous lessons.
 
-Data scientists and administrators may use it to manage resources programatically. For example, to automate actions or integrating them on other applications. The Python client communicates with the REST API of the vantage6 server, handling encryption and decryption where applicable.
+Data scientists and administrators may use it to manage resources programatically. For example, to automate actions or integrating them on other applications. The Python client communicates with the [REST API (wikipedia.org)](https://en.wikipedia.org/wiki/REST) of the vantage6 server, handling encryption and decryption where applicable.
 
 ::: spoiler
 
 ## Alternative clients
-Besides the Python client, there is also an [R client (github.com)](https://github.com/iknl/vtg) available. This client is more focused on starting federated analysis and does not provide tools to manage the server. It typically also lags behind the Python client in terms of features and updates. You can find more information in the [official documentation (docs.vantage6.ai)](https://docs.vantage6.ai/en/main/user/rclient.html).
+Besides the Python client, there is also an [R client (github.com)](https://github.com/iknl/vtg) available. This client is more focused on starting federated analysis and does not provide tools to manage the server. Important to note that this client is poorly maintained and lags behind in terms of features. Therefore we do *not* recommend using it. You can find more information in the [documentation (docs.vantage6.ai)](https://docs.vantage6.ai/en/main/user/rclient.html).
 
 If your organization uses a different programming language, you can always create a client in that language by following the [API documentation (docs.vantage6.ai)](https://docs.vantage6.ai/en/main/user/api.html).
 
@@ -74,8 +74,9 @@ username = "MY USERNAME"
 password = "MY PASSWORD"
 
 # Path to the private key, if encryption is enabled. Can be None if
-# not used. Note that this key is the organization's private key. In
-# case of this workshop we do not use encryption, so this can be None.
+# encryption is not used. Note that this key is the organization's
+# private key. In case of this workshop we do not use encryption, so
+# this can be None.
 organization_key = None
 ```
 
@@ -98,7 +99,7 @@ client.authenticate(config.username, config.password)
 # In the case of 2FA, you should also include the 6-digit code:
 # client.authenticate(config.username, config.password, '123456')
 
-# Setup the encryption, in case not encryption is used, this line can be
+# Setup the encryption. In case no encryption is used, this line can be
 # omitted or `config.organization_key` should be set to None
 client.setup_encryption(config.organization_key)
 ```
@@ -183,14 +184,16 @@ also described in the [official documentation (docs.vantage6.ai)](https://docs.v
 | `client.collaboration`| Manage collaborations |
 | `client.task`         | Create new tasks and view their run data |
 | `client.result`       | Obtain results from the tasks |
-| `client.util`         | Provides utility functions for the vantage6 Python client. For example to reset your password.             |
+| `client.util`         | Provides utility functions for the vantage6 Python client. For example to reset your password             |
 | `client.node`         | Manage nodes |
-| `client.store`        | Manage an algorithm store |
+| `client.store`        | Manage an algorithm stores |
 | `client.algorithm`    | Manage algorithms that can be used for the computations |
 
 Almost all of these attributes provide a [get](#get), [list](#list), [create](#create),
-[update](#update) and [delete](#delete) operation. All of the functions that interact
-with the server return a dictionary with the requested information.
+[update](#update) and [delete](#delete) operation. When using the `get` and `list`
+methods a dictonairy is returned with the requested information. In the case of the
+`create` and `update` methods typically the created resource is returned. Finally in the
+case of `delete` nothing is returned but a message is printed to confirm the deletion.
 
 
 ::: callout
@@ -198,11 +201,10 @@ with the server return a dictionary with the requested information.
 ### Permissions
 
 Note that the authenticated user may not be allowed to perform all operations or view all
-resources. The server will only allow the user to perform operations on the resources
-that the user has permission to perform.
-
-For example, a user may not be allowed to create a new organization, but may be allowed
-to list the organizations within all collaboration its organization participates in.
+resources. For example, a user may not be allowed to create a new organization, but may
+be allowed to list the organizations within all collaboration its organization
+participates in. The server will only allow the user to perform operations on the
+resources that the user has permission to perform.
 
 :::
 
@@ -262,7 +264,9 @@ The output should look similar to the following:
 ]
 ```
 
-Typically, the `list()` method returns a paginated result.
+The `list()` method returns a paginated result. Pagination divides the complete list of items into smaller parts, called pages. By default, the `list()` method returns the first page of 10 items. The page and the number of items per page can be specified with the `page` and `per_page` parameters.
+
+```Python
 
 ### Create
 Register a new *resource* at the server with `client.<resource>.create(...)`. For
@@ -330,7 +334,7 @@ instances of the given *resource* as well.
 client.organization.delete(1)
 ```
 ```output
-TODO: output, as this is not implemented in the current version
+--> Organization id=1 was removed from the database
 ```
 
 :::::::::::::::::::::::::::::::::::::
@@ -364,8 +368,21 @@ client.collaboration.list()
 
 ::::::::::::::::::::::::
 
+:::::::::::::::::::::::: hint
+
+You can use the `fields` parameter to specify which fields you want to see in the output.
+
+```python
+client.collaboration.list(fields=['id', 'name'])
+```
+
+::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::: solution
+```python
+client.collaboration.list(fields=['id', 'name'])
+```
 
 ```output
 [
@@ -437,7 +454,7 @@ This shows you that you can filter the list of organizations (among others) by n
 country, and collaboration.  It is also possible to request documentation of a higher
 level method, for example `help(client.organization)` or even `help(client)`.:
 
-::: spoiler
+::::::::::::::::::::::::::::::::::::: spoiler
 
 #### Online documentation
 
@@ -446,7 +463,6 @@ the [official documentation (docs.vantage6.ai)](https://docs.vantage6.ai/en/main
 
 Make sure you are viewing the documentation of the version of the client you are using.
 You can find the version of the client by one of the following commands:
-
 ```Python
 import vantage6.client
 print(vantage6.client.__version__)
@@ -454,11 +470,23 @@ print(vantage6.client.__version__)
 
 or by running the following command in the terminal:
 
+::: tab
+
+### Linux / MacOS
+
 ```bash
 pip show vantage6-client | grep Version
 ```
 
+### Windows
+
+```cmd
+pip show vantage6-client | findstr Version
+```
+
 :::
+
+:::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -514,7 +542,7 @@ uniquely by its name.
 :::
 
 Now that we understand the basic concepts of the vantage6 Python client, let us get
-some more details about our collaborations. First, as bevore, we collect the details of
+some more details about our collaborations. First, as before, we collect the details of
 the collaborations we have access to. We do so by specifying an additional parameter
 `fields` to the `list()` method. This parameter allows us to specify which fields we
 want to see in the output. This makes it more readable and easier to find the
@@ -582,9 +610,10 @@ Before we start the analysis, let us check if everything is in place:
 :::
 
 #### Node status
-Ok so we have not checked the status of the nodes. You can start an analys when nodes
-are offline, they will start the analysis once they are online. In case one is offline,
-you might need to inquire with the node owner to get it back online.
+As the checklist above indicates, we have not checked the status of the nodes. You can
+start an analys when nodes are offline, they will start the analysis once they are
+online. In case a node is offline, you might need to inquire with the node owner to get
+it back online.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -763,8 +792,9 @@ A client's task execution request is asynchronous. This means that once the
 returning the control to the Python program immediately (i.e., without waiting for the
 task to complete).
 
-This means that your client program needs to wait until the task is completed, so you
-can get access to the results (or to the error details, if something goes wrong).
+This means that in case you want to use the task result in the remainder of your code,
+your program needs to wait until the task is completed, so you can get access to the
+results (or to the error details, if something goes wrong).
 
 You can use the `client.wait_for_result()` method to make the program execution wait
 until the task is completed. For that, you need the ID of the task you just created,
