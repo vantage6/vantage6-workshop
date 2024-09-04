@@ -186,12 +186,12 @@ also described in the [official documentation (docs.vantage6.ai)](https://docs.v
 | `client.result`       | Obtain results from the tasks |
 | `client.util`         | Provides utility functions for the vantage6 Python client. For example to reset your password             |
 | `client.node`         | Manage nodes |
-| `client.store`        | Manage an algorithm stores |
+| `client.store`        | Manage algorithm stores |
 | `client.algorithm`    | Manage algorithms that can be used for the computations |
 
 Almost all of these attributes provide a [get](#get), [list](#list), [create](#create),
 [update](#update) and [delete](#delete) operation. When using the `get` and `list`
-methods a dictonairy is returned with the requested information. In the case of the
+methods a dictionary is returned with the requested information. In the case of the
 `create` and `update` methods typically the created resource is returned. Finally in the
 case of `delete` nothing is returned but a message is printed to confirm the deletion.
 
