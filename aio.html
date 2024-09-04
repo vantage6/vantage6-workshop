@@ -392,7 +392,7 @@
         
 <section id="aio-chap1_introduction_FL"><p>Content from <a href="chap1_introduction_FL.html">Introduction to privacy enhancing technologies (PET)</a></p>
 <hr>
-<p>Last updated on 2024-09-02 |
+<p>Last updated on 2024-09-04 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap1_introduction_FL.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -656,18 +656,20 @@ leaks of sensitive information. Consider the example of Mees, Sara and
 Noor. We know their total weight is 127 kg. If Sara and Noor get
 together and subtract their weights off of the total, they will be able
 to infer how much Mees weighs.</p>
-<p>An aggregation is differentially private when someone cannot infer
-whether a particular individual was used in the computation. A way to
-make a result more differentially private is to replace a selection of
-inputs with random noise. Given the dataset is large enough, and the
-noise is distributed appropriately for the data, this will approximately
-retain the same statistical properties as the original dataset. Because
-of this noise, a single individual will then always be able to deny that
-their data has contributed to the final result. An individual has
-<em>plausible deniability</em> with regards to whether it was part of
-the dataset.</p>
-<figure><img src="fig/chapter1/differential_privacy.jpg" alt="Differential privacy replaces a subset of the data with random values" class="figure mx-auto d-block"><div class="figcaption">Differential privacy replaces a subset of the
-data with random values</div>
+<p>An aggregation is fully differentially private when someone cannot
+infer whether a particular individual was used in the computation. In
+the field of differential privacy there are different techniques for
+adapting analyses to be more differentially private. Often these
+techniques involve adding noise to either the raw data or the result of
+the analysis. This makes the result less precise, but with the added
+benefit that it will be more difficult to infer the original data.</p>
+<p>The figure below shows a differential privacy technique where a
+random subset of the data is replaced with random values. This gives an
+individual plausible deniability regarding whether they were part of the
+original dataset. Their data might have been used, or it might have been
+replaced with noise.</p>
+<figure><img src="fig/chapter1/differential_privacy.jpg" alt="Differential privacy sometimes replaces a subset of the data with random values" class="figure mx-auto d-block"><div class="figcaption">Differential privacy sometimes replaces a subset
+of the data with random values</div>
 </figure></section><section><h2 class="section-heading" id="blocks-upon-blocks">Blocks upon blocks<a class="anchor" aria-label="anchor" href="#blocks-upon-blocks"></a>
 </h2>
 <hr class="half-width">
@@ -1328,7 +1330,7 @@ challenges.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <figure><img src="fig/chapter3/user-edit.png" alt="User-entity - edit option" class="figure mx-auto d-block"><div class="figcaption">User-entity - edit option</div>
 </figure>
@@ -1432,7 +1434,7 @@ too?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution steps </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>To check the status of the nodes of each collaboration:</p>
 <ol style="list-style-type: decimal">
@@ -1628,7 +1630,7 @@ user, or a collaboration?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Check it with your instructor.</li>
@@ -2139,7 +2141,7 @@ connection is performed successfully.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <figure><img src="fig/chapter5/auth-screenshot.png" alt="Expected output" class="figure mx-auto d-block"><div class="figcaption">Expected output</div>
 </figure>
@@ -2192,7 +2194,7 @@ the nodes of a given organization.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3666,7 +3668,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.6" class="external-link">sandpaper (0.16.6)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.7" class="external-link">sandpaper (0.16.7)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -3689,8 +3691,8 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/aio.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/aio.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-09-03",
-  "datePublished": "2024-09-03"
+  "dateModified": "2024-09-04",
+  "datePublished": "2024-09-04"
 }
 
   </script><script>
