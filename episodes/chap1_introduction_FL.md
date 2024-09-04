@@ -7,7 +7,7 @@ exercises: 2
 :::::::::::::::::::::::::::::::::::::: questions
 
 - What techniques exist for analyzing data while protecting privacy?
-- What are issues with only using data anonymization or pseudonymization
+- What are issues with only using data anonymization or pseudonymization?
 - What are the building blocks to create a privacy enhancing analysis?
 - What what are some non-technical challenges for performing privacy enhancing analysis?
 
