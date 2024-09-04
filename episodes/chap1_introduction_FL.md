@@ -236,7 +236,7 @@ of the technologies you intend to use.
 - Techniques from differential privacy add noise to the data to make it harder to reconstruct the original records from an aggregation.
 - Privacy enhancing analyses usually stack multiple techniques on top of each other to provide multiple layers of protection.
 - Horizontal partitioning means the records are split, while in vertical partitioning the features are split.
-- Technology is only part of the story when doing research on privacy sensitive data. 
+- Technology is only one part of the story, when doing research on privacy sensitive data. 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 [r-markdown]: https://rmarkdown.rstudio.com/
