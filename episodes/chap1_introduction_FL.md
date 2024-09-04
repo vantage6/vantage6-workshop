@@ -179,15 +179,17 @@ Consider the example of Mees, Sara and Noor. We know their total weight is 127 k
 get together and subtract their weights off of the total, they will be able to infer how much Mees
 weighs.
 
-An aggregation is differentially private when someone cannot infer whether a particular individual
-was used in the computation. A way to make a result more differentially private is to replace a
-selection of inputs with random noise. Given the dataset is large enough, and the noise is distributed
-appropriately for the data, this will approximately retain the same statistical properties as the
-original dataset. Because of this noise, a single individual will then always be able to deny that
-their data has contributed to the final result. An individual has _plausible deniability_ with
-regards to whether it was part of the dataset.
+An aggregation is fully differentially private when someone cannot infer whether a particular individual
+was used in the computation. In the field of differential privacy there are different techniques
+for adapting analyses to be more differentially private. Often these techniques involve adding
+noise to either the raw data or the result of the analysis. This makes the result less precise, 
+but with the added benefit that it will be more difficult to infer the original data.
 
-![Differential privacy replaces a subset of the data with random values](fig/chapter1/differential_privacy.jpg)
+The figure below shows a differential privacy technique where a random subset of the data is replaced
+with random values. This gives an individual plausible deniability regarding whether they were part of 
+the original dataset. Their data might have been used, or it might have been replaced with noise.
+
+![Differential privacy sometimes replaces a subset of the data with random values](fig/chapter1/differential_privacy.jpg)
 
 
 ## Blocks upon blocks
