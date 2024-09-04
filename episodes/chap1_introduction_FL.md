@@ -229,12 +229,12 @@ of the technologies you intend to use.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Privacy enhancing analysis can derive insights from data without seeing individual records
-- Privacy enhancing analysis usually starts with the anonymization or pseudonymization of the data
-- In federated data analysis the analysis moves to the data, while in classic analysis the data moves around
-- In secure multiparty computation, computations are performed collaboratively without any one party being able to see all the raw data
-- Techniques from differential privacy add noise to the data to make it harder to reconstruct the original records from an aggregation
-- Privacy enhancing analyses usually stack multiple techniques on top of eachother to provide multiple layers of protection
+- Privacy enhancing analysis can derive insights from data without seeing individual records.
+- Privacy enhancing analysis usually starts with the anonymization or pseudonymization of the data.
+- In federated data analysis the analysis moves to the data, while in classic analysis the data moves around.
+- In secure multiparty computation, computations are performed collaboratively without any one party being able to see all the raw data.
+- Techniques from differential privacy add noise to the data to make it harder to reconstruct the original records from an aggregation.
+- Privacy enhancing analyses usually stack multiple techniques on top of each other to provide multiple layers of protection.
 - Horizontal partitioning means the records are split, while in vertical partitioning the features are split.
 - Technology is only part of the story when doing research on privacy sensitive data. 
 ::::::::::::::::::::::::::::::::::::::::::::::::
