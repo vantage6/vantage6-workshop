@@ -28,24 +28,19 @@ Make sure you completed the [Episode 2](./chap2_introduction_v6.md) where the co
 
 ## Interacting with the v6 server
 
-As described on [Episode 2](./chap2_introduction_v6.md), the vantage6 server is the central component responsible for managing the entire federated/multi-party computation infrastructure and facilitating communication between the various entities within the vantage6 platform. This means that any use case—such as creating a collaboration, adding an organization to a collaboration, starting a task with a specific algorithm, or retrieving task results—requires interaction with the server. In this episode we will explore -on a hands-on fashion- how the vantage6 web-based user-interface makes possible this interaction for basic use cases. In [Episode 5](./chap5_python_client.md) we will explore an alternative for doing this interaction programatically, using the server API, for more advanced use-cases.
-
+As described on [Episode 2](./chap2_introduction_v6.md), the vantage6 server is the central component responsible for managing the entire federated/multi-party computation infrastructure and facilitating communication between the various entities within the vantage6 platform. This means that any use case—such as creating a collaboration, adding an organization to a collaboration, starting a task with a specific algorithm, or retrieving task results—requires interaction with the server.  In this episode, we'll dive into a hands-on exploration of how the vantage6 web-based user interface enables this interaction for basic use cases. In [Episode 5](./chap5_python_client.md), we will explore a more advanced approach, demonstrating how to perform these interactions programmatically using the server API -the same API that powers the web interface behind the scenes.
 
 ![v6 API clients](fig/chapter3/v6-API.png)
 
 ### Administration concepts in the UI
 
-Once you log in into the vantage6 UI, you will see that most of its elements, and the navigability between these, correspond to what was described in [Chapter 2](./chap2_introduction_v6.md).
+After logging into the vantage6 UI, you'll notice that most elements and the navigation between them align with the descriptions provided in [Chapter 2](./chap2_introduction_v6.md). For instance, on your start page you will see the collaborations your organization is part of. Clicking one of the collaborations will show the tasks of that collaboration.
 
 ![vantage6 UI start page](fig/chapter3/ui_start_page.png)
 
-For instance, on your start page you will see the collaborations your organization is part of. Clicking one of the collaborations will show the tasks of that collaboration.
-
 ![vantage6 UI tasks page](fig/chapter3/ui_task_page.png)
 
-The start page contains a button `Administration` in the left panel. Clicking on this button will redirect you to the administration page.
-
-On the administration page, you can manage the entities of vantage6. The entities are divided into tabs: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. We will get back to this later in more detail.
+The start page contains an `Administration` icon in the left panel. Clicking on this button will expand it with the vantage6 entities youn can manage: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. We will get back to this later in more detail.
 
 ![vantage6 UI administration page](fig/chapter3/ui_admin_page.png)
 
@@ -131,7 +126,7 @@ To check the status of the nodes of each collaboration:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: your first algorithm execution as a researcher
+## Challenge 4: as a researcher, requesting an algorithm execution!
 
 Now, you'll play the role of the researcher within the collaboration you have just examined. With this role, you will finally request the execution of the algorithm.
 
@@ -143,7 +138,7 @@ Now, you'll play the role of the researcher within the collaboration you have ju
 
    ![](fig/chapter3/create-task.png)
 
-4. As the first step, you can choose between running the task on the entire collaboration, or on one particular study (i.e., on a subset of the collaboration's institutions). Choose the study that, according to your analysis on Challenge #3, is still NOT ready to execute a _federated average_ task.
+4. As the first step, you can choose between running the task on the entire collaboration, or on one particular study (i.e., on a subset of the collaboration's institutions). Choose the study that, according to what you saw when working on Challenge #3, is still NOT ready to execute a _federated average_ task.
 
    ![](fig/chapter3/select-study.png)
 
