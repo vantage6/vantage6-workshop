@@ -6,21 +6,38 @@ exercises: 3
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How does a vantage6 collaboration work?
-- How to check the status of a given collaboration within vantage6?
-- How to link an algorithm store to a given collaboration?
-- How to run a task through vantage6's UI?
+- How can I perform basic administrative activities on vantage6 using the web-based UI?
+- How do I check the status of a specific collaboration or study in the vantage6 UI?
+- How do I request a task through the vantage6 UI?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explore specific data analysis scenarios that further illustrate the concept of collaboration
-- Understand the concept of 'algorithm trustworthiness' in the context of a vantage6 collaboration
-- Understand vantagee6's algorithm-store current and envisioned features
-- Understand the UI-based approach for performing a data analysis through the given scenarios
+- Explore specific data analysis scenarios that further illustrate the concepts introduced on episode 2. 
+- Understand the UI-based workflow for performing a data analysis on the given scenarios.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::: prereq
+
+# Prerequisite
+Make sure you completed the [Episode 2](./chap2_introduction_v6.md) where the concepts the UI is based on are introduced.
+
+:::::::::::::::::
+
+## Interacting with the v6 server
+
+As described on [Episode 2](./chap2_introduction_v6.md), the vantage6 server is the component responsible for managing the overall federated/multi-party computation infrastructure and facilitating communication between the different entities in the vantage6 platform. This means that any use case, i.e., creating a collaboration, adding an organization to a collaboration, start a task with a given algorithm, or getting the results of a task, involves 'talking' the server. In this episode we will explore -on a hands-on fashion- how to use the vantage6 user interface for performing these use cases. 
+
+the web-based user interface for performing 
+creating these requests common use cases. 
+
+These requests can be made either through a user-friendly web-based user interface, or (for  more advanced use cases) programatically, using the server's API.
+
+
+
+![v6 API clients](fig/chapter3/v6-API.png)
 
 
 ### Administration concepts in the UI
