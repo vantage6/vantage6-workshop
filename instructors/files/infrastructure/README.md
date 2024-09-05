@@ -15,7 +15,7 @@ deployed on Azure Virtual Machines.
 1. Make sure that the server is deployed before running the scripts and that you have a
    user account with root permissions.
 1. Clone this repo and go to the directory where this README is located.
-1. Activate your python env where vantage6 is installed (v4.6+)
+1. Activate your python env where the vantage6-client is installed (v4.6+)
 1. **Modify the participants.csv in the `workshop_resources` directory**. You should update the
    workshop participants list to include the names of the participants of the workshop.
    _Do not commit this_ for privacy reasons.
@@ -31,8 +31,8 @@ deployed on Azure Virtual Machines.
    password = "my-password"
    ```
 
-1. Run the script `create-resources.ipynb` to create the resources on the server. This
-   script will create the resources for the workshop participants, and also create
+1. Run the cells in `create-resources.ipynb` to create the resources on the server. This
+   notebook will create the resources for the workshop participants, and also create
    the node configuration files and attach the data files to them.
 1. Deploy the nodes on the VMs. The node configuration files are created in the `output`
    directory.
