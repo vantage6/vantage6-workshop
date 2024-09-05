@@ -64,3 +64,6 @@ instructors/files/infrastructure/workshop_resources/*.csv
 
 # other
 __pycache__/
+
+.vscode/
+

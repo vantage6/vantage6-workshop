@@ -2,80 +2,86 @@
 title: Setup
 ---
 
-Vantage6 has hardware and software requirements in order to run the vantage6 node(s) and/or server. As for the detailed requirements, please refer to the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/requirements.html).
+**Before you jump to the installation instructions, consider the following**. This course can be divided into two parts, depending on wether you are only participating in the first part or both parts the setup requirements are different:
 
-For now, we just need to focus on the software setup.
+- part one, chapters 1 to 4, is about understanding and using vantage6 through the User Interface (UI). In case you are *only* participating in the part one, you need a web browser and internet in order to access the vantage6 UI. You can skip this setup episode and start the course right away.
+- part two, chapters 5 to 8, is more advanced and requires programming experience. Your laptop should be able to run the all the vantage6 software components locally. In this episode, we will guide you through the installation. Please make sure to complete the installation before starting the course.
+
+
+:::::::::::::::::::::::::::::::::::::::::: callout
+
+### Need additional help?
+
+ Have you followed the instructions in this lesson and still have issues with the installation?
+
+ Please reach out to us on the [vantage6 Discord channels](https://discord.gg/yAyFf6Y). Or alternatively, you can send an email to [f.martin@iknl.nl](mailto:f.martin@iknl.nl) or [d.smits@esciencecenter.nl](mailto:d.smits@esciencecenter.nl).
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Software setup
 
 Vantage6 requires the following software to be installed on your system. In this lesson, we will explain how to install it:
 
 - Recommended operating system: Ubuntu 20.04+ , MacOS Big Sur+, or Windows 10+
-- Docker Desktop (always latest version)
-- Conda (latest version)
+- Docker Desktop (Windows, MacOS) or the Docker Engine (Linux)
+- Miniconda (latest version)
 - Python v3.10
 - Python packages:
-    - jupyterlab
-    - vantage6
-    - vantage6-client
-    - vantage6-algorithm-tools
+  - [jupyterlab](https://pypi.org/project/jupyterlab/)
+  - [vantage6==4.7.x](https://pypi.org/project/vantage6/)
+  - [vantage6-client==4.7.x](https://pypi.org/project/vantage6-client/)
+  - [vantage6-algorithm-tools==4.7.x](https://pypi.org/project/vantage6-algorithm-tools/)
+- A code editor [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm/) or something similar
 
 ### Docker
 
-We recommend installing [Docker Desktop](https://www.docker.com/products/docker-desktop/) on your system, which is the easiest way to install Docker.
+#### Windows and MacOS
+We recommend installing Docker Desktop on your system, which is the easiest way to install Docker. You can download it from the [Docker website](https://www.docker.com/products/docker-desktop). Docker Desktop is available for MacOS, Windows, and Linux.
 
-You can follow the official instructions to install Docker Desktop on [MacOS](https://docs.docker.com/desktop/install/mac-install/), [Windows](https://docs.docker.com/desktop/install/windows-install/), or [Linux](https://docs.docker.com/desktop/install/linux-install/).
+You can follow the official instructions to install Docker Desktop on [MacOS](https://docs.docker.com/desktop/install/mac-install/) or [Windows](https://docs.docker.com/desktop/install/windows-install/).
 
-::: callout
-#### Linux users
-If you have Docker Engine installed on your Linux system and want to use it instead of Docker Desktop, you must make sure that it can run Docker containers without `sudo`. For that, please check the [guide](https://docs.docker.com/engine/install/linux-postinstall/) for more information.
-:::
 
-After installing the Docker Desktop, open the application, and then verify the installation by running the command in your terminal:
+#### Linux
+We recommend installing the Docker Engine on your Linux system. You can follow the official instructions to install Docker Engine for [Linux](https://docs.docker.com/desktop/install/linux-install/). After the installation, make sure that it can run Docker containers without `sudo`. Please follow the instructions in [this guide](https://docs.docker.com/engine/install/linux-postinstall/) to set that up.
+
+Alternatively, you can install Docker Desktop on your Linux system. You can follow the official instructions to install Docker Desktop for [Linux](https://docs.docker.com/desktop/install/linux-install/).
+
+-------------------------------------------------------
+
+After installing the Docker Desktop or Docker engine, open your terminal, and then verify the installation by running the command:
 
 ```bash
-docker version
+docker run hello-world
 ```
 
 ```Output
-Client:
- Version:           26.1.4
- API version:       1.45
- Go version:        go1.21.11
- Git commit:        5650f9b
- Built:             Wed Jun  5 11:26:02 2024
- OS/Arch:           darwin/arm64
- Context:           desktop-linux
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
 
-Server: Docker Desktop 4.31.0 (153195)
- Engine:
-  Version:          26.1.4
-  API version:      1.45 (minimum version 1.24)
-  Go version:       go1.21.11
-  Git commit:       de5c9cf
-  Built:            Wed Jun  5 11:29:12 2024
-  OS/Arch:          linux/arm64
-  Experimental:     false
- containerd:
-  Version:          1.6.33
-  GitCommit:        d2d58213f83a351ca8f528a95fbd145f5654e957
- runc:
-  Version:          1.1.12
-  GitCommit:        v1.1.12-0-g51d5e94
- docker-init:
-  Version:          0.19.0
-  GitCommit:        de40ad0
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
 ```
 
-The above output shows a successful installation and will vary based on your system. Make sure you see versions for both `Client` and `Server`.
+### (Mini)conda
 
-If you cannot see the `Server` version, you have to open the Docker Desktop application first, then run the command again.
+There are several ways to install Conda on your system. For this course, we recommend using Miniconda installer. However if you already have Anaconda installed, you can use it as well.
 
-### Conda
-
-There are several ways to install Conda on your system. For this lesson, we recommend using Miniconda installer.
-
-Follow the [official instructions](https://docs.anaconda.com/free/miniconda/#quick-command-line-install) to install Miniconda on Windows, MacOS, or Linux.
+Follow the [official instructions](https://docs.anaconda.com/free/miniconda/) to install Miniconda on Windows, MacOS, or Linux.
 
 After installing Miniconda, open a **new** terminal window and verify the installation by running the command:
 
@@ -89,8 +95,7 @@ conda 24.4.0
 
 It's OK if the version number is different as long as you can create a Python environment as shown in the next step.
 
-If you see an error message, you may need to restart your terminal or computer.
-
+If you see an error message, you may need to restart your terminal or even your computer.
 
 ### Python environment and Python packages
 
@@ -104,7 +109,7 @@ conda create -n v6-workshop python=3.10
 conda activate v6-workshop
 
 # Install the required Python packages
-pip install jupyterlab vantage6 vantage6-client vantage6-algorithm-tools
+pip install jupyterlab vantage6==4.7.x vantage6-client==4.7.x vantage6-algorithm-tools==4.7.x
 ```
 
 1. Verify the installation of `jupyterlab`:
@@ -113,8 +118,7 @@ pip install jupyterlab vantage6 vantage6-client vantage6-algorithm-tools
 jupyter lab
 ```
 
-Make sure the JupyterLab opens in your browser.
-
+Make sure JupyterLab opens in your browser.
 
 2. Verify the installation of `vantage6`:
 
@@ -148,11 +152,9 @@ If the installation is successful, it will print out a message explaining the us
 
 ```bash
 python -c "import vantage6.client"
-python -c "import vantage6.algorithm"
+python -c "import vantage6.algorithm.tools"
 ```
 
 If there is no output and no error message, the installation is successful.
-
-
 
 **Congratulations 🎉** You have successfully set up all required software for this lesson!
