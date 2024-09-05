@@ -266,8 +266,6 @@ The output should look similar to the following:
 
 The `list()` method returns a paginated result. Pagination divides the complete list of items into smaller parts, called pages. By default, the `list()` method returns the first page of 10 items. The page and the number of items per page can be specified with the `page` and `per_page` parameters.
 
-```Python
-
 ### Create
 Register a new *resource* at the server with `client.<resource>.create(...)`. For
 example, let's create a new organization:
@@ -343,7 +341,7 @@ client.organization.delete(1)
 
 ### Collect collaboration details
 
-Before starting a task, you need to know the details of the collaboration you are working with. Use the Python client to get the details of the collaboration you have access to. Write down the **name** and and **ID** of each collaboration.
+Before starting a task, you need to know the details of the collaboration you are working with. Use the Python client to get the details of the collaboration you have access to. Write down the **name** and **ID** of each collaboration.
 
 :::::::::::::::::::::::: hint
 
@@ -812,6 +810,11 @@ you can include instructions for retrieving the results immediately afterward:
 ```python
 result_info = client.result.from_task(task_id=task_id)
 ```
+
+### Aggregate results
+
+--> code example
+--> central_average() challenge
 
 
 # Advanced Exercises
