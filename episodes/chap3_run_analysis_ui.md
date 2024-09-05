@@ -28,29 +28,22 @@ Make sure you completed the [Episode 2](./chap2_introduction_v6.md) where the co
 
 ## Interacting with the v6 server
 
-As described on [Episode 2](./chap2_introduction_v6.md), the vantage6 server is the component responsible for managing the overall federated/multi-party computation infrastructure and facilitating communication between the different entities in the vantage6 platform. This means that any use case, i.e., creating a collaboration, adding an organization to a collaboration, start a task with a given algorithm, or getting the results of a task, involves 'talking' the server. In this episode we will explore -on a hands-on fashion- how to use the vantage6 user interface for performing these use cases. 
-
-the web-based user interface for performing 
-creating these requests common use cases. 
-
-These requests can be made either through a user-friendly web-based user interface, or (for  more advanced use cases) programatically, using the server's API.
-
+As described on [Episode 2](./chap2_introduction_v6.md), the vantage6 server is the central component responsible for managing the entire federated/multi-party computation infrastructure and facilitating communication between the various entities within the vantage6 platform. This means that any use case—such as creating a collaboration, adding an organization to a collaboration, starting a task with a specific algorithm, or retrieving task results—requires interaction with the server. In this episode we will explore -on a hands-on fashion- how the vantage6 web-based user-interface makes possible this interaction for basic use cases. In [Episode 5](./chap5_python_client.md) we will explore an alternative for doing this interaction programatically, using the server API, for more advanced use-cases.
 
 
 ![v6 API clients](fig/chapter3/v6-API.png)
 
-
 ### Administration concepts in the UI
 
-After logging in to the vantage6 UI, you will see the start page.
+Once you log in into the vantage6 UI, you will see that most of its elements, and the navigability between these, correspond to what was described in [Chapter 2](./chap2_introduction_v6.md).
 
 ![vantage6 UI start page](fig/chapter3/ui_start_page.png)
 
-There are some collaborations displayed on the start page. Clicking one of the collaborations will show the tasks of that collaboration.
+For instance, on your start page you will see the collaborations your organization is part of. Clicking one of the collaborations will show the tasks of that collaboration.
 
 ![vantage6 UI tasks page](fig/chapter3/ui_task_page.png)
 
-The start page also contains a button `Administration` in the top right corner. Clicking on this button will redirect you to the administration page.
+The start page contains a button `Administration` in the left panel. Clicking on this button will redirect you to the administration page.
 
 On the administration page, you can manage the entities of vantage6. The entities are divided into tabs: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. We will get back to this later in more detail.
 
@@ -60,7 +53,7 @@ On the administration page, you can manage the entities of vantage6. The entitie
 
 ## Get familiar with the vantage6 UI
 
-Log in to the Vantage6 UI using the credentials below (the password will be given by the instructors). Once logged in, navigate to the administration page to familiarize yourself with the entities there. Then, try to update your email, first name, and last name, but do not change your username, as it will be needed for some of the follow-up challenges.
+Log in to the Vantage6 UI using the credentials given by the instructors. Once logged in, navigate to the administration page to familiarize yourself with the entities there. Then, try to update your email, first name, and last name, but do not change your username.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -77,7 +70,7 @@ Log in to the Vantage6 UI using the credentials below (the password will be give
 
 ## From theory to practice: a hypothetical case study using vantage6 collaborations
 
-As previously discussed, in vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
+As discussed in [Episode 2](./chap2_introduction_v6.md), in vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
 
 To illustrate this, let's analyze a hypothetical scenario: an international collaboration project of multiple health research institutes, working together on two studies:
 
