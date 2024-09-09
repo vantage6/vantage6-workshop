@@ -44,9 +44,9 @@ The permissions are set up in the `Roles` tab in the administration page. You ca
 
 The permission structure allows for a lot of flexibility, but it can be complex for beginners to set up. The default roles provide a quick way to set up permissions, but it is recommended to review them before using them in a project.
 
-![vantage6 permissions for the role Root](fig/permissions_root.png)
+![vantage6 permissions for the role Root](fig/chapter4/permissions_root.png)
 
-![vantage6 permissions for the role Researcher](fig/permissions_researcher.png)
+![vantage6 permissions for the role Researcher](fig/chapter4/permissions_researcher.png)
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
