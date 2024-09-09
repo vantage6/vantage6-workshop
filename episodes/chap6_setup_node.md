@@ -56,7 +56,6 @@ The following software must be installed before installing the vantage6 node:
 - Miniconda (latest version)
 - Python v3.10
 - Python packages:
-  - [jupyterlab](https://pypi.org/project/jupyterlab/)
   - [vantage6==4.7.x](https://pypi.org/project/vantage6/)
   - [vantage6-client==4.7.x](https://pypi.org/project/vantage6-client/)
   - [vantage6-algorithm-tools==4.7.x](https://pypi.org/project/vantage6-algorithm-tools/)
