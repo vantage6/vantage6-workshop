@@ -30,6 +30,17 @@ Vantage6 uses a permission system to control who can do what in the system. The 
 
 The permission rules define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own, organization, collaboration, global), and the resource (e.g. users, organizations). Users can be assigned anywhere between zero and all of these permission rules. For example, having the rules with `create` in the scope `organization` for the resource `user` means that the user can create users for the organization they belong to.
 
+![vantage6 permission system](fig/chapter4/permission_system.png)
+
+There are six operations: view, edit, create, delete, send and receive. The first four correspond to GET, PATCH, CREATE and DELETE requests, respectively. The last two allow users to send and receive data via socket events. For example, sending events would allow them to kill tasks that are running on a node.
+
+The scopes are:
+
+- Global: all resources of all organizations
+- Organization: resources of the user’s own organization
+- Collaboration: resources of all organizations that the user’s organization is in a collaboration with
+- Own: these are specific to the user endpoint. Permits a user to see/edit their own user, but not others within the organization.
+
 Note that not every resource has all scopes and/or operations. For example, the `collaboration` resource does not have `create`  operation for the `organization` scope, as it does not make sense to create a collaboration that only your own organization can participate in.
 
 To make it easier to assign permissions, there are also predefined roles:
