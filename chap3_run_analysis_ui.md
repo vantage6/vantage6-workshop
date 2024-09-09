@@ -6,36 +6,41 @@ exercises: 3
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How does a vantage6 collaboration work?
-- How to check the status of a given collaboration within vantage6?
-- How to link an algorithm store to a given collaboration?
-- How to run a task through vantage6's UI?
+- How can I perform basic administrative activities on vantage6 using the web-based UI?
+- How do I check the status of a specific collaboration or study in the vantage6 UI?
+- How do I request a task through the vantage6 UI?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explore specific data analysis scenarios that further illustrate the concept of collaboration
-- Understand the concept of 'algorithm trustworthiness' in the context of a vantage6 collaboration
-- Understand vantagee6's algorithm-store current and envisioned features
-- Understand the UI-based approach for performing a data analysis through the given scenarios
+- Explore specific data analysis scenarios that further illustrate the concepts introduced on episode 2. 
+- Understand the UI-based workflow for performing a data analysis on the given scenarios.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+:::::::::: prereq
+
+# Prerequisite
+Make sure you completed the [Episode 2](./chap2_introduction_v6.md) where the concepts the UI is based on are introduced.
+
+:::::::::::::::::
+
+## Interacting with the v6 server
+
+As described on [Episode 2](./chap2_introduction_v6.md), the vantage6 server is the central component responsible for managing the entire federated/multi-party computation infrastructure and facilitating communication between the various entities within the vantage6 platform. This means that any use case—such as creating a collaboration, adding an organization to a collaboration, starting a task with a specific algorithm, or retrieving task results—requires interaction with the server.  In this episode, we'll dive into a hands-on exploration of how the vantage6 web-based user interface enables this interaction for basic data analysis on  a pre-configured collaboration (in [Episode 4](./chap4_manage_via_ui.md) you will learn how to configure your own). In [Episode 5](./chap5_python_client.md), you will explore how to perform these administrative tasks programmatically using the server API -the same API that powers the web interface behind the scenes.
+
+![v6 API clients](fig/chapter3/v6-API.png)
 
 ### Administration concepts in the UI
 
-After logging in to the vantage6 UI, you will see the start page.
+After logging into the vantage6 UI, you'll notice that most elements and the navigation between them align with the descriptions provided in [Chapter 2](./chap2_introduction_v6.md). For instance, on your start page you will see the collaborations your organization is part of. Clicking one of the collaborations will show the tasks of that collaboration.
 
 ![vantage6 UI start page](fig/chapter3/ui_start_page.png)
 
-There are some collaborations displayed on the start page. Clicking one of the collaborations will show the tasks of that collaboration.
-
 ![vantage6 UI tasks page](fig/chapter3/ui_task_page.png)
 
-The start page also contains a button `Administration` in the top right corner. Clicking on this button will redirect you to the administration page.
-
-On the administration page, you can manage the entities of vantage6. The entities are divided into tabs: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. We will get back to this later in more detail.
+The start page contains an `Administration` icon in the left panel. Clicking on this button will expand it with the vantage6 entities youn can manage: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. We will get back to this later in more detail.
 
 ![vantage6 UI administration page](fig/chapter3/ui_admin_page.png)
 
@@ -43,7 +48,7 @@ On the administration page, you can manage the entities of vantage6. The entitie
 
 ## Get familiar with the vantage6 UI
 
-Log in to the Vantage6 UI using the credentials below (the password will be given by the instructors). Once logged in, navigate to the administration page to familiarize yourself with the entities there. Then, try to update your email, first name, and last name, but do not change your username, as it will be needed for some of the follow-up challenges.
+Log in to the Vantage6 UI using the credentials given by the instructors. Once logged in, navigate to the administration page to familiarize yourself with the entities there. Then, try to update your email, first name, and last name, but do not change your username.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -60,7 +65,7 @@ Log in to the Vantage6 UI using the credentials below (the password will be give
 
 ## From theory to practice: a hypothetical case study using vantage6 collaborations
 
-As previously discussed, in vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
+As discussed in [Episode 2](./chap2_introduction_v6.md), in vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
 
 To illustrate this, let's analyze a hypothetical scenario: an international collaboration project of multiple health research institutes, working together on two studies:
 
@@ -121,7 +126,7 @@ To check the status of the nodes of each collaboration:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: your first algorithm execution as a researcher
+## Challenge 4: as a researcher, requesting an algorithm execution!
 
 Now, you'll play the role of the researcher within the collaboration you have just examined. With this role, you will finally request the execution of the algorithm.
 
@@ -133,7 +138,7 @@ Now, you'll play the role of the researcher within the collaboration you have ju
 
    ![](fig/chapter3/create-task.png)
 
-4. As the first step, you can choose between running the task on the entire collaboration, or on one particular study (i.e., on a subset of the collaboration's institutions). Choose the study that, according to your analysis on Challenge #3, is still NOT ready to execute a _federated average_ task.
+4. As the first step, you can choose between running the task on the entire collaboration, or on one particular study (i.e., on a subset of the collaboration's institutions). Choose the study that, according to what you saw when working on Challenge #3, is still NOT ready to execute a _federated average_ task.
 
    ![](fig/chapter3/select-study.png)
 
