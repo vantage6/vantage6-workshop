@@ -515,17 +515,17 @@ help(client.util.change_my_password)
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Identifiers are key
-From parameters like the ones described in this episode, it is important to note that
-the client methods use identifiers rather than names. This implies that, for example,
-to filter the organizations that belong to a a given collaboration, you need to know
-the collaboration's identifier first.
+It is important to note that the Python client use identifiers rather than names to
+select resources. For example, to filter the organizations that belong to a a given
+collaboration, you need to know the collaboration's identifier first.
 
 In a previous challenge, you were asked to get the details of the collaborations you
 have access to. This is common practice when working with the vantage6 Python client.
 
-It is also possible to obtain these identifiers through the UI. But note that when
-working with the UI, identifiers are not as important as the names are used to identify
-the resources.
+It is also possible to obtain these identifiers through the UI. However, when working
+with the UI, identifiers are not as important as the names can be used to identify the
+resources. But also for the UI, it is important to know the identifiers of the resources
+as names are not always unique.
 
 ::: spoiler
 
@@ -670,19 +670,30 @@ now it would be good to see both online and offline nodes.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+One of the nodes in our collaboration is offline. In the real world, you would need to
+contact the node owner to get the node back online. But for the purpose of this
+workshop we have defined a [study](./chap2_introduction_v6.md#project-administration-in-vantage6)
+that contains only online nodes. Which has a name that ends with *Subset*. You can find
+the study ID by using the `client.study.list()` method. Write down the ID of the study.
+
+```python
+client.study.list(fields=("id", "name"))
+```
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 #### Task definition
 
 A task in vantage6 is a request to execute an algorithm on a given organization. When
 creating a task, you need to specify the following:
 
-- The collaboration and organization identifiers.
+- The collaboration[, study] and organization identifiers.
 - The algorithm to be executed.
 - The input parameters for the algorithm.
 
-The algorithm we are going to use is the
-[federated average algorithm (Github.com)](https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py),
-which we commonly use for demonstrations. Typically, you want to run a more complex
-algorithm, but for the sake of this workshop, we will use this simple algorithm.
+The average algorithm we are going to use is the same as in [Episode 3](./chap3_run_analysis_ui.md#running-a-simple-federated-algorithm).
 
 This algorithm has two functions: `partial_average()` and `central_average()`. If you
 do not know the difference between *partial* and *central* function, you should read
@@ -764,8 +775,9 @@ it will be executed:
 
 ```Python
 average_task = client.task.create(
-   collaboration=45,
-   organizations=[12,23],
+   collaboration=1,
+   organizations=[1,2,3,4],
+   study=4,
    name="name_for_the_task",
    image="harbor2.vantage6.ai/demo/average",
    description='',
@@ -804,17 +816,26 @@ task_id = average_task['id']
 result = client.wait_for_results(task_id)
 ```
 
-Since the above will pause the execution of the program until the task is completed,
-you can include instructions for retrieving the results immediately afterward:
-
-```python
-result_info = client.result.from_task(task_id=task_id)
-```
-
 ### Aggregate results
 
---> code example
---> central_average() challenge
+The results contain the output of the algorithm. In the case of the `partial_average()`
+function, the output is not yet aggregated. This means that the output of each node is
+returned separately. In the case of the `central_average()` function, the output is
+aggregated and only the aggregated result is returned.
+
+For now we can aggregate the results ourselfs:
+
+```python
+import json
+global_sum = 0
+global_count = 0
+for output in results["data"]:
+    output = json.loads(output["result"])
+    global_sum += output["sum"]
+    global_count += output["count"]
+
+print(global_sum / global_count)
+```
 
 
 # Advanced Exercises
@@ -822,66 +843,52 @@ result_info = client.result.from_task(task_id=task_id)
 
 :::::::::::::::::::::::::::::::::::::::::::::::: challenge
 
+## Find study details
 
-Use the researcher credentials from [Running analysis from the UI (Episode 3)](./chap3_run_analysis_ui.md), to get the identifiers of the two collaborations from this episode's scenario. Use this information to get the identifiers of the organizations that belong to each collaboration.
 
-Refer to the **Python client - basic concepts** section above to do this.
+A study is a subset of a collaboration. Obtain the IDs of the collaborations and
+organizations of the following studies. Refer to the [Using the client](#using-the-client)
+section above on how to do this.
 
 | User      | Roles      | Collaboration |
 | --------- | ---------- | ------------- |
-| PhY24-rs1 | Researcher | PhY24         |
-| GHT-rs1   | Researcher | GHT           |
+| [*] AGOT2024  | Researcher |     [*]     |
+| [*] GGA2024   | Researcher |     [*]     |
 
-Now, try to identify which nodes are active on each collaboration. Hint: use the `client.node` resource. Remember that you can use the `help()` function to see how to get the details of the nodes of a given organization.
+[*] Should be replaced with the collaboration name you have access to. This can be one of
+  Oak Alliance, Pine Partners, Maple Consortium, Cedar Coalition, Birch Brotherhood,
+  Redwood Union or Willow Network.
+
+Now, try to identify which nodes are online in each study.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
 
+First, lets obtain the study IDs:
 ```python
->>> client.collaboration.list(fields=['id', 'name', 'organizations'])
-
-[
-    {'id': 4, 'name': 'PhY-research', 'organizations': '/api/organization?collaboration_id=4'},
-    {'id': 5, 'name': 'GHT_consortium', 'organizations': '/api/organization?collaboration_id=5'}
-]
-
+client.study.list(fields=('id', 'name'))
 ```
 
-By knowing the ID of the collaboration, you can find the identifiers of the organizations that are participating on it:
-
-```python
-
->>> client.organization.list(collaboration=4)
-
+Note that your output might be slightly different. But the *AGOT2024* and *GGA2024*
+studies should be present:
+```output
 [
-    {'address1': '', 'studies': '/api/study?organization_id=3', 'users': '/api/user?organization_id=3', 'zipcode': '', 'domain': '', 'tasks': '/api/task?init_org_id=3', 'public_key': '', 'name': 'CANTABRIA_organization', 'address2': '', 'nodes': '/api/node?organization_id=3', 'country': 'Spain', 'collaborations': '/api/collaboration?organization_id=3', 'runs': '/api/run?organization_id=3', 'id': 3},
-    {'address1': '', 'studies': '/api/study?organization_id=4', 'users': '/api/user?organization_id=4', 'zipcode': '', 'domain': '', 'tasks': '/api/task?init_org_id=4', 'public_key': '', 'name': 'LIFELINES_organization', 'address2': '', 'nodes': '/api/node?organization_id=4', 'country': 'The Netherlands', 'collaborations': '/api/collaboration?organization_id=4', 'runs': '/api/run?organization_id=4', 'id': 4},
-    {'address1': '', 'studies': '/api/study?organization_id=5', 'users': '/api/user?organization_id=5', 'zipcode': '', 'domain': '', 'tasks': '/api/task?init_org_id=5', 'public_key': '', 'name': 'GAZEL_organization', 'address2': '', 'nodes': '/api/node?organization_id=5', 'country': 'France', 'collaborations': '/api/collaboration?organization_id=5', 'runs': '/api/run?organization_id=5', 'id': 5},
-    {'address1': '', 'studies': '/api/study?organization_id=7', 'users': '/api/user?organization_id=7', 'zipcode': '', 'domain': '', 'tasks': '/api/task?init_org_id=7', 'public_key': '', 'name': 'PhY24-consortium', 'address2': '', 'nodes': '/api/node?organization_id=7', 'country': '', 'collaborations': '/api/collaboration?organization_id=7', 'runs': '/api/run?organization_id=7', 'id': 7}
+    {'id': 1, 'name': '[*] AGOT2024'},
+    {'id': 2, 'name': '[*] GGA2024'},
+    ...
 ]
 ```
 
-Getting the status of an organization node for a given collaboration: The following returns the nodes (there is a node for each collaboration the organization contributes to).
-
+Now, obtain the organizations of the study:
 ```python
->>> client.node.list(organization=4)
+client.organization.list(study=1, fields=['id', 'name'])
+```
 
+```output
 [
-    {'config': [], 'last_seen': '2024-06-18T06:57:48.114072',
-    'organization': {'id': 4, 'link': '/api/organization/4',
-    'methods': ['PATCH', 'GET']},
-    'collaboration': {'id': 4, 'link': '/api/collaboration/4',
-    'methods': ['GET', 'PATCH', 'DELETE']},
-    'name': 'PhY-research - LIFELINES_organization', 'status': 'offline',
-    'type': 'node', 'ip': None, 'id': 13},
-    {'config': [], 'last_seen': None,
-    'organization': {'id': 4, 'link': '/api/organization/4',
-    'methods': ['PATCH', 'GET']},
-    'collaboration': {'id': 5, 'link': '/api/collaboration/5',
-    'methods': ['GET', 'PATCH', 'DELETE']},
-    'name': 'GHT_consortium - LIFELINES_organization', 'status': None,
-    'type': 'node', 'ip': None, 'id': 18}
+    {'id': 1, 'name': 'org1'},
+    {'id': 2, 'name': 'org2'}
 ]
 ```
 
@@ -891,24 +898,74 @@ Getting the status of an organization node for a given collaboration: The follow
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 3: Creating a task that runs a partial algorithm\*\*
+## Run central method
 
-The following is the information of a new algorithm **(TODO a new algorithm should be created for this)**, that you need to use on the collaboration whose 100% of its nodes are active:
+In section [Creating a new task](#creating-a-new-task) it is explained how to create a
+task to run the `partial_average()` function. Now, create a task to run the
+`central_average()` function.
 
-- Image: harbor2.vantage6.ai/**TODO**alg_xxyy
-- Functions: central(), partial()
-- Algorithm source code: github.com/**TODO**/repo/alg_xxyy
+:::::::::::::::::::::::: solution
 
-Using the guidelines given in the **Python client - basic concepts** section above, use the client to create a task for executing the `partial()` function on all the nodes. Check in the source code what the parameters of this function are, and define their input accordingly. For the database selection, all the nodes use the one labeled as 'default'.
+```python
+input_ = {
+    'method': 'central_average',
+    'args': [],
+    'kwargs': {'column_name': 'age'}
+}
 
-Include the necessary code to wait until the new task is completed, and to get and print the results. Discuss the output with the instructors.
+average_task = client.task.create(
+   collaboration=1,
+   organizations=[1,2,3,4],
+   study=1,
+   name="name_for_the_task",
+   image="harbor2.vantage6.ai/demo/average",
+   description='',
+   input_=input_,
+   databases=[
+      {'label': 'default'}
+   ]
+)
+```
+
+Then you can obtain the results by using the `client.wait_for_results()` method:
+
+```python
+task_id = average_task['id']
+result = client.wait_for_results(task_id)
+print(result)
+# '{"average": 48.8}'
+```
+
+:::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: Create a task that runs a central function, and figure out why it failed\*\*
+## Inspect log files
 
-Using the Python client, create a new task with the same algorithm from Challenge #3. This time, launch the `central()` function. As you will see, this time the task failed. Using the client, try to find out which of the nodes involved on the task execution failed and the error message. Discuss with the instructors, based on the algorithm source code and the error message the cause of the error, and what should be done to fix it.
-**(TODO This requires the new algorithm or the data on one of the nodes to cause an error)**
+Each task consists of several runs. Each node included in the task execution will at
+least have one run. But in case of multi-step algorithms or iterative algorithms, a
+node can have multiple runs. Each run has a log file that contains information about
+the execution of the algorithm on the node.
+
+1. Retrieve the log files from the central method from previous challenge.
+2. Rerun the central method, but this time use a column name that does not exist in the
+   dataset (e.g. `abc123`). Retrieve the log files from this task as well.
+
+:::::::::::::::::::::::: solution
+
+To retrieve the log files from any task, you can use the `client.run.from_task()`
+method:
+```python
+runs = client.run.from_task(task_id)
+for run in runs["data"]:
+    print(run['log'])
+```
+
+In the second case you should be able to find an exception in the log file.
+
+:::::::::::::::::::::::::::::::::
+
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
