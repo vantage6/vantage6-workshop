@@ -351,7 +351,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setting up a vantage6 node</h1>
-        <p>Last updated on 2024-07-30 |
+        <p>Last updated on 2024-09-09 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap6_setup_node.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -397,14 +397,14 @@ commands</li>
 </div>
 <p>Vantage6 node is the software that runs on a data station. It allows
 the data owner to share their data within the vantage6 network in a
-privacy-preserving way. Also, it is responsible for the execution of the
+privacy enhancing way. Also, it is responsible for the execution of the
 federated learning tasks and the communication with the vantage6
 server.</p>
 <p>Each organization that is involved in a federated learning
 collaboration has its own node in that collaboration. They should
-therefore install the node software on a virtual machine hosted in their
-own infrastructure. The node should have access to the data that is used
-in the federated learning collaboration.</p>
+therefore install the node software on a (virtual) machine hosted in
+their own infrastructure. The machine should have access to the data
+that is used in the federated learning collaboration.</p>
 <p>This chapter will explain how to set up and run the vantage6 node
 software.</p>
 <section><h2 class="section-heading" id="requirements-on-hardware-and-software">Requirements on hardware and software<a class="anchor" aria-label="anchor" href="#requirements-on-hardware-and-software"></a></h2>
@@ -431,15 +431,19 @@ node.</p>
 <h3 id="software-requirements">Software requirements<a class="anchor" aria-label="anchor" href="#software-requirements"></a></h3>
 <p>The following software must be installed before installing the
 vantage6 node:</p>
-<ul><li>Recommended Operating system: Ubuntu 20.04+, MacOS Big Sur+, or
+<ul><li>Recommended operating system: Ubuntu 20.04+ , MacOS Big Sur+, or
 Windows 10+</li>
-<li>Python
-<ul><li>Python v3.10 for vantage6 version 3.8.0 or higher</li>
-<li>Python v3.7 for other lower versions of vantage6</li>
-<li>Highly recommended to create a new, clean virtual or conda
-environment for vantage6 node</li>
+<li>Docker Desktop (Windows, MacOS) or the Docker Engine (Linux)</li>
+<li>Miniconda (latest version)</li>
+<li>Python v3.10</li>
+<li>Python packages:
+<ul><li><a href="https://pypi.org/project/vantage6/" class="external-link">vantage6==4.7.x</a></li>
+<li><a href="https://pypi.org/project/vantage6-client/" class="external-link">vantage6-client==4.7.x</a></li>
+<li><a href="https://pypi.org/project/vantage6-algorithm-tools/" class="external-link">vantage6-algorithm-tools==4.7.x</a></li>
 </ul></li>
-<li>Docker (always latest version)</li>
+<li>A code editor <a href="https://code.visualstudio.com/" class="external-link">Visual Studio
+Code</a>, <a href="https://www.jetbrains.com/pycharm/" class="external-link">PyCharm</a> or
+something similar</li>
 </ul><p>You should already have installed the requirements before coming to
 this lesson. They are detailed in the <a href="index.html#setup">Setup
 section</a>.</p>
@@ -480,13 +484,7 @@ environment, provided you had not done so already in the <a href="index.html#set
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">v6</span></span></code></pre>
-</div>
-<p>or</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">v6</span> <span class="at">--help</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">v6</span> <span class="at">--help</span></span></code></pre>
 </div>
 <p>If the installation is successful, it will print out a message
 explaining the CLI usage.</p>
@@ -496,28 +494,28 @@ explaining the CLI usage.</p>
 the vantage6 node instances.</p>
 <p>To see how to use it, run the command <code>v6 node --help</code> in
 your terminal, and it will print out the following messages:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">Usage:</span> v6 node <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span> COMMAND <span class="pp">[</span><span class="ss">ARGS</span><span class="pp">]</span>...</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="ex">Manage</span> your vantage6 node instances.</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="ex">Options:</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="ex">--help</span>  Show this message and exit.</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="ex">Commands:</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="ex">attach</span>              Show the node logs in the current console.</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="ex">clean</span>               Erase temporary Docker volumes.</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="ex">create-private-key</span>  Create and upload a new private key</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>  <span class="ex">files</span>               Prints the location of important node files.</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>  <span class="ex">list</span>                Lists all node configurations.</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>  <span class="ex">new</span>                 Create a new node configuration.</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>  <span class="ex">remove</span>              Delete a node permanently.</span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>  <span class="ex">set-api-key</span>         Put a new API key into the node configuration file</span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>  <span class="ex">start</span>               Start the node.</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>  <span class="ex">stop</span>                Stop one or all running nodes.</span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>  <span class="ex">version</span>             Returns current version of a vantage6 node.</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">Usage:</span> v6 node <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span> COMMAND <span class="pp">[</span><span class="ss">ARGS</span><span class="pp">]</span>...</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="ex">Manage</span> your vantage6 node instances.</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="ex">Options:</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="ex">--help</span>  Show this message and exit.</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">Commands:</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  <span class="ex">attach</span>              Show the node logs in the current console.</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="ex">clean</span>               Erase temporary Docker volumes.</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="ex">create-private-key</span>  Create and upload a new private key</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  <span class="ex">files</span>               Prints the location of important node files.</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>  <span class="ex">list</span>                Lists all node configurations.</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>  <span class="ex">new</span>                 Create a new node configuration.</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>  <span class="ex">remove</span>              Delete a node permanently.</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>  <span class="ex">set-api-key</span>         Put a new API key into the node configuration file</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>  <span class="ex">start</span>               Start the node.</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>  <span class="ex">stop</span>                Stop one or all running nodes.</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>  <span class="ex">version</span>             Returns current version of a vantage6 node.</span></code></pre>
 </div>
 <p>For example, to create a new node configuration, you can run the
 command <code>v6 node new</code>, then you can start the new node by
@@ -531,58 +529,58 @@ running <code>v6 node start</code>, and then stop the node with
 configuration <code>yaml</code> file that the vantage6-node requires to
 run.</p>
 <p>Let’s run the command:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">v6</span> node new</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">v6</span> node new</span></code></pre>
 </div>
 <p>The command will show a wizard to guide you through the configuration
 process in a step-by-step manner:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">?</span> Please enter a configuration-name: node1</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">?</span> Enter given api-key: <span class="pp">***</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">?</span> The base-URL of the server: https://cotopaxi.vantage6.ai/</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">?</span> Enter port to which the server listens: 5000</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="ex">?</span> Path of the api: /api</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="ex">?</span> Task directory path: <span class="pp">***</span>/vantage6/node/node1</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="ex">?</span> Do you want to add a database<span class="pp">?</span> Yes</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="ex">?</span> Enter unique label for the database: default</span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="ex">?</span> Database URI: <span class="pp">***</span>/data.csv</span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="ex">?</span> Database type: csv</span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="ex">?</span> Do you want to add a database<span class="pp">?</span> Yes</span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="ex">?</span> Enter unique label for the database: default</span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="ex">?</span> Database URI: <span class="pp">***</span>/data.sql</span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="ex">?</span> Database type: sql</span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="ex">?</span> Do you want to add a database<span class="pp">?</span> No</span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="ex">?</span> Which level of logging would you like<span class="pp">?</span> DEBUG</span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="ex">?</span> Do you want to connect to a VPN server<span class="pp">?</span> No</span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="ex">?</span> Enable encryption<span class="pp">?</span> No</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">?</span> Please enter a configuration-name: node1</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">?</span> Enter given api-key: <span class="pp">***</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">?</span> The base-URL of the server: https://server.workshop.vantage6.ai</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">?</span> Enter port to which the server listens: 5000</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="ex">?</span> Path of the api: /api</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="ex">?</span> Task directory path: <span class="pp">***</span>/vantage6/node/node1</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="ex">?</span> Do you want to add a database<span class="pp">?</span> Yes</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="ex">?</span> Enter unique label for the database: default</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="ex">?</span> Database URI: <span class="pp">***</span>/data.csv</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="ex">?</span> Database type: csv</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="ex">?</span> Do you want to add a database<span class="pp">?</span> Yes</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="ex">?</span> Enter unique label for the database: default</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="ex">?</span> Database URI: <span class="pp">***</span>/data.sql</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="ex">?</span> Database type: sql</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="ex">?</span> Do you want to add a database<span class="pp">?</span> No</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="ex">?</span> Which level of logging would you like<span class="pp">?</span> DEBUG</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="ex">?</span> Do you want to connect to a VPN server<span class="pp">?</span> No</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="ex">?</span> Enable encryption<span class="pp">?</span> No</span></code></pre>
 </div>
 <p>It is important to note the meaning of following configuration
 parameters:</p>
-<ul><li>The <code>api-key</code> is the API key that you created in vantage6
-UI in <a href="./chap4_manage_via_ui.html">Chapter 4</a> or you received
-from the vantage6 server administrator. It is used to authenticate the
-node at the server.</li>
+<ul><li>The <code>api-key</code> is the API key that you downloaded from
+vantage6 UI in <a href="./chap4_manage_via_ui.html">Chapter 4</a>. It is
+used to authenticate the node at the server.</li>
 <li>The <code>base-URL of the server</code> is the URL of the vantage6
 server. If you are running the server on your local machine using
 Docker, the URL has to be set to <code>http://localhost</code>
 </li>
 <li>The <code>path of the api</code> is the path of the API of the
-server. It is usually <code>/api</code>.</li>
-<li>The <code>database URI</code> is the path of the database file. You
-can add multiple databases by repeating the process. The database type
-can be ‘csv’, ‘parquet’, ‘sql’, ‘sparql’, ‘excel’ or ‘omop’.</li>
+server. By default it is <code>/api</code>.</li>
+<li>The <code>database URI</code> is the path of the database file
+containing the sensitive data. You can add multiple databases by
+repeating the process. The database type can be ‘csv’, ‘parquet’, ‘sql’,
+‘sparql’, ‘excel’ or ‘omop’.</li>
 </ul><p>To see all configuration options, please check <a href="https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options" class="external-link uri">https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options</a>.</p>
 <p>When you finish the configuration, you will see the following
 message:</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> New configuration created: <span class="pp">***</span>/vantage6/node/node1.yaml</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> You can start the node by running v6 node start</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> New configuration created: <span class="pp">***</span>/vantage6/node/node1.yaml</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> You can start the node by running v6 node start</span></code></pre>
 </div>
 <p>It means that the node configuration file is created successfully,
 and it also gives the path of the configuration file.</p>
@@ -590,20 +588,20 @@ and it also gives the path of the configuration file.</p>
 <h3 id="where-is-the-node-configuration-file">Where is the node configuration file?<a class="anchor" aria-label="anchor" href="#where-is-the-node-configuration-file"></a></h3>
 <p>You can always use the <code>v6 node files</code> command to check
 the location of the node configuration file:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">v6</span> node files</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">v6</span> node files</span></code></pre>
 </div>
 <p>It will ask you which node you want to see. You can choose the one
 you just created:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: <span class="er">(</span><span class="ex">Use</span> arrow keys<span class="kw">)</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a> <span class="ex">»</span> node1</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>   <span class="ex">node2</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>   <span class="ex">node3</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: <span class="er">(</span><span class="ex">Use</span> arrow keys<span class="kw">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a> <span class="ex">»</span> node1</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>   <span class="ex">node2</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>   <span class="ex">node3</span></span></code></pre>
 </div>
 <p>In the printed message, you will see not only the path of the
 configuration file is printed out, but also the locations of the log
@@ -622,7 +620,6 @@ command.</li>
 text editor and check the configuration options. Are they correct?</li>
 <li>Open your configuration file, do the following:
 <ul><li>add a new database in the format of <code>excel</code>,</li>
-<li>enable the encryption,</li>
 <li>find the missing options in your file by comparing with the option
 template in the <a href="https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options" class="external-link">vantage6
 documentation</a>.</li>
@@ -633,140 +630,138 @@ documentation</a>.</li>
 </div>
 </section><section><h2 class="section-heading" id="start-a-node">Start a node<a class="anchor" aria-label="anchor" href="#start-a-node"></a></h2>
 <hr class="half-width"><p>Before starting a vantage6 node, you need to make sure the vantage6
-server is running and the internet connection is stable.</p>
+server and Docker are running.</p>
 <p>To start a node, you can run the command
 <code>v6 node start</code>:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">v6</span> node start</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">v6</span> node start</span></code></pre>
 </div>
 <p>It will ask you which node you want to start. You can choose the one
 you just created:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Starting node...</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Finding Docker daemon</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: <span class="er">(</span><span class="ex">Use</span> arrow keys<span class="kw">)</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a> <span class="ex">»</span> node1</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>   <span class="ex">node2</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>   <span class="ex">node3</span></span></code></pre>
+</div>
+<p>then it will start the node and print out the following messages:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Starting node...</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Finding Docker daemon</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: <span class="er">(</span><span class="ex">Use</span> arrow keys<span class="kw">)</span></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a> <span class="ex">»</span> node1</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>   <span class="ex">node2</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>   <span class="ex">node3</span></span></code></pre>
-</div>
-<p>then it will start the node and print out the following messages:</p>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: node1</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Starting node...</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Finding Docker daemon</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Checking that data and log dirs exist</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Connecting to server at <span class="st">'http://localhost:5000/api'</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Pulling latest node image <span class="st">'harbor2.vantage6.ai/infrastructure/node:4.5'</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Creating file <span class="kw">&amp;</span> <span class="ex">folder</span> mounts</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="ex">[warn</span> ] <span class="at">-</span> private key file provided <span class="pp">***</span>/private_key.pem, but does not exists</span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Setting up databases</span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span>   Processing csv database default: <span class="pp">***</span>/data.csv</span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="ex">[debug]</span> <span class="at">-</span>   <span class="at">-</span> non file-based database added</span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span>   Processing csv database default: <span class="pp">***</span>/data.csv</span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="ex">[debug]</span> <span class="at">-</span>   <span class="at">-</span> non file-based database added</span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Running Docker container</span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Node container was successfully started!</span>
-<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> To see the logs, run: v6 node attach <span class="at">--name</span> node1</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: node1</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Starting node...</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Finding Docker daemon</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Checking that data and log dirs exist</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Connecting to server at <span class="st">'http://localhost:5000/api'</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Pulling latest node image <span class="st">'harbor2.vantage6.ai/infrastructure/node:4.5'</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Creating file <span class="kw">&amp;</span> <span class="ex">folder</span> mounts</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="ex">[warn</span> ] <span class="at">-</span> private key file provided <span class="pp">***</span>/private_key.pem, but does not exists</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Setting up databases</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span>   Processing csv database default: <span class="pp">***</span>/data.csv</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span>   Processing csv database default: <span class="pp">***</span>/data.csv</span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Running Docker container</span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Node container was successfully started!</span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> To see the logs, run: v6 node attach <span class="at">--name</span> node1</span></code></pre>
 </div>
 <p>🎉 Now, the node is started successfully!</p>
 </section><section><h2 class="section-heading" id="watch-the-logs">Watch the logs<a class="anchor" aria-label="anchor" href="#watch-the-logs"></a></h2>
 <hr class="half-width"><p>You can show the logs in the current console by running the
 command:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">v6</span> node attach <span class="at">--name</span> node1</span></code></pre>
+</div>
+<p>then it will print out the logs of the node in the console:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">v6</span> node attach <span class="at">--name</span> node1</span></code></pre>
-</div>
-<p>then it will print out the logs of the node in the console:</p>
-<div class="codewrapper sourceCode" id="cb14">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">---------------------------------------------</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  Welcome to</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                   _                     __</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                  <span class="kw">|</span> <span class="kw">|</span>                   <span class="ex">/</span> /</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> __   ____ _ _ __ <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span> __ _  __ _  ___ / /_</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="dt">\ \ </span>/ / _<span class="kw">`</span> <span class="kw">|</span> <span class="st">'_ \| __/ _` |/ _` |/ _ \ '</span><span class="ex">_</span> <span class="dt">\</span></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>2024-05-24 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="dt">\ </span>V / <span class="er">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">||</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span>  <span class="ex">__/</span> <span class="er">(</span><span class="ex">_</span><span class="kw">)</span> <span class="kw">|</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>   <span class="dt">\_</span>/ <span class="dt">\_</span>_,_<span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span><span class="ex">\__\__,_</span><span class="kw">|</span><span class="ex">\__,</span> <span class="kw">|</span><span class="ex">\___</span><span class="kw">|</span><span class="ex">\___/</span></span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                             __/ <span class="kw">|</span></span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                            <span class="kw">|</span><span class="ex">___/</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Join us on Discord! https://discord.gg/rwRvwyK</span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Docs: https://docs.vantage6.ai</span>
-<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Blog: https://vantage6.ai</span>
-<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
-<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Cite us!</span>
-<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> If you publish your findings obtained using vantage6,</span>
-<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> please cite the proper sources as mentioned in:</span>
-<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> https://vantage6.ai/vantage6/references</span>
-<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
-<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Started application vantage6</span>
-<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Current working directory is <span class="st">'/'</span></span>
-<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Successfully loaded configuration from <span class="st">'/mnt/config/node1.yaml'</span></span>
-<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Logging to <span class="st">'/mnt/log/node_user.log'</span></span>
-<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Common package version <span class="st">'4.5.0'</span></span>
-<span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
-<span id="cb14-27"><a href="#cb14-27" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
-<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Node package version <span class="st">'4.5.0'</span></span>
-<span id="cb14-29"><a href="#cb14-29" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Connecting server: http://host.docker.internal:5000/api</span>
-<span id="cb14-30"><a href="#cb14-30" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Authenticating</span>
-<span id="cb14-31"><a href="#cb14-31" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Authenticating node...</span>
-<span id="cb14-32"><a href="#cb14-32" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> common         <span class="at">-</span> INFO     <span class="at">-</span> Successfully authenticated</span>
-<span id="cb14-33"><a href="#cb14-33" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Making request: GET <span class="kw">|</span> <span class="ex">http://host.docker.internal:5000/api/node/18</span> <span class="kw">|</span> <span class="ex">None</span></span>
-<span id="cb14-34"><a href="#cb14-34" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Making request: GET <span class="kw">|</span> <span class="ex">http://host.docker.internal:5000/api/organization/2</span> <span class="kw">|</span> <span class="ex">None</span></span>
-<span id="cb14-35"><a href="#cb14-35" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Node name: ZEPPELIN <span class="at">-</span> Small Organization</span>
-<span id="cb14-36"><a href="#cb14-36" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Making request: GET <span class="kw">|</span> <span class="ex">http://host.docker.internal:5000/api/collaboration/1</span> <span class="kw">|</span> <span class="ex">None</span></span>
-<span id="cb14-37"><a href="#cb14-37" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> WARNING  <span class="at">-</span> Disabling encryption!</span>
-<span id="cb14-38"><a href="#cb14-38" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Setting up proxy server</span>
-<span id="cb14-39"><a href="#cb14-39" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Starting proxyserver at <span class="st">'proxyserver:80'</span></span>
-<span id="cb14-40"><a href="#cb14-40" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Setting up VPN client container</span>
-<span id="cb14-41"><a href="#cb14-41" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> vpn_manager    <span class="at">-</span> INFO     <span class="at">-</span> Updating VPN images...</span>
-<span id="cb14-42"><a href="#cb14-42" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span> Pulling Alpine image</span>
-<span id="cb14-43"><a href="#cb14-43" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:19 <span class="at">-</span> addons         <span class="at">-</span> DEBUG    <span class="at">-</span> Succeeded to pull image harbor2.vantage6.ai/infrastructure/alpine:4.5</span>
-<span id="cb14-44"><a href="#cb14-44" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:19 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span> Pulling VPN client image</span>
-<span id="cb14-45"><a href="#cb14-45" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:21 <span class="at">-</span> addons         <span class="at">-</span> DEBUG    <span class="at">-</span> Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-client:4.5</span>
-<span id="cb14-46"><a href="#cb14-46" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:21 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span> Pulling network config image</span>
-<span id="cb14-47"><a href="#cb14-47" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> addons         <span class="at">-</span> DEBUG    <span class="at">-</span> Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-configurator:4.5</span>
-<span id="cb14-48"><a href="#cb14-48" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> INFO     <span class="at">-</span> Done updating VPN images</span>
-<span id="cb14-49"><a href="#cb14-49" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span> Used VPN images:</span>
-<span id="cb14-50"><a href="#cb14-50" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span>   Alpine: harbor2.vantage6.ai/infrastructure/alpine:4.5</span>
-<span id="cb14-51"><a href="#cb14-51" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span>   Client: harbor2.vantage6.ai/infrastructure/vpn-client:4.5</span>
-<span id="cb14-52"><a href="#cb14-52" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span>   Config: harbor2.vantage6.ai/infrastructure/vpn-configurator:4.5</span>
-<span id="cb14-53"><a href="#cb14-53" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> WARNING  <span class="at">-</span> VPN subnet is not defined! VPN disabled.</span>
-<span id="cb14-54"><a href="#cb14-54" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> No SSH tunnels configured</span>
-<span id="cb14-55"><a href="#cb14-55" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> No squid proxy configured</span>
-<span id="cb14-56"><a href="#cb14-56" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Setting up the docker manager</span>
-<span id="cb14-57"><a href="#cb14-57" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> docker_manager <span class="at">-</span> DEBUG    <span class="at">-</span> Initializing DockerManager</span>
-<span id="cb14-58"><a href="#cb14-58" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> docker_manager <span class="at">-</span> WARNING  <span class="at">-</span> No policies on allowed algorithms have been set for this node!</span>
-<span id="cb14-59"><a href="#cb14-59" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> docker_manager <span class="at">-</span> WARNING  <span class="at">-</span> This means that all algorithms are allowed to run on this node.</span>
-<span id="cb14-60"><a href="#cb14-60" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> docker_manager <span class="at">-</span> DEBUG    <span class="at">-</span> Databases: {<span class="st">'default'</span>: {<span class="st">'uri'</span>: <span class="st">'/data/data.csv'</span>, <span class="st">'is_file'</span>: False, <span class="st">'type'</span>: <span class="st">'csv'</span>, <span class="st">'env'</span>: {}}}</span>
-<span id="cb14-61"><a href="#cb14-61" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Creating websocket connection with the server</span>
-<span id="cb14-62"><a href="#cb14-62" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Connected to host=http://host.docker.internal on port=5000</span>
-<span id="cb14-63"><a href="#cb14-63" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Starting thread to ping the server to notify this node is online.</span>
-<span id="cb14-64"><a href="#cb14-64" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> network_man..  <span class="at">-</span> DEBUG    <span class="at">-</span> Connecting vantage6-node1-user to network <span class="st">'vantage6-node1-user-net'</span></span>
-<span id="cb14-65"><a href="#cb14-65" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> socket         <span class="at">-</span> INFO     <span class="at">-</span> <span class="er">(</span><span class="ex">Re</span><span class="kw">)</span><span class="ex">Connected</span> to the /tasks namespace</span>
-<span id="cb14-66"><a href="#cb14-66" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Making request: GET <span class="kw">|</span> <span class="ex">http://host.docker.internal:5000/api/run</span> <span class="kw">|</span> <span class="ex">{</span><span class="st">'state'</span><span class="ex">:</span> <span class="st">'open'</span>, <span class="st">'node_id'</span>: 18, <span class="st">'include'</span>: <span class="st">'task'</span>}</span>
-<span id="cb14-67"><a href="#cb14-67" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Start thread for sending messages <span class="er">(</span><span class="ex">results</span><span class="kw">)</span></span>
-<span id="cb14-68"><a href="#cb14-68" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Waiting for results to send to the server</span>
-<span id="cb14-69"><a href="#cb14-69" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Starting thread for incoming messages <span class="er">(</span><span class="ex">tasks</span><span class="kw">)</span></span>
-<span id="cb14-70"><a href="#cb14-70" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Listening for incoming messages</span>
-<span id="cb14-71"><a href="#cb14-71" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Init complete</span>
-<span id="cb14-72"><a href="#cb14-72" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Waiting for new tasks....</span>
-<span id="cb14-73"><a href="#cb14-73" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> socket         <span class="at">-</span> INFO     <span class="at">-</span> Node <span class="op">&lt;</span>ZEPPELIN <span class="at">-</span> Small Organization<span class="op">&gt;</span> joined room <span class="op">&lt;</span>collaboration_1<span class="op">&gt;</span></span>
-<span id="cb14-74"><a href="#cb14-74" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> socket         <span class="at">-</span> INFO     <span class="at">-</span> Node <span class="op">&lt;</span>ZEPPELIN <span class="at">-</span> Small Organization<span class="op">&gt;</span> joined room <span class="op">&lt;</span>collaboration_1_organization_2<span class="op">&gt;</span></span>
-<span id="cb14-75"><a href="#cb14-75" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> socket         <span class="at">-</span> INFO     <span class="at">-</span> Websocket connection established</span>
-<span id="cb14-76"><a href="#cb14-76" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> task_results: []</span>
-<span id="cb14-77"><a href="#cb14-77" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Received 0 tasks</span>
-<span id="cb14-78"><a href="#cb14-78" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> socket         <span class="at">-</span> DEBUG    <span class="at">-</span> Tasks synced again with the server...</span>
-<span id="cb14-79"><a href="#cb14-79" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> docker_manager <span class="at">-</span> ERROR    <span class="at">-</span> Database with label default is not a file. Cannot determine columns without query</span>
-<span id="cb14-80"><a href="#cb14-80" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Sharing node configuration: {<span class="st">'encryption'</span>: False, <span class="st">'allowed_algorithms'</span>: <span class="st">'all'</span>, <span class="st">'database_labels'</span>: [<span class="st">'default'</span>, <span class="st">'default'</span>], <span class="st">'database_types'</span>: {<span class="st">'db_type_default'</span>: <span class="st">'sql'</span>}, <span class="st">'database_columns'</span>: {<span class="st">'columns_default'</span>: []}}</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">---------------------------------------------</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  Welcome to</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                   _                     __</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                  <span class="kw">|</span> <span class="kw">|</span>                   <span class="ex">/</span> /</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> __   ____ _ _ __ <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span> __ _  __ _  ___ / /_</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="dt">\ \ </span>/ / _<span class="kw">`</span> <span class="kw">|</span> <span class="st">'_ \| __/ _` |/ _` |/ _ \ '</span><span class="ex">_</span> <span class="dt">\</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>2024-05-24 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="dt">\ </span>V / <span class="er">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">||</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span>  <span class="ex">__/</span> <span class="er">(</span><span class="ex">_</span><span class="kw">)</span> <span class="kw">|</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>   <span class="dt">\_</span>/ <span class="dt">\_</span>_,_<span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span><span class="ex">\__\__,_</span><span class="kw">|</span><span class="ex">\__,</span> <span class="kw">|</span><span class="ex">\___</span><span class="kw">|</span><span class="ex">\___/</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                             __/ <span class="kw">|</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                            <span class="kw">|</span><span class="ex">___/</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Join us on Discord! https://discord.gg/rwRvwyK</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Docs: https://docs.vantage6.ai</span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Blog: https://vantage6.ai</span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Cite us!</span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> If you publish your findings obtained using vantage6,</span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> please cite the proper sources as mentioned in:</span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> https://vantage6.ai/vantage6/references</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Started application vantage6</span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Current working directory is <span class="st">'/'</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Successfully loaded configuration from <span class="st">'/mnt/config/node1.yaml'</span></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Logging to <span class="st">'/mnt/log/node_user.log'</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Common package version <span class="st">'4.5.0'</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Node package version <span class="st">'4.5.0'</span></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Connecting server: http://host.docker.internal:5000/api</span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Authenticating</span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:14 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Authenticating node...</span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> common         <span class="at">-</span> INFO     <span class="at">-</span> Successfully authenticated</span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Making request: GET <span class="kw">|</span> <span class="ex">http://host.docker.internal:5000/api/node/18</span> <span class="kw">|</span> <span class="ex">None</span></span>
+<span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Making request: GET <span class="kw">|</span> <span class="ex">http://host.docker.internal:5000/api/organization/2</span> <span class="kw">|</span> <span class="ex">None</span></span>
+<span id="cb13-35"><a href="#cb13-35" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Node name: ZEPPELIN <span class="at">-</span> Small Organization</span>
+<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Making request: GET <span class="kw">|</span> <span class="ex">http://host.docker.internal:5000/api/collaboration/1</span> <span class="kw">|</span> <span class="ex">None</span></span>
+<span id="cb13-37"><a href="#cb13-37" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> WARNING  <span class="at">-</span> Disabling encryption!</span>
+<span id="cb13-38"><a href="#cb13-38" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Setting up proxy server</span>
+<span id="cb13-39"><a href="#cb13-39" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Starting proxyserver at <span class="st">'proxyserver:80'</span></span>
+<span id="cb13-40"><a href="#cb13-40" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Setting up VPN client container</span>
+<span id="cb13-41"><a href="#cb13-41" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> vpn_manager    <span class="at">-</span> INFO     <span class="at">-</span> Updating VPN images...</span>
+<span id="cb13-42"><a href="#cb13-42" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:17 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span> Pulling Alpine image</span>
+<span id="cb13-43"><a href="#cb13-43" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:19 <span class="at">-</span> addons         <span class="at">-</span> DEBUG    <span class="at">-</span> Succeeded to pull image harbor2.vantage6.ai/infrastructure/alpine:4.5</span>
+<span id="cb13-44"><a href="#cb13-44" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:19 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span> Pulling VPN client image</span>
+<span id="cb13-45"><a href="#cb13-45" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:21 <span class="at">-</span> addons         <span class="at">-</span> DEBUG    <span class="at">-</span> Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-client:4.5</span>
+<span id="cb13-46"><a href="#cb13-46" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:21 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span> Pulling network config image</span>
+<span id="cb13-47"><a href="#cb13-47" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> addons         <span class="at">-</span> DEBUG    <span class="at">-</span> Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-configurator:4.5</span>
+<span id="cb13-48"><a href="#cb13-48" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> INFO     <span class="at">-</span> Done updating VPN images</span>
+<span id="cb13-49"><a href="#cb13-49" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span> Used VPN images:</span>
+<span id="cb13-50"><a href="#cb13-50" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span>   Alpine: harbor2.vantage6.ai/infrastructure/alpine:4.5</span>
+<span id="cb13-51"><a href="#cb13-51" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span>   Client: harbor2.vantage6.ai/infrastructure/vpn-client:4.5</span>
+<span id="cb13-52"><a href="#cb13-52" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> vpn_manager    <span class="at">-</span> DEBUG    <span class="at">-</span>   Config: harbor2.vantage6.ai/infrastructure/vpn-configurator:4.5</span>
+<span id="cb13-53"><a href="#cb13-53" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> WARNING  <span class="at">-</span> VPN subnet is not defined! VPN disabled.</span>
+<span id="cb13-54"><a href="#cb13-54" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> No SSH tunnels configured</span>
+<span id="cb13-55"><a href="#cb13-55" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> No squid proxy configured</span>
+<span id="cb13-56"><a href="#cb13-56" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Setting up the docker manager</span>
+<span id="cb13-57"><a href="#cb13-57" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> docker_manager <span class="at">-</span> DEBUG    <span class="at">-</span> Initializing DockerManager</span>
+<span id="cb13-58"><a href="#cb13-58" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> docker_manager <span class="at">-</span> WARNING  <span class="at">-</span> No policies on allowed algorithms have been set for this node!</span>
+<span id="cb13-59"><a href="#cb13-59" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> docker_manager <span class="at">-</span> WARNING  <span class="at">-</span> This means that all algorithms are allowed to run on this node.</span>
+<span id="cb13-60"><a href="#cb13-60" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> docker_manager <span class="at">-</span> DEBUG    <span class="at">-</span> Databases: {<span class="st">'default'</span>: {<span class="st">'uri'</span>: <span class="st">'/data/data.csv'</span>, <span class="st">'is_file'</span>: False, <span class="st">'type'</span>: <span class="st">'csv'</span>, <span class="st">'env'</span>: {}}}</span>
+<span id="cb13-61"><a href="#cb13-61" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Creating websocket connection with the server</span>
+<span id="cb13-62"><a href="#cb13-62" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Connected to host=http://host.docker.internal on port=5000</span>
+<span id="cb13-63"><a href="#cb13-63" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Starting thread to ping the server to notify this node is online.</span>
+<span id="cb13-64"><a href="#cb13-64" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> network_man..  <span class="at">-</span> DEBUG    <span class="at">-</span> Connecting vantage6-node1-user to network <span class="st">'vantage6-node1-user-net'</span></span>
+<span id="cb13-65"><a href="#cb13-65" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> socket         <span class="at">-</span> INFO     <span class="at">-</span> <span class="er">(</span><span class="ex">Re</span><span class="kw">)</span><span class="ex">Connected</span> to the /tasks namespace</span>
+<span id="cb13-66"><a href="#cb13-66" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:33 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Making request: GET <span class="kw">|</span> <span class="ex">http://host.docker.internal:5000/api/run</span> <span class="kw">|</span> <span class="ex">{</span><span class="st">'state'</span><span class="ex">:</span> <span class="st">'open'</span>, <span class="st">'node_id'</span>: 18, <span class="st">'include'</span>: <span class="st">'task'</span>}</span>
+<span id="cb13-67"><a href="#cb13-67" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Start thread for sending messages <span class="er">(</span><span class="ex">results</span><span class="kw">)</span></span>
+<span id="cb13-68"><a href="#cb13-68" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Waiting for results to send to the server</span>
+<span id="cb13-69"><a href="#cb13-69" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Starting thread for incoming messages <span class="er">(</span><span class="ex">tasks</span><span class="kw">)</span></span>
+<span id="cb13-70"><a href="#cb13-70" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Listening for incoming messages</span>
+<span id="cb13-71"><a href="#cb13-71" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Init complete</span>
+<span id="cb13-72"><a href="#cb13-72" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Waiting for new tasks....</span>
+<span id="cb13-73"><a href="#cb13-73" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> socket         <span class="at">-</span> INFO     <span class="at">-</span> Node <span class="op">&lt;</span>ZEPPELIN <span class="at">-</span> Small Organization<span class="op">&gt;</span> joined room <span class="op">&lt;</span>collaboration_1<span class="op">&gt;</span></span>
+<span id="cb13-74"><a href="#cb13-74" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> socket         <span class="at">-</span> INFO     <span class="at">-</span> Node <span class="op">&lt;</span>ZEPPELIN <span class="at">-</span> Small Organization<span class="op">&gt;</span> joined room <span class="op">&lt;</span>collaboration_1_organization_2<span class="op">&gt;</span></span>
+<span id="cb13-75"><a href="#cb13-75" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> socket         <span class="at">-</span> INFO     <span class="at">-</span> Websocket connection established</span>
+<span id="cb13-76"><a href="#cb13-76" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> task_results: []</span>
+<span id="cb13-77"><a href="#cb13-77" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> INFO     <span class="at">-</span> Received 0 tasks</span>
+<span id="cb13-78"><a href="#cb13-78" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> socket         <span class="at">-</span> DEBUG    <span class="at">-</span> Tasks synced again with the server...</span>
+<span id="cb13-79"><a href="#cb13-79" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> docker_manager <span class="at">-</span> ERROR    <span class="at">-</span> Database with label default is not a file. Cannot determine columns without query</span>
+<span id="cb13-80"><a href="#cb13-80" tabindex="-1"></a><span class="ex">2024-05-24</span> 14:15:34 <span class="at">-</span> node           <span class="at">-</span> DEBUG    <span class="at">-</span> Sharing node configuration: {<span class="st">'encryption'</span>: False, <span class="st">'allowed_algorithms'</span>: <span class="st">'all'</span>, <span class="st">'database_labels'</span>: [<span class="st">'default'</span>, <span class="st">'default'</span>], <span class="st">'database_types'</span>: {<span class="st">'db_type_default'</span>: <span class="st">'sql'</span>}, <span class="st">'database_columns'</span>: {<span class="st">'columns_default'</span>: []}}</span></code></pre>
 </div>
 <p>From there, you can see the running status of the node, the
 connection to the server, the databases, the websocket connection, and
@@ -788,51 +783,51 @@ if the node is running correctly.</li>
 </div>
 </section><section><h2 class="section-heading" id="stop-a-node">Stop a node<a class="anchor" aria-label="anchor" href="#stop-a-node"></a></h2>
 <hr class="half-width"><p>To stop a running node, you can run the command:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">v6</span> node stop</span></code></pre>
+</div>
+<p>then it will ask you which node you want to stop:</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">v6</span> node stop</span></code></pre>
-</div>
-<p>then it will ask you which node you want to stop:</p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">?</span> Select the node you wish to stop: <span class="er">(</span><span class="ex">Use</span> arrow keys<span class="kw">)</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a> <span class="ex">»</span> vantage6-node1-user</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">?</span> Select the node you wish to stop: <span class="er">(</span><span class="ex">Use</span> arrow keys<span class="kw">)</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a> <span class="ex">»</span> vantage6-node1-user</span></code></pre>
 </div>
 <p>after you choose the node, it will print out the following
 messages:</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">?</span> Select the node you wish to stop: vantage6-node1-user</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">---------------------------------------------</span></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  Welcome to</span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                   _                     __</span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                  <span class="kw">|</span> <span class="kw">|</span>                   <span class="ex">/</span> /</span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> __   ____ _ _ __ <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span> __ _  __ _  ___ / /_</span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="dt">\ \ </span>/ / _<span class="kw">`</span> <span class="kw">|</span> <span class="st">'_ \| __/ _` |/ _` |/ _ \ '</span><span class="ex">_</span> <span class="dt">\</span></span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>2024-05-24 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="dt">\ </span>V / <span class="er">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">||</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span>  <span class="ex">__/</span> <span class="er">(</span><span class="ex">_</span><span class="kw">)</span> <span class="kw">|</span></span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>   <span class="dt">\_</span>/ <span class="dt">\_</span>_,_<span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span><span class="ex">\__\__,_</span><span class="kw">|</span><span class="ex">\__,</span> <span class="kw">|</span><span class="ex">\___</span><span class="kw">|</span><span class="ex">\___/</span></span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                             __/ <span class="kw">|</span></span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                            <span class="kw">|</span><span class="ex">___/</span></span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span></span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Join us on Discord! https://discord.gg/rwRvwyK</span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Docs: https://docs.vantage6.ai</span>
-<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Blog: https://vantage6.ai</span>
-<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
-<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Cite us!</span>
-<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> If you publish your findings obtained using vantage6,</span>
-<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> please cite the proper sources as mentioned in:</span>
-<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> https://vantage6.ai/vantage6/references</span>
-<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
-<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Started application vantage6</span>
-<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Current working directory is <span class="st">'***/vantage6/node'</span></span>
-<span id="cb17-24"><a href="#cb17-24" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Successfully loaded configuration from <span class="st">'***/vantage6/node/node1.yaml'</span></span>
-<span id="cb17-25"><a href="#cb17-25" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Logging to <span class="st">'***/vantage6/node/node1/node_user.log'</span></span>
-<span id="cb17-26"><a href="#cb17-26" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Common package version <span class="st">'4.5.0'</span></span>
-<span id="cb17-27"><a href="#cb17-27" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
-<span id="cb17-28"><a href="#cb17-28" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Stopped the vantage6-node1-user Node.</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">?</span> Select the node you wish to stop: vantage6-node1-user</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">---------------------------------------------</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  Welcome to</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                   _                     __</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                  <span class="kw">|</span> <span class="kw">|</span>                   <span class="ex">/</span> /</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> __   ____ _ _ __ <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span> __ _  __ _  ___ / /_</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="dt">\ \ </span>/ / _<span class="kw">`</span> <span class="kw">|</span> <span class="st">'_ \| __/ _` |/ _` |/ _ \ '</span><span class="ex">_</span> <span class="dt">\</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>2024-05-24 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="dt">\ </span>V / <span class="er">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">||</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span>  <span class="ex">__/</span> <span class="er">(</span><span class="ex">_</span><span class="kw">)</span> <span class="kw">|</span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>   <span class="dt">\_</span>/ <span class="dt">\_</span>_,_<span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span><span class="ex">\__\__,_</span><span class="kw">|</span><span class="ex">\__,</span> <span class="kw">|</span><span class="ex">\___</span><span class="kw">|</span><span class="ex">\___/</span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                             __/ <span class="kw">|</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                            <span class="kw">|</span><span class="ex">___/</span></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Join us on Discord! https://discord.gg/rwRvwyK</span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Docs: https://docs.vantage6.ai</span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Blog: https://vantage6.ai</span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Cite us!</span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> If you publish your findings obtained using vantage6,</span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> please cite the proper sources as mentioned in:</span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> https://vantage6.ai/vantage6/references</span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
+<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Started application vantage6</span>
+<span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Current working directory is <span class="st">'***/vantage6/node'</span></span>
+<span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Successfully loaded configuration from <span class="st">'***/vantage6/node/node1.yaml'</span></span>
+<span id="cb16-25"><a href="#cb16-25" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Logging to <span class="st">'***/vantage6/node/node1/node_user.log'</span></span>
+<span id="cb16-26"><a href="#cb16-26" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Common package version <span class="st">'4.5.0'</span></span>
+<span id="cb16-27"><a href="#cb16-27" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:29:11 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
+<span id="cb16-28"><a href="#cb16-28" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Stopped the vantage6-node1-user Node.</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="update-the-api-key-of-your-node">Update the API key of your node<a class="anchor" aria-label="anchor" href="#update-the-api-key-of-your-node"></a></h2>
 <hr class="half-width"><div class="section level3">
@@ -843,12 +838,12 @@ following these steps:</p>
 <li>Click on the <code>Nodes</code> tab in the administration page.</li>
 <li>Click on the tab of the node you want to reset the API key for in
 the list of nodes.</li>
-</ol><figure><img src="../fig/reset_api_key_01.png" alt="Reset API key for a node" class="figure mx-auto d-block"><div class="figcaption">Reset API key for a node</div>
+</ol><figure><img src="../fig/chapter6/reset_api_key_01.png" alt="Reset API key for a node" class="figure mx-auto d-block"><div class="figcaption">Reset API key for a node</div>
 </figure><ol start="4" style="list-style-type: decimal"><li>Click on the <code>Reset API key</code> button.
 <ul><li>You may see a dialog box asking you to download the new API
 key.</li>
 </ul></li>
-</ol><figure><img src="../fig/reset_api_key_02.png" alt="Download new API key" class="figure mx-auto d-block"><div class="figcaption">Download new API key</div>
+</ol><figure><img src="../fig/chapter6/reset_api_key_02.png" alt="Download new API key" class="figure mx-auto d-block"><div class="figcaption">Download new API key</div>
 </figure><p>You will see a message:</p>
 <blockquote>
 <p>API key download</p>
@@ -862,57 +857,57 @@ you’ll use it to update your node configuration.</p>
 <h3 id="update-api-key-in-the-node-configuration-file">Update API key in the node configuration file<a class="anchor" aria-label="anchor" href="#update-api-key-in-the-node-configuration-file"></a></h3>
 <p>You can use v6 CLI to update the API key of a node. For that, you can
 run the command:</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">v6</span> node set-api-key</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">v6</span> node set-api-key</span></code></pre>
 </div>
 <p>then it will ask you which node you want to update the API key
 of:</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: <span class="er">(</span><span class="ex">Use</span> arrow keys<span class="kw">)</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a> <span class="ex">»</span> node1</span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>   <span class="ex">node2</span></span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>   <span class="ex">node3</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: <span class="er">(</span><span class="ex">Use</span> arrow keys<span class="kw">)</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a> <span class="ex">»</span> node1</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>   <span class="ex">node2</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>   <span class="ex">node3</span></span></code></pre>
 </div>
 <p>after you choose the node, it will ask you to enter the new API key,
 then you can paste the new API key you just copied from the downloaded
 file:</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: node1</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="ex">?</span> Please enter your new API key: the-new-api-key-you-received-from-the-server-administrator</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">---------------------------------------------</span></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  Welcome to</span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                   _                     __</span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                  <span class="kw">|</span> <span class="kw">|</span>                   <span class="ex">/</span> /</span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> __   ____ _ _ __ <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span> __ _  __ _  ___ / /_</span>
-<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="dt">\ \ </span>/ / _<span class="kw">`</span> <span class="kw">|</span> <span class="st">'_ \| __/ _` |/ _` |/ _ \ '</span><span class="ex">_</span> <span class="dt">\</span></span>
-<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>2024-05-24 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="dt">\ </span>V / <span class="er">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">||</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span>  <span class="ex">__/</span> <span class="er">(</span><span class="ex">_</span><span class="kw">)</span> <span class="kw">|</span></span>
-<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>   <span class="dt">\_</span>/ <span class="dt">\_</span>_,_<span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span><span class="ex">\__\__,_</span><span class="kw">|</span><span class="ex">\__,</span> <span class="kw">|</span><span class="ex">\___</span><span class="kw">|</span><span class="ex">\___/</span></span>
-<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                             __/ <span class="kw">|</span></span>
-<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                            <span class="kw">|</span><span class="ex">___/</span></span>
-<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span></span>
-<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Join us on Discord! https://discord.gg/rwRvwyK</span>
-<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Docs: https://docs.vantage6.ai</span>
-<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Blog: https://vantage6.ai</span>
-<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
-<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Cite us!</span>
-<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> If you publish your findings obtained using vantage6,</span>
-<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> please cite the proper sources as mentioned in:</span>
-<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> https://vantage6.ai/vantage6/references</span>
-<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
-<span id="cb20-23"><a href="#cb20-23" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Started application vantage6</span>
-<span id="cb20-24"><a href="#cb20-24" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Current working directory is <span class="st">'***/vantage6/node'</span></span>
-<span id="cb20-25"><a href="#cb20-25" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Successfully loaded configuration from <span class="st">'***/vantage6/node/node1.yaml'</span></span>
-<span id="cb20-26"><a href="#cb20-26" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Logging to <span class="st">'***/vantage6/node/node1/node_user.log'</span></span>
-<span id="cb20-27"><a href="#cb20-27" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Common package version <span class="st">'4.5.0'</span></span>
-<span id="cb20-28"><a href="#cb20-28" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
-<span id="cb20-29"><a href="#cb20-29" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
-<span id="cb20-30"><a href="#cb20-30" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Your new API key has been uploaded to the config file <span class="pp">***</span>/vantage6/node/node1.yaml.</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">?</span> Select the configuration you want to use: node1</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="ex">?</span> Please enter your new API key: the-new-api-key-you-received-from-the-server-administrator</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">---------------------------------------------</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  Welcome to</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                   _                     __</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                  <span class="kw">|</span> <span class="kw">|</span>                   <span class="ex">/</span> /</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> __   ____ _ _ __ <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span> __ _  __ _  ___ / /_</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="dt">\ \ </span>/ / _<span class="kw">`</span> <span class="kw">|</span> <span class="st">'_ \| __/ _` |/ _` |/ _ \ '</span><span class="ex">_</span> <span class="dt">\</span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>2024-05-24 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="dt">\ </span>V / <span class="er">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">||</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">(</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span>  <span class="ex">__/</span> <span class="er">(</span><span class="ex">_</span><span class="kw">)</span> <span class="kw">|</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>   <span class="dt">\_</span>/ <span class="dt">\_</span>_,_<span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span><span class="ex">\__\__,_</span><span class="kw">|</span><span class="ex">\__,</span> <span class="kw">|</span><span class="ex">\___</span><span class="kw">|</span><span class="ex">\___/</span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                             __/ <span class="kw">|</span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>                            <span class="kw">|</span><span class="ex">___/</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Join us on Discord! https://discord.gg/rwRvwyK</span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Docs: https://docs.vantage6.ai</span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span>  <span class="at">--</span><span class="op">&gt;</span> Blog: https://vantage6.ai</span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Cite us!</span>
+<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> If you publish your findings obtained using vantage6,</span>
+<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> please cite the proper sources as mentioned in:</span>
+<span id="cb19-21"><a href="#cb19-21" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> https://vantage6.ai/vantage6/references</span>
+<span id="cb19-22"><a href="#cb19-22" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> <span class="at">------------------------------------------------------------</span></span>
+<span id="cb19-23"><a href="#cb19-23" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Started application vantage6</span>
+<span id="cb19-24"><a href="#cb19-24" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Current working directory is <span class="st">'***/vantage6/node'</span></span>
+<span id="cb19-25"><a href="#cb19-25" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Successfully loaded configuration from <span class="st">'***/vantage6/node/node1.yaml'</span></span>
+<span id="cb19-26"><a href="#cb19-26" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Logging to <span class="st">'***/vantage6/node/node1/node_user.log'</span></span>
+<span id="cb19-27"><a href="#cb19-27" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> Common package version <span class="st">'4.5.0'</span></span>
+<span id="cb19-28"><a href="#cb19-28" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
+<span id="cb19-29"><a href="#cb19-29" tabindex="-1"></a><span class="ex">2024-05-24</span> 16:28:16 <span class="at">-</span> context        <span class="at">-</span> INFO     <span class="at">-</span> vantage6 version <span class="st">'4.5.0'</span></span>
+<span id="cb19-30"><a href="#cb19-30" tabindex="-1"></a><span class="ex">[info</span> ] <span class="at">-</span> Your new API key has been uploaded to the config file <span class="pp">***</span>/vantage6/node/node1.yaml.</span></code></pre>
 </div>
 <p>When you finish the process, the node configuration file will be
 updated with the new API key.</p>
@@ -953,17 +948,17 @@ configuration file.</li>
 <li>Restart the node with the <code>v6 node start</code> command.</li>
 </ul><ol start="3" style="list-style-type: decimal"><li>In order to verify the effectiveness of the API key change, we can
 restart the node with active logging:</li>
-</ol><div class="codewrapper sourceCode" id="cb21">
+</ol><div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">v6</span> node start <span class="at">--attach</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">v6</span> node start <span class="at">--attach</span></span></code></pre>
 </div>
 <p>In the log, we have to look for the node authentication message:</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">2024-05-30</span> 14:41:13 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Authenticating node...</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="ex">2024-05-30</span> 14:41:13 <span class="at">-</span> common         <span class="at">-</span> INFO     <span class="at">-</span> Successfully authenticated</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">2024-05-30</span> 14:41:13 <span class="at">-</span> common         <span class="at">-</span> DEBUG    <span class="at">-</span> Authenticating node...</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="ex">2024-05-30</span> 14:41:13 <span class="at">-</span> common         <span class="at">-</span> INFO     <span class="at">-</span> Successfully authenticated</span></code></pre>
 </div>
 </div>
 </div>
@@ -1079,7 +1074,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/chap6_setup_node.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/chap6_setup_node.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-07-30",
+  "dateModified": "2024-09-09",
   "datePublished": "2024-09-09"
 }
 
