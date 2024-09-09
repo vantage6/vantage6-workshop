@@ -967,7 +967,7 @@ organizations?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>In this case the organizations would be the academic hospitals as
@@ -1179,7 +1179,7 @@ different parts?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
@@ -1276,7 +1276,7 @@ any links that you are not going to use.
 </div>
 </div></section><section id="aio-chap3_run_analysis_ui"><p>Content from <a href="chap3_run_analysis_ui.html">Running a PET analysis without programming on vantage6</a></p>
 <hr>
-<p>Last updated on 2024-09-03 |
+<p>Last updated on 2024-09-09 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap3_run_analysis_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 5 minutes</p>
@@ -1291,11 +1291,11 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How does a vantage6 collaboration work?</li>
-<li>How to check the status of a given collaboration within
-vantage6?</li>
-<li>How to link an algorithm store to a given collaboration?</li>
-<li>How to run a task through vantage6’s UI?</li>
+<li>How can I perform basic administrative activities on vantage6 using
+the web-based UI?</li>
+<li>How do I check the status of a specific collaboration or study in
+the vantage6 UI?</li>
+<li>How do I request a task through the vantage6 UI?</li>
 </ul>
 </div>
 </div>
@@ -1306,32 +1306,59 @@ vantage6?</li>
 <h3 class="card-title">Objectives</h3>
 <ul>
 <li>Explore specific data analysis scenarios that further illustrate the
-concept of collaboration</li>
-<li>Understand the concept of ‘algorithm trustworthiness’ in the context
-of a vantage6 collaboration</li>
-<li>Understand vantagee6’s algorithm-store current and envisioned
-features</li>
-<li>Understand the UI-based approach for performing a data analysis
-through the given scenarios</li>
+concepts introduced on episode 2.</li>
+<li>Understand the UI-based workflow for performing a data analysis on
+the given scenarios.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="section level3">
+<div id="prerequisite" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="prerequisite" class="callout-inner">
+<h3 class="callout-title">Prerequisite</h3>
+<div class="callout-content">
+<p>Make sure you completed the <a href="./chap2_introduction_v6.html">Episode 2</a> where the concepts the
+UI is based on are introduced.</p>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="interacting-with-the-v6-server">Interacting with the v6 server<a class="anchor" aria-label="anchor" href="#interacting-with-the-v6-server"></a>
+</h2>
+<hr class="half-width">
+<p>As described on <a href="./chap2_introduction_v6.html">Episode 2</a>,
+the vantage6 server is the central component responsible for managing
+the entire federated/multi-party computation infrastructure and
+facilitating communication between the various entities within the
+vantage6 platform. This means that any use case—such as creating a
+collaboration, adding an organization to a collaboration, starting a
+task with a specific algorithm, or retrieving task results—requires
+interaction with the server. In this episode, we’ll dive into a hands-on
+exploration of how the vantage6 web-based user interface enables this
+interaction for basic data analysis on a pre-configured collaboration
+(in <a href="./chap4_manage_via_ui.html">Episode 4</a> you will learn
+how to configure your own). In <a href="./chap5_python_client.html">Episode 5</a>, you will explore how to
+perform these administrative tasks programmatically using the server API
+-the same API that powers the web interface behind the scenes.</p>
+<figure><img src="../fig/chapter3/v6-API.png" alt="v6 API clients" class="figure mx-auto d-block"><div class="figcaption">v6 API clients</div>
+</figure><div class="section level3">
 <h3 id="administration-concepts-in-the-ui">Administration concepts in the UI<a class="anchor" aria-label="anchor" href="#administration-concepts-in-the-ui"></a>
 </h3>
-<p>After logging in to the vantage6 UI, you will see the start page.</p>
+<p>After logging into the vantage6 UI, you’ll notice that most elements
+and the navigation between them align with the descriptions provided in
+<a href="./chap2_introduction_v6.html">Chapter 2</a>. For instance, on
+your start page you will see the collaborations your organization is
+part of. Clicking one of the collaborations will show the tasks of that
+collaboration.</p>
 <figure><img src="../fig/chapter3/ui_start_page.png" alt="vantage6 UI start page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI start page</div>
-</figure><p>There are some collaborations displayed on the start page. Clicking
-one of the collaborations will show the tasks of that collaboration.</p>
-<figure><img src="../fig/chapter3/ui_task_page.png" alt="vantage6 UI tasks page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI tasks page</div>
-</figure><p>The start page also contains a button <code>Administration</code> in
-the top right corner. Clicking on this button will redirect you to the
-administration page.</p>
-<p>On the administration page, you can manage the entities of vantage6.
-The entities are divided into tabs: <code>Organizations</code>,
+</figure><figure><img src="../fig/chapter3/ui_task_page.png" alt="vantage6 UI tasks page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI tasks page</div>
+</figure><p>The start page contains an <code>Administration</code> icon in the
+left panel. Clicking on this button will expand it with the vantage6
+entities youn can manage: <code>Organizations</code>,
 <code>Collaborations</code>, <code>Roles</code>, <code>Users</code>, and
 <code>Nodes</code>. You can click on an entity to see more details or to
 edit the entity. We will get back to this later in more detail.</p>
@@ -1343,12 +1370,10 @@ edit the entity. We will get back to this later in more detail.</p>
 <div id="get-familiar-with-the-vantage6-ui" class="callout-inner">
 <h3 class="callout-title">Get familiar with the vantage6 UI</h3>
 <div class="callout-content">
-<p>Log in to the Vantage6 UI using the credentials below (the password
-will be given by the instructors). Once logged in, navigate to the
-administration page to familiarize yourself with the entities there.
-Then, try to update your email, first name, and last name, but do not
-change your username, as it will be needed for some of the follow-up
-challenges.</p>
+<p>Log in to the Vantage6 UI using the credentials given by the
+instructors. Once logged in, navigate to the administration page to
+familiarize yourself with the entities there. Then, try to update your
+email, first name, and last name, but do not change your username.</p>
 </div>
 </div>
 </div>
@@ -1366,18 +1391,18 @@ challenges.</p>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
+</section><section><h2 class="section-heading" id="from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
 collaborations<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations"></a>
 </h2>
 <hr class="half-width">
-<p>As previously discussed, in vantage6 a collaboration refers to an
-agreement between two or more parties to participate in a study or to
-answer a research question together. This concept is central to the
-Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party
-involved in a collaboration remains autonomous, meaning they retain
-control over their data and can decide how much of their data to
-contribute to the collaboration’s global model and which algorithms are
-allowed for execution.</p>
+<p>As discussed in <a href="./chap2_introduction_v6.html">Episode 2</a>,
+in vantage6 a collaboration refers to an agreement between two or more
+parties to participate in a study or to answer a research question
+together. This concept is central to the Privacy Enhancing Technologies
+(PETs) that vantage6 supports. Each party involved in a collaboration
+remains autonomous, meaning they retain control over their data and can
+decide how much of their data to contribute to the collaboration’s
+global model and which algorithms are allowed for execution.</p>
 <p>To illustrate this, let’s analyze a hypothetical scenario: an
 international collaboration project of multiple health research
 institutes, working together on two studies:</p>
@@ -1478,13 +1503,13 @@ and check when these were seen for the last time.</li>
 </div>
 </div>
 </div>
-<div id="challenge-4-your-first-algorithm-execution-as-a-researcher" class="callout discussion">
+<div id="challenge-4-as-a-researcher-requesting-an-algorithm-execution" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="challenge-4-your-first-algorithm-execution-as-a-researcher" class="callout-inner">
-<h3 class="callout-title">Challenge 4: your first algorithm execution as
-a researcher</h3>
+<div id="challenge-4-as-a-researcher-requesting-an-algorithm-execution" class="callout-inner">
+<h3 class="callout-title">Challenge 4: as a researcher, requesting an
+algorithm execution!</h3>
 <div class="callout-content">
 <p>Now, you’ll play the role of the researcher within the collaboration
 you have just examined. With this role, you will finally request the
@@ -1502,8 +1527,8 @@ collaboration.</p>
 <p>As the first step, you can choose between running the task on the
 entire collaboration, or on one particular study (i.e., on a subset of
 the collaboration’s institutions). Choose the study that, according to
-your analysis on Challenge #3, is still NOT ready to execute a
-<em>federated average</em> task.</p>
+what you saw when working on Challenge #3, is still NOT ready to execute
+a <em>federated average</em> task.</p>
 <figure><img src="../fig/chapter3/select-study.png" class="figure mx-auto d-block"></figure>
 </li>
 <li>
@@ -1658,7 +1683,7 @@ user, or a collaboration?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Check it with your instructor.</li>
@@ -1679,7 +1704,7 @@ necessary permissions.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Before starting this section, make sure that the participants have
 enough permissions to create a new organization, a new user, and a new
@@ -2979,7 +3004,7 @@ UI</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>You can go to the <code>Nodes</code> tab in the administration page,
@@ -3738,8 +3763,8 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/aio.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/aio.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-09-06",
-  "datePublished": "2024-09-06"
+  "dateModified": "2024-09-09",
+  "datePublished": "2024-09-09"
 }
 
   </script><script>
