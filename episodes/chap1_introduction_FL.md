@@ -173,7 +173,22 @@ They sum their shares:
 They add their sums together: -4 + 29 + 102 = 127
 In this way, they have aggregated their data without sharing their individual data with anyone else.
 :::
-TODO: Exercise with secret sharing where data is leaked.
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Aggregation preserves privacy?
+Consider the dataset with the 3 childrens weights again. The only unencrypted data everybody receives,
+is the result. Do you feel that the privacy of the individuals is sufficiently preserved?
+Discuss with your peers.
+
+:::::: solution
+When receiving a sum from a set of 3 individuals, every record makes up roughly 30% of the final answer.
+That is a big contribution. It can be quite easy to reconstruct the individual records, for example
+by crossreferencing with other datasets. Also, if you are able to get your hands on 2 of the datapoints,
+you will be able to fully reconstruct the third one.
+
+::::::
+::::::
+
 
 ## Differential privacy
 
