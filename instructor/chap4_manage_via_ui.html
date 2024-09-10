@@ -345,7 +345,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Managing vantage6 server via the user interface</h1>
-        <p>Last updated on 2024-08-08 |
+        <p>Last updated on 2024-09-10 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap4_manage_via_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -403,7 +403,20 @@ and all of these permission rules. For example, having the rules with
 <code>create</code> in the scope <code>organization</code> for the
 resource <code>user</code> means that the user can create users for the
 organization they belong to.</p>
-<p>Note that not every resource has all scopes and/or operations. For
+<figure><img src="../fig/chapter4/permission_system.png" alt="vantage6 permission system" class="figure mx-auto d-block"><div class="figcaption">vantage6 permission system</div>
+</figure><p>There are six operations: view, edit, create, delete, send and
+receive. The first four correspond to GET, PATCH, CREATE and DELETE
+requests, respectively. The last two allow users to send and receive
+data via socket events. For example, sending events would allow them to
+kill tasks that are running on a node.</p>
+<p>The scopes are:</p>
+<ul><li>Global: all resources of all organizations</li>
+<li>Organization: resources of the user’s own organization</li>
+<li>Collaboration: resources of all organizations that the user’s
+organization is in a collaboration with</li>
+<li>Own: these are specific to the user endpoint. Permits a user to
+see/edit their own user, but not others within the organization.</li>
+</ul><p>Note that not every resource has all scopes and/or operations. For
 example, the <code>collaboration</code> resource does not have
 <code>create</code> operation for the <code>organization</code> scope,
 as it does not make sense to create a collaboration that only your own
@@ -426,8 +439,8 @@ that role. You can also create a new role by clicking the
 be complex for beginners to set up. The default roles provide a quick
 way to set up permissions, but it is recommended to review them before
 using them in a project.</p>
-<figure><img src="../fig/permissions_root.png" alt="vantage6 permissions for the role Root" class="figure mx-auto d-block"><div class="figcaption">vantage6 permissions for the role Root</div>
-</figure><figure><img src="../fig/permissions_researcher.png" alt="vantage6 permissions for the role Researcher" class="figure mx-auto d-block"><div class="figcaption">vantage6 permissions for the role
+<figure><img src="../fig/chapter4/permissions_root.png" alt="vantage6 permissions for the role Root" class="figure mx-auto d-block"><div class="figcaption">vantage6 permissions for the role Root</div>
+</figure><figure><img src="../fig/chapter4/permissions_researcher.png" alt="vantage6 permissions for the role Researcher" class="figure mx-auto d-block"><div class="figcaption">vantage6 permissions for the role
 Researcher</div>
 </figure><div id="challenge-1-what-can-you-do-in-vantage6" class="callout challenge">
 <div class="callout-square">
@@ -484,9 +497,10 @@ organization, a new user and a new collaboration using the vantage6
 UI.</p>
 <p>First you need to log in to the vantage6 UI, and then go to the
 <code>Administration</code> page. You can find the
-<code>Administration</code> button in the top right corner of the start
-page.</p>
-<figure><img src="../fig/ui_admin_page.png" alt="vantage6 UI administration page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI administration page</div>
+<code>Administration</code> tab in the left side of the start page.
+Clicking on the <code>Administration</code> tab will show you all tabs
+for vantage6 entities.</p>
+<figure><img src="../fig/chapter4/ui_admin_page.png" alt="vantage6 UI administration page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI administration page</div>
 </figure><div class="section level3">
 <h3 id="create-a-new-organization">Create a new organization<a class="anchor" aria-label="anchor" href="#create-a-new-organization"></a></h3>
 <p>It’s quite straightforward to create a new organization in vantage6.
@@ -502,7 +516,7 @@ course.</li>
 </ul></li>
 <li>Click on the <code>Submit</code> button to create the new
 organization.</li>
-</ol><figure><img src="../fig/create_org.png" alt="Create a new organization" class="figure mx-auto d-block"><div class="figcaption">Create a new organization</div>
+</ol><figure><img src="../fig/chapter4/create_org.png" alt="Create a new organization" class="figure mx-auto d-block"><div class="figcaption">Create a new organization</div>
 </figure></div>
 <div class="section level3">
 <h3 id="create-a-new-user">Create a new user<a class="anchor" aria-label="anchor" href="#create-a-new-user"></a></h3>
@@ -521,7 +535,7 @@ assigning multiple roles or select the operation boxes in the
 <code>Permissions</code> section.</li>
 </ul></li>
 <li>Click on the <code>Submit</code> button to create the new user.</li>
-</ol><figure><img src="../fig/create_user.png" alt="Create a new user" class="figure mx-auto d-block"><div class="figcaption">Create a new user</div>
+</ol><figure><img src="../fig/chapter4/create_user.png" alt="Create a new user" class="figure mx-auto d-block"><div class="figcaption">Create a new user</div>
 </figure></div>
 <div class="section level3">
 <h3 id="create-a-new-collaboration">Create a new collaboration<a class="anchor" aria-label="anchor" href="#create-a-new-collaboration"></a></h3>
@@ -542,7 +556,7 @@ ensure the nodes of the organizations are registered in the
 collaboration. If you don’t select this box, you will have to register
 the nodes manually later.</li>
 </ul></li>
-</ol><figure><img src="../fig/create_collab_01.png" alt="Create a new collaboration" class="figure mx-auto d-block"><div class="figcaption">Create a new collaboration</div>
+</ol><figure><img src="../fig/chapter4/create_collab_01.png" alt="Create a new collaboration" class="figure mx-auto d-block"><div class="figcaption">Create a new collaboration</div>
 </figure><ol start="4" style="list-style-type: decimal"><li>Click on the <code>Submit</code> button to create the new
 collaboration.
 <ul><li>After submitting the form, you may see a dialog box to ask you to
@@ -550,7 +564,7 @@ download the API key (on MacOS) or a dialog points out that the API key
 has been downloaded (on Windows). The API key is used to authenticate
 the nodes in the collaboration.</li>
 </ul></li>
-</ol><figure><img src="../fig/create_collab_02.png" alt="Download API keys" class="figure mx-auto d-block"><div class="figcaption">Download API keys</div>
+</ol><figure><img src="../fig/chapter4/create_collab_02.png" alt="Download API keys" class="figure mx-auto d-block"><div class="figcaption">Download API keys</div>
 </figure><p>You will see a message:</p>
 <blockquote>
 <p>API key download</p>
@@ -579,7 +593,7 @@ clicking the <code>Add algorithm store</code> button.</li>
 <li>You can also see the studies of the collaboration. You can add a
 study by clicking the <code>Add study</code> button.</li>
 </ul></li>
-</ol><figure><img src="../fig/create_collab_03.png" alt="Collaboration details" class="figure mx-auto d-block"><div class="figcaption">Collaboration details</div>
+</ol><figure><img src="../fig/chapter4/create_collab_03.png" alt="Collaboration details" class="figure mx-auto d-block"><div class="figcaption">Collaboration details</div>
 </figure><div id="challenge-2-manage-vantage6-project-using-the-ui" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -679,7 +693,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/chap4_manage_via_ui.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/chap4_manage_via_ui.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-08-08",
+  "dateModified": "2024-09-10",
   "datePublished": "2024-09-10"
 }
 
