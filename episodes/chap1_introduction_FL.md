@@ -186,6 +186,10 @@ That is a big contribution. It can be quite easy to reconstruct the individual r
 by crossreferencing with other datasets. Also, if you are able to get your hands on 2 of the datapoints,
 you will be able to fully reconstruct the third one.
 
+Trust is another factor here. If the different parties (Mees, Sara and Noor) have a high level of trust
+in eachother not to share their data, the risk level is lower than when the parties are known to occasionally
+leak their data, or don't have proper security set in place.
+
 ::::::
 ::::::
 
