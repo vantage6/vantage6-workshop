@@ -144,9 +144,9 @@ As you can see, both the datasources and the aggregation entity are mapped to no
 
 Federated algorithms can be split in a **federated** and a **central** part:
 
-- **Central**: The central part of the algorithm is responsible for orchestration and aggregation of the partial results.
+- **Central**: The central part of the algorithm is responsible for orchestration and aggregation of the partial results. In our example this would be the aggregation.
 
-- **Federated**: The partial tasks are executing computations on the local privacy sensitive data.
+- **Federated**: The partial tasks are executing computations on the local privacy sensitive data. These would be the nodes on the left.
 
 ![vantage6 central and federated tasks.](fig/algorithm_central_and_subtasks.png)
 
