@@ -135,6 +135,12 @@ While a vantage6-supported research infrastructure offers a strong defense again
 Vantage6's algorithm store is a repository for trusted algorithms within a certain project that aims to enhance trustworthiness by offering a centralized platform for managing pre-registered algorithms. This serves as an alternative to using algorithms from unknown authors or those lacking transparency regarding their development process and status. The algorithm store currently allows researchers to explore which algorithms are available and how to run them. This, streamlines task execution requests within collaborations. Also, the algorithm store integrates additional information to the algorithm metadata such who developed and reviewed the algorithm. Only after complying with the review policies of a store, a new algorithm will be published in the store.
 
 ## How algorithms run in vantage6
+So how does vantage6 relate to the privacy enhancing techniques that we discussed in chapter 1? Let us consider the federated sum from chapter 1 again
+
+![Federated analysis orchestrated by vantage6](fig/chapter2/federated_analysis_applied.jpg)
+
+As you can see, both the datasources and the aggregation entity are mapped to nodes. The vantage6 server is on the side, coordinating the analysis.
+
 
 Federated algorithms can be split in a **federated** and a **central** part:
 
