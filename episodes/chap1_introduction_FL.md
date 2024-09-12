@@ -154,7 +154,15 @@ puzzle pieces that when put together will reveal the result of the computation.
 
 Mees, Sara and Noor want to know how much they weigh in total.
 Mees weighs 43 kg, Sara weighs 39, Noor weighs 45.
-They create secret shares for their weights that they give to their peers.
+All three they think of 2 random numbers $r_1$ and $r_2$ so that $weight = r_1 + r_2 + x$. Finally
+they compute $x$ by $x=weight - r_1 - r_2$
+
+
+
+After computing the secret shares, they distribute these "cryptographical puzzle pieces" among
+their peers.
+
+![Mees, Sara and Noor distibute their secret shares](fig/chapter1/secret_sharing_example_1.jpg)
 
 |                 | Mees receives | Sara receives | Noor receives | Sum |
 | --------------- | ------------- | ------------- | ------------- | --- |
@@ -170,10 +178,56 @@ They sum their shares:
 | Sara | 29  |
 | Noor | 102 |
 
+![Mees, Sara and Noor sum their secret shares](fig/chapter1/secret_sharing_example_2.jpg)
+
 They add their sums together: -4 + 29 + 102 = 127
 In this way, they have aggregated their data without sharing their individual data with anyone else.
+
+![Mees, Sara and Noor add their shares together for the final result](fig/chapter1/secret_sharing_example_3.jpg)
 :::
-TODO: Exercise with secret sharing where data is leaked.
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Oh no! A hacker!
+A hacker manages to get access to Mees' computer that contains the secret shares he received. Will
+the secrecy of the three weights still be preserved?
+
+
+:::::: solution
+When receiving a sum from a set of 3 individuals, every record makes up roughly 30% of the final answer.
+That is a big contribution. It can be quite easy to reconstruct the individual records, for example
+by crossreferencing with other datasets. Also, if you are able to get your hands on 2 of the datapoints,
+you will be able to fully reconstruct the third one.
+
+Trust is another factor here. If the different parties (Mees, Sara and Noor) have a high level of trust
+in eachother not to share their data, the risk level is lower than when the parties are known to occasionally
+leak their data, or don't have proper security set in place.
+
+::::::
+::::::
+
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Aggregation preserves privacy?
+Consider the dataset with the 3 childrens weights again. The only unencrypted data everybody receives,
+is the result. Consider the situation where Sara knows Mees very well, and might know approximately how
+much he weighs. Do you think the privacy of the three individuals is properly preserved?
+
+:::::: solution
+When receiving a sum from a set of 3 individuals, every record makes up roughly 30% of the final answer.
+That is a big contribution. It can be quite easy to reconstruct the individual records, for example
+by crossreferencing with other datasets. Also, if you are able to get your hands on 2 of the datapoints,
+you will be able to fully reconstruct the third one.
+
+Usually there are guard rails in place when performing PET analysis to reject situations where there are 
+very few datapoints, because the original data is too easy to reconstruct. 
+
+Trust is another factor here. If the different parties (Mees, Sara and Noor) have a high level of trust
+in eachother not to share their data, the risk level is lower than when the parties are known to occasionally
+leak their data, or don't have proper security set in place.
+
+::::::
+::::::
+
 
 ## Differential privacy
 
