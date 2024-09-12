@@ -352,7 +352,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to privacy enhancing technologies (PET)</h1>
-        <p>Last updated on 2024-09-04 |
+        <p>Last updated on 2024-09-12 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap1_introduction_FL.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -544,9 +544,14 @@ of the data</div>
 <h3 class="callout-title">Secret sharing, an example</h3>
 <div class="callout-content">
 <p>Mees, Sara and Noor want to know how much they weigh in total. Mees
-weighs 43 kg, Sara weighs 39, Noor weighs 45. They create secret shares
-for their weights that they give to their peers.</p>
-<table class="table"><colgroup><col width="26%"><col width="22%"><col width="22%"><col width="22%"><col width="5%"></colgroup><thead><tr class="header"><th></th>
+weighs 43 kg, Sara weighs 39, Noor weighs 45. All three they think of 2
+random numbers <span class="math inline">\(r_1\)</span> and <span class="math inline">\(r_2\)</span> so that <span class="math inline">\(weight = r_1 + r_2 + x\)</span>. Finally they
+compute <span class="math inline">\(x\)</span> by <span class="math inline">\(x=weight - r_1 - r_2\)</span></p>
+<p>After computing the secret shares, they distribute these
+“cryptographical puzzle pieces” among their peers.</p>
+<figure><img src="../fig/chapter1/secret_sharing_example_1.jpg" alt="Mees, Sara and Noor distibute their secret shares" class="figure mx-auto d-block"><div class="figcaption">Mees, Sara and Noor distibute their secret
+shares</div>
+</figure><table class="table"><colgroup><col width="26%"><col width="22%"><col width="22%"><col width="22%"><col width="5%"></colgroup><thead><tr class="header"><th></th>
 <th>Mees receives</th>
 <th>Sara receives</th>
 <th>Noor receives</th>
@@ -573,13 +578,91 @@ for their weights that they give to their peers.</p>
 <td>29</td>
 </tr><tr class="odd"><td>Noor</td>
 <td>102</td>
-</tr></tbody></table><p>They add their sums together: -4 + 29 + 102 = 127 In this way, they
+</tr></tbody></table><figure><img src="../fig/chapter1/secret_sharing_example_2.jpg" alt="Mees, Sara and Noor sum their secret shares" class="figure mx-auto d-block"><div class="figcaption">Mees, Sara and Noor sum their secret
+shares</div>
+</figure><p>They add their sums together: -4 + 29 + 102 = 127 In this way, they
 have aggregated their data without sharing their individual data with
 anyone else.</p>
+<figure><img src="../fig/chapter1/secret_sharing_example_3.jpg" alt="Mees, Sara and Noor add their shares together for the final result" class="figure mx-auto d-block"><div class="figcaption">Mees, Sara and Noor add their shares together
+for the final result</div>
+</figure></div>
+</div>
+</div>
+<div id="oh-no-a-hacker" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="oh-no-a-hacker" class="callout-inner">
+<h3 class="callout-title">Oh no! A hacker!</h3>
+<div class="callout-content">
+<p>A hacker manages to get access to Mees’ computer that contains the
+secret shares he received. Will the secrecy of the three weights still
+be preserved?</p>
 </div>
 </div>
 </div>
-<p>TODO: Exercise with secret sharing where data is leaked.</p>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>When receiving a sum from a set of 3 individuals, every record makes
+up roughly 30% of the final answer. That is a big contribution. It can
+be quite easy to reconstruct the individual records, for example by
+crossreferencing with other datasets. Also, if you are able to get your
+hands on 2 of the datapoints, you will be able to fully reconstruct the
+third one.</p>
+<p>Trust is another factor here. If the different parties (Mees, Sara
+and Noor) have a high level of trust in eachother not to share their
+data, the risk level is lower than when the parties are known to
+occasionally leak their data, or don’t have proper security set in
+place.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="aggregation-preserves-privacy" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="aggregation-preserves-privacy" class="callout-inner">
+<h3 class="callout-title">Aggregation preserves privacy?</h3>
+<div class="callout-content">
+<p>Consider the dataset with the 3 childrens weights again. The only
+unencrypted data everybody receives, is the result. Consider the
+situation where Sara knows Mees very well, and might know approximately
+how much he weighs. Do you think the privacy of the three individuals is
+properly preserved?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<p>When receiving a sum from a set of 3 individuals, every record makes
+up roughly 30% of the final answer. That is a big contribution. It can
+be quite easy to reconstruct the individual records, for example by
+crossreferencing with other datasets. Also, if you are able to get your
+hands on 2 of the datapoints, you will be able to fully reconstruct the
+third one.</p>
+<p>Usually there are guard rails in place when performing PET analysis
+to reject situations where there are very few datapoints, because the
+original data is too easy to reconstruct.</p>
+<p>Trust is another factor here. If the different parties (Mees, Sara
+and Noor) have a high level of trust in eachother not to share their
+data, the risk level is lower than when the parties are known to
+occasionally leak their data, or don’t have proper security set in
+place.</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="differential-privacy">Differential privacy<a class="anchor" aria-label="anchor" href="#differential-privacy"></a></h2>
 <hr class="half-width"><p>As mentioned before, aggregation of data will not always prevent
 leaks of sensitive information. Consider the example of Mees, Sara and
@@ -765,8 +848,8 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/chap1_introduction_FL.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/chap1_introduction_FL.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-09-04",
-  "datePublished": "2024-09-10"
+  "dateModified": "2024-09-12",
+  "datePublished": "2024-09-12"
 }
 
   </script><script>
