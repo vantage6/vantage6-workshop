@@ -187,16 +187,39 @@ In this way, they have aggregated their data without sharing their individual da
 :::
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Aggregation preserves privacy?
-Consider the dataset with the 3 childrens weights again. The only unencrypted data everybody receives,
-is the result. Do you feel that the privacy of the individuals is sufficiently preserved?
-Discuss with your peers.
+## Oh no! A hacker!
+A hacker manages to get access to Mees' computer that contains the secret shares he received. Will
+the secrecy of the three weights still be preserved?
+
 
 :::::: solution
 When receiving a sum from a set of 3 individuals, every record makes up roughly 30% of the final answer.
 That is a big contribution. It can be quite easy to reconstruct the individual records, for example
 by crossreferencing with other datasets. Also, if you are able to get your hands on 2 of the datapoints,
 you will be able to fully reconstruct the third one.
+
+Trust is another factor here. If the different parties (Mees, Sara and Noor) have a high level of trust
+in eachother not to share their data, the risk level is lower than when the parties are known to occasionally
+leak their data, or don't have proper security set in place.
+
+::::::
+::::::
+
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Aggregation preserves privacy?
+Consider the dataset with the 3 childrens weights again. The only unencrypted data everybody receives,
+is the result. Consider the situation where Sara knows Mees very well, and might know approximately how
+much he weighs. Do you think the privacy of the three individuals is properly preserved?
+
+:::::: solution
+When receiving a sum from a set of 3 individuals, every record makes up roughly 30% of the final answer.
+That is a big contribution. It can be quite easy to reconstruct the individual records, for example
+by crossreferencing with other datasets. Also, if you are able to get your hands on 2 of the datapoints,
+you will be able to fully reconstruct the third one.
+
+Usually there are guard rails in place when performing PET analysis to reject situations where there are 
+very few datapoints, because the original data is too easy to reconstruct. 
 
 Trust is another factor here. If the different parties (Mees, Sara and Noor) have a high level of trust
 in eachother not to share their data, the risk level is lower than when the parties are known to occasionally
