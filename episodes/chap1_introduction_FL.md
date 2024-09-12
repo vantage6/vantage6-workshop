@@ -154,7 +154,15 @@ puzzle pieces that when put together will reveal the result of the computation.
 
 Mees, Sara and Noor want to know how much they weigh in total.
 Mees weighs 43 kg, Sara weighs 39, Noor weighs 45.
-They create secret shares for their weights that they give to their peers.
+All three they think of 2 random numbers $r_1$ and $r_2$ so that $weight = r_1 + r_2 + x$. Finally
+they compute $x$ by $x=weight - r_1 - r_2$
+
+
+
+After computing the secret shares, they distribute these "cryptographical puzzle pieces" among
+their peers.
+
+![Mees, Sara and Noor distibute their secret shares](fig/chapter1/secret_sharing_example_1.jpg)
 
 |                 | Mees receives | Sara receives | Noor receives | Sum |
 | --------------- | ------------- | ------------- | ------------- | --- |
@@ -170,8 +178,12 @@ They sum their shares:
 | Sara | 29  |
 | Noor | 102 |
 
+![Mees, Sara and Noor sum their secret shares](fig/chapter1/secret_sharing_example_2.jpg)
+
 They add their sums together: -4 + 29 + 102 = 127
 In this way, they have aggregated their data without sharing their individual data with anyone else.
+
+![Mees, Sara and Noor add their shares together for the final result](fig/chapter1/secret_sharing_example_3.jpg)
 :::
 
 ::::::::::::::::::::::::::::::::::::: challenge
