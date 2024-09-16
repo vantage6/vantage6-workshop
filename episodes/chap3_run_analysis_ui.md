@@ -117,7 +117,7 @@ With your researcher credentials, explore the collaboration you have access to. 
 
 ### Running a federated algorithm
 
-Now you will perform an analysis io the _study_ that is ready for it. As this is an introductory exercise, you will first use a simple algorithm introduced in [Chapter 2](./chap2_introduction_v6.md): the _Federated Average_.
+Now you will perform an analysis on the _study_ that is ready for it (i.e., the _study_ with **no** offline nodes). As this is an introductory exercise, you will first use the simple algorithm introduced in [Chapter 2](./chap2_introduction_v6.md): the _Federated Average_.
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
