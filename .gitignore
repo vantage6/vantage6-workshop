@@ -49,4 +49,21 @@ docs/
 # translation temp files
 po/*~
 .idea/
+
+# infrastructure
+# setup secrets
+instructors/files/infrastructure/config.py
+# output (e.g. node config files)
+instructors/files/infrastructure/output/
+
+# Ignore all CSV files
+instructors/files/infrastructure/workshop_resources/*.csv
+
+# Unignore the example file
+!instructors/files/infrastructure/workshop_resources/participants.csv
+
+# other
+__pycache__/
+
 .vscode/
+

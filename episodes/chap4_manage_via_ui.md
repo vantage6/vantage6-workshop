@@ -30,6 +30,17 @@ Vantage6 uses a permission system to control who can do what in the system. The 
 
 The permission rules define what each entity is allowed to do, based on the operation (view, create, edit, delete, send, receive), the scope (own, organization, collaboration, global), and the resource (e.g. users, organizations). Users can be assigned anywhere between zero and all of these permission rules. For example, having the rules with `create` in the scope `organization` for the resource `user` means that the user can create users for the organization they belong to.
 
+![vantage6 permission system](fig/chapter4/permission_system.png)
+
+There are six operations: view, edit, create, delete, send and receive. The first four correspond to GET, PATCH, CREATE and DELETE requests, respectively. The last two allow users to send and receive data via socket events. For example, sending events would allow them to kill tasks that are running on a node.
+
+The scopes are:
+
+- Global: all resources of all organizations
+- Organization: resources of the user’s own organization
+- Collaboration: resources of all organizations that the user’s organization is in a collaboration with
+- Own: these are specific to the user endpoint. Permits a user to see/edit their own user, but not others within the organization.
+
 Note that not every resource has all scopes and/or operations. For example, the `collaboration` resource does not have `create`  operation for the `organization` scope, as it does not make sense to create a collaboration that only your own organization can participate in.
 
 To make it easier to assign permissions, there are also predefined roles:
@@ -44,9 +55,9 @@ The permissions are set up in the `Roles` tab in the administration page. You ca
 
 The permission structure allows for a lot of flexibility, but it can be complex for beginners to set up. The default roles provide a quick way to set up permissions, but it is recommended to review them before using them in a project.
 
-![vantage6 permissions for the role Root](fig/permissions_root.png)
+![vantage6 permissions for the role Root](fig/chapter4/permissions_root.png)
 
-![vantage6 permissions for the role Researcher](fig/permissions_researcher.png)
+![vantage6 permissions for the role Researcher](fig/chapter4/permissions_researcher.png)
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -80,9 +91,9 @@ Note that the role `Collaboration Admin` does not have the permission to create 
 
 In this section, we will go through the steps to create a new organization, a new user and a new collaboration using the vantage6 UI.
 
-First you need to log in to the vantage6 UI, and then go to the `Administration` page. You can find the `Administration` button in the top right corner of the start page.
+First you need to log in to the vantage6 UI, and then go to the `Administration` page. You can find the `Administration` tab in the left side of the start page. Clicking on the `Administration` tab will show you all tabs for vantage6 entities.
 
-![vantage6 UI administration page](fig/ui_admin_page.png)
+![vantage6 UI administration page](fig/chapter4/ui_admin_page.png)
 
 ### Create a new organization
 
@@ -94,7 +105,7 @@ It's quite straightforward to create a new organization in vantage6. Here are th
    - The `Upload public key` field is optional. You can upload a public key for the organization if you want to use encryption in the collaboration. But note that we DO NOT use encryption in this course.
 4. Click on the `Submit` button to create the new organization.
 
-![Create a new organization](fig/create_org.png)
+![Create a new organization](fig/chapter4/create_org.png)
 
 ### Create a new user
 
@@ -107,7 +118,7 @@ Now let's create a new user for the organization we just created. Here are the s
    - You can assign roles to the user by selecting them from the `Roles` dropdown. Here we assign the `Researcher` role to the new user. You can give the user more permissions by assigning multiple roles or select the operation boxes in the `Permissions` section.
 4. Click on the `Submit` button to create the new user.
 
-![Create a new user](fig/create_user.png)
+![Create a new user](fig/chapter4/create_user.png)
 
 ### Create a new collaboration
 
@@ -120,12 +131,12 @@ A collaboration is a collection of one or more organizations. Let's create a new
    - You can select the organizations that will participate in the collaboration by selecting them from the `Organizations` dropdown.
    - By default, we select the `Register nodes` box. This will ensure the nodes of the organizations are registered in the collaboration. If you don't select this box, you will have to register the nodes manually later.
 
-![Create a new collaboration](fig/create_collab_01.png)
+![Create a new collaboration](fig/chapter4/create_collab_01.png)
 
 4. Click on the `Submit` button to create the new collaboration.
    - After submitting the form, you may see a dialog box to ask you to download the API key (on MacOS) or a dialog points out that the API key has been downloaded (on Windows). The API key is used to authenticate the nodes in the collaboration.
 
-![Download API keys](fig/create_collab_02.png)
+![Download API keys](fig/chapter4/create_collab_02.png)
 
 You will see a message:
 
@@ -143,7 +154,7 @@ You will need the API keys when you run the nodes to authenticate with the vanta
    - You can also see the algorithm store available for the collaboration. You can add a algorithm store for the collaboration by clicking the `Add algorithm store` button.
    - You can also see the studies of the collaboration. You can add a study by clicking the `Add study` button.
 
-![Collaboration details](fig/create_collab_03.png)
+![Collaboration details](fig/chapter4/create_collab_03.png)
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
