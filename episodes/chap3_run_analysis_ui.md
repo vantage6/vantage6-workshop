@@ -30,7 +30,7 @@ Make sure you completed the [Episode 2](./chap2_introduction_v6.md) where the co
 
 In vantage6 a collaboration refers to an agreement between two or more parties to participate in a study or to answer a research question together. This concept is central to the Privacy Enhancing Technologies (PETs) that vantage6 supports. Each party involved in a collaboration remains autonomous, meaning they retain control over their data and can decide how much of their data to contribute to the collaboration's global model and which algorithms are allowed for execution.
 
-To illustrate this in practice, you will work on a simulated collaboration scenario: an international collaboration project of multiple health research institutes, working together on two studies:
+To illustrate this in practice, you will work on a simulated collaboration scenario: an international consortium project of multiple health research institutes, working together on two studies:
 
 - _Age-Related Variations in Overweight Prevalence: A Comparative Study Across Gender and Age Groups_ **(AGOT2024)** .
 
@@ -41,8 +41,8 @@ The first study, **AGOT2024**, involves the analysis of age and weight-related d
 
 ![Hypothetical collaborations scenario](fig/chapter3/case-study-example.drawio.png)
 
-The consortium members already took care to ensure that their corresponding datasets follow the same structure (variable names and data types). This is key to making the federated analysis possible. 
-The following is a sample of what will be referred to, in the following exercises, as the 'default' node database.
+The consortium members already took care to ensure that their corresponding datasets follow the same structure (variable names and data types). This is key for making the federated analysis possible. 
+The following is an example of how the 'default' database on all the nodes within the collaboration look like.
 
 | Gender | Age | Height | Weight | IsOverweight | AgeGroup  |
 |--------|-----|--------|--------|--------------|-----------|
@@ -159,7 +159,7 @@ Based on these results, discuss the following:
 
 ## Solution
 
-Each node returns the two values needed by the central function of the 'federated average' algorithm, as described in Chapter 2: the number of records within the database, and their sum. The algorithm is 'encoding' these values on a JSON document, which is the format that the central function of the algorithm would expect.
+Each node, after executing the `partial_average` function, returns the two values needed by the central function of the 'federated average' algorithm (as described in Chapter 2): the number of records within the database, and their sum. These values are ‘encoded’ as a JSON document, so they can be read, programatically, by the `central_average`.
 
 ![Results](fig/chapter3/task_partial_output.png)
 
@@ -192,10 +192,10 @@ Discuss the following:
 
 ![](active_tasks.png)
 
-1. In this exercise you created a task for a 'central' function, which, when executed requests other nodes to run a 'partial' one, combining their results upon completion. The central function is designed in a way that it make the request to all the nodes within the collaboration/design. As the node that got the request to execute the 'central' function, is also part of the collaboration, it ends executing two tasks: the central task, and the partial one.
-2. [Here,](https://github.com/IKNL/v6-average-py/blob/5cad1742749de0f5c05a788c8ce3ca5b0a3965b2/v6-average-py/__init__.py#L87) the 'partial' part of the algorithm encodes its result as the JSON document seen on Chapter 3.
-3. The `central_average` is intended for consolidating the results given by the partial analysis on other data nodes. Hence, it doesn't need direct access to data within the nodes.
+1. In this exercise you created a task for a 'central' function, which, when executed requests other nodes to run a 'partial' one, combining their results upon completion. The central function is designed in a way that it make the request to all the nodes within the collaboration/study. As the node that gets the request to execute the 'central' function, is also part of the collaboration, it ends executing two tasks: the central task, and the partial one.
+2. [Here,](https://github.com/IKNL/v6-average-py/blob/5cad1742749de0f5c05a788c8ce3ca5b0a3965b2/v6-average-py/__init__.py#L87) the 'partial' part of the algorithm encodes its result as the JSON document seen on the previous challenge.
 
+3. The `central_average` function is designed just to aggregate the results of the partial averages sent by the other nodes. Hence, it doesn’t need direct access any dataset.
 
 :::::::::::::::::::::::::::::::::
 
@@ -215,7 +215,10 @@ Discuss the following:
 :::::::::::::::::::::::: solution
 
 ## Solution
-The algorithm didn't crash. The Main or Central task requests all the nodes in the study, through the server, to run the 'partial' function. As the server is unable to transfer this request to the offline node, this child process is kept on hold, until the node is back online. Consequently, the Main process is also kept on hold, and the process stays with an 'Active' status indefinitely (or until the node is back online).
+
+The algorithm didn’t crash, but is kept on hold (with the Active status) indefinitely. The Central task requests all the nodes in the study to run the ‘partial’ function. As the server is unable to transfer this request to the offline node, this child process is kept on hold, until the node is back online.
+
+Consequently, the Main process is also kept on hold, and the process stays with an ‘Active’ status indefinitely (or until the node is back online).
 
 ![](fig/chapter3/task_offline_node.png)
 
@@ -228,11 +231,9 @@ The algorithm didn't crash. The Main or Central task requests all the nodes in t
 
 This time, let's try to do something that may make the _federated average_ algorithm not work as expected. Create a task, this time selecting the 'operational' study (the one with all of its nodes online), and use the central function in it. This time, choose a non-numerical variable (see the table sample).
 
-Discuss the following:
+Look at the logs and discuss the following:
 
-1. Why does the Task fail this time?
-2. Look at the task's logs. What are the differences between the Main process logs and the Child-processes ones?
-3. After looking at the logs, can you spot the line of code that made the program crash on the source code [source code](https://github.com/IKNL/v6-average-py/blob/5cad1742749de0f5c05a788c8ce3ca5b0a3965b2/v6-average-py/__init__.py)?
+1. Why both `partial_function` and `central_function` crashed? ([See source code](https://github.com/IKNL/v6-average-py/blob/5cad1742749de0f5c05a788c8ce3ca5b0a3965b2/v6-average-py/__init__.py))
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -240,6 +241,8 @@ Discuss the following:
 :::::::::::::::::::::::: solution
 
 ## Solution
+
+1. The `partial_function` crashed while trying to parse the input as a number. The `central_function` crashed due to a division-by-zero.
 
 ![](fig/chapter3/task_error_logs.png)
 
