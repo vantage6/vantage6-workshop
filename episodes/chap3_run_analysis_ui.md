@@ -233,7 +233,7 @@ This time, let's try to do something that may make the _federated average_ algor
 
 Look at the logs and discuss the following:
 
-1. Why both `partial_function` and `central_function` crashed? ([See source code](https://github.com/IKNL/v6-average-py/blob/5cad1742749de0f5c05a788c8ce3ca5b0a3965b2/v6-average-py/__init__.py))
+1. Why did both `partial_function` and `central_function` crash? ([See source code](https://github.com/IKNL/v6-average-py/blob/5cad1742749de0f5c05a788c8ce3ca5b0a3965b2/v6-average-py/__init__.py))
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
