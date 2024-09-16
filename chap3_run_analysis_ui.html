@@ -234,9 +234,11 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#interacting-with-the-v6-server">Interacting with the v6 server</a></li>
-<li><a href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
+        <ul><li><a href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
 collaborations</a></li>
+<li><a href="#interacting-with-the-v6-server">Interacting with the v6 server</a></li>
+<li><a href="#running-a-pet-privacy-enhancing-technology-through-the-user-interface-no-coding-involved">Running a PET (privacy-enhancing technology) through the user
+interface (no coding involved!)</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -346,7 +348,7 @@ collaborations</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Running a PET analysis without programming on vantage6</h1>
-        <p>Last updated on 2024-09-09 |
+        <p>Last updated on 2024-09-16 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap3_run_analysis_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -378,7 +380,7 @@ the vantage6 UI?</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul><li>Explore specific data analysis scenarios that further illustrate the
-concepts introduced on episode 2.</li>
+concepts introduced in episode 2.</li>
 <li>Understand the UI-based workflow for performing a data analysis on
 the given scenarios.</li>
 </ul></div>
@@ -398,50 +400,152 @@ UI is based on are introduced.</p>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="interacting-with-the-v6-server">Interacting with the v6 server<a class="anchor" aria-label="anchor" href="#interacting-with-the-v6-server"></a></h2>
-<hr class="half-width"><p>As described on <a href="./chap2_introduction_v6.html">Episode 2</a>,
-the vantage6 server is the central component responsible for managing
-the entire federated/multi-party computation infrastructure and
-facilitating communication between the various entities within the
-vantage6 platform. This means that any use case—such as creating a
-collaboration, adding an organization to a collaboration, starting a
-task with a specific algorithm, or retrieving task results—requires
-interaction with the server. In this episode, we’ll dive into a hands-on
-exploration of how the vantage6 web-based user interface enables this
-interaction for basic data analysis on a pre-configured collaboration
-(in <a href="./chap4_manage_via_ui.html">Episode 4</a> you will learn
-how to configure your own). In <a href="./chap5_python_client.html">Episode 5</a>, you will explore how to
-perform these administrative tasks programmatically using the server API
--the same API that powers the web interface behind the scenes.</p>
-<figure><img src="fig/chapter3/v6-API.png" alt="v6 API clients" class="figure mx-auto d-block"><div class="figcaption">v6 API clients</div>
+<section><h2 class="section-heading" id="from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
+collaborations<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations"></a></h2>
+<hr class="half-width"><p>In vantage6 a collaboration refers to an agreement between two or
+more parties to participate in a study or to answer a research question
+together. This concept is central to the Privacy Enhancing Technologies
+(PETs) that vantage6 supports. Each party involved in a collaboration
+remains autonomous, meaning they retain control over their data and can
+decide how much of their data to contribute to the collaboration’s
+global model and which algorithms are allowed for execution.</p>
+<p>To illustrate this in practice, you will work on a simulated
+collaboration scenario: an international consortium project of multiple
+health research institutes, working together on two studies:</p>
+<ul><li><p><em>Age-Related Variations in Overweight Prevalence: A
+Comparative Study Across Gender and Age Groups</em>
+<strong>(AGOT2024)</strong> .</p></li>
+<li><p><em>The Effect of Gender on Height Development Across Various Age
+Groups</em> <strong>(GGA2024)</strong>.</p></li>
+</ul><p>The first study, <strong>AGOT2024</strong>, involves the analysis of
+age and weight-related data available on a subset of the institutions
+participating in the collaboration. Likewise, <strong>GGA2024</strong>
+involves the analysis of age and height-related data from a different
+(and potentially overlapping) subset of the collaboration’s
+participants. In this Episode you will play the role of a researcher of
+one of the institutions that conform the consortium. As seen on the
+previous <a href="./chap2_introduction_v6.html">Episode</a>, this means
+that you will be able to perform data analysis on the whole
+collaboration, or on any of the two studies defined for it. The
+following illustrates the kind of collaboration you will be part of
+(yours may have a different number of nodes, with different names and
+study configurations).</p>
+<figure><img src="fig/chapter3/case-study-example.drawio.png" alt="Hypothetical collaborations scenario" class="figure mx-auto d-block"><div class="figcaption">Hypothetical collaborations scenario</div>
+</figure><p>The consortium members already took care to ensure that their
+corresponding datasets follow the same structure (variable names and
+data types). This is key for making the federated analysis possible. The
+following is an example of how the ‘default’ database on all the nodes
+within the collaboration look like.</p>
+<table class="table"><thead><tr class="header"><th>Gender</th>
+<th>Age</th>
+<th>Height</th>
+<th>Weight</th>
+<th>IsOverweight</th>
+<th>AgeGroup</th>
+</tr></thead><tbody><tr class="odd"><td>M</td>
+<td>39</td>
+<td>152</td>
+<td>108</td>
+<td>False</td>
+<td>30 - 40</td>
+</tr><tr class="even"><td>M</td>
+<td>8</td>
+<td>118</td>
+<td>106</td>
+<td>False</td>
+<td>0 - 10</td>
+</tr><tr class="odd"><td>M</td>
+<td>16</td>
+<td>161</td>
+<td>110</td>
+<td>True</td>
+<td>10 - 20</td>
+</tr><tr class="even"><td>M</td>
+<td>94</td>
+<td>110</td>
+<td>115</td>
+<td>True</td>
+<td>90 - 100</td>
+</tr><tr class="odd"><td>M</td>
+<td>47</td>
+<td>117</td>
+<td>152</td>
+<td>True</td>
+<td>40 - 50</td>
+</tr><tr class="even"><td>F</td>
+<td>29</td>
+<td>127</td>
+<td>110</td>
+<td>True</td>
+<td>20 - 30</td>
+</tr><tr class="odd"><td>M</td>
+<td>5</td>
+<td>95</td>
+<td>65</td>
+<td>False</td>
+<td>0 - 10</td>
+</tr><tr class="even"><td>M</td>
+<td>39</td>
+<td>142</td>
+<td>196</td>
+<td>False</td>
+<td>30 - 40</td>
+</tr><tr class="odd"><td>F</td>
+<td>20</td>
+<td>189</td>
+<td>112</td>
+<td>False</td>
+<td>20 - 30</td>
+</tr><tr class="even"><td>F</td>
+<td>84</td>
+<td>145</td>
+<td>116</td>
+<td>False</td>
+<td>80 - 90</td>
+</tr></tbody></table></section><section><h2 class="section-heading" id="interacting-with-the-v6-server">Interacting with the v6 server<a class="anchor" aria-label="anchor" href="#interacting-with-the-v6-server"></a></h2>
+<hr class="half-width"><p>To perform a data analysis, or any other kind of management activity
+within the collaboration you are part of, you need to interact with the
+vantage6 server. As described in <a href="./chap2_introduction_v6.html">Episode 2</a>, the vantage6 server
+is the central component responsible for managing the entire
+federated/multi-party computation infrastructure and facilitating
+communication between the various entities within the vantage6 platform.
+There are two ways of interacting with the server: either by using a
+web-based user interface, or by programmatically requesting actions to
+the server API -the same API that powers the web interface behind the
+scenes. In this Episode you will perform data analyses on the simulated
+collaboration scenario using the web-based interface, the most
+user-friendly one (in <a href="./chap4_manage_via_ui.html">Episode 4</a>
+you will learn how to configure your own collaborations, and on <a href="./chap5_python_client.html">Episode 5</a>, you will explore how to
+interact with the server programmatically for more advanced use
+cases).</p>
+<figure><img src="fig/chapter3/v6-API.png" alt="Vantage6 API clients" class="figure mx-auto d-block"><div class="figcaption">Vantage6 API clients</div>
 </figure><div class="section level3">
-<h3 id="administration-concepts-in-the-ui">Administration concepts in the UI<a class="anchor" aria-label="anchor" href="#administration-concepts-in-the-ui"></a></h3>
-<p>After logging into the vantage6 UI, you’ll notice that most elements
-and the navigation between them align with the descriptions provided in
-<a href="./chap2_introduction_v6.html">Chapter 2</a>. For instance, on
-your start page you will see the collaborations your organization is
-part of. Clicking one of the collaborations will show the tasks of that
-collaboration.</p>
+<h3 id="navigating-through-vantage6s-ui">Navigating through vantage6’s UI<a class="anchor" aria-label="anchor" href="#navigating-through-vantage6s-ui"></a></h3>
+<p>The elements and navigability of vantage6’s UI are based on the
+concepts introduced in <a href="./chap2_introduction_v6.html">Chapter
+2</a>. For instance, as seen on the screenshots below, upon selecting a
+collaboration on the start page, if you select ‘Tasks’ you will see the
+status of the tasks created for that particular collaboration.</p>
 <figure><img src="fig/chapter3/ui_start_page.png" alt="vantage6 UI start page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI start page</div>
 </figure><figure><img src="fig/chapter3/ui_task_page.png" alt="vantage6 UI tasks page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI tasks page</div>
-</figure><p>The start page contains an <code>Administration</code> icon in the
-left panel. Clicking on this button will expand it with the vantage6
-entities youn can manage: <code>Organizations</code>,
-<code>Collaborations</code>, <code>Roles</code>, <code>Users</code>, and
-<code>Nodes</code>. You can click on an entity to see more details or to
-edit the entity. We will get back to this later in more detail.</p>
+</figure><p>Likewise, expanding the <code>Administration</code> icon in the left
+panel will let you choose vantage6 entities youn can manage:
+<code>Organizations</code>, <code>Collaborations</code>,
+<code>Roles</code>, <code>Users</code>, and <code>Nodes</code>. You can
+click on an entity to see more details or to edit the entity.</p>
 <figure><img src="fig/chapter3/ui_admin_page.png" alt="vantage6 UI administration page" class="figure mx-auto d-block"><div class="figcaption">vantage6 UI administration page</div>
-</figure><div id="get-familiar-with-the-vantage6-ui" class="callout discussion">
+</figure><div id="getting-familiar-with-the-vantage6-ui" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="get-familiar-with-the-vantage6-ui" class="callout-inner">
-<h3 class="callout-title">Get familiar with the vantage6 UI</h3>
+<div id="getting-familiar-with-the-vantage6-ui" class="callout-inner">
+<h3 class="callout-title">Getting familiar with the vantage6 UI</h3>
 <div class="callout-content">
-<p>Log in to the Vantage6 UI using the credentials given by the
-instructors. Once logged in, navigate to the administration page to
-familiarize yourself with the entities there. Then, try to update your
-email, first name, and last name, but do not change your username.</p>
+<p>To get familiar with vantage6’s UI, you will start with a simple
+task: edit the details of your own user (the connection details for this
+activity will be given by the instructors). Log into the UI using the
+information provided and navigate to the administration page and try to
+update your email, first name, and last name.</p>
 </div>
 </div>
 </div>
@@ -458,118 +562,52 @@ email, first name, and last name, but do not change your username.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations">From theory to practice: a hypothetical case study using vantage6
-collaborations<a class="anchor" aria-label="anchor" href="#from-theory-to-practice-a-hypothetical-case-study-using-vantage6-collaborations"></a></h2>
-<hr class="half-width"><p>As discussed in <a href="./chap2_introduction_v6.html">Episode 2</a>,
-in vantage6 a collaboration refers to an agreement between two or more
-parties to participate in a study or to answer a research question
-together. This concept is central to the Privacy Enhancing Technologies
-(PETs) that vantage6 supports. Each party involved in a collaboration
-remains autonomous, meaning they retain control over their data and can
-decide how much of their data to contribute to the collaboration’s
-global model and which algorithms are allowed for execution.</p>
-<p>To illustrate this, let’s analyze a hypothetical scenario: an
-international collaboration project of multiple health research
-institutes, working together on two studies:</p>
-<ul><li><p><em>Age-Related Variations in Overweight Prevalence: A
-Comparative Study Across Gender and Age Groups</em>
-<strong>(AGOT2024)</strong> .</p></li>
-<li><p><em>The Effect of Gender on Height Development Across Various Age
-Groups</em> <strong>(GGA2024)</strong>.</p></li>
-</ul><p>The first study, <strong>AGOT2024</strong>, involves the analysis of
-age and weight-related data available on a subset of the institutions
-participating in the collaboration. Likewise, <strong>GGA2024</strong>
-involves the analysis of age and height-related data from a different
-(and potentially overlapping) subset of the collaboration’s
-participants. The diagram below illustrates the kind of configuration
-you will be working with. Keep in mind that your configuration may have
-different node and collaboration names, an different study subsets.</p>
-<figure><img src="fig/chapter3/case-study-example.drawio.png" alt="Hypothetical collaborations scenario" class="figure mx-auto d-block"><div class="figcaption">Hypothetical collaborations scenario</div>
-</figure><div class="section level3">
-<h3 id="running-a-pet-privacy-enhancing-technology-analysis-without-programming">Running a PET (privacy-enhancing technology) analysis without
-programming!<a class="anchor" aria-label="anchor" href="#running-a-pet-privacy-enhancing-technology-analysis-without-programming"></a></h3>
-<p>In this episode, you will perform a PET analysis on an existing
-vantage6 collaboration (based on ‘dummy’ nodes) that resembles the two
-described above. For reference, the datasets of each organization can be
-seen here (TODO).</p>
-<div id="challenge-2-understanding-a-simple-federated-algorithm" class="callout discussion">
+</section><section><h2 class="section-heading" id="running-a-pet-privacy-enhancing-technology-through-the-user-interface-no-coding-involved">Running a PET (privacy-enhancing technology) through the user
+interface (no coding involved!)<a class="anchor" aria-label="anchor" href="#running-a-pet-privacy-enhancing-technology-through-the-user-interface-no-coding-involved"></a></h2>
+<hr class="half-width"><p>Now that you are familiar with the UI basics, the next two details
+you need to figure out as a researcher, in order to perform you analysis
+are (1) which kind of analysis I need perform, and (2) on which data
+nodes it will be peformed? There is another important consideration,
+though: is my collaboration or my studies ready for my analysis? Keep in
+mind that each node within your collaboration is autonomously managed by
+the organization it was configured. This means that you although you can
+include them in your analysis, you can’t control them (they may just be
+offline for no reason).</p>
+<div id="challenge-2-checking-the-status-of-the-nodes-through-the-ui" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="challenge-2-understanding-a-simple-federated-algorithm" class="callout-inner">
-<h3 class="callout-title">Challenge 2: understanding a simple federated
-algorithm</h3>
+<div id="challenge-2-checking-the-status-of-the-nodes-through-the-ui" class="callout-inner">
+<h3 class="callout-title">Challenge 2: checking the status of the nodes
+through the UI</h3>
 <div class="callout-content">
-<p>First, let’s take a look at one of the federated algorithms
--available on the vantage6’s community store- that will be used in this
-episode: <a href="https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py" class="external-link">a
-federated average</a>.</p>
-<p>Analyze the algorithm based on the code and its comments and answer
-the following questions:</p>
-<ul><li>How are the <code>central_average</code> and
-<code>partial_average</code> functions related?</li>
-<li>Why does the <code>central_average</code> function, unlike
-<code>partial_average</code>, <strong>not</strong> get any data as an
-input?</li>
-<li>Analyze and discuss the potential outcomes if a Task to execute
-<code>central_average</code> is initiated within a collaboration or
-study where one of the nodes is offline.</li>
-</ul></div>
-</div>
-</div>
-<div id="challenge-3-exploring-the-status-of-the-collaboration-its-related-studies" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<div id="challenge-3-exploring-the-status-of-the-collaboration-its-related-studies" class="callout-inner">
-<h3 class="callout-title">Challenge 3: exploring the status of the
-collaboration its related studies</h3>
-<div class="callout-content">
-<p>The instructors will provide you credentials for accessing as a
-researcher of one of the institutions from the collaboration.</p>
-<p>Using these credentials see which institutions were asigned to the
-two studies. Also check the status of the corresponding nodes. Given
-this and your algorithm analysis from Challenge #2 answer the
-following:</p>
-<ol style="list-style-type: decimal"><li>Which study is ready for creating a Task for the <strong>federated
-average</strong> algorithm?</li>
-<li>If one of the studies is not ready, which organization you would
-need to contact in order to make it ready for executing the algorithm
-too?</li>
+<p>With your researcher credentials, explore the collaboration you have
+access to. Check which organizations are part of it and if they are
+online. Also check which organizations were assigned to each study
+(AGOT2024, GGA2924). Based on this:</p>
+<ol style="list-style-type: decimal"><li>Which study is ready for executing an analysis?</li>
+<li>If you need to perform an analysis for the study that is
+<strong>not</strong> ready, which organization you would need to contact
+to fix this situation?</li>
 </ol></div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Solution steps </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
-<div class="accordion-body">
-<p>To check the status of the nodes of each collaboration:</p>
-<ol style="list-style-type: decimal"><li>Log in to each one with the given credentials</li>
-<li>Click on ‘Administration’ on the left panel of the UI</li>
-<li>select ‘Collaborations’, and then select the corresponding
-collaboration.</li>
-<li>If there are ‘offline’ nodes, click on the ‘Nodes’ panel on the left
-and check when these were seen for the last time.</li>
-</ol><figure><img src="fig/chapter3/collab-status-offline.png" alt="Collaboration status" class="figure mx-auto d-block"><div class="figcaption">Collaboration status</div>
-</figure></div>
-</div>
-</div>
-</div>
-<div id="challenge-4-as-a-researcher-requesting-an-algorithm-execution" class="callout discussion">
+<div class="section level3">
+<h3 id="running-a-federated-algorithm">Running a federated algorithm<a class="anchor" aria-label="anchor" href="#running-a-federated-algorithm"></a></h3>
+<p>Now you will perform an analysis on the <em>study</em> that is ready
+for it (i.e., the <em>study</em> with <strong>no</strong> offline
+nodes). As this is an introductory exercise, you will first use the
+simple algorithm introduced in <a href="./chap2_introduction_v6.html">Chapter 2</a>: the <em>Federated
+Average</em>.</p>
+<div id="challenge-3-as-a-researcher-requesting-an-algorithm-execution-partial-function" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="challenge-4-as-a-researcher-requesting-an-algorithm-execution" class="callout-inner">
-<h3 class="callout-title">Challenge 4: as a researcher, requesting an
-algorithm execution!</h3>
+<div id="challenge-3-as-a-researcher-requesting-an-algorithm-execution-partial-function" class="callout-inner">
+<h3 class="callout-title">Challenge 3: as a researcher, requesting an
+algorithm execution! (partial function)</h3>
 <div class="callout-content">
-<p>Now, you’ll play the role of the researcher within the collaboration
-you have just examined. With this role, you will finally request the
-execution of the algorithm.</p>
-<ol style="list-style-type: decimal"><li><p>Log in with the credentials provided by the instructors.</p></li>
+<ol style="list-style-type: decimal"><li><p>Login with your researcher credentials.</p></li>
 <li><p>Select <code>Analyze</code> on the Administration option from the
 panel on the left, and then select your collaboration.</p></li>
 <li>
@@ -579,9 +617,8 @@ collaboration.</p>
 <li>
 <p>As the first step, you can choose between running the task on the
 entire collaboration, or on one particular study (i.e., on a subset of
-the collaboration’s institutions). Choose the study that, according to
-what you saw when working on Challenge #3, is still NOT ready to execute
-a <em>federated average</em> task.</p>
+the collaboration’s institutions). Choose the study that is
+<em>ready</em> for an analysis.</p>
 <figure><img src="fig/chapter3/select-study.png" class="figure mx-auto d-block"></figure></li>
 <li>
 <p>The ‘Average’ algorithm should be listed under the ‘<em>Select
@@ -597,21 +634,156 @@ explored in Challenge #2. For now try to run the
 relevant for the study you selected, and then click on
 ‘Submit’.</p></li>
 <li><p>The task you just requested should be listed with a ‘pending’
-status. Once finished, explore and download the provided
-results.</p></li>
-</ol><p>Based on these results, answer the following:</p>
-<ol style="list-style-type: decimal"><li><p>What just happened? Did the <code>partial_average</code> function
-fail or not?</p></li>
-<li><p>If you do the same process, this time on the study that is ready
-for new task, and using the <code>central_average</code> function (refer
-to Challenge #2 if needed), which organization or organizations should
-you choose this time? Experiment with this and discuss the results with
-the instructors.</p></li>
-<li><p>What would happen if you select an alpha-numerical column (e.g.,
-‘gender’)? Do this experiment and explore the generated error logs.
-Discuss with the instructors how these logs can be used to diagnose any
-task execution issues.</p></li>
+status. Once finished, download the JSON results and open them on a text
+editor.</p></li>
+</ol><p>Based on these results, discuss the following:</p>
+<ol style="list-style-type: decimal"><li>What does the content of these files mean? Why the
+<code>central_average</code> function is returning this?</li>
 </ol></div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>Each node, after executing the <code>partial_average</code> function,
+returns the two values needed by the central function of the ‘federated
+average’ algorithm (as described in Chapter 2): the number of records
+within the database, and their sum. These values are ‘encoded’ as a JSON
+document, so they can be read, programatically, by the
+<code>central_average</code>.</p>
+<figure><img src="fig/chapter3/task_partial_output.png" alt="Results" class="figure mx-auto d-block"><div class="figcaption">Results</div>
+</figure></div>
+</div>
+</div>
+</div>
+<div id="challenge-4-lets-see-what-the-central-function-does" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-4-lets-see-what-the-central-function-does" class="callout-inner">
+<h3 class="callout-title">Challenge 4: let’s see what the central
+function does!</h3>
+<div class="callout-content">
+<p>Repeat the same process from Challenge 3 (again, on the Study that is
+ready for it), but this time choose the ‘central’ function. As you see,
+when choosing this function only one organization can be selected.</p>
+<figure><img src="fig/chapter3/central_avg_screenshot.png" class="figure mx-auto d-block"></figure><p>Once again, wait for the process to finish and check the JSON
+results. Keep an eye on the Tasks section, and see how the processes are
+created.</p>
+<p>Discuss the following:</p>
+<ol style="list-style-type: decimal"><li><p>There is a node that appeared twice in the processes list during
+the algorithm execution: in the Main process and on the Child processes
+list. Take a look at the source code of the <a href="https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py" class="external-link">algorithm
+you have just executed</a>. Can you spot in the code why this
+happened?</p></li>
+<li><p>Can you identify, within the same source code, where the data you
+saw on Challenge 3 was created?</p></li>
+<li><p>Given the source code above, why does the
+<code>central_average</code> function, unlike
+<code>partial_average</code>, <strong>not</strong> get any data as an
+input?</p></li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<figure><img src="active_tasks.png" class="figure mx-auto d-block"></figure><ol style="list-style-type: decimal"><li><p>In this exercise you created a task for a ‘central’ function,
+which, when executed requests other nodes to run a ‘partial’ one,
+combining their results upon completion. The central function is
+designed in a way that it make the request to all the nodes within the
+collaboration/study. As the node that gets the request to execute the
+‘central’ function, is also part of the collaboration, it ends executing
+two tasks: the central task, and the partial one.</p></li>
+<li><p><a href="https://github.com/IKNL/v6-average-py/blob/5cad1742749de0f5c05a788c8ce3ca5b0a3965b2/v6-average-py/__init__.py#L87" class="external-link">Here,</a>
+the ‘partial’ part of the algorithm encodes its result as the JSON
+document seen on the previous challenge.</p></li>
+<li><p>The <code>central_average</code> function is designed just to
+aggregate the results of the partial averages sent by the other nodes.
+Hence, it doesn’t need direct access any dataset.</p></li>
+</ol></div>
+</div>
+</div>
+</div>
+<div id="challenge-5-handling-problems-through-the-ui" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-5-handling-problems-through-the-ui" class="callout-inner">
+<h3 class="callout-title">Challenge 5: handling problems through the
+UI!</h3>
+<div class="callout-content">
+<p>Based on your current understanding of the <em>federated average</em>
+algorithm, speculate on what would happen if you run the ‘central’
+function of this algorithm on a study that includes ‘offline’ nodes.
+Once you have made your prediction, validate it by repeating the process
+from the previous challenge, this time using the <em>study</em> with the
+‘offline’ node.</p>
+<p>Discuss the following:</p>
+<ol style="list-style-type: decimal"><li>What happened with the Task? What can you do about it with the
+UI?</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<p>The algorithm didn’t crash, but is kept on hold (with the Active
+status) indefinitely. The Central task requests all the nodes in the
+study to run the ‘partial’ function. As the server is unable to transfer
+this request to the offline node, this child process is kept on hold,
+until the node is back online.</p>
+<p>Consequently, the Main process is also kept on hold, and the process
+stays with an ‘Active’ status indefinitely (or until the node is back
+online).</p>
+<figure><img src="fig/chapter3/task_offline_node.png" class="figure mx-auto d-block"></figure></div>
+</div>
+</div>
+</div>
+<div id="challenge-6-handling-problems-through-the-ui-again." class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-6-handling-problems-through-the-ui-again." class="callout-inner">
+<h3 class="callout-title">Challenge 6: handling problems through the UI,
+again.</h3>
+<div class="callout-content">
+<p>This time, let’s try to do something that may make the <em>federated
+average</em> algorithm not work as expected. Create a task, this time
+selecting the ‘operational’ study (the one with all of its nodes
+online), and use the central function in it. This time, choose a
+non-numerical variable (see the table sample).</p>
+<p>Look at the logs and discuss the following:</p>
+<ol style="list-style-type: decimal"><li>Why did both <code>partial_function</code> and
+<code>central_function</code> crash? (<a href="https://github.com/IKNL/v6-average-py/blob/5cad1742749de0f5c05a788c8ce3ca5b0a3965b2/v6-average-py/__init__.py" class="external-link">See
+source code</a>)</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div class="accordion-body">
+<ol style="list-style-type: decimal"><li>The <code>partial_function</code> crashed while trying to parse the
+input as a number. The <code>central_function</code> crashed due to a
+division-by-zero.</li>
+</ol><figure><img src="fig/chapter3/task_error_logs.png" class="figure mx-auto d-block"></figure></div>
+</div>
 </div>
 </div>
 <!--
@@ -677,8 +849,8 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/chap3_run_analysis_ui.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/chap3_run_analysis_ui.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-09-09",
-  "datePublished": "2024-09-12"
+  "dateModified": "2024-09-16",
+  "datePublished": "2024-09-16"
 }
 
   </script><script>
