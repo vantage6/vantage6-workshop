@@ -14,7 +14,7 @@ exercises: 3
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explore specific data analysis scenarios that further illustrate the concepts introduced in episode 2. 
+- Explore specific data analysis scenarios that further illustrate the concepts introduced in episode 2.
 - Understand the UI-based workflow for performing a data analysis on the given scenarios.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -41,7 +41,7 @@ The first study, **AGOT2024**, involves the analysis of age and weight-related d
 
 ![Hypothetical collaborations scenario](fig/chapter3/case-study-example.drawio.png)
 
-The consortium members already took care to ensure that their corresponding datasets follow the same structure (variable names and data types). This is key for making the federated analysis possible. 
+The consortium members already took care to ensure that their corresponding datasets follow the same structure (variable names and data types). This is key for making the federated analysis possible.
 The following is an example of how the 'default' database on all the nodes within the collaboration look like.
 
 | Gender | Age | Height | Weight | IsOverweight | AgeGroup  |
@@ -76,7 +76,7 @@ The elements and navigability of vantage6's UI are based on the concepts introdu
 
 ![vantage6 UI tasks page](fig/chapter3/ui_task_page.png)
 
-Likewise, expanding the `Administration` icon in the left panel will let you choose vantage6 entities youn can manage: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity. 
+Likewise, expanding the `Administration` icon in the left panel will let you choose vantage6 entities youn can manage: `Organizations`, `Collaborations`, `Roles`, `Users`, and `Nodes`. You can click on an entity to see more details or to edit the entity.
 
 ![vantage6 UI administration page](fig/chapter3/ui_admin_page.png)
 
@@ -110,7 +110,7 @@ Now that you are familiar with the UI basics, the next two details you need to f
 With your researcher credentials, explore the collaboration you have access to. Check which organizations are part of it and if they are online. Also check which organizations were assigned to each study (AGOT2024, GGA2924). Based on this:
 
 1. Which study is ready for executing an analysis?
-2. If you need to perform an analysis for the study that is **not** ready, which organization you would need to contact to fix this situation? 
+2. If you need to perform an analysis for the study that is **not** ready, which organization you would need to contact to fix this situation?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -147,7 +147,7 @@ Now you will perform an analysis on the _study_ that is ready for it (i.e., the 
 7. Select the 'default' database, choose any numerical column relevant for the study you selected, and then click on 'Submit'.
 
 8.  The task you just requested should be listed with a 'pending' status. Once finished, download the JSON results and open them on a text editor.
-   
+
 Based on these results, discuss the following:
 
 1. What does the content of these files mean? Why the `central_average` function is returning this?
@@ -170,17 +170,17 @@ Each node, after executing the `partial_average` function, returns the two value
 
 ## Challenge 4: let's see what the central function does!
 
-Repeat the same process from Challenge 3 (again, on the Study that is ready for it), but this time choose the 'central' function. As you see, when choosing this function only one organization can be selected. 
+Repeat the same process from Challenge 3 (again, on the Study that is ready for it), but this time choose the 'central' function. As you see, when choosing this function only one organization can be selected.
 
 ![](fig/chapter3/central_avg_screenshot.png)
 
-Once again, wait for the process to finish and check the JSON results. Keep an eye on the Tasks section, and see how the processes are created. 
+Once again, wait for the process to finish and check the JSON results. Keep an eye on the Tasks section, and see how the processes are created.
 
 Discuss the following:
 
 1. There is a node that appeared twice in the processes list during the algorithm execution: in the Main process and on the Child processes list. Take a look at the source code of the [algorithm you have just executed](https://github.com/IKNL/v6-average-py/blob/master/v6-average-py/__init__.py). Can you spot in the code why this happened?
 
-2. Can you identify, within the same source code, where the data you saw on Challenge 3 was created? 
+2. Can you identify, within the same source code, where the data you saw on Challenge 3 was created?
 
 3. Given the source code above, why does the `central_average` function, unlike `partial_average`, **not** get any data as an input?
 
@@ -247,5 +247,30 @@ Look at the logs and discuss the following:
 ![](fig/chapter3/task_error_logs.png)
 
 :::::::::::::::::::::::::::::::::
+
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 7: Play around with other algorithms!
+
+See if you can run a Kaplan-Meier analysis or Crosstab analysis on the same
+study.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::: solution
+
+## Solution
+
+1. Go to analyze, and create a new task as before
+2. Select a different algorithm from the dropdown menu
+  ![Select a different algorithm](fig/chapter3/select-different-algorithm.png)
+3. Follow the same steps as before to create a task
+
+You will encouter different input parameters and output for each algorithm.
+
+:::::::::::::::::::::::::::::::::
+
+
 
 
