@@ -267,7 +267,7 @@ study.
   ![Select a different algorithm](fig/chapter3/select-different-algorithm.png)
 3. Follow the same steps as before to create a task
 
-You will encouter different input parameters and output for each algorithms.
+You will encouter different input parameters and output for each algorithm.
 
 :::::::::::::::::::::::::::::::::
 
