@@ -337,7 +337,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Work on your own project</h1>
-        <p>Last updated on 2024-07-30 |
+        <p>Last updated on 2024-09-17 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap8_own_project.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -380,13 +380,14 @@
 project. Feel free to ask questions and discuss your project with the
 instructors. We are here to help you!</p>
 <p>If you prefer, you can also complete some advanced challenges that we
-have prepared for you.</p>
+have prepared for you. Note that these challenges don’t have one
+solution - discuss your solutions with the workshop instructors!</p>
 </div>
 <div class="section level1">
 <h1 id="advanced-challenges">Advanced challenges<a class="anchor" aria-label="anchor" href="#advanced-challenges"></a></h1>
-<div id="challenge-add-privacy-filters-to-your-algorithm" class="callout discussion">
+<div id="challenge-add-privacy-filters-to-your-algorithm" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-add-privacy-filters-to-your-algorithm" class="callout-inner">
 <h3 class="callout-title">Challenge: Add privacy filters to your
@@ -403,9 +404,37 @@ variables to your algorithm.</li>
 <li>What else could you do to protect the privacy of the data?</li>
 <li>When the privacy filters are triggered, use one of the <a href="https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.algorithm.tools.exceptions.html" class="external-link">vantage6
 exceptions</a> to return an error message.</li>
-</ul><p>Hint: the <a href="https://github.com/vantage6/v6-crosstab-py" class="external-link">contingency table
-algorithm</a> already has a few privacy filters implemented. You can use
-this algorithm as an example.</p>
+</ul></div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div class="accordion-body">
+<p>The <a href="https://github.com/vantage6/v6-crosstab-py" class="external-link">contingency
+table algorithm</a> already has a few privacy filters implemented. You
+can use this algorithm as an example.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-use-your-own-data-the-v6-dev-network" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-use-your-own-data-the-v6-dev-network" class="callout-inner">
+<h3 class="callout-title">Challenge: Use your own data the v6 dev
+network</h3>
+<div class="callout-content">
+<p>The algorithm that you created in the <a href="./chap7_algo_dev.html">previous lesson</a> uses dummy data. In
+this challenge, you will use your own data in the <code>v6 dev</code>
+network.</p>
+<p>Locate and modify the node configuration files. Before starting the
+algorithm, how can you make sure that the data is available to the
+nodes?</p>
 </div>
 </div>
 </div>
@@ -458,6 +487,62 @@ algorithm to calculate the one or more of the following:</p>
 <li>Maximum</li>
 </ul><p>Consider which data you share in the partial results and how you can
 minimize this to protect the privacy of the data.</p>
+</div>
+</div>
+</div>
+<div id="challenge-make-your-dev-environment-more-secure" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-make-your-dev-environment-more-secure" class="callout-inner">
+<h3 class="callout-title">Challenge: Make your dev environment more
+secure</h3>
+<div class="callout-content">
+<p>In the <a href="./chap7_algo_dev.html">previous lesson</a>, you have
+created a simple algorithm with the <code>v6 dev</code> command. In this
+challenge, make your development environment more secure.</p>
+<p>Use the documentation to find configuration options that can help you
+to:</p>
+<ul><li>Enable two-factor authentication in the vantage6 server.</li>
+<li>Change your node configuration to only allow running algorithms from
+the local algorithm store. Verify that it then no longer allows running
+the algorithms from the community store. Note that you can both
+whitelist single algorithms or entire algorithm stores.</li>
+<li>The <code>v6 dev</code> algorithm store has a specific setting that
+turns off the need for review of algorithms - they are automatically
+accepted. Change this setting to require review of algorithms. Feel free
+to explore the review process in the Algorithm Store section of the
+UI!</li>
+</ul><p>Are there any other security measures you can take to make your
+development environment more secure?</p>
+</div>
+</div>
+</div>
+<div id="accordionHint2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
+  <h4 class="accordion-header" id="headingHint2"> Hint: Ajdusting configuration </h4>
+</button>
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div class="accordion-body">
+<p>To complete this challenge, locate the configuration files of the
+<code>v6 dev</code> network and modify them. You may need to use the
+<code>--user</code> flag to locate the server and algorithm store
+configuration files.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
+  <h4 class="accordion-header" id="headingHint3"> Hint: Configuration changes don’t take effect </h4>
+</button>
+<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
+<div class="accordion-body">
+<p>Try restarting the <code>v6 dev</code> network after changing the
+configuration files.</p>
+</div>
 </div>
 </div>
 </div>
@@ -527,7 +612,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/chap8_own_project.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/chap8_own_project.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-07-30",
+  "dateModified": "2024-09-17",
   "datePublished": "2024-09-17"
 }
 

@@ -1051,7 +1051,7 @@ organizations?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>In this case the organizations would be the academic hospitals as
@@ -1272,7 +1272,7 @@ different parts?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
@@ -2278,7 +2278,7 @@ applicable.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Alternative clients </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Besides the Python client, there is also an <a href="https://github.com/iknl/vtg" class="external-link">R client (github.com)</a> available.
 This client is more focused on starting federated analysis and does not
@@ -2387,7 +2387,7 @@ that is used in the solutions.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Activate the conda environment with the vantage6 client installed:
@@ -2407,7 +2407,7 @@ client instance.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p>Make sure you have activated the conda environment with the
@@ -2577,7 +2577,7 @@ create, update, and delete.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <p>Get a specific <em>resource</em> with
 <code>client.&lt;resource&gt;.get(&lt;id&gt;)</code>. For example:</p>
 <div class="codewrapper sourceCode" id="cb4">
@@ -2606,7 +2606,7 @@ create, update, and delete.</p>
 }</code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <p>Get all <em>resource</em> items that the user is allowed to see with
 <code>client.&lt;resource&gt;.list()</code>. For example:</p>
 <div class="codewrapper sourceCode" id="cb6">
@@ -2636,7 +2636,7 @@ default, the <code>list()</code> method returns the first page of 10
 items. The page and the number of items per page can be specified with
 the <code>page</code> and <code>per_page</code> parameters.</p>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
+<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
 <p>Register a new <em>resource</em> at the server with
 <code>client.&lt;resource&gt;.create(...)</code>. For example, let’s
 create a new organization:</p>
@@ -2673,7 +2673,7 @@ create a new organization:</p>
 }</code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-4" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-4">
+<div id="nav-tabpanel-1-4" class="tab-pane" aria-labelledby="nav-tab-1-4" role="tabpanel">
 <p>Update an specific <em>resource</em>. For example:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2701,7 +2701,7 @@ create a new organization:</p>
 }</code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-5" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-5">
+<div id="nav-tabpanel-1-5" class="tab-pane" aria-labelledby="nav-tab-1-5" role="tabpanel">
 <p>To delete an specific instance of the given <em>resource</em> you can
 use <code>client.&lt;resource&gt;.delete(id_)</code> . Sometimes you
 need to also delete all the related instances of the given
@@ -2738,7 +2738,7 @@ details of the collaboration you have access to. Write down the
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>Use the client script you created in the previous challenge to
 connect to the server. Make sure you use the <code>-i</code> flag to
@@ -2759,7 +2759,7 @@ interact with the server.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
 <div class="accordion-body">
 <p>Use the <code>client.collaboration.list()</code> method to get the
 details of the collaborations you have access to.</p>
@@ -2777,7 +2777,7 @@ details of the collaborations you have access to.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
 <div class="accordion-body">
 <p>You can use the <code>fields</code> parameter to specify which fields
 you want to see in the output.</p>
@@ -2795,7 +2795,7 @@ you want to see in the output.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2895,7 +2895,7 @@ request documentation of a higher level method, for example
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Online documentation </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>To view all <code>Client</code> functions and their arguments without
 using <code>help()</code> you can use the <a href="https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.client.Client.html#vantage6-client-client" class="external-link">official
@@ -2925,14 +2925,14 @@ the following commands:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-1">
+<div id="nav-tabpanel-2-1" class="tab-pane show active" aria-labelledby="nav-tab-2-1" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">pip</span> show vantage6-client <span class="kw">|</span> <span class="fu">grep</span> Version</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-2">
+<div id="nav-tabpanel-2-2" class="tab-pane" aria-labelledby="nav-tab-2-2" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">CMD<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2962,7 +2962,7 @@ the following commands:</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint5" aria-expanded="false" aria-controls="collapseHint5">
   <h4 class="accordion-header" id="headingHint5"> Give me a hint </h4>
 </button>
-<div id="collapseHint5" class="accordion-collapse collapse" data-bs-parent="#accordionHint5" aria-labelledby="headingHint5">
+<div id="collapseHint5" class="accordion-collapse collapse" aria-labelledby="headingHint5" data-bs-parent="#accordionHint5">
 <div class="accordion-body">
 <p>Have a look at the <a href="#using-the-client">client table</a>, and
 see if you can find a resource group that might contain the method you
@@ -2976,7 +2976,7 @@ are looking for.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint6" aria-expanded="false" aria-controls="collapseHint6">
   <h4 class="accordion-header" id="headingHint6"> Give me a hint </h4>
 </button>
-<div id="collapseHint6" class="accordion-collapse collapse" data-bs-parent="#accordionHint6" aria-labelledby="headingHint6">
+<div id="collapseHint6" class="accordion-collapse collapse" aria-labelledby="headingHint6" data-bs-parent="#accordionHint6">
 <div class="accordion-body">
 <p>Use the <code>help()</code> function to find the documentation of the
 <code>client.util</code> resource.</p>
@@ -2989,7 +2989,7 @@ are looking for.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3021,7 +3021,7 @@ always unique.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
   <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Why identifiers? </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>The reason for this is that the UI is designed to more be
 user-friendly, and it is expected that users will interact with the
@@ -3137,7 +3137,7 @@ of the collaboration you are interested in.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint7" aria-expanded="false" aria-controls="collapseHint7">
   <h4 class="accordion-header" id="headingHint7"> Give me a hint </h4>
 </button>
-<div id="collapseHint7" class="accordion-collapse collapse" data-bs-parent="#accordionHint7" aria-labelledby="headingHint7">
+<div id="collapseHint7" class="accordion-collapse collapse" aria-labelledby="headingHint7" data-bs-parent="#accordionHint7">
 <div class="accordion-body">
 <p>To check the status of the nodes, you can use the
 <code>client.node</code> resource.</p>
@@ -3150,7 +3150,7 @@ of the collaboration you are interested in.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint8" aria-expanded="false" aria-controls="collapseHint8">
   <h4 class="accordion-header" id="headingHint8"> Give me a hint </h4>
 </button>
-<div id="collapseHint8" class="accordion-collapse collapse" data-bs-parent="#accordionHint8" aria-labelledby="headingHint8">
+<div id="collapseHint8" class="accordion-collapse collapse" aria-labelledby="headingHint8" data-bs-parent="#accordionHint8">
 <div class="accordion-body">
 <p>See <code>help(client.node.list)</code> to see how to get the details
 of the nodes of a given collaboration. You can also use the
@@ -3165,7 +3165,7 @@ interested in.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>You can obtain node details by using the
 <code>client.node.list()</code> method. To filter the nodes you are
@@ -3239,7 +3239,7 @@ new task to be executed by the nodes.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
   <h3 class="accordion-header" id="headingSpoiler4">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Documentation of client.task.create() </h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3436,7 +3436,7 @@ Cedar Coalition, Birch Brotherhood, Redwood Union or Willow Network.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>First, lets obtain the study IDs:</p>
 <div class="codewrapper sourceCode" id="cb39">
@@ -3492,7 +3492,7 @@ is explained how to create a task to run the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3557,7 +3557,7 @@ files from this task as well.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>To retrieve the log files from any task, you can use the
 <code>client.run.from_task()</code> method:</p>
@@ -4205,7 +4205,7 @@ UI</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>You can go to the <code>Nodes</code> tab in the administration page,
@@ -4297,7 +4297,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-chap7_algo_dev"><p>Content from <a href="chap7_algo_dev.html">Algorithm development</a></p>
 <hr>
-<p>Last updated on 2024-07-30 |
+<p>Last updated on 2024-09-17 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap7_algo_dev.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -4360,70 +4360,143 @@ algorithm.</p>
 </h2>
 <hr class="half-width">
 <p>The vantage6 infrastructure provides a set of tools to help you
-develop your algorithm. You can install the algorithm tools with:</p>
+develop your algorithm. You have probably already done this in the <a href="index.html#setup">setup</a> of the workshop, but you can install the
+algorithm tools with:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">pip</span> install vantage6-algorithm-tools</span></code></pre>
 </div>
-<p>The algorithm tools provide the following for you:</p>
+<p>The following sections handle the most important parts of the
+algorithm tools.</p>
+<div class="section level3">
+<h3 id="algorithm-client">Algorithm client<a class="anchor" aria-label="anchor" href="#algorithm-client"></a>
+</h3>
+<p>The algorithm client provides functionality that is similar to the
+Python client, but can only do a subset of the operations, because the
+algorithm is not allowed to execute operations like creating a
+collaboration or deleting a user. This client can be used to interact
+with the server, e.g. to create a subtask, retrieve results, or get the
+organizations participating in the collaboration.</p>
+<p>A typical example of how to use the algorithm client is as
+follows:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">from</span> vantage6.algorithm.client <span class="im">import</span> AlgorithmClient</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="im">from</span> vantage6.algorithm.tools.decorators <span class="im">import</span> algorithm_client</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Load the algorithm client to interact with the server</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="at">@algorithm_client</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="kw">def</span> central_function(client: AlgorithmClient):</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    organizations_in_collaboration <span class="op">=</span> client.organization.<span class="bu">list</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    task <span class="op">=</span> client.task.create(</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>        input_<span class="op">=**</span>my_input,</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>        organizations<span class="op">=</span>organizations_in_collaboration,</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>        name<span class="op">=</span><span class="st">"Subtask name"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    )</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>    results <span class="op">=</span> client.wait_for_results(task.get(<span class="st">'id'</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>    <span class="cf">return</span> aggregate_results(results)</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="data-loading">Data loading<a class="anchor" aria-label="anchor" href="#data-loading"></a>
+</h3>
+<p>The algorithm tools provide a way to load the data from the node and
+provide it to the algorithm as a Pandas dataframe.</p>
+<p>Example:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="im">from</span> vantage6.algorithm.tools.decorators <span class="im">import</span> data</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Load two data sources from the node</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="at">@data</span>(<span class="dv">2</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="kw">def</span> partial_function(df1: pd.DataFrame, df2: pd.DataFrame, column: <span class="bu">str</span>):</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>        <span class="st">"sum1"</span>: df1[column].<span class="bu">sum</span>(),</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>        <span class="st">"sum2"</span>: df2[column].<span class="bu">sum</span>()</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    }</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="wrapping-the-algorithm-functions">Wrapping the algorithm functions<a class="anchor" aria-label="anchor" href="#wrapping-the-algorithm-functions"></a>
+</h3>
+<p>The algorithm client and data loading tools provide you with the
+vantage6 tools in the algorithm code itself. However, the algorithm
+tools also provide an interface between the algorithm and the node,
+which we call the algorithm wrapper. The wrapper ensures that all the
+necessary information is passed to the algorithm, and that the output is
+returned to the server. Mostly this is ‘magic’ that happens in the
+background. It is important to know about it though, as it can help you
+understand how the algorithm interacts with the vantage6 infrastructure,
+and you can use the wrapper to e.g. pass environment variables to the
+algorithm.</p>
+<figure><img src="../fig/chapter7/algorithm_wrapper.png" alt="Algorithm wrapper" class="figure mx-auto d-block"><div class="figcaption">Algorithm wrapper</div>
+</figure><p>The following items are handled by the wrapper:</p>
 <ul>
 <li>
-<strong>Algorithm client</strong>: this client can be used to
-interact with the server, e.g. to create a subtask, retrieve results, or
-get the organizations participating in the collaboration.</li>
+<strong>Input handling</strong>: the algorithm tools read the input
+from the node and provide it to the arguments of the algorithm function.
+In the example above, the <code>column</code> argument is provided by
+the node to the function via the algorithm tools.</li>
 <li>
-<strong>Data loading</strong>: the tools provide a way to load the
-data from the node and provide it to the algorithm as a Pandas
-dataframe.</li>
-<li>
-<strong>Input</strong>: the tools read the input from the node and
-provide it to the arguments of the algorithm function.</li>
-<li>
-<strong>Environment variables</strong>: the tools get the
-environment variables from the node and pass them on to the
-algorithm</li>
+<strong>Environment variables</strong>: the algorithm tools get the
+environment variables from the node and pass them on to the algorithm.
+You can also define environment variables in the node configuration file
+that are passed to the algorithm. This can e.g. be useful if you want to
+pass the database connection string to the algorithm.</li>
 <li>
 <strong>Token</strong>: the algorithm tools ensure that the
 algorithm uses the security token to be able to get the allowed
 resources from the server.</li>
 <li>
+<strong>Data</strong>: while the actual data is handled by the
+<code>@data</code> decorator, the algorithm tools provide the decorator
+with environment variables so that it knows where to find the data.</li>
+<li>
 <strong>Output handling</strong>: the output from the algorithm
-functions is written to a file such that the node will send back to the
+functions is written to a file that the node will send back to the
 server.</li>
 </ul>
+<p>It is possible to write your algorithm without the algorithm tools,
+for example if you want to write your algorithm in a different language
+than Python. However, this requires you to take care of the above points
+yourself.</p>
 <p>For more information about the algorithm tools, please check out the
 relevant <a href="https://docs.vantage6.ai/en/main/algorithms/concepts.html" class="external-link">documentation</a>.</p>
+</div>
 </section><section><h2 class="section-heading" id="create-a-simple-algorithm">Create a simple algorithm<a class="anchor" aria-label="anchor" href="#create-a-simple-algorithm"></a>
 </h2>
 <hr class="half-width">
-<p>Vantage6 requires the functions in the algorithm to be at the base
-level of a Python package that is defined within the Docker image. These
+<p>As discussed above, vantage6 algorithms require a certain structure
+to interact properly with the vantage6 infrastructure. For example,
+vantage6 requires the functions in the algorithm to be at the base level
+of a Python package that is defined within the Docker image. Such
 requirements can be cumbersome to get right if you have to write all the
 code yourself. Fortunately, vantage6 provides tools to create a
 boilerplate for you, so that you can focus on the development of your
 algorithm functions rather than worry about the infrastructure.</p>
-<p>To create a personalized boilerplate, use the vantage6 CLI. If you
-haven’t done so yet, install it with:</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> v6-workshop python=3.10</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">conda</span> activate v6-workshop</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">pip</span> install vantage6</span></code></pre>
-</div>
-<p>Then, create a new algorithm boilerplate repository with:</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">v6</span> algorithm create</span></code></pre>
-</div>
-<p>If you later want to modify your answers, you can do so by
-running:</p>
+<p>To create a personalized boilerplate, use the vantage6 CLI. You
+should have installed the CLI in the <a href="index.html#setup">workshop
+setup</a>. Be sure to activate the <a href="index.html#python-environment-and-python-packages">conda
+environment</a> you created for the workshop.</p>
+<p>You can create a new algorithm boilerplate repository with:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">v6</span> algorithm update <span class="at">--change-answers</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">v6</span> algorithm create</span></code></pre>
+</div>
+<p>If you later want to modify your answers, you can do so by
+running:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">v6</span> algorithm update <span class="at">--change-answers</span></span></code></pre>
 </div>
 <p>This is recommended to do whenever you want to change something like
 the name of the function, as it will ensure that it will be updated in
@@ -4449,8 +4522,7 @@ with the server, but it does not need data.</li>
 should get one database from the node.</li>
 <li>Both functions should have a <code>column</code> argument - the
 average over this column will be calculated.</li>
-<li>(Optional) Use the advanced options to create a Github pipeline that
-creates and pushes your Docker image every time you commit to main.</li>
+<li>Don’t use the advanced options for now.</li>
 </ul>
 </div>
 </div>
@@ -4460,9 +4532,11 @@ creates and pushes your Docker image every time you commit to main.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>The personalized boilerplate should be successfully created.</p>
+<p>The personalized boilerplate should be successfully created. It
+should be very similar to <a href="https://github.com/vantage6/workshop-average-boilerplate" class="external-link">this
+repository</a>.</p>
 </div>
 </div>
 </div>
@@ -4471,8 +4545,8 @@ creates and pushes your Docker image every time you commit to main.</li>
 simple algorithm. We are now going to implement the average algorithm in
 several steps. Note that the README file in the boilerplate also
 provides a checklist that you can follow to implement the rest of the
-algorithm - however, in this lesson we are going to guide you through
-these steps.</p>
+algorithm - in this lesson we are going to guide you through these same
+steps.</p>
 <div class="section level3">
 <h3 id="implement-the-algorithm-functions">Implement the algorithm functions<a class="anchor" aria-label="anchor" href="#implement-the-algorithm-functions"></a>
 </h3>
@@ -4503,19 +4577,21 @@ serializable objects - we recommend returning a Python dictionary.</p>
 that helps the algorithm container to communicate with the server. When
 testing your algorithm, it would be cumbersome to test your algorithm in
 the real infrastructure on every code change, as this requires you to
-build your algorithm image, ensure all nodes in your collaboration are
-online, etc. To facilitate the testing phase, the algorithm tools also
-provide a mock client. This client can be used to test your algorithm
+build your algorithm Docker image, ensure all nodes in your
+collaboration are online, etc.</p>
+<p>To facilitate the testing phase, the algorithm tools also provide an
+algorithm mock client. This client can be used to test your algorithm
 locally without having to start up the server and nodes. The mock client
 provides the same functions as the algorithm client, but instead of
 communicating with the server, it simply returns a smart mock response.
-The mock client does <strong>not</strong> mock the output of the
-algorithm functions, but actually calls them with test data. This way,
-you can easily test locally if your algorithm functions give the answer
-you expect without worrying about the infrastructure.</p>
+The mock client does <em>not</em> mock the output of the algorithm
+functions, but actually calls them with locally defined test data. This
+way, you can easily test locally if your algorithm functions give the
+answer you expect without worrying about the infrastructure.</p>
 <p>Your personalized template already contains a
-<code>test/test.py</code> file that contains most of the code to test
-your algorithm.</p>
+<code>test/test.py</code> file that contains boilerplate code to test
+your algorithm. You just need to make some adjustments to test your
+average algorithm.</p>
 <div id="challenge-2-implement-the-functions-and-test-them" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -4527,14 +4603,29 @@ your algorithm.</p>
 <p>Adapt and run <code>test.py</code> to test your function
 implementation:</p>
 <ul>
-<li>Create a Python environment and run <code>pip install -e .</code>.
-This installs the local Python package and also the algorithm tools
-(which contain the mock client).</li>
+<li>In your Python environment, run <code>pip install -e .</code>. This
+installs the local Python package and also the algorithm tools (which
+contain the mock client).</li>
 <li>Adjust <code>test.py</code> to compute the average over the
-<strong>age</strong> column. Do this both for the test of the central
+<strong>Age</strong> column. Do this both for the test of the central
 and of the partial function</li>
 <li>Run <code>test.py</code> to test your functions.</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div class="accordion-body">
+<p>We provide a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html" class="external-link">pandas
+dataframe</a>. Pandas is a well-known Python library for data
+manipulation and analysis. It also provides a <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sum.html#pandas.DataFrame.sum" class="external-link">sum</a>
+method that can be used to calculate the sum of a column.</p>
+</div>
 </div>
 </div>
 </div>
@@ -4543,10 +4634,65 @@ and of the partial function</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>You output of <code>test.py</code> should look something like:</p>
-<pre><code>[{'id': 0, 'name': 'mock-0', 'domain': 'mock-0.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=0', 'users': '/api/user?organization_id=0', 'tasks': '/api/task?init_org_id=0', 'nodes': '/api/node?organization_id=0', 'runs': '/api/run?organization_id=0'}, {'id': 1, 'name': 'mock-1', 'domain': 'mock-1.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=1', 'users': '/api/user?organization_id=1', 'tasks': '/api/task?init_org_id=1', 'nodes': '/api/node?organization_id=1', 'runs': '/api/run?organization_id=1'}]
+<p>You can find the solution in the <a href="https://github.com/vantage6/workshop-average-boilerplate/tree/implemented-functions" class="external-link">workshop-average-boilerplate
+repository</a>. This branch contains the implementation of the average
+algorithm. Below is a description of what you need to change compared to
+the boilerplate you generated in Challenge 1.</p>
+<p>In your central function:</p>
+<ul>
+<li>When creating the subtask, fill in the <code>column</code> argument
+from the input parameters.</li>
+<li>Aggregate the results from the partial functions to compute the
+average, which may look something like this:</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="kw">def</span> central_function(client: AlgorithmClient, column: <span class="bu">str</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    ...</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    results <span class="op">=</span> client.wait_for_results(task_id<span class="op">=</span>task.get(<span class="st">"id"</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    info(<span class="st">"Computing global average"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    global_sum <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>    global_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>    <span class="cf">for</span> output <span class="kw">in</span> results:</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>        global_sum <span class="op">+=</span> output[<span class="st">"sum"</span>]</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>        global_count <span class="op">+=</span> output[<span class="st">"count"</span>]</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>    <span class="co"># return the final results of the algorithm</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"average"</span>: global_sum <span class="op">/</span> global_count}</span></code></pre>
+</div>
+<p>In your partial function:</p>
+<ul>
+<li>Extract the column from the dataframe and calculate the sum and
+count of the column values. The output should be a dictionary with the
+keys <code>sum</code> and <code>count</code>:</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="at">@data</span>(<span class="dv">1</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="kw">def</span> partial_function(df: pd.DataFrame, column: <span class="bu">str</span>) <span class="op">-&gt;</span> Any:</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    col_data <span class="op">=</span> df[column]</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>    local_sum <span class="op">=</span> <span class="bu">float</span>(col_data.<span class="bu">sum</span>())</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>    local_count <span class="op">=</span> <span class="bu">len</span>(col_data)</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"sum"</span>: local_sum, <span class="st">"count"</span>: local_count}</span></code></pre>
+</div>
+<p>In test.py:</p>
+<ul>
+<li>In the <code>client.task.create()</code> calls, replace the
+<code>column</code> argument with the column you want to calculate the
+average over: <code>"Age"</code>.</li>
+</ul>
+<p>Then, you can run <code>python test/test.py</code> and the output
+should look something like:</p>
+<pre><code>
+[{'id': 0, 'name': 'mock-0', 'domain': 'mock-0.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=0', 'users': '/api/user?organization_id=0', 'tasks': '/api/task?init_org_id=0', 'nodes': '/api/node?organization_id=0', 'runs': '/api/run?organization_id=0'}, {'id': 1, 'name': 'mock-1', 'domain': 'mock-1.org', 'address1': 'mock', 'address2': 'mock', 'zipcode': 'mock', 'country': 'mock', 'public_key': 'mock', 'collaborations': '/api/collaboration?organization_id=1', 'users': '/api/user?organization_id=1', 'tasks': '/api/task?init_org_id=1', 'nodes': '/api/node?organization_id=1', 'runs': '/api/run?organization_id=1'}]
 info &gt; Defining input parameters
 info &gt; Creating subtask for all organizations in the collaboration
 info &gt; Waiting for results
@@ -4556,7 +4702,8 @@ info &gt; Mocking waiting for results
 [{'average': 34.666666666666664}]
 {'id': 2, 'runs': '/api/run?task_id=2', 'results': '/api/results?task_id=2', 'status': 'completed', 'name': 'mock', 'databases': ['mock'], 'description': 'mock', 'image': 'mock_image', 'init_user': {'id': 1, 'link': '/api/user/1', 'methods': ['GET', 'DELETE', 'PATCH']}, 'init_org': {'id': 0, 'link': '/api/organization/0', 'methods': ['GET', 'PATCH']}, 'parent': None, 'collaboration': {'id': 1, 'link': '/api/collaboration/1', 'methods': ['DELETE', 'PATCH', 'GET']}, 'job_id': 1, 'children': None}
 info &gt; Mocking waiting for results
-[{'sum': 624.0, 'count': 18}, {'sum': 624.0, 'count': 18}]</code></pre>
+[{'sum': 624.0, 'count': 18}, {'sum': 624.0, 'count': 18}]
+</code></pre>
 <p>Hence, the average age is 34.666!</p>
 </div>
 </div>
@@ -4569,11 +4716,11 @@ info &gt; Mocking waiting for results
 <p>Your algorithm boilerplate contains a <code>Dockerfile</code> in the
 root folder. You can build your algorithm into a docker image by running
 something like:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">cd</span> /go/to/directory/with/dockerfile</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> your-image-name .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="bu">cd</span> /go/to/directory/with/dockerfile</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> your-image-name .</span></code></pre>
 </div>
 <div id="challenge-3-implement-the-functions-and-test-them" class="callout challenge">
 <div class="callout-square">
@@ -4582,11 +4729,12 @@ something like:</p>
 <div id="challenge-3-implement-the-functions-and-test-them" class="callout-inner">
 <h3 class="callout-title">Challenge 3: Implement the functions and test them</h3>
 <div class="callout-content">
-<p>Build an algorithm image with the name:
-<code>harbor2.vantage6.ai/workshop/average:&lt;myname&gt;</code>.
-Replace <code>myname</code> with the first letter of your first name and
-your last name (e.g. <code>lmessi</code> for Lionel Messi). Push it to
-the repository.</p>
+<p>Create an account on Dockerhub - unless you have one already. Then,
+log in to your account via the command line with
+<code>docker login</code>.</p>
+<p>Use the command <code>docker build</code> to build your algorithm
+into a docker image. Then, push the image with
+<code>docker push</code>.</p>
 </div>
 </div>
 </div>
@@ -4595,15 +4743,15 @@ the repository.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<p>If your name is Jane Smith, you may have done the following in the
-base directory of your algorithm (where the Dockerfile is):</p>
-<div class="codewrapper sourceCode" id="cb7">
+<p>You should have done the following in the base directory of your
+algorithm (where the <code>Dockerfile</code> is):</p>
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> harbor2.vantage6.ai/workshop/average:jsmith .</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">docker</span> push harbor2.vantage6.ai/workshop/average:jsmith</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> myusername/average .</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">docker</span> push myusername/average</span></code></pre>
 </div>
 <p>Both commands should execute without errors.</p>
 </div>
@@ -4616,28 +4764,35 @@ base directory of your algorithm (where the Dockerfile is):</p>
 <p>When the algorithm image is built, it is recommended to test locally
 if it also works with an actual server and nodes - not just using the
 mock client. The easiest way to set up a server and a few nodes locally
-with:</p>
-<div class="codewrapper sourceCode" id="cb8">
+is with:</p>
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">v6</span> dev create-demo-network</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">v6</span> dev create-demo-network</span></code></pre>
 </div>
 <p>This command creates a vantage6 server configuration, and then
 registers a collaboration with 3 organizations in it. It registers a
 node for each organization and finally, it creates the vantage6 node
 configuration for each node with the correct API key.</p>
+<p>Each node in the <code>v6 dev</code> network has part of a dataset on
+olympic medal winners in the 2016 Olympics. The dataset contains the
+columns <code>Age</code>, <code>Sex</code>, <code>Height</code>,
+<code>Weight</code>, <code>Country</code>, <code>Sport</code> and
+<code>Medal</code>. We are mainly interested in the <code>Age</code>
+column for our average computation, but of course you can also compute
+the average over other columns, as long as they are numeric.</p>
 <p>The other available commands are:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Start the server and nodes</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">v6</span> dev start-demo-network</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Stop the server and nodes</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">v6</span> dev stop-demo-network</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># Remove the server and nodes</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="ex">v6</span> dev remove-demo-network</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Start the server and nodes</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">v6</span> dev start-demo-network</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co"># Stop the server and nodes</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="ex">v6</span> dev stop-demo-network</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co"># Remove the server and nodes</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="ex">v6</span> dev remove-demo-network</span></code></pre>
 </div>
 <p>In <a href="./chap5_python_client.html">Chapter 5</a>, you have
 learned how to run an algorithm using the Python client. Now, you can
@@ -4651,10 +4806,41 @@ run your own algorithm using the Python client!</p>
 <div class="callout-content">
 <p>Create and start a local vantage6 network with the
 <code>v6 dev</code> commands. Then, run your algorithm using the Python
-client. You can find the command to run your algorithm in the
-<code>test.py</code> file, since the mock client has exactly the same
-syntax as the real client.</p>
-<!-- TODO an alternative is to do this all locally, but that only works if vdev has UI + algorithm store -->
+client. Note that the data in the <code>v6 dev</code> network is
+different from the mock data you used before - however it contains the
+same column “Age”.</p>
+<p>You can use the following data to login:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># login credentials</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>username <span class="op">=</span> <span class="st">"dev_admin"</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>password <span class="op">=</span> <span class="st">"password"</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co"># server details</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>server_url <span class="op">=</span> <span class="st">"http://localhost"</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>port <span class="op">=</span> <span class="dv">7601</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>api_path <span class="op">=</span> <span class="st">"/api"</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co"># task details</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>databases <span class="op">=</span> [{<span class="st">"label"</span>: <span class="st">"default"</span>}]</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>column_name <span class="op">=</span> <span class="st">"Age"</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
+  <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
+</button>
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div class="accordion-body">
+<p>Use <code>help(client.task.create)</code> to see the available
+arguments for the <code>create</code> method. Your command should be
+similar to the command in the test script, but with the correct
+collaboration/organization ID</p>
+</div>
 </div>
 </div>
 </div>
@@ -4663,10 +4849,40 @@ syntax as the real client.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<p>Your algorithm should give the same results as when you tested it
-with the mock client.</p>
+<p>You should have done something like the following. Take care to
+provide the correct username.</p>
+<pre><code>from vantage6.client import Client
+client.authenticate(username, password)
+
+image = "myusername/average"
+
+task = client.task.create(
+    input_={
+        "method": "central_function",
+        "kwargs": {
+            "column": "Age",
+        },
+    },
+    organizations=[1],
+    databases = [{"label": "default"}],
+    name="test task",
+    description="My description",
+    collaboration=1,
+    image=image
+)
+results = client.wait_for_results(central_task.get("id"))
+print(results)</code></pre>
+<p>which should print:</p>
+<pre><code>{'data': [{'result': '{"average": 27.613448844884488}',
+   'task': {'id': 2, 'link': '/api/task/2', 'methods': ['DELETE', 'GET']},
+   'run': {'id': 4, 'link': '/api/run/4', 'methods': ['GET', 'PATCH']},
+   'id': 4}],
+ 'links': {'first': '/api/result?task_id=2&amp;page=1',
+  'self': '/api/result?task_id=2&amp;page=1',
+  'last': '/api/result?task_id=2&amp;page=1'}}</code></pre>
+<p>So the average age is 27.61!</p>
 </div>
 </div>
 </div>
@@ -4686,9 +4902,12 @@ expects.</p>
 <code>algorithm_store.json</code> file that contains a JSON description
 of your algorithm - how many databases each function uses, for
 example.</p>
-<p>You can put the algorithm in the store by selecting the algorithm
-store in the UI, then clicking on the “Add algorithm” button. You can
-then upload the <code>algorithm_store.json</code> file in the top. After
+<p>You can put the algorithm in the store by selecting the local
+algorithm store in the UI. You should upload this algorithm into your
+local test store, which is part of the <code>v6 dev</code> network. You
+can do this by selecting that store in the UI, and then by clicking on
+the “Add algorithm” button on the page with approved algorithms. You can
+upload the <code>algorithm_store.json</code> file in the top. After
 uploading it, you can change the details of the algorithm before
 submitting it.</p>
 <div id="challenge-5-add-your-algorithm-to-the-algorithm-store" class="callout challenge">
@@ -4698,11 +4917,26 @@ submitting it.</p>
 <div id="challenge-5-add-your-algorithm-to-the-algorithm-store" class="callout-inner">
 <h3 class="callout-title">Challenge 5: Add your algorithm to the algorithm store</h3>
 <div class="callout-content">
-<p>Upload your algorithm to the algorithm store. Submit the
-<code>algorithm_store.json</code>, check the filled in details, and
-submit the algorithm.</p>
+<p>Your local <code>v6 dev</code> network is running an algorithm store
+locally on <code>http://localhost:7602</code>, and a user interface on
+<code>http://localhost:7600</code>. Log in to the UI and upload your
+algorithm to the algorithm store. Note: the UI requests a link to your
+code - you can fill in a dummy link for now.</p>
 <p>Then, can you download the revised JSON file so you can update it in
 your algorithm repository?</p>
+</div>
+</div>
+</div>
+<div id="accordionHint3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
+  <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
+</button>
+<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
+<div class="accordion-body">
+<p>Use the <code>algorithm_store.json</code> which is present in your
+algorithm code repository to fill in most of the details.</p>
+</div>
 </div>
 </div>
 </div>
@@ -4711,10 +4945,145 @@ your algorithm repository?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
+<p>Go to the UI and log in. Then, go to the ‘Algorithm store’ section
+and select the local algorithm store. Go to ‘Approved algorithms’, click
+on ‘Add algorithm’ and upload the <code>algorithm_store.json</code>
+file. Fill in the details such as the name to your docker image.</p>
 <p>You can find the revised JSON file on the page with the algorithm
-details</p>
+details.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-6-run-your-algorithm-in-the-ui" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-6-run-your-algorithm-in-the-ui" class="callout-inner">
+<h3 class="callout-title">Challenge 6: Run your algorithm in the UI</h3>
+<div class="callout-content">
+<p>Run your algorithm in the UI. The <code>v6 dev</code> network should
+already provide you with a collaboration where all nodes are online.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div class="accordion-body">
+<ol style="list-style-type: decimal">
+<li>Make sure that your <code>v6 dev</code> network is running. If not,
+start it with <code>v6 dev start-demo-network</code>.</li>
+<li>Login to the UI, go to ‘Analyze’ section, select ‘Task’ and ‘Create
+task’.</li>
+<li>Select your algorithm from the dropdown.</li>
+<li>Fill in the required fields. You should select the central function
+and provide the column you want to calculate the average over.</li>
+<li>Your algorithm should run successfully in the UI. The result should
+- obviously - be the same as when you ran it with the Python client, so
+we are expecting:</li>
+</ol>
+<p><code>Average ~= 27.61</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="advanced-challenge-calculate-the-average-per-group" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="advanced-challenge-calculate-the-average-per-group" class="callout-inner">
+<h3 class="callout-title">Advanced challenge: Calculate the average per group</h3>
+<div class="callout-content">
+<p>Extend your algorithm to answer the following question: in the
+<code>v6 dev</code> dataset, are gold medal winners older or younger
+than silver medal winners?</p>
+</div>
+</div>
+</div>
+<div id="accordionHint4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
+  <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
+</button>
+<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
+<div class="accordion-body">
+<p>Add a <code>group_by</code> argument to both the central and the
+partial function. Pass this argument to the partial function when
+creating the subtask, and use it in the partial function to group the
+data.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div class="accordion-body">
+<p>A working solution is provided in the <a href="https://github.com/vantage6/workshop-average-boilerplate/tree/advanced-challenge" class="external-link">workshop-average-boilerplate
+repository</a>. Of course, multiple solutions are possible. Below is a
+description of what you need to change compared to the algorithm
+implementation you created in Challenge 2.</p>
+<p>Your partial function may now look like this:</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="at">@data</span>(<span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="kw">def</span> partial_function(df: pd.DataFrame, column, group_by) <span class="op">-&gt;</span> Any:</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>    <span class="co">"""Decentral part of the algorithm"""</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>    grouped <span class="op">=</span> df.groupby(group_by)</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>        <span class="st">"sum"</span>: grouped[column].<span class="bu">sum</span>().to_dict(),</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>        <span class="st">"count"</span>: grouped[column].size().to_dict(),</span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>    }</span></code></pre>
+</div>
+<p>Your central function should be adapted to pass the
+<code>group_by</code> argument to the partial function, and it should
+aggregate the results per group, as something like this:</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="kw">def</span> central_function(client: AlgorithmClient, column: <span class="bu">str</span>, group_by: <span class="bu">str</span>):</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>    ...</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>    results <span class="op">=</span> client.wait_for_results(task_id<span class="op">=</span>task.get(<span class="st">"id"</span>))</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>    global_sums <span class="op">=</span> {}</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>    global_counts <span class="op">=</span> {}</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>    <span class="cf">for</span> output <span class="kw">in</span> results:</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>        <span class="cf">for</span> key, value <span class="kw">in</span> output[<span class="st">"sum"</span>].items():</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>            <span class="cf">if</span> key <span class="kw">not</span> <span class="kw">in</span> global_sums:</span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>                global_sums[key] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>            global_sums[key] <span class="op">+=</span> value</span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>        <span class="cf">for</span> key, value <span class="kw">in</span> output[<span class="st">"count"</span>].items():</span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>            <span class="cf">if</span> key <span class="kw">not</span> <span class="kw">in</span> global_counts:</span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>                global_counts[key] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a>            global_counts[key] <span class="op">+=</span> value</span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> global_sums.items():</span>
+<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a>        results[key] <span class="op">=</span> value <span class="op">/</span> global_counts[key]</span>
+<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" tabindex="-1"></a>    <span class="cf">return</span> results</span></code></pre>
+</div>
+<p>And when running this, the final results are:</p>
+<pre><code>{"Bronze":27.39364035087719,"Gold":27.86445366528354,"Silver":27.637515842839036}</code></pre>
+<p>Gold medal winners are older than silver medal winners. Practice
+makes perfect!</p>
+<p>In case you also aspire to be perfect, feel free to practice some
+more. Be creative and think of other questions you can answer with this
+dataset!</p>
 </div>
 </div>
 </div>
@@ -4722,19 +5091,19 @@ details</p>
 </section><section><h2 class="section-heading" id="next-steps">Next steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
 </h2>
 <hr class="half-width">
-<p>Congratulations! You have successfully developed your first
+<p>Congratulations! You have successfully developed your first vantage6
 algorithm. You have learned how to create a personalized boilerplate,
 implement the algorithm functions, and run the algorithm using the
 Python client and the UI. The resulting algorithm, however, is not
 suitable yet for real-world use. For instance, if a node contains only a
 single data point for a given column, there are no guards implemented
-that prevent that such sensitive data is shared with the server. Here,
-we describe a few next steps that are usually important to take before
-your algorithm is ready for real-world use:</p>
+that prevent that such sensitive data is shared with the server. The
+following steps are usually important to address before your algorithm
+is ready for real-world use:</p>
 <ul>
 <li>
-<strong>Privacy filters</strong>: implement privacy filters to
-ensure that sensitive data is not shared with the server.</li>
+<strong>Privacy guards</strong>: implement privacy guards to ensure
+that sensitive data is not shared with the server.</li>
 <li>
 <strong>Error handling</strong>: implement error handling to ensure
 that the algorithm does not crash when unexpected input is provided.
@@ -4743,17 +5112,47 @@ vantage6 errors</a> that you can raise to provide more information about
 what went wrong.</li>
 <li>
 <strong>Documentation</strong>: document your algorithm so that
-others can understand how to use it.</li>
+others can understand how to use it, what their data should look like,
+how to interpret the results, etc.</li>
 </ul>
 <p>Other next steps could be to extend the algorithm with more
 functionality, such as allowing to calculate the average over multiple
 columns, or to add a <code>group_by</code> argument to compute the
-average per group. Alternatively, you can have a look at other
-algorithms in the algorithm store to see if you can understand and/or
-improve them.</p>
+average per group.</p>
 <p>In the final lesson of this course, you will have the opportunity to
-work on your own projects. Maybe you can also use that opportunity to
-further develop your algorithm!</p>
+work on your own projects. You can also use that to further develop your
+algorithm!</p>
+</section><section><h2 class="section-heading" id="future-changes">Future changes<a class="anchor" aria-label="anchor" href="#future-changes"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="sessions">Sessions<a class="anchor" aria-label="anchor" href="#sessions"></a>
+</h3>
+<p>We are currently using vantage6 version 4.7. The vantage6 team is
+working on vantage6 version 5.0, which will bring changes to the
+algorithm development process. Version 5.0 will introduce sessions,
+which are a way to split up the algorithm into smaller parts: data
+preparation, data preprocessing, data analysis, and post-processing. A
+major advantage of this is that extensive data preparation only needs to
+be done once per node instead of once per task, which can save a lot of
+time. Also, it will be possible for a more experienced user to prepare
+the data, while a less experienced user can simply run the algorithm on
+the prepared data.</p>
+<p>For algorithm developers, the sessions mean that you should then
+split your algorithm functions into data preparation, analysis,
+postprocessing, etc. The vantage6 team will make sure that proper
+documentation will be available to help you with this transition.</p>
+</div>
+<div class="section level3">
+<h3 id="algorithm-build-service">Algorithm build service<a class="anchor" aria-label="anchor" href="#algorithm-build-service"></a>
+</h3>
+<p>As was already mentioned <a href="./chap2_introduction_v6.html#build-services">previously</a>, the
+vantage6 team is working on a build service that will automatically
+build your algorithm into a Docker image. This will alleviate the
+algorithm developer from having to worry about the Docker image, and
+will allow them to focus on the algorithm itself. Also, it will ensure
+that the image is built in a consistent and secure way, which may
+enhance the trust in an algorithm image.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -4764,11 +5163,11 @@ further develop your algorithm!</p>
 <ul>
 <li>Use <code>v6 algorithm create</code> to create a personalized
 boilerplate</li>
-<li>Implement the central and partial functions</li>
+<li>Implement the partial functions to run on each node and the central
+function to aggregate the results</li>
 <li>Build your algorithm into a docker image</li>
-<li>Test it with the mock client and generate a local test environment
-with <code>v6 dev</code>
-</li>
+<li>Test it with the mock client and with a local <code>v6 dev</code>
+test environment</li>
 <li>Publish your algorithm in the algorithm store to run it in the
 UI</li>
 </ul>
@@ -4779,9 +5178,10 @@ UI</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></section><section id="aio-chap8_own_project"><p>Content from <a href="chap8_own_project.html">Work on your own project</a></p>
 <hr>
-<p>Last updated on 2024-07-30 |
+<p>Last updated on 2024-09-17 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap8_own_project.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 11 minutes</p>
@@ -4824,14 +5224,15 @@ any links that you are not going to use.
 project. Feel free to ask questions and discuss your project with the
 instructors. We are here to help you!</p>
 <p>If you prefer, you can also complete some advanced challenges that we
-have prepared for you.</p>
+have prepared for you. Note that these challenges don’t have one
+solution - discuss your solutions with the workshop instructors!</p>
 </div>
 <div class="section level1">
 <h1 id="advanced-challenges">Advanced challenges<a class="anchor" aria-label="anchor" href="#advanced-challenges"></a>
 </h1>
-<div id="challenge-add-privacy-filters-to-your-algorithm" class="callout discussion">
+<div id="challenge-add-privacy-filters-to-your-algorithm" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-add-privacy-filters-to-your-algorithm" class="callout-inner">
 <h3 class="callout-title">Challenge: Add privacy filters to your
@@ -4850,9 +5251,37 @@ variables to your algorithm.</li>
 <li>When the privacy filters are triggered, use one of the <a href="https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.algorithm.tools.exceptions.html" class="external-link">vantage6
 exceptions</a> to return an error message.</li>
 </ul>
-<p>Hint: the <a href="https://github.com/vantage6/v6-crosstab-py" class="external-link">contingency table
-algorithm</a> already has a few privacy filters implemented. You can use
-this algorithm as an example.</p>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div class="accordion-body">
+<p>The <a href="https://github.com/vantage6/v6-crosstab-py" class="external-link">contingency
+table algorithm</a> already has a few privacy filters implemented. You
+can use this algorithm as an example.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-use-your-own-data-the-v6-dev-network" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-use-your-own-data-the-v6-dev-network" class="callout-inner">
+<h3 class="callout-title">Challenge: Use your own data the v6 dev
+network</h3>
+<div class="callout-content">
+<p>The algorithm that you created in the <a href="./chap7_algo_dev.html">previous lesson</a> uses dummy data. In
+this challenge, you will use your own data in the <code>v6 dev</code>
+network.</p>
+<p>Locate and modify the node configuration files. Before starting the
+algorithm, how can you make sure that the data is available to the
+nodes?</p>
 </div>
 </div>
 </div>
@@ -4909,6 +5338,64 @@ algorithm to calculate the one or more of the following:</p>
 </ul>
 <p>Consider which data you share in the partial results and how you can
 minimize this to protect the privacy of the data.</p>
+</div>
+</div>
+</div>
+<div id="challenge-make-your-dev-environment-more-secure" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-make-your-dev-environment-more-secure" class="callout-inner">
+<h3 class="callout-title">Challenge: Make your dev environment more
+secure</h3>
+<div class="callout-content">
+<p>In the <a href="./chap7_algo_dev.html">previous lesson</a>, you have
+created a simple algorithm with the <code>v6 dev</code> command. In this
+challenge, make your development environment more secure.</p>
+<p>Use the documentation to find configuration options that can help you
+to:</p>
+<ul>
+<li>Enable two-factor authentication in the vantage6 server.</li>
+<li>Change your node configuration to only allow running algorithms from
+the local algorithm store. Verify that it then no longer allows running
+the algorithms from the community store. Note that you can both
+whitelist single algorithms or entire algorithm stores.</li>
+<li>The <code>v6 dev</code> algorithm store has a specific setting that
+turns off the need for review of algorithms - they are automatically
+accepted. Change this setting to require review of algorithms. Feel free
+to explore the review process in the Algorithm Store section of the
+UI!</li>
+</ul>
+<p>Are there any other security measures you can take to make your
+development environment more secure?</p>
+</div>
+</div>
+</div>
+<div id="accordionHint2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
+  <h4 class="accordion-header" id="headingHint2"> Hint: Ajdusting configuration </h4>
+</button>
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div class="accordion-body">
+<p>To complete this challenge, locate the configuration files of the
+<code>v6 dev</code> network and modify them. You may need to use the
+<code>--user</code> flag to locate the server and algorithm store
+configuration files.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
+  <h4 class="accordion-header" id="headingHint3"> Hint: Configuration changes don’t take effect </h4>
+</button>
+<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
+<div class="accordion-body">
+<p>Try restarting the <code>v6 dev</code> network after changing the
+configuration files.</p>
+</div>
 </div>
 </div>
 </div>
