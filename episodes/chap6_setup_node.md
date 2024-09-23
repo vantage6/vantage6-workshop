@@ -571,6 +571,23 @@ In the log, we have to look for the node authentication message:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+## Run a task on the nodes
+
+Now start all your nodes and go to the vantage6 UI to create a new task for your nodes.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 4: Run a task on the nodes
+
+Start all your nodes `node1` and `node2` and go to the vantage6 UI to run a new task for your nodes using the `Average` algorithm for the `age` data.
+
+1. Run a centralized task on the nodes.
+2. Run a federated task on the nodes.
+
+:::::::::::::::::::::::::::::::::::::
+
+
 ::: callout
 
 In this lesson we have focussed on the CLI commands to manage the vantage6 node. Note
