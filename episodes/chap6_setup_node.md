@@ -539,8 +539,8 @@ To make the new API key effective, you need to restart the node by running the c
 
 ## Challenge 3: Update the API key of a node
 
-1. Reset the API key of the node you just created in the vantage6 UI
-2. Update the API key of the node you just created, without using the `v6 node set-api-key` command.
+1. Reset the API key of the node `node2` you created in the first exercise.
+2. Update the API key of the node `node2`, WITHOUT using the `v6 node set-api-key` command.
 3. How do you make sure the new API key is effective?
 
 ::: solution
