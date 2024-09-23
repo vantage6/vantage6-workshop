@@ -24,6 +24,27 @@ exercises: 3
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+This lessons requires the instructor to type commands in the terminal and show the output to the learners.
+
+To make sure the learners can follow along, the instructor should explain each command before executing it.
+
+Also, change the shell prompt in terminal to easy-to-catch one, e.g. red arrow:
+
+```bash
+# BASH shell
+export PS1='\[\e[31m\]-->\[\e[0m\] '
+```
+
+```zsh
+# ZSH shell
+export PROMPT='%F{red}-->%f '
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 Vantage6 node is the software that runs on a data station. It allows the data owner to share their data within the vantage6 network in a privacy enhancing way. Also, it is responsible for the execution of the federated learning tasks and the communication with the vantage6 server.
 
 Each organization that is involved in a federated learning collaboration has its own node in that collaboration. They should therefore install the node software on a (virtual) machine hosted in their own infrastructure. The machine should have access to the data that is used in the federated learning collaboration.
