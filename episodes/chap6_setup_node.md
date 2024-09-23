@@ -420,8 +420,17 @@ From there, you can see the running status of the node, the connection to the se
 
 ## Challenge 2: Start a node and watch the logs
 
-1. Start the node you just created using the `v6 node start` command.
-2. Watch the logs of the node using the `v6 node attach --name xxx` command. Observe the logs and see if the node is running correctly.
+1. Start the node `node2` you created in last exercise using the `v6 node start` command.
+2. Watch the logs of the node using the `v6 node attach --name node2` command. Observe the logs and see if the node is connected to server successfully.
+3. How do you know if the node is connected to the server without checking the logs?
+
+::: solution
+
+3. You can use vantage6 UI to check if a node is online or not. There are two ways:
+    - Click on the `Nodes` tab in the administration page, then click on the tab of the node you want to check. You will see the node status is `Online` if the node is connected to the server successfully.
+    - Or click on the `Collaborations` tab in the administration page, then click on the tab of the collaboration you want to check. You will see the Nodes section, if nodes are in green color, it means they are online, otherwise they are in red color with a message `Offline`.
+
+:::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
