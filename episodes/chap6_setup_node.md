@@ -295,7 +295,6 @@ It will ask you which node you want to start. You can choose the one you just cr
 ? Select the configuration you want to use: (Use arrow keys)
  » node1
    node2
-   node3
 ```
 
 then it will start the node and print out the following messages:
@@ -305,19 +304,22 @@ then it will start the node and print out the following messages:
 [info ] - Starting node...
 [info ] - Finding Docker daemon
 [info ] - Checking that data and log dirs exist
-[info ] - Connecting to server at 'http://localhost:5000/api'
-[info ] - Pulling latest node image 'harbor2.vantage6.ai/infrastructure/node:4.5'
+[info ] - Connecting to server at 'https://server.workshop.vantage6.ai:443/api'
+[info ] - Pulling latest node image 'harbor2.vantage6.ai/infrastructure/node:4.7'
 [info ] - Creating file & folder mounts
-[warn ] - private key file provided ***/private_key.pem, but does not exists
+[warn ] - private key file provided ***/vantage6/node/node1/private_key.pem, but does not exists
 [info ] - Setting up databases
-[info ] -   Processing csv database default: ***/data.csv
-[info ] -   Processing csv database default: ***/data.csv
+[info ] -   Processing csv database default:***/data_node1.csv
+[debug] -   - file-based database added
+[info ] -   Processing csv database age:***/data_node1_age.csv
+[debug] -   - file-based database added
 [info ] - Running Docker container
-[info ] - Node container was successfully started!
+[info ] - Node container was started!
+[info ] - Please check the node logs to see if the node successfully connects to the server.
 [info ] - To see the logs, run: v6 node attach --name node1
 ```
 
-🎉 Now, the node is started successfully!
+Now the node container is running, but it does not mean the node is connected to the server. You need to check the logs to see if the node successfully connects to the server.
 
 ## Watch the logs
 
