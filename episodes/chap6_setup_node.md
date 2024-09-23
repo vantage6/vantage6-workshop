@@ -590,6 +590,8 @@ Start all your nodes `node1` and `node2` and go to the vantage6 UI to run a new 
 
 ::: callout
 
+### `v6 server` and `v6 algorithm-store` commands
+
 In this lesson we have focussed on the CLI commands to manage the vantage6 node. Note
 that the commands to manage the server (`v6 server`) and the algorithm store (`v6 algorithm-store`)
 are similar to the ones presented for the node. However, they are less commonly used
