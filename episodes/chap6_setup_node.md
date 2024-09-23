@@ -453,32 +453,6 @@ after you choose the node, it will print out the following messages:
 
 ```bash
 ? Select the node you wish to stop: vantage6-node1-user
-2024-05-24 16:29:11 - context        - INFO     - ---------------------------------------------
-2024-05-24 16:29:11 - context        - INFO     -  Welcome to
-2024-05-24 16:29:11 - context        - INFO     -                   _                     __
-2024-05-24 16:29:11 - context        - INFO     -                  | |                   / /
-2024-05-24 16:29:11 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
-2024-05-24 16:29:11 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
-2024-05-24 16:29:11 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
-2024-05-24 16:29:11 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
-2024-05-24 16:29:11 - context        - INFO     -                             __/ |
-2024-05-24 16:29:11 - context        - INFO     -                            |___/
-2024-05-24 16:29:11 - context        - INFO     -
-2024-05-24 16:29:11 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
-2024-05-24 16:29:11 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
-2024-05-24 16:29:11 - context        - INFO     -  --> Blog: https://vantage6.ai
-2024-05-24 16:29:11 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 16:29:11 - context        - INFO     - Cite us!
-2024-05-24 16:29:11 - context        - INFO     - If you publish your findings obtained using vantage6,
-2024-05-24 16:29:11 - context        - INFO     - please cite the proper sources as mentioned in:
-2024-05-24 16:29:11 - context        - INFO     - https://vantage6.ai/vantage6/references
-2024-05-24 16:29:11 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 16:29:11 - context        - INFO     - Started application vantage6
-2024-05-24 16:29:11 - context        - INFO     - Current working directory is '***/vantage6/node'
-2024-05-24 16:29:11 - context        - INFO     - Successfully loaded configuration from '***/vantage6/node/node1.yaml'
-2024-05-24 16:29:11 - context        - INFO     - Logging to '***/vantage6/node/node1/node_user.log'
-2024-05-24 16:29:11 - context        - INFO     - Common package version '4.5.0'
-2024-05-24 16:29:11 - context        - INFO     - vantage6 version '4.5.0'
 [info ] - Stopped the vantage6-node1-user Node.
 ```
 
