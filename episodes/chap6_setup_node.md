@@ -185,8 +185,17 @@ You don't see any nodes in the list because you haven't created any nodes yet. N
 
 ## Configure a new node
 
-We will now create a new node configuration using the `v6 node new` command.
-This process will create a configuration `yaml` file that the vantage6-node requires to run.
+We will now create a new node configuration using the `v6 node new` command for the collaboration we created in [Chapter 4](./chap4_manage_via_ui.md).
+This process will create a configuration `yaml` file that the vantage6 node requires to run.
+
+⚠️ Make sure you have the API key downloaded from the vantage6 UI in Chapter 4.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Display the downloaded API key file and there should be at least two API keys for two organizations in the collaboration.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 Let's run the command:
 
@@ -200,29 +209,33 @@ The command will show a wizard to guide you through the configuration process in
 ? Please enter a configuration-name: node1
 ? Enter given api-key: ***
 ? The base-URL of the server: https://server.workshop.vantage6.ai
-? Enter port to which the server listens: 5000
+? Enter port to which the server listens: 443
 ? Path of the api: /api
 ? Task directory path: ***/vantage6/node/node1
 ? Do you want to add a database? Yes
 ? Enter unique label for the database: default
-? Database URI: ***/data.csv
+? Database URI: ***/data_node1.csv
 ? Database type: csv
 ? Do you want to add a database? Yes
-? Enter unique label for the database: default
-? Database URI: ***/data.sql
-? Database type: sql
+? Enter unique label for the database: age
+? Database URI: ***/data_node1_age.csv
+? Database type: csv
 ? Do you want to add a database? No
-? Which level of logging would you like? DEBUG
 ? Do you want to connect to a VPN server? No
-? Enable encryption? No
+? Do you want to add limit the algorithms allowed to run on your node? This should always be done for production scenarios. No
+? Which level of logging would you like? DEBUG
+? Encryption is disabled for this collaboration. Accept? Yes
 ```
 
 It is important to note the meaning of following configuration parameters:
 
 - The `api-key` is the API key that you downloaded from vantage6 UI in [Chapter 4](./chap4_manage_via_ui.md). It is used to authenticate the node at the server.
 - The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://localhost`
+- The `port to which the server listens` is the port number of the server. Check with the server administrator to get the correct port number.
 - The `path of the api` is the path of the API of the server. By default it is `/api`.
 - The `database URI` is the path of the database file containing the sensitive data. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
+- The `unique label for the database` is the name of the database. It must be unique. It's used when you want to refer to the database in the algorithms.
+- The `VPN server` is used to connect the node to a VPN server. A VPN connection allows nodes to communicate directly with one another, which is useful when some algorithms require direct or a lot of communication between nodes.
 
 To see all configuration options, please check https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options.
 
@@ -248,8 +261,6 @@ It will ask you which node you want to see. You can choose the one you just crea
 ```bash
 ? Select the configuration you want to use: (Use arrow keys)
  » node1
-   node2
-   node3
 ```
 
 In the printed message, you will see not only the path of the configuration file is printed out, but also the locations of the log file, the data folders and the database files are shown.
