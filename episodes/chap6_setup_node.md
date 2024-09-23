@@ -332,86 +332,86 @@ v6 node attach --name node1
 then it will print out the logs of the node in the console:
 
 ```bash
-2024-05-24 14:15:14 - context        - INFO     - ---------------------------------------------
-2024-05-24 14:15:14 - context        - INFO     -  Welcome to
-2024-05-24 14:15:14 - context        - INFO     -                   _                     __
-2024-05-24 14:15:14 - context        - INFO     -                  | |                   / /
-2024-05-24 14:15:14 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
-2024-05-24 14:15:14 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
-2024-05-24 14:15:14 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
-2024-05-24 14:15:14 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
-2024-05-24 14:15:14 - context        - INFO     -                             __/ |
-2024-05-24 14:15:14 - context        - INFO     -                            |___/
-2024-05-24 14:15:14 - context        - INFO     -
-2024-05-24 14:15:14 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
-2024-05-24 14:15:14 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
-2024-05-24 14:15:14 - context        - INFO     -  --> Blog: https://vantage6.ai
-2024-05-24 14:15:14 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 14:15:14 - context        - INFO     - Cite us!
-2024-05-24 14:15:14 - context        - INFO     - If you publish your findings obtained using vantage6,
-2024-05-24 14:15:14 - context        - INFO     - please cite the proper sources as mentioned in:
-2024-05-24 14:15:14 - context        - INFO     - https://vantage6.ai/vantage6/references
-2024-05-24 14:15:14 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 14:15:14 - context        - INFO     - Started application vantage6
-2024-05-24 14:15:14 - context        - INFO     - Current working directory is '/'
-2024-05-24 14:15:14 - context        - INFO     - Successfully loaded configuration from '/mnt/config/node1.yaml'
-2024-05-24 14:15:14 - context        - INFO     - Logging to '/mnt/log/node_user.log'
-2024-05-24 14:15:14 - context        - INFO     - Common package version '4.5.0'
-2024-05-24 14:15:14 - context        - INFO     - vantage6 version '4.5.0'
-2024-05-24 14:15:14 - context        - INFO     - vantage6 version '4.5.0'
-2024-05-24 14:15:14 - context        - INFO     - Node package version '4.5.0'
-2024-05-24 14:15:14 - node           - INFO     - Connecting server: http://host.docker.internal:5000/api
-2024-05-24 14:15:14 - node           - DEBUG    - Authenticating
-2024-05-24 14:15:14 - common         - DEBUG    - Authenticating node...
-2024-05-24 14:15:17 - common         - INFO     - Successfully authenticated
-2024-05-24 14:15:17 - common         - DEBUG    - Making request: GET | http://host.docker.internal:5000/api/node/18 | None
-2024-05-24 14:15:17 - common         - DEBUG    - Making request: GET | http://host.docker.internal:5000/api/organization/2 | None
-2024-05-24 14:15:17 - node           - INFO     - Node name: ZEPPELIN - Small Organization
-2024-05-24 14:15:17 - common         - DEBUG    - Making request: GET | http://host.docker.internal:5000/api/collaboration/1 | None
-2024-05-24 14:15:17 - node           - WARNING  - Disabling encryption!
-2024-05-24 14:15:17 - node           - INFO     - Setting up proxy server
-2024-05-24 14:15:17 - node           - INFO     - Starting proxyserver at 'proxyserver:80'
-2024-05-24 14:15:17 - node           - INFO     - Setting up VPN client container
-2024-05-24 14:15:17 - vpn_manager    - INFO     - Updating VPN images...
-2024-05-24 14:15:17 - vpn_manager    - DEBUG    - Pulling Alpine image
-2024-05-24 14:15:19 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/alpine:4.5
-2024-05-24 14:15:19 - vpn_manager    - DEBUG    - Pulling VPN client image
-2024-05-24 14:15:21 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-client:4.5
-2024-05-24 14:15:21 - vpn_manager    - DEBUG    - Pulling network config image
-2024-05-24 14:15:33 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-configurator:4.5
-2024-05-24 14:15:33 - vpn_manager    - INFO     - Done updating VPN images
-2024-05-24 14:15:33 - vpn_manager    - DEBUG    - Used VPN images:
-2024-05-24 14:15:33 - vpn_manager    - DEBUG    -   Alpine: harbor2.vantage6.ai/infrastructure/alpine:4.5
-2024-05-24 14:15:33 - vpn_manager    - DEBUG    -   Client: harbor2.vantage6.ai/infrastructure/vpn-client:4.5
-2024-05-24 14:15:33 - vpn_manager    - DEBUG    -   Config: harbor2.vantage6.ai/infrastructure/vpn-configurator:4.5
-2024-05-24 14:15:33 - node           - WARNING  - VPN subnet is not defined! VPN disabled.
-2024-05-24 14:15:33 - node           - INFO     - No SSH tunnels configured
-2024-05-24 14:15:33 - node           - INFO     - No squid proxy configured
-2024-05-24 14:15:33 - node           - DEBUG    - Setting up the docker manager
-2024-05-24 14:15:33 - docker_manager - DEBUG    - Initializing DockerManager
-2024-05-24 14:15:33 - docker_manager - WARNING  - No policies on allowed algorithms have been set for this node!
-2024-05-24 14:15:33 - docker_manager - WARNING  - This means that all algorithms are allowed to run on this node.
-2024-05-24 14:15:33 - docker_manager - DEBUG    - Databases: {'default': {'uri': '/data/data.csv', 'is_file': False, 'type': 'csv', 'env': {}}}
-2024-05-24 14:15:33 - node           - DEBUG    - Creating websocket connection with the server
-2024-05-24 14:15:33 - node           - INFO     - Connected to host=http://host.docker.internal on port=5000
-2024-05-24 14:15:33 - node           - DEBUG    - Starting thread to ping the server to notify this node is online.
-2024-05-24 14:15:33 - network_man..  - DEBUG    - Connecting vantage6-node1-user to network 'vantage6-node1-user-net'
-2024-05-24 14:15:33 - socket         - INFO     - (Re)Connected to the /tasks namespace
-2024-05-24 14:15:33 - common         - DEBUG    - Making request: GET | http://host.docker.internal:5000/api/run | {'state': 'open', 'node_id': 18, 'include': 'task'}
-2024-05-24 14:15:34 - node           - DEBUG    - Start thread for sending messages (results)
-2024-05-24 14:15:34 - node           - DEBUG    - Waiting for results to send to the server
-2024-05-24 14:15:34 - node           - DEBUG    - Starting thread for incoming messages (tasks)
-2024-05-24 14:15:34 - node           - DEBUG    - Listening for incoming messages
-2024-05-24 14:15:34 - node           - INFO     - Init complete
-2024-05-24 14:15:34 - node           - INFO     - Waiting for new tasks....
-2024-05-24 14:15:34 - socket         - INFO     - Node <ZEPPELIN - Small Organization> joined room <collaboration_1>
-2024-05-24 14:15:34 - socket         - INFO     - Node <ZEPPELIN - Small Organization> joined room <collaboration_1_organization_2>
-2024-05-24 14:15:34 - socket         - INFO     - Websocket connection established
-2024-05-24 14:15:34 - node           - DEBUG    - task_results: []
-2024-05-24 14:15:34 - node           - INFO     - Received 0 tasks
-2024-05-24 14:15:34 - socket         - DEBUG    - Tasks synced again with the server...
-2024-05-24 14:15:34 - docker_manager - ERROR    - Database with label default is not a file. Cannot determine columns without query
-2024-05-24 14:15:34 - node           - DEBUG    - Sharing node configuration: {'encryption': False, 'allowed_algorithms': 'all', 'database_labels': ['default', 'default'], 'database_types': {'db_type_default': 'sql'}, 'database_columns': {'columns_default': []}}
+2024-09-23 09:09:59 - context        - INFO     - ---------------------------------------------
+2024-09-23 09:09:59 - context        - INFO     -  Welcome to
+2024-09-23 09:09:59 - context        - INFO     -                   _                     __
+2024-09-23 09:09:59 - context        - INFO     -                  | |                   / /
+2024-09-23 09:09:59 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
+2024-09-23 09:09:59 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
+2024-09-23 09:09:59 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
+2024-09-23 09:09:59 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
+2024-09-23 09:09:59 - context        - INFO     -                             __/ |
+2024-09-23 09:09:59 - context        - INFO     -                            |___/
+2024-09-23 09:09:59 - context        - INFO     -
+2024-09-23 09:09:59 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
+2024-09-23 09:09:59 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
+2024-09-23 09:09:59 - context        - INFO     -  --> Blog: https://vantage6.ai
+2024-09-23 09:09:59 - context        - INFO     - ------------------------------------------------------------
+2024-09-23 09:09:59 - context        - INFO     - Cite us!
+2024-09-23 09:09:59 - context        - INFO     - If you publish your findings obtained using vantage6,
+2024-09-23 09:09:59 - context        - INFO     - please cite the proper sources as mentioned in:
+2024-09-23 09:09:59 - context        - INFO     - https://vantage6.ai/vantage6/references
+2024-09-23 09:09:59 - context        - INFO     - ------------------------------------------------------------
+2024-09-23 09:09:59 - context        - INFO     - Started application vantage6
+2024-09-23 09:09:59 - context        - INFO     - Current working directory is '/'
+2024-09-23 09:09:59 - context        - INFO     - Successfully loaded configuration from '/mnt/config/node1.yaml'
+2024-09-23 09:09:59 - context        - INFO     - Logging to '/mnt/log/node_user.log'
+2024-09-23 09:09:59 - context        - INFO     - Common package version '4.7.0'
+2024-09-23 09:09:59 - context        - INFO     - vantage6 version '4.7.0'
+2024-09-23 09:09:59 - context        - INFO     - Node package version '4.7.0'
+2024-09-23 09:09:59 - node           - INFO     - Connecting server: https://server.workshop.vantage6.ai:443/api
+2024-09-23 09:09:59 - node           - DEBUG    - Authenticating
+2024-09-23 09:09:59 - common         - DEBUG    - Authenticating node...
+2024-09-23 09:10:03 - common         - INFO     - Successfully authenticated
+2024-09-23 09:10:03 - common         - DEBUG    - Making request: GET | https://server.workshop.vantage6.ai:443/api/node/268 | None
+2024-09-23 09:10:04 - common         - DEBUG    - Making request: GET | https://server.workshop.vantage6.ai:443/api/organization/170 | None
+2024-09-23 09:10:05 - node           - INFO     - Node name: eScience-UvA - eScience
+2024-09-23 09:10:05 - common         - DEBUG    - Making request: GET | https://server.workshop.vantage6.ai:443/api/collaboration/93 | None
+2024-09-23 09:10:05 - node           - WARNING  - Disabling encryption!
+2024-09-23 09:10:05 - node           - INFO     - Setting up proxy server
+2024-09-23 09:10:05 - node           - INFO     - Starting proxyserver at 'proxyserver:80'
+2024-09-23 09:10:05 - node           - INFO     - Setting up VPN client container
+2024-09-23 09:10:05 - vpn_manager    - INFO     - Updating VPN images...
+2024-09-23 09:10:05 - vpn_manager    - DEBUG    - Pulling Alpine image
+2024-09-23 09:10:06 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/alpine:4.7
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    - Pulling VPN client image
+2024-09-23 09:10:06 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-client:4.7
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    - Pulling network config image
+2024-09-23 09:10:06 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-configurator:4.7
+2024-09-23 09:10:06 - vpn_manager    - INFO     - Done updating VPN images
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    - Used VPN images:
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    -   Alpine: harbor2.vantage6.ai/infrastructure/alpine:4.7
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    -   Client: harbor2.vantage6.ai/infrastructure/vpn-client:4.7
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    -   Config: harbor2.vantage6.ai/infrastructure/vpn-configurator:4.7
+2024-09-23 09:10:06 - node           - WARNING  - VPN subnet is not defined! VPN disabled.
+2024-09-23 09:10:06 - node           - INFO     - No SSH tunnels configured
+2024-09-23 09:10:06 - node           - INFO     - No squid proxy configured
+2024-09-23 09:10:06 - node           - DEBUG    - Setting up the docker manager
+2024-09-23 09:10:06 - docker_manager - DEBUG    - Initializing DockerManager
+2024-09-23 09:10:06 - docker_manager - WARNING  - No policies on allowed algorithms have been set for this node!
+2024-09-23 09:10:06 - docker_manager - WARNING  - This means that all algorithms are allowed to run on this node.
+2024-09-23 09:10:06 - docker_manager - INFO     - Copying /mnt/default.csv to /mnt/data
+2024-09-23 09:10:06 - docker_manager - INFO     - Copying /mnt/age.csv to /mnt/data
+2024-09-23 09:10:06 - docker_manager - DEBUG    - Databases: {'default': {'uri': PosixPath('/mnt/data/default.csv'), 'is_file': True, 'type': 'csv', 'env': {}}, 'age': {'uri': PosixPath('/mnt/data/age.csv'), 'is_file': True, 'type': 'csv', 'env': {}}}
+2024-09-23 09:10:06 - node           - DEBUG    - Creating websocket connection with the server
+2024-09-23 09:10:06 - node           - INFO     - Connected to host=https://server.workshop.vantage6.ai on port=443
+2024-09-23 09:10:06 - node           - DEBUG    - Starting thread to ping the server to notify this node is online.
+2024-09-23 09:10:06 - network_man..  - DEBUG    - Connecting vantage6-node1-user to network 'vantage6-node1-user-net'
+2024-09-23 09:10:06 - node           - DEBUG    - Start thread for sending messages (results)
+2024-09-23 09:10:06 - node           - DEBUG    - Waiting for results to send to the server
+2024-09-23 09:10:06 - node           - DEBUG    - Starting thread for incoming messages (tasks)
+2024-09-23 09:10:06 - node           - DEBUG    - Listening for incoming messages
+2024-09-23 09:10:06 - node           - INFO     - Init complete
+2024-09-23 09:10:06 - node           - INFO     - Waiting for new tasks....
+2024-09-23 09:10:07 - socket         - INFO     - Websocket connection established
+2024-09-23 09:10:07 - socket         - INFO     - (Re)Connected to the /tasks namespace
+2024-09-23 09:10:07 - common         - DEBUG    - Making request: GET | https://server.workshop.vantage6.ai:443/api/run | {'state': 'open', 'node_id': 268, 'include': 'task'}
+2024-09-23 09:10:07 - socket         - INFO     - Node <eScience-UvA - eScience> joined room <collaboration_93>
+2024-09-23 09:10:07 - socket         - INFO     - Node <eScience-UvA - eScience> joined room <collaboration_93_organization_170>
+2024-09-23 09:10:08 - node           - DEBUG    - task_results: []
+2024-09-23 09:10:08 - node           - INFO     - Received 0 tasks
+2024-09-23 09:10:08 - socket         - DEBUG    - Tasks synced again with the server...
+2024-09-23 09:10:08 - node           - DEBUG    - Sharing node configuration: {'encryption': False, 'allowed_algorithms': 'all', 'database_labels': ['default', 'age'], 'database_types': {'db_type_default': 'csv', 'db_type_age': 'csv'}, 'database_columns': {'columns_default': ['age'], 'columns_age': ['age']}}
 ```
 
 From there, you can see the running status of the node, the connection to the server, the databases, the websocket connection, and the incoming tasks.
