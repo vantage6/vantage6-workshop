@@ -145,9 +145,43 @@ Commands:
   version             Returns current version of a vantage6 node.
 ```
 
-For example, to create a new node configuration, you can run the command `v6 node new`, then you can start the new node by running `v6 node start`, and then stop the node with `v6 node stop` command.
+For example, to view the list of available nodes, you can run the command `v6 node list`.
 
+### View the list of nodes
+
+You can use the `v6 node list` command to see the list of nodes:
+
+```bash
+v6 node list
+```
+
+If it print out a long error message, it means the Docker engine is not running:
+```bash
+Cannot reach the Docker engine! Please make sure Docker is running.
+Error while fetching server API version: 502 Server Error for http+docker://localhost/version: Bad Gateway
+Traceback (most recent call last):
+...
+```
 ⚠️ Please make sure Docker is running when you're using the `v6 node` commands.
+
+::: callout
+
+### Start Docker engine
+
+- For Windows and MacOS, open Docker Desktop to start the Docker engine.
+- For Linux, Docker engine usually starts automatically when you login. Otherwise, use the commmand `sudo systemctl start docker` to start the Docker engine.
+
+:::
+
+If the Docker engine is running, you will see the following message:
+
+```bash
+Name                     Status          System/User
+-----------------------------------------------------
+-----------------------------------------------------
+```
+
+You don't see any nodes in the list because you haven't created any nodes yet. Next, we will create a new node configuration.
 
 ## Configure a new node
 
