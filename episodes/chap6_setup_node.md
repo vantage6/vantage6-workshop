@@ -495,41 +495,39 @@ then it will ask you which node you want to update the API key of:
 ? Select the configuration you want to use: (Use arrow keys)
  » node1
    node2
-   node3
 ```
 
 after you choose the node, it will ask you to enter the new API key, then you can paste the new API key you just copied from the downloaded file:
 
 ```bash
 ? Select the configuration you want to use: node1
-? Please enter your new API key: the-new-api-key-you-received-from-the-server-administrator
-2024-05-24 16:28:16 - context        - INFO     - ---------------------------------------------
-2024-05-24 16:28:16 - context        - INFO     -  Welcome to
-2024-05-24 16:28:16 - context        - INFO     -                   _                     __
-2024-05-24 16:28:16 - context        - INFO     -                  | |                   / /
-2024-05-24 16:28:16 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
-2024-05-24 16:28:16 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
-2024-05-24 16:28:16 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
-2024-05-24 16:28:16 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
-2024-05-24 16:28:16 - context        - INFO     -                             __/ |
-2024-05-24 16:28:16 - context        - INFO     -                            |___/
-2024-05-24 16:28:16 - context        - INFO     -
-2024-05-24 16:28:16 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
-2024-05-24 16:28:16 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
-2024-05-24 16:28:16 - context        - INFO     -  --> Blog: https://vantage6.ai
-2024-05-24 16:28:16 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 16:28:16 - context        - INFO     - Cite us!
-2024-05-24 16:28:16 - context        - INFO     - If you publish your findings obtained using vantage6,
-2024-05-24 16:28:16 - context        - INFO     - please cite the proper sources as mentioned in:
-2024-05-24 16:28:16 - context        - INFO     - https://vantage6.ai/vantage6/references
-2024-05-24 16:28:16 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 16:28:16 - context        - INFO     - Started application vantage6
-2024-05-24 16:28:16 - context        - INFO     - Current working directory is '***/vantage6/node'
-2024-05-24 16:28:16 - context        - INFO     - Successfully loaded configuration from '***/vantage6/node/node1.yaml'
-2024-05-24 16:28:16 - context        - INFO     - Logging to '***/vantage6/node/node1/node_user.log'
-2024-05-24 16:28:16 - context        - INFO     - Common package version '4.5.0'
-2024-05-24 16:28:16 - context        - INFO     - vantage6 version '4.5.0'
-2024-05-24 16:28:16 - context        - INFO     - vantage6 version '4.5.0'
+? Please enter your new API key: the-new-api-key
+2024-09-23 11:30:33 - context        - INFO     - ---------------------------------------------
+2024-09-23 11:30:33 - context        - INFO     -  Welcome to
+2024-09-23 11:30:33 - context        - INFO     -                   _                     __
+2024-09-23 11:30:33 - context        - INFO     -                  | |                   / /
+2024-09-23 11:30:33 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
+2024-09-23 11:30:33 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
+2024-09-23 11:30:33 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
+2024-09-23 11:30:33 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
+2024-09-23 11:30:33 - context        - INFO     -                             __/ |
+2024-09-23 11:30:33 - context        - INFO     -                            |___/
+2024-09-23 11:30:33 - context        - INFO     -
+2024-09-23 11:30:33 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
+2024-09-23 11:30:33 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
+2024-09-23 11:30:33 - context        - INFO     -  --> Blog: https://vantage6.ai
+2024-09-23 11:30:33 - context        - INFO     - ------------------------------------------------------------
+2024-09-23 11:30:33 - context        - INFO     - Cite us!
+2024-09-23 11:30:33 - context        - INFO     - If you publish your findings obtained using vantage6,
+2024-09-23 11:30:33 - context        - INFO     - please cite the proper sources as mentioned in:
+2024-09-23 11:30:33 - context        - INFO     - https://vantage6.ai/vantage6/references
+2024-09-23 11:30:33 - context        - INFO     - ------------------------------------------------------------
+2024-09-23 11:30:33 - context        - INFO     - Started application vantage6
+2024-09-23 11:30:33 - context        - INFO     - Current working directory is '***'
+2024-09-23 11:30:33 - context        - INFO     - Successfully loaded configuration from '***/vantage6/node/node1.yaml'
+2024-09-23 11:30:33 - context        - INFO     - Logging to '***/vantage6/node/node1/node_user.log'
+2024-09-23 11:30:33 - context        - INFO     - Common package version '4.7.0'
+2024-09-23 11:30:33 - context        - INFO     - vantage6 version '4.7.0'
 [info ] - Your new API key has been uploaded to the config file ***/vantage6/node/node1.yaml.
 ```
 
