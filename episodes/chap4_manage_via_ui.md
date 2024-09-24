@@ -162,12 +162,9 @@ You will need the API keys when you run the nodes to authenticate with the vanta
 
 Go to the administration page in the vantage6 UI, and do the following:
 
-1. Create a new organization
-2. Create a new user (`Researcher` role plus the permission to view their own task)
-3. Check what permissions you have, can you create a new user and grant them the permissions you don't have?
-4. Create a new collaboration
-
-Which steps are challenging for you?
+1. Create a new role
+2. Create a new user and grant them the new role you created
+3. Re-login to the vantage6 UI with the new user account and check if they have the permissions you granted them
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
