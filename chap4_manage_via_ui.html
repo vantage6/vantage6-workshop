@@ -345,7 +345,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Managing vantage6 server via the user interface</h1>
-        <p>Last updated on 2024-09-10 |
+        <p>Last updated on 2024-09-24 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap4_manage_via_ui.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -406,7 +406,9 @@ organization they belong to.</p>
 receive. The first four correspond to GET, PATCH, CREATE and DELETE
 requests, respectively. The last two allow users to send and receive
 data via socket events. For example, sending events would allow them to
-kill tasks that are running on a node.</p>
+kill tasks that are running on a node. For more details about Send and
+Receive operations, see the <a href="https://docs.vantage6.ai/en/main/features/inter-component/socket.html" class="external-link">vantage6
+documentation</a>.</p>
 <p>The scopes are:</p>
 <ul><li>Global: all resources of all organizations</li>
 <li>Organization: resources of the user’s own organization</li>
@@ -493,8 +495,9 @@ page.</li>
 <li>Fill in the details of the new organization.
 <ul><li>The <code>Upload public key</code> field is optional. You can upload
 a public key for the organization if you want to use encryption in the
-collaboration. But note that we DO NOT use encryption in this
-course.</li>
+collaboration. But note that we DO NOT use encryption in this course.
+For more details about encryption, see the <a href="https://docs.vantage6.ai/en/main/features/inter-component/encryption.html" class="external-link">vantage6
+documentation</a>.</li>
 </ul></li>
 <li>Click on the <code>Submit</code> button to create the new
 organization.</li>
@@ -585,14 +588,11 @@ study by clicking the <code>Add study</code> button.</li>
 <div class="callout-content">
 <p>Go to the administration page in the vantage6 UI, and do the
 following:</p>
-<ol style="list-style-type: decimal"><li>Create a new organization</li>
-<li>Create a new user (<code>Researcher</code> role plus the permission
-to view their own task)</li>
-<li>Check what permissions you have, can you create a new user and grant
-them the permissions you don’t have?</li>
-<li>Create a new collaboration</li>
-</ol><p>Which steps are challenging for you?</p>
-</div>
+<ol style="list-style-type: decimal"><li>Create a new role</li>
+<li>Create a new user and grant them the new role you created</li>
+<li>Re-login to the vantage6 UI with the new user account and check if
+they have the permissions you granted them</li>
+</ol></div>
 </div>
 </div>
 <div id="keypoints1" class="callout keypoints">
@@ -675,7 +675,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/chap4_manage_via_ui.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/chap4_manage_via_ui.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-09-10",
+  "dateModified": "2024-09-24",
   "datePublished": "2024-09-24"
 }
 
