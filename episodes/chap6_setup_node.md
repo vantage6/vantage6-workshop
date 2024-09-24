@@ -235,7 +235,7 @@ It is important to note the meaning of following configuration parameters:
 - The `path of the api` is the path of the API of the server. By default it is `/api`.
 - The `database URI` is the path of the database file containing the sensitive data. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
 - The `unique label for the database` is the name of the database. It must be unique. It's used when you want to refer to the database in the algorithms.
-- The `VPN server` is used to connect the node to a VPN server. A VPN connection allows nodes to communicate directly with one another, which is useful when some algorithms require direct or a lot of communication between nodes.
+- The `VPN server` is used to connect the node to a VPN server. A VPN connection allows nodes to communicate directly with one another, which is useful when some algorithms require direct or a lot of communication between nodes. For more information, see the [vantage6 documentation](https://docs.vantage6.ai/en/main/features/inter-component/vpn.html).
 
 To see all configuration options, please check https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options.
 
