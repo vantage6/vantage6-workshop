@@ -32,7 +32,7 @@ The permission rules define what each entity is allowed to do, based on the oper
 
 ![vantage6 permission system](fig/chapter4/permission_system.png)
 
-There are six operations: view, edit, create, delete, send and receive. The first four correspond to GET, PATCH, CREATE and DELETE requests, respectively. The last two allow users to send and receive data via socket events. For example, sending events would allow them to kill tasks that are running on a node.
+There are six operations: view, edit, create, delete, send and receive. The first four correspond to GET, PATCH, CREATE and DELETE requests, respectively. The last two allow users to send and receive data via socket events. For example, sending events would allow them to kill tasks that are running on a node. For more details about Send and Receive operations, see the [vantage6 documentation](https://docs.vantage6.ai/en/main/features/inter-component/socket.html).
 
 The scopes are:
 
@@ -102,7 +102,7 @@ It's quite straightforward to create a new organization in vantage6. Here are th
 1. Click on the `Organizations` tab in the administration page.
 2. Click on the `Create organization` button.
 3. Fill in the details of the new organization.
-   - The `Upload public key` field is optional. You can upload a public key for the organization if you want to use encryption in the collaboration. But note that we DO NOT use encryption in this course.
+   - The `Upload public key` field is optional. You can upload a public key for the organization if you want to use encryption in the collaboration. But note that we DO NOT use encryption in this course. For more details about encryption, see the [vantage6 documentation](https://docs.vantage6.ai/en/main/features/inter-component/encryption.html).
 4. Click on the `Submit` button to create the new organization.
 
 ![Create a new organization](fig/chapter4/create_org.png)
@@ -162,12 +162,9 @@ You will need the API keys when you run the nodes to authenticate with the vanta
 
 Go to the administration page in the vantage6 UI, and do the following:
 
-1. Create a new organization
-2. Create a new user (`Researcher` role plus the permission to view their own task)
-3. Check what permissions you have, can you create a new user and grant them the permissions you don't have?
-4. Create a new collaboration
-
-Which steps are challenging for you?
+1. Create a new role
+2. Create a new user and grant them the new role you created
+3. Re-login to the vantage6 UI with the new user account and check if they have the permissions you granted them
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
