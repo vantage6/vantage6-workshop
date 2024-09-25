@@ -149,7 +149,7 @@ To enhance the security of the communication, messages between organizations can
 ## How algorithms run in vantage6
 So how does vantage6 relate to the privacy enhancing techniques that we discussed in chapter 1? Let us consider the federated sum from chapter 1 again
 
-![Federated analysis orchestrated by vantage6](fig/chapter2/federated_analysis_applied.jpg)
+![Federated analysis orchestrated by vantage6](fig/chapter2/federated_analysis_applied.png)
 
 As you can see, both the datasources and the aggregation entity are mapped to nodes. The vantage6 server is on the side, coordinating the analysis.
 
