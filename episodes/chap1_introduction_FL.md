@@ -101,6 +101,9 @@ In this course we will focus on federated analysis. In a federated setting, the 
  The system sends a query or instruction to the data and only the results will get back to the user.
 The results are often akin to a form of _aggregation_ of the data. This can be in the shape of
 traditional statistics like the mean, or it can be more intricate like a machine learning model.
+When data is aggregated, it doesn't have a direct link with an individual anymore. Because the
+aggregated data cannot be be traced back to the individuals from the dataset, it is generally considered
+that the personal data remains private.
 
 Aggregating the data does not ensure complete protection of person-level information, but it
 certainly makes it less likely that this will happen. It is usually the case that the larger 
