@@ -49,7 +49,7 @@ dataset. All their personal details end up at another party.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Other problems with copying data
+## 1. Other problems with copying data
 
 Discuss in groups what other issues you see with handling the data by copying everything into one
 central place.
@@ -187,7 +187,7 @@ In this way, they have aggregated their data without sharing their individual da
 :::
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Oh no! A hacker!
+## 2. Oh no! A hacker!
 A hacker manages to get access to Mees' computer that contains the secret shares he received. Will
 the secrecy of the three weights still be preserved?
 
@@ -207,7 +207,7 @@ leak their data, or don't have proper security set in place.
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Aggregation preserves privacy?
+## 3. Aggregation preserves privacy?
 Consider the dataset with the 3 childrens weights again. The only unencrypted data everybody receives,
 is the result. Consider the situation where Sara knows Mees very well, and might know approximately how
 much he weighs. Do you think the privacy of the three individuals is properly preserved?
