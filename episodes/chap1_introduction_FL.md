@@ -322,7 +322,7 @@ In conclusion, PETs will help you to extract valuable insights from sensitive da
 of the process. It is also important to consider other factors such as regulations and data preprocessing.
 
 ## Up next
-In the upcoming chapters we will explore how privacy-enhancing technologies are integrated into the vantage6 software framework.First, we will introduce the core concepts of vantage6 through its user interface (UI) and demonstrate how to run a privacy-enhancing algorithm within it. We will also cover how to manage collaborations using the UI, one of vantage6s key distinguishing features.
+In the upcoming chapters we will explore how privacy-enhancing technologies are integrated into the vantage6 software framework. First, we will introduce the core concepts of vantage6 through its user interface (UI) and demonstrate how to run a privacy-enhancing algorithm within it. We will also cover how to manage collaborations, one of vantage6's key distinguishing features.
 
 In the second part of the workshop, we will shift focus  to interacting with vantage6 through Python, bypassing the UI. We will also delve into creating a federated algorithm using the platform's algorithm tools.
 
