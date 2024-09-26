@@ -188,19 +188,14 @@ In this way, they have aggregated their data without sharing their individual da
 
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Oh no! A hacker!
-A hacker manages to get access to Mees' computer that contains the secret shares he received. Will
-the secrecy of the three weights still be preserved?
+A hacker manages to get access to Mees' computer that contains his data and the secret shares he received. He also
+knows the result of the aggregation. Will the secrecy of the three weights still be preserved? What if the hacker 
+gets access to Sara's computer as well? Will Noors privacy be protected?
 
 
 :::::: solution
-When receiving a sum from a set of 3 individuals, every record makes up roughly 30% of the final answer.
-That is a big contribution. It can be quite easy to reconstruct the individual records, for example
-by crossreferencing with other datasets. Also, if you are able to get your hands on 2 of the datapoints,
-you will be able to fully reconstruct the third one.
-
-Trust is another factor here. If the different parties (Mees, Sara and Noor) have a high level of trust
-in eachother not to share their data, the risk level is lower than when the parties are known to occasionally
-leak their data, or don't have proper security set in place.
+If the hacker has access to the result, he can reconstruct Noors weight by subtracting Mees' and Sara's weight
+from the total. The secret shares are not adding any more relevant information.
 
 ::::::
 ::::::
