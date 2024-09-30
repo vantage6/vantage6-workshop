@@ -26,10 +26,11 @@ title: "vantage6 basics"
 
 vantage6 is a platform to execute privacy enhancing techniques (PETs). Several alternative platforms for PETs are available, but vantage6 is unique as it provides:
 
-- Open source and free to use.
+- Open source and free to use under Apache-2.0 licence.
 - Container orchestration for privacy enhancing techniques.
 - Easily extensible to different types of data sources.
 - Algorithms can be developed in any language.
+- A Graphical User Interface is provided to operate the platform. 
 - Other applications can connect to vantage6 using the API.
 - Managing and enforcing collaboration policies
 - Minimal network requirements at data stations
@@ -75,6 +76,8 @@ Let's consider a scenario where you, on behalf of your research institute, want 
 - Your research institute has an existing collaboration (with a different purpose, not related with yours) with UMC Utrecht and UMC Groningen. Hence, there is a vantage6 node already running on your institution for the said collaboration.
 - You will be conducting this study with a colleague from your institute named Daphne. Both of you are already registered on the organization but without access to the existing collaborations.
 
+![](fig/chapter2/exercise_1_question.png)
+
 How would the concepts described above map to your potential use case?
 
 1. Which organizations will you need to add to your collaboration?
@@ -88,8 +91,10 @@ How would the concepts described above map to your potential use case?
 ## Solution
 
 1. In this case the organizations would be the academic hospitals as well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht *and* your research institute. Note that UMC Utrecht must be added to the new collaboration despite being already part of an existing one.
-2. One node for every academic hospital, so 3. Note that UMC Utrecht needs a new node despite already having one, as the existing one is for a different collaboration.
+2. One node for every organization in the collaboration, so 4. Note that UMC Utrecht needs a new node despite already having one, as the existing one is for a different collaboration.
 3. There is no need to create new users, as these are already registered on the organization. Note that the users are linked only to the organization, not to the nodes.
+
+![](fig/chapter2/exercise_1_answer.png)
 
 :::::::::::::::::::::::::::::::::
 
@@ -134,10 +139,17 @@ While a vantage6-supported research infrastructure offers a strong defense again
 
 Vantage6's algorithm store is a repository for trusted algorithms within a certain project that aims to enhance trustworthiness by offering a centralized platform for managing pre-registered algorithms. This serves as an alternative to using algorithms from unknown authors or those lacking transparency regarding their development process and status. The algorithm store currently allows researchers to explore which algorithms are available and how to run them. This, streamlines task execution requests within collaborations. Also, the algorithm store integrates additional information to the algorithm metadata such who developed and reviewed the algorithm. Only after complying with the review policies of a store, a new algorithm will be published in the store.
 
+### The workflow of a task running in vantage6
+The diagram below illustrates what happens when a request is sent by a user to vantage6. In this scenario, a user — with the appropriate credentials — can request the execution of **tasks** within using the UI. In this case, the user might request the execution of an **algorithm** (previously registered in an **algorithm store** trusted by the collaboration) across all participating organization nodes. In response, each node from the involved organizations executes the **algorithm** on its local data. The resulting (aggregated) data is then sent back to the server, where it can be accessed by the requesting user.
+To enhance the security of the communication, messages between organizations can be encrypted. In this case, an organization can have a public key that the other collaborating organizations have to use in order to exchange messages.
+
+
+![](fig/chapter2/infrastructure_animated.gif)
+
 ## How algorithms run in vantage6
 So how does vantage6 relate to the privacy enhancing techniques that we discussed in chapter 1? Let us consider the federated sum from chapter 1 again
 
-![Federated analysis orchestrated by vantage6](fig/chapter2/federated_analysis_applied.jpg)
+![Federated analysis orchestrated by vantage6](fig/chapter2/federated_analysis_applied.png)
 
 As you can see, both the datasources and the aggregation entity are mapped to nodes. The vantage6 server is on the side, coordinating the analysis.
 
