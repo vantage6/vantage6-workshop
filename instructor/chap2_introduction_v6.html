@@ -337,7 +337,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>vantage6 basics</h1>
-        <p>Last updated on 2024-09-16 |
+        <p>Last updated on 2024-09-30 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap2_introduction_v6.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -387,10 +387,11 @@ network</li>
 <p>vantage6 is a platform to execute privacy enhancing techniques
 (PETs). Several alternative platforms for PETs are available, but
 vantage6 is unique as it provides:</p>
-<ul><li>Open source and free to use.</li>
+<ul><li>Open source and free to use under Apache-2.0 licence.</li>
 <li>Container orchestration for privacy enhancing techniques.</li>
 <li>Easily extensible to different types of data sources.</li>
 <li>Algorithms can be developed in any language.</li>
+<li>A Graphical User Interface is provided to operate the platform.</li>
 <li>Other applications can connect to vantage6 using the API.</li>
 <li>Managing and enforcing collaboration policies</li>
 <li>Minimal network requirements at data stations</li>
@@ -487,7 +488,7 @@ institution for the said collaboration.</li>
 <li>You will be conducting this study with a colleague from your
 institute named Daphne. Both of you are already registered on the
 organization but without access to the existing collaborations.</li>
-</ul><p>How would the concepts described above map to your potential use
+</ul><figure><img src="../fig/chapter2/exercise_1_question.png" class="figure mx-auto d-block"></figure><p>How would the concepts described above map to your potential use
 case?</p>
 <ol style="list-style-type: decimal"><li>Which organizations will you need to add to your collaboration?</li>
 <li>How many new nodes would you need to set up and on which
@@ -508,13 +509,13 @@ well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht
 <em>and</em> your research institute. Note that UMC Utrecht must be
 added to the new collaboration despite being already part of an existing
 one.</li>
-<li>One node for every academic hospital, so 3. Note that UMC Utrecht
-needs a new node despite already having one, as the existing one is for
-a different collaboration.</li>
+<li>One node for every organization in the collaboration, so 4. Note
+that UMC Utrecht needs a new node despite already having one, as the
+existing one is for a different collaboration.</li>
 <li>There is no need to create new users, as these are already
 registered on the organization. Note that the users are linked only to
 the organization, not to the nodes.</li>
-</ol></div>
+</ol><figure><img src="../fig/chapter2/exercise_1_answer.png" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 </div>
@@ -617,12 +618,29 @@ developed and reviewed the algorithm. Only after complying with the
 review policies of a store, a new algorithm will be published in the
 store.</p>
 </div>
+<div class="section level3">
+<h3 id="the-workflow-of-a-task-running-in-vantage6">The workflow of a task running in vantage6<a class="anchor" aria-label="anchor" href="#the-workflow-of-a-task-running-in-vantage6"></a></h3>
+<p>The diagram below illustrates what happens when a request is sent by
+a user to vantage6. In this scenario, a user — with the appropriate
+credentials — can request the execution of <strong>tasks</strong> within
+using the UI. In this case, the user might request the execution of an
+<strong>algorithm</strong> (previously registered in an
+<strong>algorithm store</strong> trusted by the collaboration) across
+all participating organization nodes. In response, each node from the
+involved organizations executes the <strong>algorithm</strong> on its
+local data. The resulting (aggregated) data is then sent back to the
+server, where it can be accessed by the requesting user. To enhance the
+security of the communication, messages between organizations can be
+encrypted. In this case, an organization can have a public key that the
+other collaborating organizations have to use in order to exchange
+messages.</p>
+<figure><img src="../fig/chapter2/infrastructure_animated.gif" class="figure mx-auto d-block"></figure></div>
 <div class="section level2">
 <h2 id="how-algorithms-run-in-vantage6">How algorithms run in vantage6<a class="anchor" aria-label="anchor" href="#how-algorithms-run-in-vantage6"></a></h2>
 <p>So how does vantage6 relate to the privacy enhancing techniques that
 we discussed in chapter 1? Let us consider the federated sum from
 chapter 1 again</p>
-<figure><img src="../fig/chapter2/federated_analysis_applied.jpg" alt="Federated analysis orchestrated by vantage6" class="figure mx-auto d-block"><div class="figcaption">Federated analysis orchestrated by
+<figure><img src="../fig/chapter2/federated_analysis_applied.png" alt="Federated analysis orchestrated by vantage6" class="figure mx-auto d-block"><div class="figcaption">Federated analysis orchestrated by
 vantage6</div>
 </figure><p>As you can see, both the datasources and the aggregation entity are
 mapped to nodes. The vantage6 server is on the side, coordinating the
@@ -855,7 +873,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/chap2_introduction_v6.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/chap2_introduction_v6.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-09-16",
+  "dateModified": "2024-09-30",
   "datePublished": "2024-09-30"
 }
 
