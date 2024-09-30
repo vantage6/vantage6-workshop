@@ -421,6 +421,10 @@ Create and start a local vantage6 network with the `v6 dev` commands. Then, run 
 algorithm using the Python client. Note that the data in the `v6 dev` network is
 different from the mock data you used before - however it contains the same column "Age".
 
+If you are on Linux and are _not_ using Docker Desktop, you will need to run
+`v6 dev create-demo-network --server-url http://172.17.0.1` - this to let vantage6 know
+where they can reach localhost from within the Docker container.
+
 You can use the following data to login:
 
 ```python
