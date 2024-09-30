@@ -102,8 +102,8 @@ In this course we will focus on federated analysis. In a federated setting, the 
 The results are often akin to a form of _aggregation_ of the data. This can be in the shape of
 traditional statistics like the mean, or it can be more intricate like a machine learning model.
 When data is aggregated, it doesn't have a direct link with an individual anymore. Since the
-aggregated data cannot be be traced back to the individuals from the dataset, the privacy is 
-considered protected (more about that later).
+aggregated data cannot be be traced back to individuals individuals directly, the privacy is 
+considered protected.
 
 Aggregating the data does not ensure complete protection of person-level information, but it
 certainly makes it less likely that this will happen. It is usually the case that the larger 
