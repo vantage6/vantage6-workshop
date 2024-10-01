@@ -25,12 +25,12 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
-In this course, we will explore how privacy-enhancing technologies (PETs) can support your research. On the first day, we’ll cover some of the core concepts of PET analysis, followed by a hands-on session where we’ll apply these techniques using the vantage6 user interface. We'll also discuss how to manage PET analysis collaborations, one of the vantage6's key distinguising features.
+In this course, we will explore how privacy-enhancing technologies (PETs) can support your research. On the first day, we will cover some of the core concepts of PET analysis, followed by a hands-on session where we’ll apply these techniques using the vantage6 user interface. We will also discuss how to manage PET analysis collaborations, one of the vantage6's key distinguising features.
 
 In the second part of the workshop, we will focus on the python client, which can do the same as the UI, but also much more. You will also learn how to create a federated algorithm using the platform's algorithm tools.
 
 This course provides a high-level overview of PETs, focusing on their practical applications in data analysis. While we won't dive into the detailed mathematics behind these technologies, we encourage you to explore other resources for those specifics.
-Our goal here is to equip you with the knowledge to apply PETs effectively in your work.
+Our goal here is to equip you with enough knowledge to apply PETs effectively in your work.
 
 ## Problem statement
 
