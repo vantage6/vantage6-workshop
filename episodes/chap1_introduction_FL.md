@@ -166,7 +166,7 @@ puzzle pieces that when put together will reveal the result of the computation.
 Mees, Sara and Noor want to know how much they weigh in total.
 Mees weighs 43 kg, Sara weighs 39, Noor weighs 45.
 All three they think of 2 random numbers $r_1$ and $r_2$ so that $weight = r_1 + r_2 + x$. Finally
-they compute $x$ by $x=weight - r_1 - r_2$
+they compute $x$ by $x=weight - r_1 - r_2$. These random numbers can be seen as encrypted data.
 
 
 
