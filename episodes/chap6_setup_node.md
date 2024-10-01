@@ -188,7 +188,7 @@ You don't see any nodes in the list because you haven't created any nodes yet. N
 We will now create a new node configuration using the `v6 node new` command for the collaboration we created in [Chapter 4](./chap4_manage_via_ui.md).
 This process will create a configuration `yaml` file that the vantage6 node requires to run.
 
-⚠️ Make sure you have the API key downloaded from the vantage6 UI in Chapter 4.
+⚠️ Make sure you have the API key downloaded from the vantage6 UI in [Episode 4](./chap4_manage_via_ui.md#create-a-new-collaboration).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
