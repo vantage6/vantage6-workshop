@@ -47,24 +47,27 @@ with data are moved to a central location'}
 Unfortunately this way of working does not respect the privacy of the people contained within the
 dataset. All their personal details end up at another party.
 
-::::::::::::::::::::::::::::::::::::: challenge
+::::::::::::::::::::::::::::::::::::: callout
 
 ## Other problems with copying data
 
-Discuss in groups what other issues you see with handling the data by copying everything into one
-central place.
-
-:::::::::::::::: solution
-
-You might think of multiple issues. Some examples:
+There are other issues with copying data to a central place that are not directly related to privacy.
+Some examples:
 
 - The original data owner loses control of the data
 - Results in multiple versions of the data
 - What to do when the data needs to be updated?
 - If there was consent in the first place, how can you retract consent?
-
-:::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::: challenge
+## 1. Data sharing story time
+
+Now it's your turn. Have you personally experienced any issues doing research with data
+collected into a central place? Discuss with your peers.
+
+::::::::::::::::::::::::::::::::
+
 
 In this lesson, we will discuss various privacy-enhancing technologies (PET) that can be used to
 analyze data in a privacy-preserving manner, and what the risks associated with different
