@@ -500,7 +500,10 @@ The system sends a query or instruction to the data and only the results
 will get back to the user. The results are often akin to a form of
 <em>aggregation</em> of the data. This can be in the shape of
 traditional statistics like the mean, or it can be more intricate like a
-machine learning model.</p>
+machine learning model. When data is aggregated, it doesn’t have a
+direct link with an individual anymore. Since the aggregated data cannot
+be be traced back to individuals individuals directly, the privacy is
+considered protected.</p>
 <p>Aggregating the data does not ensure complete protection of
 person-level information, but it certainly makes it less likely that
 this will happen. It is usually the case that the larger the dataset,
@@ -623,7 +626,7 @@ be preserved?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>When receiving a sum from a set of 3 individuals, every record makes
 up roughly 30% of the final answer. That is a big contribution. It can
@@ -660,7 +663,7 @@ properly preserved?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>When receiving a sum from a set of 3 individuals, every record makes
 up roughly 30% of the final answer. That is a big contribution. It can
