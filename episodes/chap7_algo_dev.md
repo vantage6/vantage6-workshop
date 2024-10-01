@@ -685,7 +685,7 @@ projects. You can also use that to further develop your algorithm!
 
 ### Sessions
 
-We are currently using vantage6 version 4.7. The vantage6 team is working on vantage6
+We are currently using vantage6 version 4.7.1. The vantage6 team is working on vantage6
 version 5.0, which will bring changes to the algorithm development process. Version 5.0
 will introduce sessions, which are a way to split up the algorithm into smaller parts:
 data preparation, data preprocessing, data analysis, and post-processing. A major
