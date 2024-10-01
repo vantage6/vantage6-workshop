@@ -269,7 +269,7 @@ In the printed message, you will see not only the path of the configuration file
 
 ## Challenge 1: Create a new node configuration
 
-1. Create a new node configuration `node2` using the `v6 node new` command for another organization in the collaboration you created in [Chapter 4](./chap4_manage_via_ui.md):
+1. Create a new node configuration `node2` using the `v6 node new` command for another organization in the collaboration you created in [Episode 4](./chap4_manage_via_ui.md):
     - add a new database in the format of `csv` with only one column named `age`, you need to make up the data.
 2. Find the path to the configuration file using the `v6 node files` command. Open the configuration file with a text editor and check the configuration options. Are they correct?
 3. Open your configuration file, do the following:
