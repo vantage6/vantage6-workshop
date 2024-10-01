@@ -24,6 +24,14 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Introduction
+In this course, we will explore how privacy-enhancing technologies (PETs) can support your research. On the first day, we’ll cover some of the core concepts of PET analysis, followed by a hands-on session where we’ll apply these techniques using the vantage6 user interface. We'll also discuss how to manage PET analysis collaborations, one of the vantage6's key distinguising features.
+
+In the second part of the workshop, we will focus on the python client, which can do the same as the UI, but also much more. You will also learn how to create a federated algorithm using the platform's algorithm tools.
+
+This course provides a high-level overview of PETs, focusing on their practical applications in data analysis. While we won't dive into the detailed mathematics behind these technologies, we encourage you to explore other resources for those specifics.
+Our goal here is to equip you with the knowledge to apply PETs effectively in your work.
+
 ## Problem statement
 
 The amount of data being generated nowadays is absolutely mind-boggling. This data can be a valuable
@@ -320,11 +328,6 @@ or [FHIR](https://hl7.org/fhir/) together with [SNOMED-CT](https://www.snomed.or
 
 In conclusion, PETs will help you to extract valuable insights from sensitive data, but they are only one aspect
 of the process. It is also important to consider other factors such as regulations and data preprocessing.
-
-## Up next
-In the upcoming chapters we will explore how privacy-enhancing technologies are integrated into the vantage6 software framework. First, we will introduce the core concepts of vantage6 through its user interface (UI) and demonstrate how to run a privacy-enhancing algorithm within it. We will also cover how to manage collaborations, one of vantage6's key distinguishing features.
-
-In the second part of the workshop, we will shift focus to interacting with vantage6 using Python, taking the place of the UI. We will also delve into creating a federated algorithm using the platform's algorithm tools.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
