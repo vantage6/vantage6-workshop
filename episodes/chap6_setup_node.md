@@ -356,9 +356,9 @@ then it will print out the logs of the node in the console:
 2024-09-23 09:09:59 - context        - INFO     - Current working directory is '/'
 2024-09-23 09:09:59 - context        - INFO     - Successfully loaded configuration from '/mnt/config/node1.yaml'
 2024-09-23 09:09:59 - context        - INFO     - Logging to '/mnt/log/node_user.log'
-2024-09-23 09:09:59 - context        - INFO     - Common package version '4.7.0'
-2024-09-23 09:09:59 - context        - INFO     - vantage6 version '4.7.0'
-2024-09-23 09:09:59 - context        - INFO     - Node package version '4.7.0'
+2024-09-23 09:09:59 - context        - INFO     - Common package version '4.7.1'
+2024-09-23 09:09:59 - context        - INFO     - vantage6 version '4.7.1'
+2024-09-23 09:09:59 - context        - INFO     - Node package version '4.7.1'
 2024-09-23 09:09:59 - node           - INFO     - Connecting server: https://server.workshop.vantage6.ai:443/api
 2024-09-23 09:09:59 - node           - DEBUG    - Authenticating
 2024-09-23 09:09:59 - common         - DEBUG    - Authenticating node...
@@ -526,8 +526,8 @@ after you choose the node, it will ask you to enter the new API key, then you ca
 2024-09-23 11:30:33 - context        - INFO     - Current working directory is '***'
 2024-09-23 11:30:33 - context        - INFO     - Successfully loaded configuration from '***/vantage6/node/node1.yaml'
 2024-09-23 11:30:33 - context        - INFO     - Logging to '***/vantage6/node/node1/node_user.log'
-2024-09-23 11:30:33 - context        - INFO     - Common package version '4.7.0'
-2024-09-23 11:30:33 - context        - INFO     - vantage6 version '4.7.0'
+2024-09-23 11:30:33 - context        - INFO     - Common package version '4.7.1'
+2024-09-23 11:30:33 - context        - INFO     - vantage6 version '4.7.1'
 [info ] - Your new API key has been uploaded to the config file ***/vantage6/node/node1.yaml.
 ```
 
