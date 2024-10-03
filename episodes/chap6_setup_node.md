@@ -243,10 +243,6 @@ The command will show a wizard to guide you through the configuration process in
 ? Enter unique label for the database: default
 ? Database URI: ***/data_node1.csv
 ? Database type: csv
-? Do you want to add a database? Yes
-? Enter unique label for the database: age
-? Database URI: ***/data_node1_age.csv
-? Database type: csv
 ? Do you want to add a database? No
 ? Do you want to connect to a VPN server? No
 ? Do you want to add limit the algorithms allowed to run on your node? This should always be done for production scenarios. No
@@ -337,8 +333,6 @@ then it will start the node and print out the following messages:
 [warn ] - private key file provided ***/vantage6/node/node1/private_key.pem, but does not exists
 [info ] - Setting up databases
 [info ] -   Processing csv database default:***/data_node1.csv
-[debug] -   - file-based database added
-[info ] -   Processing csv database age:***/data_node1_age.csv
 [debug] -   - file-based database added
 [info ] - Running Docker container
 [info ] - Node container was started!
