@@ -102,9 +102,9 @@ client.authenticate(config.username, config.password)
 # In the case of 2FA, you should also include the 6-digit code:
 # client.authenticate(config.username, config.password, '123456')
 
-# Setup the encryption. In case no encryption is used, this line can be
-# omitted or `config.organization_key` should be set to None
-client.setup_encryption(config.organization_key)
+# In case encryption is used, this line can be used to set the organizations private
+# key.
+# client.setup_encryption(config.organization_key)
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -470,7 +470,8 @@ are also some methods that are not bound to a specific resource. Examples are:
 
 ### 3. Find documentation
 
-Find the documentation on how to reset your password 🔑 using the `help()` function.
+Find the documentation on how to reset your password 🔑 in case you forgot it. You can
+use the `help()` to explore the client functions.
 
 ::: hint
 
@@ -487,9 +488,18 @@ Use the `help()` function to find the documentation of the `client.util` resourc
 
 ::: solution
 
+To obtain a token:
+```python
+help(client.util.reset_my_password)
+```
+Then you can use:
+
 ```python
 help(client.util.change_my_password)
 ```
+
+The function `client.util.change_my_password` is used to change the password of the
+authenticated user.
 :::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -813,72 +823,19 @@ for output in results["data"]:
 print(global_sum / global_count)
 ```
 
+### Create a central task
 
-# Advanced Exercises
-
-
-:::::::::::::::::::::::::::::::::::::::::::::::: challenge
-
-## 5. Find study details
-
-
-A study is a subset of a collaboration. Obtain the IDs of the collaborations and
-organizations of the following studies. Refer to the [Using the client](#using-the-client)
-section above on how to do this.
-
-| User      | Roles      | Collaboration |
-| --------- | ---------- | ------------- |
-| [*] AGOT2024  | Researcher |     [*]     |
-| [*] GGA2024   | Researcher |     [*]     |
-
-[*] Should be replaced with the collaboration name you have access to. This can be one of
-  Oak Alliance, Pine Partners, Maple Consortium, Cedar Coalition, Birch Brotherhood,
-  Redwood Union or Willow Network.
-
-Now, try to identify which nodes are online in each study.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::: solution
-
-First, lets obtain the study IDs:
-```python
-client.study.list(fields=('id', 'name'))
-```
-
-Note that your output might be slightly different. But the *AGOT2024* and *GGA2024*
-studies should be present:
-```output
-[
-    {'id': 1, 'name': '[*] AGOT2024'},
-    {'id': 2, 'name': '[*] GGA2024'},
-    ...
-]
-```
-
-Now, obtain the organizations of the study:
-```python
-client.organization.list(study=1, fields=['id', 'name'])
-```
-
-```output
-[
-    {'id': 1, 'name': 'org1'},
-    {'id': 2, 'name': 'org2'}
-]
-```
-
-:::::::::::::::::::::::::::::::::
-
-
+In the previous section you created a task to run the `partial_average()` function. Now,
+create a task to run the `central_average()` function.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## 6. Run central method
+## 5. Run central method
 
 In section [Creating a new task](#creating-a-new-task) it is explained how to create a
 task to run the `partial_average()` function. Now, create a task to run the
-`central_average()` function.
+`central_average()` function. ⚠ Make sure to **only** send the task to a single
+organization.
 
 :::::::::::::::::::::::: solution
 
@@ -890,8 +847,7 @@ input_ = {
 }
 
 average_task = client.task.create(
-   collaboration=1,
-   organizations=[1,2,3,4],
+   organizations=[1],
    study=1,
    name="name_for_the_task",
    image="harbor2.vantage6.ai/demo/average",
@@ -916,14 +872,16 @@ print(result)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: challenge
-
-## 7. Inspect log files
+### Inspecting log files
 
 Each task consists of several runs. Each node included in the task execution will at
 least have one run. But in case of multi-step algorithms or iterative algorithms, a
 node can have multiple runs. Each run has a log file that contains information about
 the execution of the algorithm on the node.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## 6. Inspect log files
 
 1. Retrieve the log files from the central method from previous challenge.
 2. Rerun the central method, but this time use a column name that does not exist in the
@@ -939,7 +897,8 @@ for run in runs["data"]:
     print(run['log'])
 ```
 
-In the second case you should be able to find an exception in the log file.
+In the second case you should be able to find an exception in the log file. Is the error
+message clear enough to understand what went wrong?
 
 :::::::::::::::::::::::::::::::::
 
