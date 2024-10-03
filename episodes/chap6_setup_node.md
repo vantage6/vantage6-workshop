@@ -82,9 +82,7 @@ The following software must be installed before installing the vantage6 node:
 - Python v3.10
 - Python packages:
   - [vantage6==4.7.1](https://pypi.org/project/vantage6/)
-  - [vantage6-client==4.7.1](https://pypi.org/project/vantage6-client/)
-  - [vantage6-algorithm-tools==4.7.1](https://pypi.org/project/vantage6-algorithm-tools/)
-- A code editor [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm/) or something similar
+  - [jupyterlab](https://pypi.org/project/jupyterlab/)
 
 You should already have installed the requirements before coming to this lesson. They are detailed in the [Setup section](../setup.md).
 
@@ -110,7 +108,7 @@ conda create -n v6-workshop python=3.10
 conda activate v6-workshop
 
 # Then install the package
-pip install vantage6
+pip install vantage6 jupyterlab
 ```
 
 To verify the installed CLI, run the command,
