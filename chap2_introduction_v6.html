@@ -510,7 +510,7 @@ organizations?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>In this case the organizations would be the academic hospitals as
 well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht
@@ -658,7 +658,7 @@ our example this would be the aggregation.</p></li>
 <li><p><strong>Federated</strong>: The partial tasks are executing
 computations on the local privacy sensitive data. These would be the
 nodes on the left.</p></li>
-</ul><figure><img src="fig/algorithm_central_and_subtasks.png" alt="vantage6 central and federated tasks." class="figure mx-auto d-block"><div class="figcaption">vantage6 central and federated tasks.</div>
+</ul><figure><img src="fig/chapter2/algorithm_central_and_subtasks.png" alt="vantage6 central and federated tasks." class="figure mx-auto d-block"><div class="figcaption">vantage6 central and federated tasks.</div>
 </figure><p>Now, let’s see what typically happens if a task is created in
 vantage6:</p>
 <ul><li>The user creates a task for the central part of the algorithm. This
@@ -705,7 +705,7 @@ age of a set of patients:</p>
 <p><span class="math inline">\(b = [51, 23, 44]\)</span></p>
 <p>Each center has a data station and we want to compute the overall
 average age of the patients.</p>
-<figure><img src="fig/schema_exercise.png" alt="Architecture." class="figure mx-auto d-block"><div class="figcaption">Architecture.</div>
+<figure><img src="fig/chapter2/schema_exercise.png" alt="Architecture." class="figure mx-auto d-block"><div class="figcaption">Architecture.</div>
 </figure><p>Given that the central average can be computed by summing up all the
 values and dividing the sum by the number of values, using the following
 equation:</p>
@@ -729,7 +729,7 @@ different parts?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
@@ -751,7 +751,7 @@ and <span class="math inline">\(n_a\)</span> from node A and <span class="math i
 following computation:</p>
 <p><span class="math inline">\(\overline{x}
 =\dfrac{S_a+S_b}{n_a+n_b}=\dfrac{153+118}{4+3}=38.71\)</span></p>
-<figure><img src="fig/algorithm_workflow.png" alt="vantage6 algorithm workflow." class="figure mx-auto d-block"><div class="figcaption">vantage6 algorithm workflow.</div>
+<figure><img src="fig/chapter2/algorithm_workflow.png" alt="vantage6 algorithm workflow." class="figure mx-auto d-block"><div class="figcaption">vantage6 algorithm workflow.</div>
 </figure></div>
 </div>
 </div>
