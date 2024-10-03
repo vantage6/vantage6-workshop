@@ -556,13 +556,17 @@ When you finish the process, the node configuration file will be updated with th
 
 To make the new API key effective, you need to restart the node by running the command `v6 node stop` and then `v6 node start`.
 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Regarding challenge 3, it's important to mention that usually you cannot reset the API key of a node from the collaborated organization.
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 3: Update the API key of a node
 
 1. Reset the API key of the node `node2` you created in the first exercise.
 2. Update the API key of the node `node2`, WITHOUT using the `v6 node set-api-key` command.
-3. How do you make sure the new API key is effective?
+3. How do you verify that the new API key is effective?
 
 ::: solution
 
