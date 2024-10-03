@@ -29,9 +29,13 @@ exercises: 3
 
 This lessons requires the instructor to type commands in the terminal and show the output to the learners.
 
-To make sure the learners can follow along, the instructor should explain each command before executing it.
+To make sure the learners can follow along, the instructor should explain each command before executing it,
+and go through or explain the output after executing it.
 
-Also, change the shell prompt in terminal to easy-to-catch one, e.g. red arrow:
+Also, it's recommended to use a light background in the terminal to make the text more readable. You
+could choose one color theme from https://iterm2colorschemes.com/.
+
+And you should change the shell prompt in terminal to easy-to-catch one, e.g. red arrow:
 
 ```bash
 # BASH shell
