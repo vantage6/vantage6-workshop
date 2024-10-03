@@ -160,7 +160,7 @@ Federated algorithms can be split in a **federated** and a **central** part:
 
 - **Federated**: The partial tasks are executing computations on the local privacy sensitive data. These would be the nodes on the left.
 
-![vantage6 central and federated tasks.](fig/algorithm_central_and_subtasks.png)
+![vantage6 central and federated tasks.](fig/chapter2/algorithm_central_and_subtasks.png)
 
 Now, let’s see what typically happens if a task is created in vantage6:
 
@@ -190,7 +190,7 @@ $b = [51, 23, 44]$
 
 Each center has a data station and we want to compute the overall average age of the patients.
 
-![Architecture.](fig/schema_exercise.png)
+![Architecture.](fig/chapter2/schema_exercise.png)
 
 Given that the central average can be computed by summing up all the values and dividing the sum by the number of values, using the following equation:
 
@@ -231,7 +231,7 @@ The central task receives $S_a$ and $n_a$ from node A and $S_b$ and $n_b$ from n
 
 $\overline{x} =\dfrac{S_a+S_b}{n_a+n_b}=\dfrac{153+118}{4+3}=38.71$
 
-![vantage6 algorithm workflow.](fig/algorithm_workflow.png)
+![vantage6 algorithm workflow.](fig/chapter2/algorithm_workflow.png)
 
 :::
 
