@@ -22,7 +22,7 @@ title: "vantage6 basics"
 
 :::
 
-# Why choose vantage6
+## Why choose vantage6
 
 vantage6 is a platform to execute privacy enhancing techniques (PETs). Several alternative platforms for PETs are available, but vantage6 is unique as it provides:
 
@@ -35,7 +35,7 @@ vantage6 is a platform to execute privacy enhancing techniques (PETs). Several a
 - Managing and enforcing collaboration policies
 - Minimal network requirements at data stations
 
-# Project administration in vantage6
+## Project administration in vantage6
 vantage6 encompasses a project administration system that allows the user to manage permissions and access to the resources, while assuring the protection of the data. The fundamental concepts of the administration system are defined as follows:
 
 - An **Organization** is a group of users that share a common goal or interest (e.g., a consortium, an institute, etc.). 
@@ -69,7 +69,7 @@ For example, consider the `Collaboration W` below, which includes six organizati
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Mapping vantage6 to "real life"
+## Challenge 1: Mapping vantage6 to "real life"
 
 Let's consider a scenario where you, on behalf of your research institute, want to conduct a new study on a particular illness across three major academic hospitals in the Netherlands: VUmc in Amsterdam, Maastricht UMC+, and UMC Utrecht, as these have valuable data related to the illness. Consider the following:
 
@@ -98,7 +98,7 @@ How would the concepts described above map to your potential use case?
 
 :::::::::::::::::::::::::::::::::
 
-# The vantage6 infrastructure
+## The vantage6 infrastructure
 
 Now that we have an overview of how vantage6 manages the project resources and how it can be used to setup the analysis framework, we can see how vantage6 works on a technical level and how the infrastructure maps the aforementioned concepts.
 In vantage6, a user can pose a question through a **client** to the vantage6 **server**. Each organization with sensitive data contributes one **node** to the network. 
@@ -180,6 +180,8 @@ It is easy to confuse the vantage6 server with the central part of the algorithm
 :::
 ::: challenge
 
+## Challenge 2: Who computes what?
+
 Two centers $A$ and $B$ have the following data regarding the age of a set of patients:
 
 $a = [34, 42, 28, 49]$
@@ -235,13 +237,12 @@ $\overline{x} =\dfrac{S_a+S_b}{n_a+n_b}=\dfrac{153+118}{4+3}=38.71$
 
 :::
 
-# Future developments of vantage6
+## Future developments of vantage6
 
 Back in 2018 when the development of vantage6 started, the focus was on federated learning. Since then, vantage6 has been extended to support different types of data sources, different types of algorithms and improved its user experience. Privacy Enhancing Technologies (PET) are a rapidly evolving field. To keep up with the latest developments, the vantage6 platform is designed to be flexible and to adapt to new developments in the field.
 
 From the development team we are working towards making vantage6 the PETOps platform for all your (distributed) analysis needs.
 
-[Image of the PETOps cycle]
 
 We identified a number of areas where we want to improve and extend vantage6 in order to achieve this goal:
 
