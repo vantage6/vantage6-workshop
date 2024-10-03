@@ -215,12 +215,25 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         2. vantage6 basics
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#why-choose-vantage6">Why choose vantage6</a></li>
+<li><a href="#project-administration-in-vantage6">Project administration in vantage6</a></li>
+<li><a href="#the-vantage6-infrastructure">The vantage6 infrastructure</a></li>
+<li><a href="#how-algorithms-run-in-vantage6">How algorithms run in vantage6</a></li>
+<li><a href="#future-developments-of-vantage6">Future developments of vantage6</a></li>
+<li><a href="#policies">Policies</a></li>
+<li><a href="#model-repository">Model Repository</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -337,7 +350,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>vantage6 basics</h1>
-        <p>Last updated on 2024-10-01 |
+        <p>Last updated on 2024-10-03 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap2_introduction_v6.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -382,9 +395,8 @@ network</li>
 </div>
 </div>
 </div>
-<div class="section level1">
-<h1 id="why-choose-vantage6">Why choose vantage6<a class="anchor" aria-label="anchor" href="#why-choose-vantage6"></a></h1>
-<p>vantage6 is a platform to execute privacy enhancing techniques
+<section><h2 class="section-heading" id="why-choose-vantage6">Why choose vantage6<a class="anchor" aria-label="anchor" href="#why-choose-vantage6"></a></h2>
+<hr class="half-width"><p>vantage6 is a platform to execute privacy enhancing techniques
 (PETs). Several alternative platforms for PETs are available, but
 vantage6 is unique as it provides:</p>
 <ul><li>Open source and free to use under Apache-2.0 licence.</li>
@@ -395,10 +407,8 @@ vantage6 is unique as it provides:</p>
 <li>Other applications can connect to vantage6 using the API.</li>
 <li>Managing and enforcing collaboration policies</li>
 <li>Minimal network requirements at data stations</li>
-</ul></div>
-<div class="section level1">
-<h1 id="project-administration-in-vantage6">Project administration in vantage6<a class="anchor" aria-label="anchor" href="#project-administration-in-vantage6"></a></h1>
-<p>vantage6 encompasses a project administration system that allows the
+</ul></section><section><h2 class="section-heading" id="project-administration-in-vantage6">Project administration in vantage6<a class="anchor" aria-label="anchor" href="#project-administration-in-vantage6"></a></h2>
+<hr class="half-width"><p>vantage6 encompasses a project administration system that allows the
 user to manage permissions and access to the resources, while assuring
 the protection of the data. The fundamental concepts of the
 administration system are defined as follows:</p>
@@ -469,12 +479,12 @@ analysis tasks in three different ways: you can address the entire
 <code>F</code>), focus on <code>Study Alpha</code> (nodes <code>A</code>
 to <code>D</code>), or concentrate on <code>Study Beta</code> (nodes
 <code>D</code> to <code>F</code>).</p>
-<figure><img src="../fig/chapter2/v6-concepts-study.png" class="figure mx-auto d-block"></figure><div id="mapping-vantage6-to-real-life" class="callout discussion">
+<figure><img src="../fig/chapter2/v6-concepts-study.png" class="figure mx-auto d-block"></figure><div id="challenge-1-mapping-vantage6-to-real-life" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="mapping-vantage6-to-real-life" class="callout-inner">
-<h3 class="callout-title">Mapping vantage6 to “real life”</h3>
+<div id="challenge-1-mapping-vantage6-to-real-life" class="callout-inner">
+<h3 class="callout-title">Challenge 1: Mapping vantage6 to “real life”</h3>
 <div class="callout-content">
 <p>Let’s consider a scenario where you, on behalf of your research
 institute, want to conduct a new study on a particular illness across
@@ -502,7 +512,7 @@ organizations?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>In this case the organizations would be the academic hospitals as
 well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht
@@ -519,10 +529,8 @@ the organization, not to the nodes.</li>
 </div>
 </div>
 </div>
-</div>
-<div class="section level1">
-<h1 id="the-vantage6-infrastructure">The vantage6 infrastructure<a class="anchor" aria-label="anchor" href="#the-vantage6-infrastructure"></a></h1>
-<p>Now that we have an overview of how vantage6 manages the project
+</section><section><h2 class="section-heading" id="the-vantage6-infrastructure">The vantage6 infrastructure<a class="anchor" aria-label="anchor" href="#the-vantage6-infrastructure"></a></h2>
+<hr class="half-width"><p>Now that we have an overview of how vantage6 manages the project
 resources and how it can be used to setup the analysis framework, we can
 see how vantage6 works on a technical level and how the infrastructure
 maps the aforementioned concepts. In vantage6, a user can pose a
@@ -635,9 +643,8 @@ encrypted. In this case, an organization can have a public key that the
 other collaborating organizations have to use in order to exchange
 messages.</p>
 <figure><img src="../fig/chapter2/infrastructure_animated.gif" class="figure mx-auto d-block"></figure></div>
-<div class="section level2">
-<h2 id="how-algorithms-run-in-vantage6">How algorithms run in vantage6<a class="anchor" aria-label="anchor" href="#how-algorithms-run-in-vantage6"></a></h2>
-<p>So how does vantage6 relate to the privacy enhancing techniques that
+</section><section><h2 class="section-heading" id="how-algorithms-run-in-vantage6">How algorithms run in vantage6<a class="anchor" aria-label="anchor" href="#how-algorithms-run-in-vantage6"></a></h2>
+<hr class="half-width"><p>So how does vantage6 relate to the privacy enhancing techniques that
 we discussed in chapter 1? Let us consider the federated sum from
 chapter 1 again</p>
 <figure><img src="../fig/chapter2/federated_analysis_applied.jpg" alt="Federated analysis orchestrated by vantage6" class="figure mx-auto d-block"><div class="figcaption">Federated analysis orchestrated by
@@ -687,12 +694,12 @@ whenever a new algorithm needs more resources.</p>
 </div>
 </div>
 </div>
-<div id="challenge1" class="callout challenge">
+<div id="challenge-2-who-computes-what" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<div id="challenge-2-who-computes-what" class="callout-inner">
+<h3 class="callout-title">Challenge 2: Who computes what?</h3>
 <div class="callout-content">
 <p>Two centers <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> have the following data regarding the
 age of a set of patients:</p>
@@ -724,7 +731,7 @@ different parts?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The Server starts the central task on one of the two nodes (e.g. Data
 station A).</p>
@@ -751,11 +758,8 @@ following computation:</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section level1">
-<h1 id="future-developments-of-vantage6">Future developments of vantage6<a class="anchor" aria-label="anchor" href="#future-developments-of-vantage6"></a></h1>
-<p>Back in 2018 when the development of vantage6 started, the focus was
+</section><section><h2 class="section-heading" id="future-developments-of-vantage6">Future developments of vantage6<a class="anchor" aria-label="anchor" href="#future-developments-of-vantage6"></a></h2>
+<hr class="half-width"><p>Back in 2018 when the development of vantage6 started, the focus was
 on federated learning. Since then, vantage6 has been extended to support
 different types of data sources, different types of algorithms and
 improved its user experience. Privacy Enhancing Technologies (PET) are a
@@ -764,12 +768,10 @@ vantage6 platform is designed to be flexible and to adapt to new
 developments in the field.</p>
 <p>From the development team we are working towards making vantage6 the
 PETOps platform for all your (distributed) analysis needs.</p>
-<p>[Image of the PETOps cycle]</p>
 <p>We identified a number of areas where we want to improve and extend
 vantage6 in order to achieve this goal:</p>
-<div class="section level2">
-<h2 id="policies">Policies<a class="anchor" aria-label="anchor" href="#policies"></a></h2>
-<p>Currently, vantage6 lets you set several policies, such as the
+</section><section><h2 class="section-heading" id="policies">Policies<a class="anchor" aria-label="anchor" href="#policies"></a></h2>
+<hr class="half-width"><p>Currently, vantage6 lets you set several policies, such as the
 organizations that are allowed to participate in a collaboration, the
 algorithms that are allowed to run on the nodes, and the data that is
 allowed to be used in a collaboration. We want to extend this to a more
@@ -782,10 +784,8 @@ collaboration</li>
 <li>Which users is allowed to run a certain algorithm</li>
 <li>Which algorithms are allowed in a collaboration/study</li>
 <li>Define privacy guards at algorithm level</li>
-</ul></div>
-<div class="section level2">
-<h2 id="model-repository">Model Repository<a class="anchor" aria-label="anchor" href="#model-repository"></a></h2>
-<p>Currently, vantage6 is focused on privacy enhancing techniques. Some
+</ul></section><section><h2 class="section-heading" id="model-repository">Model Repository<a class="anchor" aria-label="anchor" href="#model-repository"></a></h2>
+<hr class="half-width"><p>Currently, vantage6 is focused on privacy enhancing techniques. Some
 of these techniques result in a model that can be used to make
 predictions. We want to extend vantage6 with a model repository in which
 these models can be stored, shared and used. This will make it easier to
@@ -810,12 +810,7 @@ data, and a central part, aggregating the results.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div>
-</div>
-
-
-
-      </div> <!-- / div.lesson-content -->
+</section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/chap1_introduction_FL.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/chap3_run_analysis_ui.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -873,8 +868,8 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/chap2_introduction_v6.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/chap2_introduction_v6.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-10-01",
-  "datePublished": "2024-10-02"
+  "dateModified": "2024-10-03",
+  "datePublished": "2024-10-03"
 }
 
   </script><script>
