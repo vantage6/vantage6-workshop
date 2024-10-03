@@ -190,14 +190,39 @@ You don't see any nodes in the list because you haven't created any nodes yet. N
 We will now create a new node configuration using the `v6 node new` command for the collaboration we created in [Chapter 4](./chap4_manage_via_ui.md).
 This process will create a configuration `yaml` file that the vantage6 node requires to run.
 
-⚠️ Make sure you have the API key downloaded from the vantage6 UI in [Episode 4](./chap4_manage_via_ui.md#create-a-new-collaboration). If you haven't done so or lost the API key, you can reset the API key for the node in the vantage6 UI, check the [Reset API key for a node via the vantage6 UI](#reset-api-key-for-a-node-via-the-vantage6-ui) section.
+### Prepare the API key and data
+
+Make sure you have the API key downloaded from the vantage6 UI in [Episode 4](./chap4_manage_via_ui.md#create-a-new-collaboration). If you haven't done so or lost the API key, you can reset the API key for the node in the vantage6 UI, check the [Reset API key for a node via the vantage6 UI](#reset-api-key-for-a-node-via-the-vantage6-ui) section.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
 Display the downloaded API key file and there should be at least two API keys for two organizations in the collaboration.
-
+If the participants don't have the API key, helpers can help them quickly reset it in the vantage6 UI to not block the progress of the lesson.
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+Go back to the terminal and go to a directory you want to work in:
+
+```bash
+cd  path/to/your/directory
+```
+
+Open the jupyter lab in the terminal:
+
+```bash
+jupyter lab
+```
+
+In the Jupyter Lab, create a new csv data file `data_node1.csv` with the following content:
+
+```csv
+age
+1
+1
+1
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Participants may make mistakes while entering the `v6 node new` command input. It may be good to tell them in advance that in that step the tool is just creating a configuration file, and that they can fix it later if they make a typo or something, so they don't redo it all over again.
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Let's run the command:
 
