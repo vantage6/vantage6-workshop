@@ -157,4 +157,11 @@ python -c "import vantage6.algorithm.tools"
 
 If there is no output and no error message, the installation is successful.
 
+## Create Dockerhub account
+
+In this course, we will build our own vantage6 algorithms. Part of these exercises will
+be to share the algorithm Docker images online. For this, you need a Dockerhub account.
+Please create one [here](https://app.docker.com/signup) on the Dockerhub website.
+Make sure to remember your username and password!
+
 **Congratulations 🎉** You have successfully set up all required software for this lesson!
