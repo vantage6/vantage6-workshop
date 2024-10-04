@@ -65,6 +65,7 @@ instructors/files/infrastructure/workshop_resources/*.csv
 # Drawio hidden backup files
 **/*.*.bkp
 **/*.bkp
+**/.$*.dtmp
 
 # Temporal powerpoint files
 ~$*.pptx
