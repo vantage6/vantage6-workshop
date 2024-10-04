@@ -29,9 +29,13 @@ exercises: 3
 
 This lessons requires the instructor to type commands in the terminal and show the output to the learners.
 
-To make sure the learners can follow along, the instructor should explain each command before executing it.
+To make sure the learners can follow along, the instructor should explain each command before executing it,
+and go through or explain the output after executing it.
 
-Also, change the shell prompt in terminal to easy-to-catch one, e.g. red arrow:
+Also, it's recommended to use a light background in the terminal to make the text more readable. You
+could choose one color theme from https://iterm2colorschemes.com/.
+
+And you should change the shell prompt in terminal to easy-to-catch one, e.g. red arrow:
 
 ```bash
 # BASH shell
@@ -78,9 +82,7 @@ The following software must be installed before installing the vantage6 node:
 - Python v3.10
 - Python packages:
   - [vantage6==4.7.1](https://pypi.org/project/vantage6/)
-  - [vantage6-client==4.7.1](https://pypi.org/project/vantage6-client/)
-  - [vantage6-algorithm-tools==4.7.1](https://pypi.org/project/vantage6-algorithm-tools/)
-- A code editor [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm/) or something similar
+  - [jupyterlab](https://pypi.org/project/jupyterlab/)
 
 You should already have installed the requirements before coming to this lesson. They are detailed in the [Setup section](../setup.md).
 
@@ -106,7 +108,7 @@ conda create -n v6-workshop python=3.10
 conda activate v6-workshop
 
 # Then install the package
-pip install vantage6
+pip install vantage6 jupyterlab
 ```
 
 To verify the installed CLI, run the command,
@@ -188,14 +190,39 @@ You don't see any nodes in the list because you haven't created any nodes yet. N
 We will now create a new node configuration using the `v6 node new` command for the collaboration we created in [Chapter 4](./chap4_manage_via_ui.md).
 This process will create a configuration `yaml` file that the vantage6 node requires to run.
 
-⚠️ Make sure you have the API key downloaded from the vantage6 UI in [Episode 4](./chap4_manage_via_ui.md#create-a-new-collaboration). If you haven't done so or lost the API key, you can reset the API key for the node in the vantage6 UI, check the [Reset API key for a node via the vantage6 UI](#reset-api-key-for-a-node-via-the-vantage6-ui) section.
+### Prepare the API key and data
+
+Make sure you have the API key downloaded from the vantage6 UI in [Episode 4](./chap4_manage_via_ui.md#create-a-new-collaboration). If you haven't done so or lost the API key, you can reset the API key for the node in the vantage6 UI, check the [Reset API key for a node via the vantage6 UI](#reset-api-key-for-a-node-via-the-vantage6-ui) section.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
 Display the downloaded API key file and there should be at least two API keys for two organizations in the collaboration.
-
+If the participants don't have the API key, helpers can help them quickly reset it in the vantage6 UI to not block the progress of the lesson.
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+Go back to the terminal and go to a directory you want to work in:
+
+```bash
+cd  path/to/your/directory
+```
+
+Open the jupyter lab in the terminal:
+
+```bash
+jupyter lab
+```
+
+In the Jupyter Lab, create a new csv data file `data_node1.csv` with the following content:
+
+```csv
+age
+1
+1
+1
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Participants may make mistakes while entering the `v6 node new` command input. It may be good to tell them in advance that in that step the tool is just creating a configuration file, and that they can fix it later if they make a typo or something, so they don't redo it all over again.
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Let's run the command:
 
@@ -215,10 +242,6 @@ The command will show a wizard to guide you through the configuration process in
 ? Do you want to add a database? Yes
 ? Enter unique label for the database: default
 ? Database URI: ***/data_node1.csv
-? Database type: csv
-? Do you want to add a database? Yes
-? Enter unique label for the database: age
-? Database URI: ***/data_node1_age.csv
 ? Database type: csv
 ? Do you want to add a database? No
 ? Do you want to connect to a VPN server? No
@@ -310,8 +333,6 @@ then it will start the node and print out the following messages:
 [warn ] - private key file provided ***/vantage6/node/node1/private_key.pem, but does not exists
 [info ] - Setting up databases
 [info ] -   Processing csv database default:***/data_node1.csv
-[debug] -   - file-based database added
-[info ] -   Processing csv database age:***/data_node1_age.csv
 [debug] -   - file-based database added
 [info ] - Running Docker container
 [info ] - Node container was started!
@@ -535,13 +556,17 @@ When you finish the process, the node configuration file will be updated with th
 
 To make the new API key effective, you need to restart the node by running the command `v6 node stop` and then `v6 node start`.
 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Regarding challenge 3, it's important to mention that usually you cannot reset the API key of a node of an organization the user is not part of, even if it's in the same collaboration.
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 3: Update the API key of a node
 
 1. Reset the API key of the node `node2` you created in the first exercise.
 2. Update the API key of the node `node2`, WITHOUT using the `v6 node set-api-key` command.
-3. How do you make sure the new API key is effective?
+3. How do you verify that the new API key is effective?
 
 ::: solution
 
