@@ -489,19 +489,14 @@ required Python packages.</p>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># Install the required Python packages</span></span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab vantage6==4.7.1 vantage6-client==4.7.1 vantage6-algorithm-tools==4.7.1</span></code></pre>
 </div>
-<ol style="list-style-type: decimal"><li>Verify the installation of <code>jupyterlab</code>:</li>
+<ol style="list-style-type: decimal"><li>Verify the installation of <code>vantage6</code>:</li>
 </ol><div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">v6</span> <span class="at">--help</span></span></code></pre>
 </div>
-<p>Make sure JupyterLab opens in your browser.</p>
-<ol start="2" style="list-style-type: decimal"><li>Verify the installation of <code>vantage6</code>:</li>
-</ol><div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">v6</span> <span class="at">--help</span></span></code></pre>
-</div>
+<p>If the installation is successful, it will print out a message
+explaining the usage.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -523,15 +518,22 @@ Commands:
   server           Manage your vantage6 server instances.
   test             Execute tests on your vantage6 infrastructure.</code></pre>
 </div>
-<p>If the installation is successful, it will print out a message
-explaining the usage.</p>
-<ol start="3" style="list-style-type: decimal"><li>Verify the installation of <code>vantage6-client</code> and
-<code>vantage6-algorithm-tools</code>:</li>
-</ol><div class="codewrapper sourceCode" id="cb9">
+<ol start="2" style="list-style-type: decimal"><li>Verify the installation of <code>jupyterlab</code>:</li>
+</ol><div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import vantage6.client"</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import vantage6.algorithm.tools"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre>
+</div>
+<p>Make sure JupyterLab opens in your browser.</p>
+<ol start="3" style="list-style-type: decimal"><li>Verify the installation of <code>vantage6-client</code> and
+<code>vantage6-algorithm-tools</code>: Now create a new jupyter notebook
+in your jupyter lab environment and run a cell with the following
+code:</li>
+</ol><div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a> <span class="im">import</span> vantage6.client</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="im">import</span> vantage6.algorithm.tools</span></code></pre>
 </div>
 <p>If there is no output and no error message, the installation is
 successful.</p>
