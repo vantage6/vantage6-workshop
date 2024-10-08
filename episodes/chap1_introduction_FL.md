@@ -24,6 +24,14 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Introduction
+In this course, we will explore how privacy-enhancing technologies (PETs) can support your research. On the first day, we will cover some of the core concepts of PET analysis, followed by a hands-on session where we’ll apply these techniques using the vantage6 user interface. We will also discuss how to manage PET analysis collaborations, one of the vantage6's key distinguising features.
+
+In the second part of the workshop, we will focus on the python client, which can do the same as the UI, but also much more. You will also learn how to create a federated algorithm using the platform's algorithm tools.
+
+This course provides a high-level overview of PETs, focusing on their practical applications in data analysis. While we won't dive into the detailed mathematics behind these technologies, we encourage you to explore other resources for those specifics.
+Our goal here is to equip you with enough knowledge to apply PETs effectively in your work.
+
 ## Problem statement
 
 The amount of data being generated nowadays is absolutely mind-boggling. This data can be a valuable
@@ -47,24 +55,27 @@ with data are moved to a central location'}
 Unfortunately this way of working does not respect the privacy of the people contained within the
 dataset. All their personal details end up at another party.
 
-::::::::::::::::::::::::::::::::::::: challenge
+::::::::::::::::::::::::::::::::::::: callout
 
-## Other problems with copying data
+## 1. Other problems with copying data
 
-Discuss in groups what other issues you see with handling the data by copying everything into one
-central place.
-
-:::::::::::::::: solution
-
-You might think of multiple issues. Some examples:
+There are other issues with copying data to a central place that are not directly related to privacy.
+Some examples:
 
 - The original data owner loses control of the data
 - Results in multiple versions of the data
 - What to do when the data needs to be updated?
 - If there was consent in the first place, how can you retract consent?
-
-:::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::: challenge
+## 1. Data sharing story time
+
+Now it's your turn. Have you personally experienced any issues doing research with data
+collected into a central place? Discuss with your peers.
+
+::::::::::::::::::::::::::::::::
+
 
 In this lesson, we will discuss various privacy-enhancing technologies (PET) that can be used to
 analyze data in a privacy-preserving manner, and what the risks associated with different
@@ -101,6 +112,9 @@ In this course we will focus on federated analysis. In a federated setting, the 
  The system sends a query or instruction to the data and only the results will get back to the user.
 The results are often akin to a form of _aggregation_ of the data. This can be in the shape of
 traditional statistics like the mean, or it can be more intricate like a machine learning model.
+When data is aggregated, it doesn't have a direct link with an individual anymore. Since the
+aggregated data cannot be be traced back to individuals individuals directly, the privacy is 
+considered protected.
 
 Aggregating the data does not ensure complete protection of person-level information, but it
 certainly makes it less likely that this will happen. It is usually the case that the larger 
@@ -155,7 +169,7 @@ puzzle pieces that when put together will reveal the result of the computation.
 Mees, Sara and Noor want to know how much they weigh in total.
 Mees weighs 43 kg, Sara weighs 39, Noor weighs 45.
 All three they think of 2 random numbers $r_1$ and $r_2$ so that $weight = r_1 + r_2 + x$. Finally
-they compute $x$ by $x=weight - r_1 - r_2$
+they compute $x$ by $x=weight - r_1 - r_2$. These random numbers can be seen as encrypted data.
 
 
 
@@ -187,11 +201,11 @@ In this way, they have aggregated their data without sharing their individual da
 :::
 
 ::::::::::::::::::::::::::::::::::::: challenge
+
 ## Oh no! A hacker!
 A hacker manages to get access to Mees' computer that contains his data and the secret shares he received. He also
 knows the result of the aggregation. Will the secrecy of the three weights still be preserved? What if the hacker 
 gets access to Sara's computer as well? Will Noors privacy be protected?
-
 
 :::::: solution
 If the hacker has access to the result, he can reconstruct Noors weight by subtracting Mees' and Sara's weight
@@ -202,7 +216,7 @@ from the total. The secret shares are not adding any more relevant information.
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Aggregation preserves privacy?
+## 3. Aggregation preserves privacy?
 Consider the dataset with the 3 childrens weights again. The only unencrypted data everybody receives,
 is the result. Consider the situation where Sara knows Mees very well, and might know approximately how
 much he weighs. Do you think the privacy of the three individuals is properly preserved?

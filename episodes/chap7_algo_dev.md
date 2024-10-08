@@ -131,12 +131,33 @@ The following items are handled by the wrapper:
 - **Output handling**: the output from the algorithm functions is written to a file
   that the node will send back to the server.
 
-It is possible to write your algorithm without the algorithm tools, for example if you
-want to write your algorithm in a different language than Python. However, this requires
-you to take care of the above points yourself.
+It is possible to write your algorithm without the algorithm tools. If you
+want to write your algorithm in a different language than Python, you cannot use the
+algorithm tools.
 
 For more information about the algorithm tools, please check out the relevant
 [documentation][algo-concepts].
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 1: Creating non-Python algorithms
+
+You want to create a vantage6 algorithm, but Python is not your favorite programming
+language. What extra work do you need to do to create a vantage6 algorithm in a
+different language?
+
+:::::::::::::::::::::::: solution
+
+## Solution
+
+You would need to implement parts of the wrapper and algorithm client yourself:
+
+- You should use the environment variables to load the token, input and data
+- You should create your own HTTP requests to replace the algorithm client
+- You should make sure the output is written to the correct place
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Create a simple algorithm
 
@@ -158,7 +179,104 @@ You can create a new algorithm boilerplate repository with:
 v6 algorithm create
 ```
 
-If you later want to modify your answers, you can do so by running:
+The first step in creating your own algorithm is to enter the command `v6 algorithm create`
+and type along to create your own personalized boilerplate:
+
+```bash
+> v6 algorithm create
+? Name of your new algorithm: my-vantage6-average
+? Directory to put the algorithm in: \some\local\directory\for\algorithms\my-vantage6-average
+
+Welcome to the vantage6 algorithm template creator!
+
+You will be asked a series of questions to generate the basis of your new
+vantage6 algorithm in Python.
+
+🎤 Please enter a short description (one sentence) of your algorithm.
+   My very first vantage6 algorithm, computing the average of a single data column
+🎤 The open source license to use
+   MIT
+🎤 Do you want to use a central function in your algorithm?
+   Yes
+🎤 What is the name of your central function?
+   central
+🎤 Do you want to use a client in your central function?
+   Yes
+🎤 Do you want to use data in your central function?
+   No
+🎤 Add a list of arguments to the central function 'central'
+    (Finish with 'Alt+Enter' or 'Esc then Enter')
+> [
+    "column"
+  ]
+🎤 Do you want to use a partial function in your algorithm?
+   Yes
+🎤 What is the name of your partial function?
+   partial
+🎤 Do you want to use a client in your partial function?
+   No
+🎤 Do you want to use data in your partial function?
+   Yes
+🎤 How many databases do you want to use in your partial function?
+   1
+🎤 Add a list of arguments to the partial function 'partial'
+    (Finish with 'Alt+Enter' or 'Esc then Enter')
+> [
+    "column"
+  ]
+🎤 Do you want to add documentation to your algorithm?
+   No
+🎤 Do you want to see the advanced options?
+   No
+```
+
+That should give you a nice head-start to develop your own algorithm!
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 2: Learn about your personalized boilerplate
+
+Inspect your personalized boilerplate code. What does it contain? Multiple answers are
+possible.
+
+A. Templates of your algorithm functions
+B. Arguments of your algorithm functions
+C. Scripts to test your algorithm functions
+D. Checklist of what to do to complete your algorithm
+E. A JSON file that helps to include the algorithm in an algorithm store
+
+:::::::::::::::::::::::: solution
+
+## Solution
+
+The answers is that it contains _all_ those things. The boilerplate was designed to
+be as complete as possible!
+
+A. Templates of your algorithm functions: the boilerplate contains the central and
+partial functions that you specified in the creation process, in the files
+`central.py` and `partial.py`, in the folder with the algorithm name you specified
+in the first question.
+B. Arguments of your algorithm functions: within the files specified in the previous
+point, you can see that the parameters are already defined in the function signature.
+C. Scripts to test your algorithm functions: the boilerplate contains a `test.py` file
+in the `test/` directory. Some details still need to be adjusted to test your
+algorithm - we'll come to that later in this lesson.
+D. Checklist of what to do to complete your algorithm: the `README.md` file in the root
+directory of your algorithm contains a checklist of what you need to do to complete
+your algorithm.
+E. A JSON file that helps to include the algorithm in an algorithm store: the boilerplate
+contains an `algorithm_store.json` file that contains a JSON description of your
+algorithm. This file is used to upload your algorithm to the algorithm store.
+
+Missing anything? Let us know!
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Modifying the boilerplate
+
+If you want to modify the answers you gave in `v6 algorithm create`, you can do so by
+running:
 
 ```bash
 v6 algorithm update --change-answers
@@ -167,44 +285,18 @@ v6 algorithm update --change-answers
 This is recommended to do whenever you want to change something like the name of the
 function, as it will ensure that it will be updated in all places it was mentioned.
 
-The update command can also be used to update your algorithm to a new version, even
+The update command can also be used without `--change-answers` to update your algorithm
+to a new version, even
 after you have implemented your functions. This is helpful when there is new
 functionality or changes in vantage6 that require algorithms to update.
 
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 1: Create a personalized boilerplate
-
-Create a personalized template to start developing your average algorithm
-
-- We need both a central and a partial function.
-- The central function should get an algorithm client to communicate with the server,
-  but it does not need data.
-- The partial function does not need an algorithm client, but it should get one database
-  from the node.
-- Both functions should have a `column` argument - the average over this column will
-  be calculated.
-- Don't use the advanced options for now.
-
-:::::::::::::::::::::::: solution
-
-## Solution
-
-The personalized boilerplate should be successfully created. It should be very similar
-to [this repository](https://github.com/vantage6/workshop-average-boilerplate).
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-Your personalized boilerplate is now ready to be adapted into a simple algorithm. We
-are now going to implement the average algorithm in several steps. Note that the README
-file in the boilerplate also provides a checklist that you can follow to implement the
-rest of the algorithm - in this lesson we are going to guide you through these same
-steps.
-
 ### Implement the algorithm functions
 
-We are going to implement the central and partial functions. The easiest is to start
+Your personalized boilerplate is now ready to be adapted into a simple algorithm. We
+are now going to implement the average algorithm in several steps. First, we will
+explain how this can be done, and then you can try it yourself in a challenge.
+
+First step is to implement the central and partial functions. The easiest is to start
 with the partial function. Using the Pandas dataframe that is provided by the algorithm
 tools, the following should be extracted for the requested column:
 
@@ -227,8 +319,8 @@ objects - we recommend returning a Python dictionary.
 As discussed before, the algorithm tools contain an algorithm client that helps the
 algorithm container to communicate with the server. When testing your algorithm,
 it would be cumbersome to test your algorithm in the real infrastructure on every code
-change, as this requires you to build your algorithm Docker image, ensure all nodes in your
-collaboration are online, etc.
+change, as this requires you to build your algorithm Docker image, ensure all nodes in
+your collaboration are online, etc.
 
 To facilitate the testing phase, the algorithm tools also provide an algorithm mock
 client. This client can be used to test your algorithm locally
@@ -240,12 +332,12 @@ This way, you can easily test locally if your algorithm functions give the answe
 expect without worrying about the infrastructure.
 
 Your personalized template already contains a `test/test.py` file that contains
-boilerplate code to test your algorithm. You just need to make some adjustments to test
+boilerplate code to test your algorithm. You just need to make small adjustments to test
 your average algorithm.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 2: Implement the functions and test them
+## Challenge 3: Implement the functions and test them
 
 Implement your partial and central functions as described above.
 
@@ -334,52 +426,37 @@ info > Mocking waiting for results
 
 ```
 
-Hence, the average age is 34.666!
+Hence, the average age is 34.67!
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Build your algorithm into a docker image
 
-Your algorithm boilerplate contains a `Dockerfile` in the root folder. You can build
-your algorithm into a docker image by running something like:
+To be able to run your algorithm in the vantage6 infrastructure, you need to make
+your algorithm available online. To do so, you need access to a Docker
+registry. The easiest way to do this is to use Dockerhub. To create an account there,
+go [here](https://app.docker.com/signup?).
+
+Your algorithm boilerplate contains a `Dockerfile` in the root folder. Enter the
+following commands to build your algorithm into a docker image. Be sure to replace
+`$myusername` with your Dockerhub username.
 
 ```bash
-cd /go/to/directory/with/dockerfile
-docker build -t your-image-name .
+cd /go/to/directory/with/my/algorithm/and/the/dockerfile
+docker login
+docker build -t $myusername/average .
+docker push $myusername/average
 ```
 
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 3: Implement the functions and test them
-
-Create an account on Dockerhub - unless you have one already. Then, log in to your
-account via the command line with `docker login`.
-
-Use the command `docker build` to build your algorithm into a docker image. Then, push
-the image with `docker push`.
-
-:::::::::::::::::::::::: solution
-
-## Solution
-
-You should have done the following in the base directory of your algorithm (where the
-`Dockerfile` is):
-
-```bash
-docker build -t myusername/average .
-docker push myusername/average
-```
-
-Both commands should execute without errors.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
+This uses the command `docker build` to build your algorithm into a Docker image, and
+then the image is uploaded with `docker push`.
 
 ## Set up a local test environment
 
-When the algorithm image is built, it is recommended to test locally if it also works
-with an actual server and nodes - not just using the mock client. The easiest way to
+When the algorithm image is available, it is recommended to test locally if it also works
+with an actual server and nodes - not just using the mock client. In this section, we
+will test your algorithm via vantage6 on your own machine. The easiest way to
 set up a server and a few nodes locally is with:
 
 ```bash
@@ -454,10 +531,12 @@ collaboration/organization ID
 
 ## Solution
 
-You should have done something like the following. Take care to provide the correct
-username.
+After doing `v6 dev create-demo-network` and `v6 dev start-demo-network`, you can run
+the following Python script to run your algorithm on the local network. Take care to
+provide the correct username, password, and image name.
 
-```
+```python
+
 from vantage6.client import Client
 client.authenticate(username, password)
 
@@ -533,7 +612,8 @@ repository?
 :::::::::::::::: hint
 
 Use the `algorithm_store.json` which is present in your algorithm code repository to fill
-in most of the details.
+in most of the details. Note, however, that not everything is prefilled and you also
+need to adjust some existing fields. Which fields do you need to adjust?
 
 ::::::::::::::::
 
@@ -543,7 +623,9 @@ in most of the details.
 
 Go to the UI and log in. Then, go to the 'Algorithm store' section and select the local
 algorithm store. Go to 'Approved algorithms', click on 'Add algorithm' and upload the
-`algorithm_store.json` file. Fill in the details such as the name to your docker image.
+`algorithm_store.json` file. Fill in the correct image name and set the type of the
+argument 'column' to 'Column' (this will ensure that the UI displays a dropdown of
+all available columns).
 
 You can find the revised JSON file on the page with the algorithm details.
 
@@ -557,11 +639,14 @@ You can find the revised JSON file on the page with the algorithm details.
 Run your algorithm in the UI. The `v6 dev` network should already provide you with
 a collaboration where all nodes are online.
 
+Verify that the average age is still the same. Can you also get the average height and
+weight?
+
 :::::::::::::::::::::::: solution
 
 ## Solution
 
-1. Make sure that your `v6 dev` network is running. If not, start it with `v6 dev start-demo-network`.
+1. Make sure that your `v6 dev` network is running. If not, start it again with `v6 dev start-demo-network`.
 2. Login to the UI, go to 'Analyze' section, select 'Task' and 'Create task'.
 3. Select your algorithm from the dropdown.
 4. Fill in the required fields. You should select the central function and provide the
@@ -571,13 +656,15 @@ a collaboration where all nodes are online.
 
 `Average ~= 27.61`.
 
+Similarly, you can get the average height at 178.5 and the average weight at 74.3.
+
 ::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Advanced challenge: Calculate the average per group
+## Challenge 7 (Advanced): Calculate the average per group
 
 Extend your algorithm to answer the following question: in the `v6 dev` dataset, are
 gold medal winners older or younger than silver medal winners?
@@ -685,7 +772,7 @@ projects. You can also use that to further develop your algorithm!
 
 ### Sessions
 
-We are currently using vantage6 version 4.7. The vantage6 team is working on vantage6
+We are currently using vantage6 version 4.7.1. The vantage6 team is working on vantage6
 version 5.0, which will bring changes to the algorithm development process. Version 5.0
 will introduce sessions, which are a way to split up the algorithm into smaller parts:
 data preparation, data preprocessing, data analysis, and post-processing. A major

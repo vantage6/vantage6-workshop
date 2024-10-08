@@ -4,17 +4,16 @@ title: Setup
 
 **Before you jump to the installation instructions, consider the following**. This course can be divided into two parts, depending on wether you are only participating in the first part or both parts the setup requirements are different:
 
-- part one, chapters 1 to 4, is about understanding and using vantage6 through the User Interface (UI). In case you are *only* participating in the part one, you need a web browser and internet in order to access the vantage6 UI. You can skip this setup episode and start the course right away.
+- part one, chapters 1 to 4, is about understanding and using vantage6 through the User Interface (UI). In case you are _only_ participating in the part one, you need a web browser and internet in order to access the vantage6 UI. You can skip this setup episode and start the course right away.
 - part two, chapters 5 to 8, is more advanced and requires programming experience. Your laptop should be able to run the all the vantage6 software components locally. In this episode, we will guide you through the installation. Please make sure to complete the installation before starting the course.
-
 
 :::::::::::::::::::::::::::::::::::::::::: callout
 
 ### Need additional help?
 
- Have you followed the instructions in this lesson and still have issues with the installation?
+Have you followed the instructions in this lesson and still have issues with the installation?
 
- Please reach out to us on the [vantage6 Discord channels](https://discord.gg/yAyFf6Y). Or alternatively, you can send an email to [f.martin@iknl.nl](mailto:f.martin@iknl.nl) or [d.smits@esciencecenter.nl](mailto:d.smits@esciencecenter.nl).
+Please reach out to us on the [vantage6 Discord channels](https://discord.gg/yAyFf6Y). Or alternatively, you can send an email to [f.martin@iknl.nl](mailto:f.martin@iknl.nl) or [d.smits@esciencecenter.nl](mailto:d.smits@esciencecenter.nl).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -28,25 +27,26 @@ Vantage6 requires the following software to be installed on your system. In this
 - Python v3.10
 - Python packages:
   - [jupyterlab](https://pypi.org/project/jupyterlab/)
-  - [vantage6==4.7.x](https://pypi.org/project/vantage6/)
-  - [vantage6-client==4.7.x](https://pypi.org/project/vantage6-client/)
-  - [vantage6-algorithm-tools==4.7.x](https://pypi.org/project/vantage6-algorithm-tools/)
+  - [vantage6==4.7.1](https://pypi.org/project/vantage6/)
+  - [vantage6-client==4.7.1](https://pypi.org/project/vantage6-client/)
+  - [vantage6-algorithm-tools==4.7.1](https://pypi.org/project/vantage6-algorithm-tools/)
 - A code editor [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm/) or something similar
 
 ### Docker
 
 #### Windows and MacOS
+
 We recommend installing Docker Desktop on your system, which is the easiest way to install Docker. You can download it from the [Docker website](https://www.docker.com/products/docker-desktop). Docker Desktop is available for MacOS, Windows, and Linux.
 
 You can follow the official instructions to install Docker Desktop on [MacOS](https://docs.docker.com/desktop/install/mac-install/) or [Windows](https://docs.docker.com/desktop/install/windows-install/).
 
-
 #### Linux
+
 We recommend installing the Docker Engine on your Linux system. You can follow the official instructions to install Docker Engine for [Linux](https://docs.docker.com/desktop/install/linux-install/). After the installation, make sure that it can run Docker containers without `sudo`. Please follow the instructions in [this guide](https://docs.docker.com/engine/install/linux-postinstall/) to set that up.
 
 Alternatively, you can install Docker Desktop on your Linux system. You can follow the official instructions to install Docker Desktop for [Linux](https://docs.docker.com/desktop/install/linux-install/).
 
--------------------------------------------------------
+---
 
 After installing the Docker Desktop or Docker engine, open your terminal, and then verify the installation by running the command:
 
@@ -109,22 +109,16 @@ conda create -n v6-workshop python=3.10
 conda activate v6-workshop
 
 # Install the required Python packages
-pip install jupyterlab vantage6==4.7.x vantage6-client==4.7.x vantage6-algorithm-tools==4.7.x
+pip install jupyterlab vantage6==4.7.1 vantage6-client==4.7.1 vantage6-algorithm-tools==4.7.1
 ```
 
-1. Verify the installation of `jupyterlab`:
-
-```bash
-jupyter lab
-```
-
-Make sure JupyterLab opens in your browser.
-
-2. Verify the installation of `vantage6`:
+1. Verify the installation of `vantage6`:
 
 ```bash
 v6 --help
 ```
+
+If the installation is successful, it will print out a message explaining the usage.
 
 ```Output
 Usage: v6 [OPTIONS] COMMAND [ARGS]...
@@ -146,15 +140,30 @@ Commands:
   test             Execute tests on your vantage6 infrastructure.
 ```
 
-If the installation is successful, it will print out a message explaining the usage.
-
-3. Verify the installation of `vantage6-client` and `vantage6-algorithm-tools`:
+2. Verify the installation of `jupyterlab`:
 
 ```bash
-python -c "import vantage6.client"
-python -c "import vantage6.algorithm.tools"
+jupyter lab
+```
+
+Make sure JupyterLab opens in your browser.
+
+3. Verify the installation of `vantage6-client` and `vantage6-algorithm-tools`:
+Now create a new jupyter notebook in your jupyter lab environment and run a cell
+with the following code:
+
+```python
+ import vantage6.client
+import vantage6.algorithm.tools
 ```
 
 If there is no output and no error message, the installation is successful.
+
+## Create Dockerhub account
+
+In this course, we will build our own vantage6 algorithms. Part of these exercises will
+be to share the algorithm Docker images online. For this, you need a Dockerhub account.
+Please create one [here](https://app.docker.com/signup) on the Dockerhub website.
+Make sure to remember your username and password!
 
 **Congratulations 🎉** You have successfully set up all required software for this lesson!

@@ -22,19 +22,20 @@ title: "vantage6 basics"
 
 :::
 
-# Why choose vantage6
+## Why choose vantage6
 
 vantage6 is a platform to execute privacy enhancing techniques (PETs). Several alternative platforms for PETs are available, but vantage6 is unique as it provides:
 
-- Open source and free to use.
+- Open source and free to use under Apache-2.0 licence.
 - Container orchestration for privacy enhancing techniques.
 - Easily extensible to different types of data sources.
 - Algorithms can be developed in any language.
+- A Graphical User Interface is provided to operate the platform. 
 - Other applications can connect to vantage6 using the API.
 - Managing and enforcing collaboration policies
 - Minimal network requirements at data stations
 
-# Project administration in vantage6
+## Project administration in vantage6
 vantage6 encompasses a project administration system that allows the user to manage permissions and access to the resources, while assuring the protection of the data. The fundamental concepts of the administration system are defined as follows:
 
 - An **Organization** is a group of users that share a common goal or interest (e.g., a consortium, an institute, etc.). 
@@ -68,12 +69,14 @@ For example, consider the `Collaboration W` below, which includes six organizati
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Mapping vantage6 to "real life"
+## Challenge 1: Mapping vantage6 to "real life"
 
 Let's consider a scenario where you, on behalf of your research institute, want to conduct a new study on a particular illness across three major academic hospitals in the Netherlands: VUmc in Amsterdam, Maastricht UMC+, and UMC Utrecht, as these have valuable data related to the illness. Consider the following:
 
 - Your research institute has an existing collaboration (with a different purpose, not related with yours) with UMC Utrecht and UMC Groningen. Hence, there is a vantage6 node already running on your institution for the said collaboration.
 - You will be conducting this study with a colleague from your institute named Daphne. Both of you are already registered on the organization but without access to the existing collaborations.
+
+![](fig/chapter2/exercise_1_question.png)
 
 How would the concepts described above map to your potential use case?
 
@@ -88,12 +91,14 @@ How would the concepts described above map to your potential use case?
 ## Solution
 
 1. In this case the organizations would be the academic hospitals as well as your own organization: VUmc, Maastricht UMC+, UMC Utrecht *and* your research institute. Note that UMC Utrecht must be added to the new collaboration despite being already part of an existing one.
-2. One node for every academic hospital, so 3. Note that UMC Utrecht needs a new node despite already having one, as the existing one is for a different collaboration.
+2. One node for every organization in the collaboration, so 4. Note that UMC Utrecht needs a new node despite already having one, as the existing one is for a different collaboration.
 3. There is no need to create new users, as these are already registered on the organization. Note that the users are linked only to the organization, not to the nodes.
+
+![](fig/chapter2/exercise_1_answer.png)
 
 :::::::::::::::::::::::::::::::::
 
-# The vantage6 infrastructure
+## The vantage6 infrastructure
 
 Now that we have an overview of how vantage6 manages the project resources and how it can be used to setup the analysis framework, we can see how vantage6 works on a technical level and how the infrastructure maps the aforementioned concepts.
 In vantage6, a user can pose a question through a **client** to the vantage6 **server**. Each organization with sensitive data contributes one **node** to the network. 
@@ -134,6 +139,13 @@ While a vantage6-supported research infrastructure offers a strong defense again
 
 Vantage6's algorithm store is a repository for trusted algorithms within a certain project that aims to enhance trustworthiness by offering a centralized platform for managing pre-registered algorithms. This serves as an alternative to using algorithms from unknown authors or those lacking transparency regarding their development process and status. The algorithm store currently allows researchers to explore which algorithms are available and how to run them. This, streamlines task execution requests within collaborations. Also, the algorithm store integrates additional information to the algorithm metadata such who developed and reviewed the algorithm. Only after complying with the review policies of a store, a new algorithm will be published in the store.
 
+### The workflow of a task running in vantage6
+The diagram below illustrates what happens when a request is sent by a user to vantage6. In this scenario, a user — with the appropriate credentials — can request the execution of **tasks** within using the UI. In this case, the user might request the execution of an **algorithm** (previously registered in an **algorithm store** trusted by the collaboration) across all participating organization nodes. In response, each node from the involved organizations executes the **algorithm** on its local data. The resulting (aggregated) data is then sent back to the server, where it can be accessed by the requesting user.
+To enhance the security of the communication, messages between organizations can be encrypted. In this case, an organization can have a public key that the other collaborating organizations have to use in order to exchange messages.
+
+
+![](fig/chapter2/infrastructure_animated.gif)
+
 ## How algorithms run in vantage6
 So how does vantage6 relate to the privacy enhancing techniques that we discussed in chapter 1? Let us consider the federated sum from chapter 1 again
 
@@ -148,7 +160,7 @@ Federated algorithms can be split in a **federated** and a **central** part:
 
 - **Federated**: The partial tasks are executing computations on the local privacy sensitive data. These would be the nodes on the left.
 
-![vantage6 central and federated tasks.](fig/algorithm_central_and_subtasks.png)
+![vantage6 central and federated tasks.](fig/chapter2/algorithm_central_and_subtasks.png)
 
 Now, let’s see what typically happens if a task is created in vantage6:
 
@@ -168,6 +180,8 @@ It is easy to confuse the vantage6 server with the central part of the algorithm
 :::
 ::: challenge
 
+## Challenge 2: Who computes what?
+
 Two centers $A$ and $B$ have the following data regarding the age of a set of patients:
 
 $a = [34, 42, 28, 49]$
@@ -176,7 +190,7 @@ $b = [51, 23, 44]$
 
 Each center has a data station and we want to compute the overall average age of the patients.
 
-![Architecture.](fig/schema_exercise.png)
+![Architecture.](fig/chapter2/schema_exercise.png)
 
 Given that the central average can be computed by summing up all the values and dividing the sum by the number of values, using the following equation:
 
@@ -217,19 +231,18 @@ The central task receives $S_a$ and $n_a$ from node A and $S_b$ and $n_b$ from n
 
 $\overline{x} =\dfrac{S_a+S_b}{n_a+n_b}=\dfrac{153+118}{4+3}=38.71$
 
-![vantage6 algorithm workflow.](fig/algorithm_workflow.png)
+![vantage6 algorithm workflow.](fig/chapter2/algorithm_workflow.png)
 
 :::
 
 :::
 
-# Future developments of vantage6
+## Future developments of vantage6
 
 Back in 2018 when the development of vantage6 started, the focus was on federated learning. Since then, vantage6 has been extended to support different types of data sources, different types of algorithms and improved its user experience. Privacy Enhancing Technologies (PET) are a rapidly evolving field. To keep up with the latest developments, the vantage6 platform is designed to be flexible and to adapt to new developments in the field.
 
 From the development team we are working towards making vantage6 the PETOps platform for all your (distributed) analysis needs.
 
-[Image of the PETOps cycle]
 
 We identified a number of areas where we want to improve and extend vantage6 in order to achieve this goal:
 
