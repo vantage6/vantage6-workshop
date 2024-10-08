@@ -353,7 +353,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to privacy enhancing technologies (PET)</h1>
-        <p>Last updated on 2024-10-01 |
+        <p>Last updated on 2024-10-08 |
 
         <a href="https://github.com/vantage6/vantage6-workshop/edit/main/episodes/chap1_introduction_FL.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -613,11 +613,13 @@ for the final result</div>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="oh-no-a-hacker" class="callout-inner">
-<h3 class="callout-title">2. Oh no! A hacker!</h3>
+<h3 class="callout-title">Oh no! A hacker!</h3>
 <div class="callout-content">
-<p>A hacker manages to get access to Mees’ computer that contains the
-secret shares he received. Will the secrecy of the three weights still
-be preserved?</p>
+<p>A hacker manages to get access to Mees’ computer that contains his
+data and the secret shares he received. He also knows the result of the
+aggregation. Will the secrecy of the three weights still be preserved?
+What if the hacker gets access to Sara’s computer as well? Will Noors
+privacy be protected?</p>
 </div>
 </div>
 </div>
@@ -626,19 +628,11 @@ be preserved?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>When receiving a sum from a set of 3 individuals, every record makes
-up roughly 30% of the final answer. That is a big contribution. It can
-be quite easy to reconstruct the individual records, for example by
-crossreferencing with other datasets. Also, if you are able to get your
-hands on 2 of the datapoints, you will be able to fully reconstruct the
-third one.</p>
-<p>Trust is another factor here. If the different parties (Mees, Sara
-and Noor) have a high level of trust in eachother not to share their
-data, the risk level is lower than when the parties are known to
-occasionally leak their data, or don’t have proper security set in
-place.</p>
+<p>If the hacker has access to the result, he can reconstruct Noors
+weight by subtracting Mees’ and Sara’s weight from the total. The secret
+shares are not adding any more relevant information.</p>
 </div>
 </div>
 </div>
@@ -663,7 +657,7 @@ properly preserved?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>When receiving a sum from a set of 3 individuals, every record makes
 up roughly 30% of the final answer. That is a big contribution. It can
@@ -868,7 +862,7 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/chap1_introduction_FL.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/chap1_introduction_FL.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-10-01",
+  "dateModified": "2024-10-08",
   "datePublished": "2024-10-08"
 }
 
