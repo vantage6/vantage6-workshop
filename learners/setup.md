@@ -112,19 +112,13 @@ conda activate v6-workshop
 pip install jupyterlab vantage6==4.7.1 vantage6-client==4.7.1 vantage6-algorithm-tools==4.7.1
 ```
 
-1. Verify the installation of `jupyterlab`:
-
-```bash
-jupyter lab
-```
-
-Make sure JupyterLab opens in your browser.
-
-2. Verify the installation of `vantage6`:
+1. Verify the installation of `vantage6`:
 
 ```bash
 v6 --help
 ```
+
+If the installation is successful, it will print out a message explaining the usage.
 
 ```Output
 Usage: v6 [OPTIONS] COMMAND [ARGS]...
@@ -146,13 +140,21 @@ Commands:
   test             Execute tests on your vantage6 infrastructure.
 ```
 
-If the installation is successful, it will print out a message explaining the usage.
-
-3. Verify the installation of `vantage6-client` and `vantage6-algorithm-tools`:
+2. Verify the installation of `jupyterlab`:
 
 ```bash
-python -c "import vantage6.client"
-python -c "import vantage6.algorithm.tools"
+jupyter lab
+```
+
+Make sure JupyterLab opens in your browser.
+
+3. Verify the installation of `vantage6-client` and `vantage6-algorithm-tools`:
+Now create a new jupyter notebook in your jupyter lab environment and run a cell
+with the following code:
+
+```python
+ import vantage6.client
+import vantage6.algorithm.tools
 ```
 
 If there is no output and no error message, the installation is successful.
