@@ -710,7 +710,7 @@ privacy be protected?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>If the hacker has access to the result, he can reconstruct Noors
 weight by subtracting Mees’ and Sara’s weight from the total. The secret
@@ -739,7 +739,7 @@ properly preserved?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>When receiving a sum from a set of 3 individuals, every record makes
 up roughly 30% of the final answer. That is a big contribution. It can
@@ -2637,14 +2637,14 @@ the following commands:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">pip</span> show vantage6-client <span class="kw">|</span> <span class="fu">grep</span> Version</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">CMD<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2713,7 +2713,7 @@ deletion.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-1" class="tab-pane show active" aria-labelledby="nav-tab-2-1" role="tabpanel">
+<div id="nav-tabpanel-2-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-1">
 <p>Get all <em>resource</em> items that the user is allowed to see with
 <code>client.&lt;resource&gt;.list()</code>. For example:</p>
 <div class="codewrapper sourceCode" id="cb9">
@@ -2743,7 +2743,7 @@ default, the <code>list()</code> method returns the first page of 10
 items. The page and the number of items per page can be specified with
 the <code>page</code> and <code>per_page</code> parameters.</p>
 </div>
-<div id="nav-tabpanel-2-2" class="tab-pane" aria-labelledby="nav-tab-2-2" role="tabpanel">
+<div id="nav-tabpanel-2-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-2">
 <p>Get a specific <em>resource</em> with
 <code>client.&lt;resource&gt;.get(&lt;id&gt;)</code>. For example:</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -2772,7 +2772,7 @@ the <code>page</code> and <code>per_page</code> parameters.</p>
 }</code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-3" class="tab-pane" aria-labelledby="nav-tab-2-3" role="tabpanel">
+<div id="nav-tabpanel-2-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-3">
 <p>Register a new <em>resource</em> at the server with
 <code>client.&lt;resource&gt;.create(...)</code>. For example, let’s
 create a new organization:</p>
@@ -2809,7 +2809,7 @@ create a new organization:</p>
 }</code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-4" class="tab-pane" aria-labelledby="nav-tab-2-4" role="tabpanel">
+<div id="nav-tabpanel-2-4" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-4">
 <p>Update an specific <em>resource</em>. For example:</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2837,7 +2837,7 @@ create a new organization:</p>
 }</code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-5" class="tab-pane" aria-labelledby="nav-tab-2-5" role="tabpanel">
+<div id="nav-tabpanel-2-5" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-5">
 <p>To delete an specific instance of the given <em>resource</em> you can
 use <code>client.&lt;resource&gt;.delete(id_)</code> . Sometimes you
 need to also delete all the related instances of the given
@@ -5513,7 +5513,7 @@ exceptions</a> to return an error message.</li>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>The <a href="https://github.com/vantage6/v6-crosstab-py/blob/main/v6-crosstab-py/partial.py#L64" class="external-link">contingency
 table algorithm</a> already has a few privacy filters implemented. You
@@ -5587,7 +5587,7 @@ table!</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Hint: What do the docs say? </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>Check the <a href="https://docs.vantage6.ai/en/main/algorithm_store/processes.html#algorithm-submission" class="external-link">documentation</a></p>
 </div>
@@ -5650,7 +5650,7 @@ development environment more secure?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3"> Hint: Ajdusting configuration </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
 <div class="accordion-body">
 <p>To complete this challenge, locate the configuration files of the
 <code>v6 dev</code> network and modify them. You may need to use the
@@ -5665,7 +5665,7 @@ configuration files.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4"> Hint: Configuration changes don’t take effect </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
 <div class="accordion-body">
 <p>Try restarting the <code>v6 dev</code> network after changing the
 configuration files.</p>
@@ -5725,8 +5725,8 @@ any links that you are not going to use.
   "url": "https://vantage6.github.io/vantage6-workshop/instructor/aio.html",
   "identifier": "https://vantage6.github.io/vantage6-workshop/instructor/aio.html",
   "dateCreated": "2024-03-26",
-  "dateModified": "2024-10-08",
-  "datePublished": "2024-10-08"
+  "dateModified": "2024-10-09",
+  "datePublished": "2024-10-09"
 }
 
   </script><script>
