@@ -63,9 +63,14 @@ Creating an instance of the vantage6 Python client is relatively straightforward
 
 To avoid leaking your username and/or password by accident, they can be defined in a separate Python file (e.g., `config.py`), which is then imported into the main script. This way, the main script does not contain any sensitive information.
 
-```python
-# config.py
+::::::::::::::::::::::::::::::::::::: instructor
 
+Make sure to use the credentials from the first day. And use the reseacher credentials,
+so not the `_admin` credentials!
+
+:::::::::::::::::::::::::::::::::::::
+
+```python
 server_url = "https://<vantage6-server-address>"
 server_port = 443
 server_api = "/api"
@@ -83,8 +88,6 @@ organization_key = None
 Once you have created the Python module with the configuration settings, you can import it and create the client instance as follows:
 
 ```python
-# client.py
-
 from vantage6.client import Client
 
 # It is assumed here that the `config.py` you just created is in the current
@@ -94,38 +97,29 @@ import config
 
 # Initialize the client object, and authenticate
 client = Client(config.server_url, config.server_port, config.server_api,
-                log_level='debug')
+                log_level='info')
 client.authenticate(config.username, config.password)
 # In the case of 2FA, you should also include the 6-digit code:
 # client.authenticate(config.username, config.password, '123456')
 
-# Setup the encryption. In case no encryption is used, this line can be
-# omitted or `config.organization_key` should be set to None
-client.setup_encryption(config.organization_key)
+# In case encryption is used, this line can be used to set the organizations private
+# key.
+# client.setup_encryption(config.organization_key)
 ```
-
-
-::: callout
-
-The output of the exercises will be shown in the terminal, but you can also run the exercises in a Jupyter notebook.
-
-In case you are using a Jupyter notebook the `client.py` script should be in the top cell of your notebook. Running this cell is then the equivalent of the command `python [-i] client.py` that is used in the solutions.
-
-:::
-
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Connect 🌍!
+## 1. Connect 🌍!
 
 Connect to the vantage6 server using the Python client!
 
 :::::::::::::::::::::::: hint
 
-1. Activate the conda environment with the vantage6 client installed: `conda activate v6-workshop`.
-2. Create the `config.py` with the your credentials and connection details.
-3. Create the `client.py` script with the code above.
-4. Run the `client.py` script as defined above to create the client instance.
+1. Create the `config.py` with the your credentials and connection details.
+2. Create a cell with the `client` script with the code above.
+3. Run the `client` cell as defined above to create the client instance.
+4. Make sure to use the correct user / password
+5. Check the output to see if there are any errors
 
 ::::::::::::::::::::::::
 
@@ -133,15 +127,12 @@ Connect to the vantage6 server using the Python client!
 
 :::::::::::::::::::::::: solution
 
-1. Make sure you have activated the conda environment with the vantage6 client
-   installed: `conda activate v6-workshop`.
-2. Make sure you have created the `config.py` file with your credentials and the
-   `client.py` file with the code above.
-3. Run the `client.py` script: `python client.py`. If the connection is successful,
-    you should see the message `--> Succesfully authenticated`:
+1. Make sure you have created the `config.py` file with your credentials and the
+   `client` cell with the code above.
+2. Run the `client` cell. If the connection is successful, you should see the
+   message `--> Succesfully authenticated`:
 
-    ```bash
-    (v6-workshop) $ python client.py
+    ```
     Welcome to
                       _                     __
                      | |                   / /
@@ -189,11 +180,67 @@ also described in the [official documentation (docs.vantage6.ai)](https://docs.v
 | `client.store`        | Manage algorithm stores |
 | `client.algorithm`    | Manage algorithms that can be used for the computations |
 
-Almost all of these attributes provide a [get](#get), [list](#list), [create](#create),
-[update](#update) and [delete](#delete) operation. When using the `get` and `list`
-methods a dictionary is returned with the requested information. In the case of the
-`create` and `update` methods typically the created resource is returned. Finally in the
-case of `delete` nothing is returned but a message is printed to confirm the deletion.
+### Method and parameter documentation
+There are many methods available in each of the resources and each method has its own set
+of parameters. To know which parameters are available for a specific method, you can use
+the `help()` function in Python. For example, to get the documentation of the
+`client.organization.list()` method, you can use the following command:
+
+```python
+help(client.organization.list)
+```
+```output
+list(self, name: 'str' = None, country: 'int' = None, collaboration: 'int' = None, study: 'int' = None, page: 'int' = None, per_page: 'int' = None) -> 'list[dict]'
+    List organizations
+
+    Parameters
+    ----------
+    name: str, optional
+        Filter by name (with LIKE operator)
+    country: str, optional
+        Filter by country
+    collaboration: int, optional
+        Filter by collaboration id. If client.setup_collaboration() was called,
+        the previously setup collaboration is used. Default value is None
+
+```
+This shows you that you can filter the list of organizations (among others) by name,
+country, and collaboration.  It is also possible to request documentation of a higher
+level method, for example `help(client.organization)` or even `help(client)`.:
+
+::::::::::::::::::::::::::::::::::::: spoiler
+
+#### Online documentation
+
+To view all `Client` functions and their arguments without using `help()` you can use
+the [official documentation (docs.vantage6.ai)](https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.client.Client.html#vantage6-client-client). Which is the same as the Python client's docstring.
+
+Make sure you are viewing the documentation of the version of the client you are using.
+You can find the version of the client by one of the following commands:
+```Python
+import vantage6.client
+print(vantage6.client.__version__)
+```
+
+or by running the following command in the terminal:
+
+::: tab
+
+### Linux / MacOS
+
+```bash
+pip show vantage6-client | grep Version
+```
+
+### Windows
+
+```cmd
+pip show vantage6-client | findstr Version
+```
+
+:::
+
+:::::::::::::::::::::::::::::::::::::
 
 
 ::: callout
@@ -211,35 +258,14 @@ resources that the user has permission to perform.
 
 ### The 5 basic operations
 
-Most resources provide at least five basic operations: get, list, create, update, and
-delete.
+Almost all of the resources provide a [get](#get), [list](#list), [create](#create),
+[update](#update) and [delete](#delete) operation. When using the `get` and `list`
+methods a dictionary is returned with the requested information. In the case of the
+`create` and `update` methods typically the created resource is returned. Finally in the
+case of `delete` nothing is returned but a message is printed to confirm the deletion.
 
 ::::::::::::::::::::::::::::::::::::: tab
 
-### Get
-Get a specific *resource* with `client.<resource>.get(<id>)`. For example:
-
-```Python
-client.organization.get(1)
-```
-```output
-{
-    'nodes': '/api/node?organization_id=1',
-    'public_key': '',
-    'studies': '/api/study?organization_id=1',
-    'name': 'Huckleberry Holdings',
-    'tasks': '/api/task?init_org_id=1',
-    'address2': '',
-    'users': '/api/user?organization_id=1',
-    'domain': 'huckleberryholdings.mc',
-    'country': 'Monaco',
-    'zipcode': '98000',
-    'runs': '/api/run?organization_id=1',
-    'address1': '4747 Huckleberry Ln',
-    'id': 1,
-    'collaborations': '/api/collaboration?organization_id=1'
-}
-```
 
 ### List
 Get all *resource* items that the user is allowed to see with
@@ -265,6 +291,31 @@ The output should look similar to the following:
 ```
 
 The `list()` method returns a paginated result. Pagination divides the complete list of items into smaller parts, called pages. By default, the `list()` method returns the first page of 10 items. The page and the number of items per page can be specified with the `page` and `per_page` parameters.
+
+### Get
+Get a specific *resource* with `client.<resource>.get(<id>)`. For example:
+
+```Python
+client.organization.get(1)
+```
+```output
+{
+    'nodes': '/api/node?organization_id=1',
+    'public_key': '',
+    'studies': '/api/study?organization_id=1',
+    'name': 'Huckleberry Holdings',
+    'tasks': '/api/task?init_org_id=1',
+    'address2': '',
+    'users': '/api/user?organization_id=1',
+    'domain': 'huckleberryholdings.mc',
+    'country': 'Monaco',
+    'zipcode': '98000',
+    'runs': '/api/run?organization_id=1',
+    'address1': '4747 Huckleberry Ln',
+    'id': 1,
+    'collaborations': '/api/collaboration?organization_id=1'
+}
+```
 
 ### Create
 Register a new *resource* at the server with `client.<resource>.create(...)`. For
@@ -339,23 +390,10 @@ client.organization.delete(1)
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Collect collaboration details
+### 2. Collect collaboration details
 
 Before starting a task, you need to know the details of the collaboration you are working with. Use the Python client to get the details of the collaboration you have access to. Write down the **name** and **ID** of each collaboration.
 
-:::::::::::::::::::::::: hint
-
-Use the client script you created in the previous challenge to connect to the server.
-Make sure you use the `-i` flag to start an interactive Python session after running
-the script.
-
-```bash
-python -i client.py
-```
-
-Now you have a variable `client` that you can use to interact with the server.
-
-::::::::::::::::::::::::
 :::::::::::::::::::::::: hint
 
 Use the `client.collaboration.list()` method to get the details of the collaborations you have access to.
@@ -363,6 +401,13 @@ Use the `client.collaboration.list()` method to get the details of the collabora
 ```python
 client.collaboration.list()
 ```
+
+::::::::::::::::::::::::
+
+:::::::::::::::::::::::: hint
+
+Use `help(client.collaboration.list)` to see which arugments you can use to filter the
+collaborations.
 
 ::::::::::::::::::::::::
 
@@ -421,76 +466,12 @@ are also some methods that are not bound to a specific resource. Examples are:
 - `client.setup_encryption()` to setup the encryption.
 - `client.wait_for_results()` to wait for the results of a task.
 
-
-### Method and parameter documentation
-We have shown the basic methods of the client, however there are many methods available
-in the `Client` object. Each method has its own set of parameters and in order to know
-which parameters are available for a specific method, you can use the `help()` function
-in Python. For example, to get the documentation of the `client.organization.list()`
-method, you can use the following command:
-
-```bash
-python -i client.py
->>> help(client.organization.list)
-```
-```output
-list(self, name: 'str' = None, country: 'int' = None, collaboration: 'int' = None, study: 'int' = None, page: 'int' = None, per_page: 'int' = None) -> 'list[dict]'
-    List organizations
-
-    Parameters
-    ----------
-    name: str, optional
-        Filter by name (with LIKE operator)
-    country: str, optional
-        Filter by country
-    collaboration: int, optional
-        Filter by collaboration id. If client.setup_collaboration() was called,
-        the previously setup collaboration is used. Default value is None
-
-```
-This shows you that you can filter the list of organizations (among others) by name,
-country, and collaboration.  It is also possible to request documentation of a higher
-level method, for example `help(client.organization)` or even `help(client)`.:
-
-::::::::::::::::::::::::::::::::::::: spoiler
-
-#### Online documentation
-
-To view all `Client` functions and their arguments without using `help()` you can use
-the [official documentation (docs.vantage6.ai)](https://docs.vantage6.ai/en/main/function-docs/_autosummary/vantage6.client.Client.html#vantage6-client-client). Which is the same as the Python client's docstring.
-
-Make sure you are viewing the documentation of the version of the client you are using.
-You can find the version of the client by one of the following commands:
-```Python
-import vantage6.client
-print(vantage6.client.__version__)
-```
-
-or by running the following command in the terminal:
-
-::: tab
-
-### Linux / MacOS
-
-```bash
-pip show vantage6-client | grep Version
-```
-
-### Windows
-
-```cmd
-pip show vantage6-client | findstr Version
-```
-
-:::
-
-:::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Find documentation
+### 3. Find documentation
 
-Find the documentation on how to reset your password 🔑 using the `help()` function.
+Find the documentation on how to reset your password 🔑 in case you forgot it. You can
+use the `help()` to explore the client functions.
 
 ::: hint
 
@@ -507,9 +488,18 @@ Use the `help()` function to find the documentation of the `client.util` resourc
 
 ::: solution
 
+To obtain a token:
+```python
+help(client.util.reset_my_password)
+```
+Then you can use:
+
 ```python
 help(client.util.change_my_password)
 ```
+
+The function `client.util.change_my_password` is used to change the password of the
+authenticated user.
 :::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -615,7 +605,7 @@ it back online.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-##### Check the status of the nodes
+##### 4. Check the status of the nodes
 
 Use the Python client to check the status of the nodes that are part of the
 collaboration you are interested in.
@@ -679,10 +669,6 @@ the study ID by using the `client.study.list()` method. Write down the ID of the
 ```python
 client.study.list(fields=("id", "name"))
 ```
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 #### Task definition
 
@@ -837,72 +823,19 @@ for output in results["data"]:
 print(global_sum / global_count)
 ```
 
+### Create a central task
 
-# Advanced Exercises
-
-
-:::::::::::::::::::::::::::::::::::::::::::::::: challenge
-
-## Find study details
-
-
-A study is a subset of a collaboration. Obtain the IDs of the collaborations and
-organizations of the following studies. Refer to the [Using the client](#using-the-client)
-section above on how to do this.
-
-| User      | Roles      | Collaboration |
-| --------- | ---------- | ------------- |
-| [*] AGOT2024  | Researcher |     [*]     |
-| [*] GGA2024   | Researcher |     [*]     |
-
-[*] Should be replaced with the collaboration name you have access to. This can be one of
-  Oak Alliance, Pine Partners, Maple Consortium, Cedar Coalition, Birch Brotherhood,
-  Redwood Union or Willow Network.
-
-Now, try to identify which nodes are online in each study.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::: solution
-
-First, lets obtain the study IDs:
-```python
-client.study.list(fields=('id', 'name'))
-```
-
-Note that your output might be slightly different. But the *AGOT2024* and *GGA2024*
-studies should be present:
-```output
-[
-    {'id': 1, 'name': '[*] AGOT2024'},
-    {'id': 2, 'name': '[*] GGA2024'},
-    ...
-]
-```
-
-Now, obtain the organizations of the study:
-```python
-client.organization.list(study=1, fields=['id', 'name'])
-```
-
-```output
-[
-    {'id': 1, 'name': 'org1'},
-    {'id': 2, 'name': 'org2'}
-]
-```
-
-:::::::::::::::::::::::::::::::::
-
-
+In the previous section you created a task to run the `partial_average()` function. Now,
+create a task to run the `central_average()` function.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Run central method
+## 5. Run central method
 
 In section [Creating a new task](#creating-a-new-task) it is explained how to create a
 task to run the `partial_average()` function. Now, create a task to run the
-`central_average()` function.
+`central_average()` function. ⚠ Make sure to **only** send the task to a single
+organization.
 
 :::::::::::::::::::::::: solution
 
@@ -914,8 +847,7 @@ input_ = {
 }
 
 average_task = client.task.create(
-   collaboration=1,
-   organizations=[1,2,3,4],
+   organizations=[1],
    study=1,
    name="name_for_the_task",
    image="harbor2.vantage6.ai/demo/average",
@@ -940,14 +872,16 @@ print(result)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Inspect log files
+### Inspecting log files
 
 Each task consists of several runs. Each node included in the task execution will at
 least have one run. But in case of multi-step algorithms or iterative algorithms, a
 node can have multiple runs. Each run has a log file that contains information about
 the execution of the algorithm on the node.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## 6. Inspect log files
 
 1. Retrieve the log files from the central method from previous challenge.
 2. Rerun the central method, but this time use a column name that does not exist in the
@@ -963,7 +897,8 @@ for run in runs["data"]:
     print(run['log'])
 ```
 
-In the second case you should be able to find an exception in the log file.
+In the second case you should be able to find an exception in the log file. Is the error
+message clear enough to understand what went wrong?
 
 :::::::::::::::::::::::::::::::::
 

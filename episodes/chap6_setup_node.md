@@ -24,6 +24,31 @@ exercises: 3
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+This lessons requires the instructor to type commands in the terminal and show the output to the learners.
+
+To make sure the learners can follow along, the instructor should explain each command before executing it,
+and go through or explain the output after executing it.
+
+Also, it's recommended to use a light background in the terminal to make the text more readable. You
+could choose one color theme from https://iterm2colorschemes.com/.
+
+And you should change the shell prompt in terminal to easy-to-catch one, e.g. red arrow:
+
+```bash
+# BASH shell
+export PS1='\[\e[31m\]-->\[\e[0m\] '
+```
+
+```zsh
+# ZSH shell
+export PROMPT='%F{red}-->%f '
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 Vantage6 node is the software that runs on a data station. It allows the data owner to share their data within the vantage6 network in a privacy enhancing way. Also, it is responsible for the execution of the federated learning tasks and the communication with the vantage6 server.
 
 Each organization that is involved in a federated learning collaboration has its own node in that collaboration. They should therefore install the node software on a (virtual) machine hosted in their own infrastructure. The machine should have access to the data that is used in the federated learning collaboration.
@@ -56,10 +81,8 @@ The following software must be installed before installing the vantage6 node:
 - Miniconda (latest version)
 - Python v3.10
 - Python packages:
-  - [vantage6==4.7.x](https://pypi.org/project/vantage6/)
-  - [vantage6-client==4.7.x](https://pypi.org/project/vantage6-client/)
-  - [vantage6-algorithm-tools==4.7.x](https://pypi.org/project/vantage6-algorithm-tools/)
-- A code editor [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm/) or something similar
+  - [vantage6==4.7.1](https://pypi.org/project/vantage6/)
+  - [jupyterlab](https://pypi.org/project/jupyterlab/)
 
 You should already have installed the requirements before coming to this lesson. They are detailed in the [Setup section](../setup.md).
 
@@ -85,7 +108,7 @@ conda create -n v6-workshop python=3.10
 conda activate v6-workshop
 
 # Then install the package
-pip install vantage6
+pip install vantage6 jupyterlab
 ```
 
 To verify the installed CLI, run the command,
@@ -124,14 +147,82 @@ Commands:
   version             Returns current version of a vantage6 node.
 ```
 
-For example, to create a new node configuration, you can run the command `v6 node new`, then you can start the new node by running `v6 node start`, and then stop the node with `v6 node stop` command.
+For example, to view the list of available nodes, you can run the command `v6 node list`.
 
+### View the list of nodes
+
+You can use the `v6 node list` command to see the list of nodes:
+
+```bash
+v6 node list
+```
+
+If it print out a long error message, it means the Docker engine is not running:
+```bash
+Cannot reach the Docker engine! Please make sure Docker is running.
+Error while fetching server API version: 502 Server Error for http+docker://localhost/version: Bad Gateway
+Traceback (most recent call last):
+...
+```
 ⚠️ Please make sure Docker is running when you're using the `v6 node` commands.
+
+::: callout
+
+### Start Docker engine
+
+- For Windows and MacOS, open Docker Desktop to start the Docker engine.
+- For Linux, Docker engine usually starts automatically when you login. Otherwise, use the commmand `sudo systemctl start docker` to start the Docker engine.
+
+:::
+
+If the Docker engine is running, you will see the following message:
+
+```bash
+Name                     Status          System/User
+-----------------------------------------------------
+-----------------------------------------------------
+```
+
+You don't see any nodes in the list because you haven't created any nodes yet. Next, we will create a new node configuration.
 
 ## Configure a new node
 
-We will now create a new node configuration using the `v6 node new` command.
-This process will create a configuration `yaml` file that the vantage6-node requires to run.
+We will now create a new node configuration using the `v6 node new` command for the collaboration we created in [Chapter 4](./chap4_manage_via_ui.md).
+This process will create a configuration `yaml` file that the vantage6 node requires to run.
+
+### Prepare the API key and data
+
+Make sure you have the API key downloaded from the vantage6 UI in [Episode 4](./chap4_manage_via_ui.md#create-a-new-collaboration). If you haven't done so or lost the API key, you can reset the API key for the node in the vantage6 UI, check the [Reset API key for a node via the vantage6 UI](#reset-api-key-for-a-node-via-the-vantage6-ui) section.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Display the downloaded API key file and there should be at least two API keys for two organizations in the collaboration.
+If the participants don't have the API key, helpers can help them quickly reset it in the vantage6 UI to not block the progress of the lesson.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Go back to the terminal and go to a directory you want to work in:
+
+```bash
+cd  path/to/your/directory
+```
+
+Open the jupyter lab in the terminal:
+
+```bash
+jupyter lab
+```
+
+In the Jupyter Lab, create a new csv data file `data_node1.csv` with the following content:
+
+```csv
+age
+1
+1
+1
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Participants may make mistakes while entering the `v6 node new` command input. It may be good to tell them in advance that in that step the tool is just creating a configuration file, and that they can fix it later if they make a typo or something, so they don't redo it all over again.
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Let's run the command:
 
@@ -145,29 +236,29 @@ The command will show a wizard to guide you through the configuration process in
 ? Please enter a configuration-name: node1
 ? Enter given api-key: ***
 ? The base-URL of the server: https://server.workshop.vantage6.ai
-? Enter port to which the server listens: 5000
+? Enter port to which the server listens: 443
 ? Path of the api: /api
 ? Task directory path: ***/vantage6/node/node1
 ? Do you want to add a database? Yes
 ? Enter unique label for the database: default
-? Database URI: ***/data.csv
+? Database URI: ***/data_node1.csv
 ? Database type: csv
-? Do you want to add a database? Yes
-? Enter unique label for the database: default
-? Database URI: ***/data.sql
-? Database type: sql
 ? Do you want to add a database? No
-? Which level of logging would you like? DEBUG
 ? Do you want to connect to a VPN server? No
-? Enable encryption? No
+? Do you want to add limit the algorithms allowed to run on your node? This should always be done for production scenarios. No
+? Which level of logging would you like? DEBUG
+? Encryption is disabled for this collaboration. Accept? Yes
 ```
 
 It is important to note the meaning of following configuration parameters:
 
 - The `api-key` is the API key that you downloaded from vantage6 UI in [Chapter 4](./chap4_manage_via_ui.md). It is used to authenticate the node at the server.
 - The `base-URL of the server` is the URL of the vantage6 server. If you are running the server on your local machine using Docker, the URL has to be set to `http://localhost`
+- The `port to which the server listens` is the port number of the server. Check with the server administrator to get the correct port number.
 - The `path of the api` is the path of the API of the server. By default it is `/api`.
 - The `database URI` is the path of the database file containing the sensitive data. You can add multiple databases by repeating the process. The database type can be 'csv', 'parquet', 'sql', 'sparql', 'excel' or 'omop'.
+- The `unique label for the database` is the name of the database. It must be unique. It's used when you want to refer to the database in the algorithms.
+- The `VPN server` is used to connect the node to a VPN server. A VPN connection allows nodes to communicate directly with one another, which is useful when some algorithms require direct or a lot of communication between nodes. For more information, see the [vantage6 documentation](https://docs.vantage6.ai/en/main/features/inter-component/vpn.html).
 
 To see all configuration options, please check https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options.
 
@@ -193,8 +284,6 @@ It will ask you which node you want to see. You can choose the one you just crea
 ```bash
 ? Select the configuration you want to use: (Use arrow keys)
  » node1
-   node2
-   node3
 ```
 
 In the printed message, you will see not only the path of the configuration file is printed out, but also the locations of the log file, the data folders and the database files are shown.
@@ -203,11 +292,11 @@ In the printed message, you will see not only the path of the configuration file
 
 ## Challenge 1: Create a new node configuration
 
-1. Create a new node configuration using the `v6 node new` command.
+1. Create a new node configuration `node2` using the `v6 node new` command for another organization in the collaboration you created in [Episode 4](./chap4_manage_via_ui.md):
+    - add a new database in the format of `csv` with only one column named `age`, you need to make up the data.
 2. Find the path to the configuration file using the `v6 node files` command. Open the configuration file with a text editor and check the configuration options. Are they correct?
 3. Open your configuration file, do the following:
-   - add a new database in the format of `excel`,
-   - find the missing options in your file by comparing with the option template in the [vantage6 documentation](https://docs.vantage6.ai/en/main/node/configure.html#all-configuration-options).
+   - add another database in the format of `excel` with only one column named `age`, you need to make up the data.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -229,7 +318,6 @@ It will ask you which node you want to start. You can choose the one you just cr
 ? Select the configuration you want to use: (Use arrow keys)
  » node1
    node2
-   node3
 ```
 
 then it will start the node and print out the following messages:
@@ -239,19 +327,20 @@ then it will start the node and print out the following messages:
 [info ] - Starting node...
 [info ] - Finding Docker daemon
 [info ] - Checking that data and log dirs exist
-[info ] - Connecting to server at 'http://localhost:5000/api'
-[info ] - Pulling latest node image 'harbor2.vantage6.ai/infrastructure/node:4.5'
+[info ] - Connecting to server at 'https://server.workshop.vantage6.ai:443/api'
+[info ] - Pulling latest node image 'harbor2.vantage6.ai/infrastructure/node:4.7'
 [info ] - Creating file & folder mounts
-[warn ] - private key file provided ***/private_key.pem, but does not exists
+[warn ] - private key file provided ***/vantage6/node/node1/private_key.pem, but does not exists
 [info ] - Setting up databases
-[info ] -   Processing csv database default: ***/data.csv
-[info ] -   Processing csv database default: ***/data.csv
+[info ] -   Processing csv database default:***/data_node1.csv
+[debug] -   - file-based database added
 [info ] - Running Docker container
-[info ] - Node container was successfully started!
+[info ] - Node container was started!
+[info ] - Please check the node logs to see if the node successfully connects to the server.
 [info ] - To see the logs, run: v6 node attach --name node1
 ```
 
-🎉 Now, the node is started successfully!
+Now the node container is running, but it does not mean the node is connected to the server. You need to check the logs to see if the node successfully connects to the server.
 
 ## Watch the logs
 
@@ -264,86 +353,86 @@ v6 node attach --name node1
 then it will print out the logs of the node in the console:
 
 ```bash
-2024-05-24 14:15:14 - context        - INFO     - ---------------------------------------------
-2024-05-24 14:15:14 - context        - INFO     -  Welcome to
-2024-05-24 14:15:14 - context        - INFO     -                   _                     __
-2024-05-24 14:15:14 - context        - INFO     -                  | |                   / /
-2024-05-24 14:15:14 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
-2024-05-24 14:15:14 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
-2024-05-24 14:15:14 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
-2024-05-24 14:15:14 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
-2024-05-24 14:15:14 - context        - INFO     -                             __/ |
-2024-05-24 14:15:14 - context        - INFO     -                            |___/
-2024-05-24 14:15:14 - context        - INFO     -
-2024-05-24 14:15:14 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
-2024-05-24 14:15:14 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
-2024-05-24 14:15:14 - context        - INFO     -  --> Blog: https://vantage6.ai
-2024-05-24 14:15:14 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 14:15:14 - context        - INFO     - Cite us!
-2024-05-24 14:15:14 - context        - INFO     - If you publish your findings obtained using vantage6,
-2024-05-24 14:15:14 - context        - INFO     - please cite the proper sources as mentioned in:
-2024-05-24 14:15:14 - context        - INFO     - https://vantage6.ai/vantage6/references
-2024-05-24 14:15:14 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 14:15:14 - context        - INFO     - Started application vantage6
-2024-05-24 14:15:14 - context        - INFO     - Current working directory is '/'
-2024-05-24 14:15:14 - context        - INFO     - Successfully loaded configuration from '/mnt/config/node1.yaml'
-2024-05-24 14:15:14 - context        - INFO     - Logging to '/mnt/log/node_user.log'
-2024-05-24 14:15:14 - context        - INFO     - Common package version '4.5.0'
-2024-05-24 14:15:14 - context        - INFO     - vantage6 version '4.5.0'
-2024-05-24 14:15:14 - context        - INFO     - vantage6 version '4.5.0'
-2024-05-24 14:15:14 - context        - INFO     - Node package version '4.5.0'
-2024-05-24 14:15:14 - node           - INFO     - Connecting server: http://host.docker.internal:5000/api
-2024-05-24 14:15:14 - node           - DEBUG    - Authenticating
-2024-05-24 14:15:14 - common         - DEBUG    - Authenticating node...
-2024-05-24 14:15:17 - common         - INFO     - Successfully authenticated
-2024-05-24 14:15:17 - common         - DEBUG    - Making request: GET | http://host.docker.internal:5000/api/node/18 | None
-2024-05-24 14:15:17 - common         - DEBUG    - Making request: GET | http://host.docker.internal:5000/api/organization/2 | None
-2024-05-24 14:15:17 - node           - INFO     - Node name: ZEPPELIN - Small Organization
-2024-05-24 14:15:17 - common         - DEBUG    - Making request: GET | http://host.docker.internal:5000/api/collaboration/1 | None
-2024-05-24 14:15:17 - node           - WARNING  - Disabling encryption!
-2024-05-24 14:15:17 - node           - INFO     - Setting up proxy server
-2024-05-24 14:15:17 - node           - INFO     - Starting proxyserver at 'proxyserver:80'
-2024-05-24 14:15:17 - node           - INFO     - Setting up VPN client container
-2024-05-24 14:15:17 - vpn_manager    - INFO     - Updating VPN images...
-2024-05-24 14:15:17 - vpn_manager    - DEBUG    - Pulling Alpine image
-2024-05-24 14:15:19 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/alpine:4.5
-2024-05-24 14:15:19 - vpn_manager    - DEBUG    - Pulling VPN client image
-2024-05-24 14:15:21 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-client:4.5
-2024-05-24 14:15:21 - vpn_manager    - DEBUG    - Pulling network config image
-2024-05-24 14:15:33 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-configurator:4.5
-2024-05-24 14:15:33 - vpn_manager    - INFO     - Done updating VPN images
-2024-05-24 14:15:33 - vpn_manager    - DEBUG    - Used VPN images:
-2024-05-24 14:15:33 - vpn_manager    - DEBUG    -   Alpine: harbor2.vantage6.ai/infrastructure/alpine:4.5
-2024-05-24 14:15:33 - vpn_manager    - DEBUG    -   Client: harbor2.vantage6.ai/infrastructure/vpn-client:4.5
-2024-05-24 14:15:33 - vpn_manager    - DEBUG    -   Config: harbor2.vantage6.ai/infrastructure/vpn-configurator:4.5
-2024-05-24 14:15:33 - node           - WARNING  - VPN subnet is not defined! VPN disabled.
-2024-05-24 14:15:33 - node           - INFO     - No SSH tunnels configured
-2024-05-24 14:15:33 - node           - INFO     - No squid proxy configured
-2024-05-24 14:15:33 - node           - DEBUG    - Setting up the docker manager
-2024-05-24 14:15:33 - docker_manager - DEBUG    - Initializing DockerManager
-2024-05-24 14:15:33 - docker_manager - WARNING  - No policies on allowed algorithms have been set for this node!
-2024-05-24 14:15:33 - docker_manager - WARNING  - This means that all algorithms are allowed to run on this node.
-2024-05-24 14:15:33 - docker_manager - DEBUG    - Databases: {'default': {'uri': '/data/data.csv', 'is_file': False, 'type': 'csv', 'env': {}}}
-2024-05-24 14:15:33 - node           - DEBUG    - Creating websocket connection with the server
-2024-05-24 14:15:33 - node           - INFO     - Connected to host=http://host.docker.internal on port=5000
-2024-05-24 14:15:33 - node           - DEBUG    - Starting thread to ping the server to notify this node is online.
-2024-05-24 14:15:33 - network_man..  - DEBUG    - Connecting vantage6-node1-user to network 'vantage6-node1-user-net'
-2024-05-24 14:15:33 - socket         - INFO     - (Re)Connected to the /tasks namespace
-2024-05-24 14:15:33 - common         - DEBUG    - Making request: GET | http://host.docker.internal:5000/api/run | {'state': 'open', 'node_id': 18, 'include': 'task'}
-2024-05-24 14:15:34 - node           - DEBUG    - Start thread for sending messages (results)
-2024-05-24 14:15:34 - node           - DEBUG    - Waiting for results to send to the server
-2024-05-24 14:15:34 - node           - DEBUG    - Starting thread for incoming messages (tasks)
-2024-05-24 14:15:34 - node           - DEBUG    - Listening for incoming messages
-2024-05-24 14:15:34 - node           - INFO     - Init complete
-2024-05-24 14:15:34 - node           - INFO     - Waiting for new tasks....
-2024-05-24 14:15:34 - socket         - INFO     - Node <ZEPPELIN - Small Organization> joined room <collaboration_1>
-2024-05-24 14:15:34 - socket         - INFO     - Node <ZEPPELIN - Small Organization> joined room <collaboration_1_organization_2>
-2024-05-24 14:15:34 - socket         - INFO     - Websocket connection established
-2024-05-24 14:15:34 - node           - DEBUG    - task_results: []
-2024-05-24 14:15:34 - node           - INFO     - Received 0 tasks
-2024-05-24 14:15:34 - socket         - DEBUG    - Tasks synced again with the server...
-2024-05-24 14:15:34 - docker_manager - ERROR    - Database with label default is not a file. Cannot determine columns without query
-2024-05-24 14:15:34 - node           - DEBUG    - Sharing node configuration: {'encryption': False, 'allowed_algorithms': 'all', 'database_labels': ['default', 'default'], 'database_types': {'db_type_default': 'sql'}, 'database_columns': {'columns_default': []}}
+2024-09-23 09:09:59 - context        - INFO     - ---------------------------------------------
+2024-09-23 09:09:59 - context        - INFO     -  Welcome to
+2024-09-23 09:09:59 - context        - INFO     -                   _                     __
+2024-09-23 09:09:59 - context        - INFO     -                  | |                   / /
+2024-09-23 09:09:59 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
+2024-09-23 09:09:59 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
+2024-09-23 09:09:59 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
+2024-09-23 09:09:59 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
+2024-09-23 09:09:59 - context        - INFO     -                             __/ |
+2024-09-23 09:09:59 - context        - INFO     -                            |___/
+2024-09-23 09:09:59 - context        - INFO     -
+2024-09-23 09:09:59 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
+2024-09-23 09:09:59 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
+2024-09-23 09:09:59 - context        - INFO     -  --> Blog: https://vantage6.ai
+2024-09-23 09:09:59 - context        - INFO     - ------------------------------------------------------------
+2024-09-23 09:09:59 - context        - INFO     - Cite us!
+2024-09-23 09:09:59 - context        - INFO     - If you publish your findings obtained using vantage6,
+2024-09-23 09:09:59 - context        - INFO     - please cite the proper sources as mentioned in:
+2024-09-23 09:09:59 - context        - INFO     - https://vantage6.ai/vantage6/references
+2024-09-23 09:09:59 - context        - INFO     - ------------------------------------------------------------
+2024-09-23 09:09:59 - context        - INFO     - Started application vantage6
+2024-09-23 09:09:59 - context        - INFO     - Current working directory is '/'
+2024-09-23 09:09:59 - context        - INFO     - Successfully loaded configuration from '/mnt/config/node1.yaml'
+2024-09-23 09:09:59 - context        - INFO     - Logging to '/mnt/log/node_user.log'
+2024-09-23 09:09:59 - context        - INFO     - Common package version '4.7.1'
+2024-09-23 09:09:59 - context        - INFO     - vantage6 version '4.7.1'
+2024-09-23 09:09:59 - context        - INFO     - Node package version '4.7.1'
+2024-09-23 09:09:59 - node           - INFO     - Connecting server: https://server.workshop.vantage6.ai:443/api
+2024-09-23 09:09:59 - node           - DEBUG    - Authenticating
+2024-09-23 09:09:59 - common         - DEBUG    - Authenticating node...
+2024-09-23 09:10:03 - common         - INFO     - Successfully authenticated
+2024-09-23 09:10:03 - common         - DEBUG    - Making request: GET | https://server.workshop.vantage6.ai:443/api/node/268 | None
+2024-09-23 09:10:04 - common         - DEBUG    - Making request: GET | https://server.workshop.vantage6.ai:443/api/organization/170 | None
+2024-09-23 09:10:05 - node           - INFO     - Node name: eScience-UvA - eScience
+2024-09-23 09:10:05 - common         - DEBUG    - Making request: GET | https://server.workshop.vantage6.ai:443/api/collaboration/93 | None
+2024-09-23 09:10:05 - node           - WARNING  - Disabling encryption!
+2024-09-23 09:10:05 - node           - INFO     - Setting up proxy server
+2024-09-23 09:10:05 - node           - INFO     - Starting proxyserver at 'proxyserver:80'
+2024-09-23 09:10:05 - node           - INFO     - Setting up VPN client container
+2024-09-23 09:10:05 - vpn_manager    - INFO     - Updating VPN images...
+2024-09-23 09:10:05 - vpn_manager    - DEBUG    - Pulling Alpine image
+2024-09-23 09:10:06 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/alpine:4.7
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    - Pulling VPN client image
+2024-09-23 09:10:06 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-client:4.7
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    - Pulling network config image
+2024-09-23 09:10:06 - addons         - DEBUG    - Succeeded to pull image harbor2.vantage6.ai/infrastructure/vpn-configurator:4.7
+2024-09-23 09:10:06 - vpn_manager    - INFO     - Done updating VPN images
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    - Used VPN images:
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    -   Alpine: harbor2.vantage6.ai/infrastructure/alpine:4.7
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    -   Client: harbor2.vantage6.ai/infrastructure/vpn-client:4.7
+2024-09-23 09:10:06 - vpn_manager    - DEBUG    -   Config: harbor2.vantage6.ai/infrastructure/vpn-configurator:4.7
+2024-09-23 09:10:06 - node           - WARNING  - VPN subnet is not defined! VPN disabled.
+2024-09-23 09:10:06 - node           - INFO     - No SSH tunnels configured
+2024-09-23 09:10:06 - node           - INFO     - No squid proxy configured
+2024-09-23 09:10:06 - node           - DEBUG    - Setting up the docker manager
+2024-09-23 09:10:06 - docker_manager - DEBUG    - Initializing DockerManager
+2024-09-23 09:10:06 - docker_manager - WARNING  - No policies on allowed algorithms have been set for this node!
+2024-09-23 09:10:06 - docker_manager - WARNING  - This means that all algorithms are allowed to run on this node.
+2024-09-23 09:10:06 - docker_manager - INFO     - Copying /mnt/default.csv to /mnt/data
+2024-09-23 09:10:06 - docker_manager - INFO     - Copying /mnt/age.csv to /mnt/data
+2024-09-23 09:10:06 - docker_manager - DEBUG    - Databases: {'default': {'uri': PosixPath('/mnt/data/default.csv'), 'is_file': True, 'type': 'csv', 'env': {}}, 'age': {'uri': PosixPath('/mnt/data/age.csv'), 'is_file': True, 'type': 'csv', 'env': {}}}
+2024-09-23 09:10:06 - node           - DEBUG    - Creating websocket connection with the server
+2024-09-23 09:10:06 - node           - INFO     - Connected to host=https://server.workshop.vantage6.ai on port=443
+2024-09-23 09:10:06 - node           - DEBUG    - Starting thread to ping the server to notify this node is online.
+2024-09-23 09:10:06 - network_man..  - DEBUG    - Connecting vantage6-node1-user to network 'vantage6-node1-user-net'
+2024-09-23 09:10:06 - node           - DEBUG    - Start thread for sending messages (results)
+2024-09-23 09:10:06 - node           - DEBUG    - Waiting for results to send to the server
+2024-09-23 09:10:06 - node           - DEBUG    - Starting thread for incoming messages (tasks)
+2024-09-23 09:10:06 - node           - DEBUG    - Listening for incoming messages
+2024-09-23 09:10:06 - node           - INFO     - Init complete
+2024-09-23 09:10:06 - node           - INFO     - Waiting for new tasks....
+2024-09-23 09:10:07 - socket         - INFO     - Websocket connection established
+2024-09-23 09:10:07 - socket         - INFO     - (Re)Connected to the /tasks namespace
+2024-09-23 09:10:07 - common         - DEBUG    - Making request: GET | https://server.workshop.vantage6.ai:443/api/run | {'state': 'open', 'node_id': 268, 'include': 'task'}
+2024-09-23 09:10:07 - socket         - INFO     - Node <eScience-UvA - eScience> joined room <collaboration_93>
+2024-09-23 09:10:07 - socket         - INFO     - Node <eScience-UvA - eScience> joined room <collaboration_93_organization_170>
+2024-09-23 09:10:08 - node           - DEBUG    - task_results: []
+2024-09-23 09:10:08 - node           - INFO     - Received 0 tasks
+2024-09-23 09:10:08 - socket         - DEBUG    - Tasks synced again with the server...
+2024-09-23 09:10:08 - node           - DEBUG    - Sharing node configuration: {'encryption': False, 'allowed_algorithms': 'all', 'database_labels': ['default', 'age'], 'database_types': {'db_type_default': 'csv', 'db_type_age': 'csv'}, 'database_columns': {'columns_default': ['age'], 'columns_age': ['age']}}
 ```
 
 From there, you can see the running status of the node, the connection to the server, the databases, the websocket connection, and the incoming tasks.
@@ -352,8 +441,17 @@ From there, you can see the running status of the node, the connection to the se
 
 ## Challenge 2: Start a node and watch the logs
 
-1. Start the node you just created using the `v6 node start` command.
-2. Watch the logs of the node using the `v6 node attach --name xxx` command. Observe the logs and see if the node is running correctly.
+1. Start the node `node2` you created in last exercise using the `v6 node start` command.
+2. Watch the logs of the node using the `v6 node attach --name node2` command. Observe the logs and see if the node is connected to server successfully.
+3. How do you know if the node is connected to the server without checking the logs?
+
+::: solution
+
+3. You can use vantage6 UI to check if a node is online or not. There are two ways:
+    - Click on the `Nodes` tab in the administration page, then click on the tab of the node you want to check. You will see the node status is `Online` if the node is connected to the server successfully.
+    - Or click on the `Collaborations` tab in the administration page, then click on the tab of the collaboration you want to check. You will see the Nodes section, if nodes are in green color, it means they are online, otherwise they are in red color with a message `Offline`.
+
+:::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -376,32 +474,6 @@ after you choose the node, it will print out the following messages:
 
 ```bash
 ? Select the node you wish to stop: vantage6-node1-user
-2024-05-24 16:29:11 - context        - INFO     - ---------------------------------------------
-2024-05-24 16:29:11 - context        - INFO     -  Welcome to
-2024-05-24 16:29:11 - context        - INFO     -                   _                     __
-2024-05-24 16:29:11 - context        - INFO     -                  | |                   / /
-2024-05-24 16:29:11 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
-2024-05-24 16:29:11 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
-2024-05-24 16:29:11 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
-2024-05-24 16:29:11 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
-2024-05-24 16:29:11 - context        - INFO     -                             __/ |
-2024-05-24 16:29:11 - context        - INFO     -                            |___/
-2024-05-24 16:29:11 - context        - INFO     -
-2024-05-24 16:29:11 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
-2024-05-24 16:29:11 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
-2024-05-24 16:29:11 - context        - INFO     -  --> Blog: https://vantage6.ai
-2024-05-24 16:29:11 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 16:29:11 - context        - INFO     - Cite us!
-2024-05-24 16:29:11 - context        - INFO     - If you publish your findings obtained using vantage6,
-2024-05-24 16:29:11 - context        - INFO     - please cite the proper sources as mentioned in:
-2024-05-24 16:29:11 - context        - INFO     - https://vantage6.ai/vantage6/references
-2024-05-24 16:29:11 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 16:29:11 - context        - INFO     - Started application vantage6
-2024-05-24 16:29:11 - context        - INFO     - Current working directory is '***/vantage6/node'
-2024-05-24 16:29:11 - context        - INFO     - Successfully loaded configuration from '***/vantage6/node/node1.yaml'
-2024-05-24 16:29:11 - context        - INFO     - Logging to '***/vantage6/node/node1/node_user.log'
-2024-05-24 16:29:11 - context        - INFO     - Common package version '4.5.0'
-2024-05-24 16:29:11 - context        - INFO     - vantage6 version '4.5.0'
 [info ] - Stopped the vantage6-node1-user Node.
 ```
 
@@ -444,41 +516,39 @@ then it will ask you which node you want to update the API key of:
 ? Select the configuration you want to use: (Use arrow keys)
  » node1
    node2
-   node3
 ```
 
 after you choose the node, it will ask you to enter the new API key, then you can paste the new API key you just copied from the downloaded file:
 
 ```bash
 ? Select the configuration you want to use: node1
-? Please enter your new API key: the-new-api-key-you-received-from-the-server-administrator
-2024-05-24 16:28:16 - context        - INFO     - ---------------------------------------------
-2024-05-24 16:28:16 - context        - INFO     -  Welcome to
-2024-05-24 16:28:16 - context        - INFO     -                   _                     __
-2024-05-24 16:28:16 - context        - INFO     -                  | |                   / /
-2024-05-24 16:28:16 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
-2024-05-24 16:28:16 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
-2024-05-24 16:28:16 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
-2024-05-24 16:28:16 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
-2024-05-24 16:28:16 - context        - INFO     -                             __/ |
-2024-05-24 16:28:16 - context        - INFO     -                            |___/
-2024-05-24 16:28:16 - context        - INFO     -
-2024-05-24 16:28:16 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
-2024-05-24 16:28:16 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
-2024-05-24 16:28:16 - context        - INFO     -  --> Blog: https://vantage6.ai
-2024-05-24 16:28:16 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 16:28:16 - context        - INFO     - Cite us!
-2024-05-24 16:28:16 - context        - INFO     - If you publish your findings obtained using vantage6,
-2024-05-24 16:28:16 - context        - INFO     - please cite the proper sources as mentioned in:
-2024-05-24 16:28:16 - context        - INFO     - https://vantage6.ai/vantage6/references
-2024-05-24 16:28:16 - context        - INFO     - ------------------------------------------------------------
-2024-05-24 16:28:16 - context        - INFO     - Started application vantage6
-2024-05-24 16:28:16 - context        - INFO     - Current working directory is '***/vantage6/node'
-2024-05-24 16:28:16 - context        - INFO     - Successfully loaded configuration from '***/vantage6/node/node1.yaml'
-2024-05-24 16:28:16 - context        - INFO     - Logging to '***/vantage6/node/node1/node_user.log'
-2024-05-24 16:28:16 - context        - INFO     - Common package version '4.5.0'
-2024-05-24 16:28:16 - context        - INFO     - vantage6 version '4.5.0'
-2024-05-24 16:28:16 - context        - INFO     - vantage6 version '4.5.0'
+? Please enter your new API key: the-new-api-key
+2024-09-23 11:30:33 - context        - INFO     - ---------------------------------------------
+2024-09-23 11:30:33 - context        - INFO     -  Welcome to
+2024-09-23 11:30:33 - context        - INFO     -                   _                     __
+2024-09-23 11:30:33 - context        - INFO     -                  | |                   / /
+2024-09-23 11:30:33 - context        - INFO     - __   ____ _ _ __ | |_ __ _  __ _  ___ / /_
+2024-09-23 11:30:33 - context        - INFO     - \ \ / / _` | '_ \| __/ _` |/ _` |/ _ \ '_ \
+2024-09-23 11:30:33 - context        - INFO     -  \ V / (_| | | | | || (_| | (_| |  __/ (_) |
+2024-09-23 11:30:33 - context        - INFO     -   \_/ \__,_|_| |_|\__\__,_|\__, |\___|\___/
+2024-09-23 11:30:33 - context        - INFO     -                             __/ |
+2024-09-23 11:30:33 - context        - INFO     -                            |___/
+2024-09-23 11:30:33 - context        - INFO     -
+2024-09-23 11:30:33 - context        - INFO     -  --> Join us on Discord! https://discord.gg/rwRvwyK
+2024-09-23 11:30:33 - context        - INFO     -  --> Docs: https://docs.vantage6.ai
+2024-09-23 11:30:33 - context        - INFO     -  --> Blog: https://vantage6.ai
+2024-09-23 11:30:33 - context        - INFO     - ------------------------------------------------------------
+2024-09-23 11:30:33 - context        - INFO     - Cite us!
+2024-09-23 11:30:33 - context        - INFO     - If you publish your findings obtained using vantage6,
+2024-09-23 11:30:33 - context        - INFO     - please cite the proper sources as mentioned in:
+2024-09-23 11:30:33 - context        - INFO     - https://vantage6.ai/vantage6/references
+2024-09-23 11:30:33 - context        - INFO     - ------------------------------------------------------------
+2024-09-23 11:30:33 - context        - INFO     - Started application vantage6
+2024-09-23 11:30:33 - context        - INFO     - Current working directory is '***'
+2024-09-23 11:30:33 - context        - INFO     - Successfully loaded configuration from '***/vantage6/node/node1.yaml'
+2024-09-23 11:30:33 - context        - INFO     - Logging to '***/vantage6/node/node1/node_user.log'
+2024-09-23 11:30:33 - context        - INFO     - Common package version '4.7.1'
+2024-09-23 11:30:33 - context        - INFO     - vantage6 version '4.7.1'
 [info ] - Your new API key has been uploaded to the config file ***/vantage6/node/node1.yaml.
 ```
 
@@ -486,13 +556,17 @@ When you finish the process, the node configuration file will be updated with th
 
 To make the new API key effective, you need to restart the node by running the command `v6 node stop` and then `v6 node start`.
 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Regarding challenge 3, it's important to mention that usually you cannot reset the API key of a node of an organization the user is not part of, even if it's in the same collaboration.
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 3: Update the API key of a node
 
-1. Reset the API key of the node you just created in the vantage6 UI
-2. Update the API key of the node you just created, without using the `v6 node set-api-key` command.
-3. How do you make sure the new API key is effective?
+1. Reset the API key of the node `node2` you created in the first exercise.
+2. Update the API key of the node `node2`, WITHOUT using the `v6 node set-api-key` command.
+3. How do you verify that the new API key is effective?
 
 ::: solution
 
@@ -522,7 +596,26 @@ In the log, we have to look for the node authentication message:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+## Run a task on the nodes
+
+Now start all your nodes and go to the vantage6 UI to create a new task for your nodes.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 4: Run a task on the nodes
+
+Start all your nodes `node1` and `node2` and go to the vantage6 UI to run a new task for your nodes using the `Average` algorithm for the `age` data.
+
+1. Run a centralized task on the nodes.
+2. Run a federated task on the nodes.
+
+:::::::::::::::::::::::::::::::::::::
+
+
 ::: callout
+
+### `v6 server` and `v6 algorithm-store` commands
 
 In this lesson we have focussed on the CLI commands to manage the vantage6 node. Note
 that the commands to manage the server (`v6 server`) and the algorithm store (`v6 algorithm-store`)
