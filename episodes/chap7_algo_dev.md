@@ -77,7 +77,9 @@ def central_function(client: AlgorithmClient):
 
     results = client.wait_for_results(task.get('id'))
 
-    return aggregate_results(results)
+    aggregated =  aggregate_results(results)
+    
+    return aggregated
 
 ```
 
@@ -95,9 +97,12 @@ from vantage6.algorithm.tools.decorators import data
 # Load two data sources from the node
 @data(2)
 def partial_function(df1: pd.DataFrame, df2: pd.DataFrame, column: str):
-    return {
-        "sum1": df1[column].sum(),
-        "sum2": df2[column].sum()
+  sum1 = df1[column].sum()
+  sum2 = df2[column].sum()
+  
+  return {
+        "sum1": sum1,
+        "sum2": sum2
     }
 
 ```
