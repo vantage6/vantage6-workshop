@@ -153,7 +153,7 @@ Now create a new jupyter notebook in your jupyter lab environment and run a cell
 with the following code:
 
 ```python
- import vantage6.client
+import vantage6.client
 import vantage6.algorithm.tools
 ```
 
