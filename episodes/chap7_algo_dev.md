@@ -239,11 +239,11 @@ That should give you a nice head-start to develop your own algorithm!
 Inspect your personalized boilerplate code. What does it contain? Multiple answers are
 possible.
 
-A. Templates of your algorithm functions
-B. Arguments of your algorithm functions
-C. Scripts to test your algorithm functions
-D. Checklist of what to do to complete your algorithm
-E. A JSON file that helps to include the algorithm in an algorithm store
+- A: Templates of your algorithm functions
+- B: Arguments of your algorithm functions 
+- C: Scripts to test your algorithm functions 
+- D: Checklist of what to do to complete your algorithm
+- E: A JSON file that helps to include the algorithm in an algorithm store
 
 :::::::::::::::::::::::: solution
 
