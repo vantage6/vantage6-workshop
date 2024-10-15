@@ -44,7 +44,7 @@ The first study, **AGOT2024**, involves the analysis of age and weight-related d
 The consortium members already took care to ensure that their corresponding datasets follow the same structure (variable names and data types). This is key for making the federated analysis possible.
 The following is an example of how the 'default' database on all the nodes within the collaboration look like.
 
-| Gender | Age | Height | Weight | IsOverweight | AgeGroup  |
+| gender | age | height | weight | isOverweight | ageGroup  |
 |--------|-----|--------|--------|--------------|-----------|
 | M      | 39  | 152    | 108    | False        | 30 - 40   |
 | M      | 8   | 118    | 106    | False        | 0 - 10    |
