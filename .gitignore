@@ -62,6 +62,15 @@ instructors/files/infrastructure/workshop_resources/*.csv
 # Unignore the example file
 !instructors/files/infrastructure/workshop_resources/participants.csv
 
+# Drawio hidden backup files
+**/*.*.bkp
+**/*.bkp
+**/.$*.dtmp
+
+# Temporal powerpoint files
+~$*.pptx
+
+
 # other
 __pycache__/
 
