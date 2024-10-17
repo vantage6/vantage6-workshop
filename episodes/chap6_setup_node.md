@@ -556,29 +556,23 @@ When you finish the process, the node configuration file will be updated with th
 
 To make the new API key effective, you need to restart the node by running the command `v6 node stop` and then `v6 node start`.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-Regarding challenge 3, it's important to mention that usually you cannot reset the API key of a node of an organization the user is not part of, even if it's in the same collaboration.
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 3: Update the API key of a node
 
-1. Reset the API key of the node `node2` you created in the first exercise.
-2. Update the API key of the node `node2`, WITHOUT using the `v6 node set-api-key` command.
-3. How do you verify that the new API key is effective?
+1. Update the API key of the node `node1`, WITHOUT using the `v6 node set-api-key` command.
+2. How do you verify that the new API key is effective?
 
 ::: solution
 
-1. You can go to the `Nodes` tab in the administration page, then click on the tab of the node you want to reset the API key for, and click on the `Reset API key` button.
-2. We can update the API key in the configuration file:
+1. We can update the API key in the configuration file:
 
 - Run the `v6 node files` command to locate the configuration file.
 - Open the configuration file and write the new API key in the `api_key` field.
 - Stop the node with the `v6 node stop` command.
 - Restart the node with the `v6 node start` command.
 
-3. In order to verify the effectiveness of the API key change, we can restart the node with active logging:
+2. In order to verify the effectiveness of the API key change, we can restart the node with active logging:
 
 ```bash
 v6 node start --attach
