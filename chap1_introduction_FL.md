@@ -1,7 +1,7 @@
 ---
 title: "Introduction to privacy enhancing technologies (PET)"
-teaching: 10
-exercises: 2
+teaching: 60
+exercises: 15
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
