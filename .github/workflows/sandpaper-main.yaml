@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - fix-deployment
   schedule:
     - cron: '0 0 * * 2'
   workflow_dispatch:
@@ -36,9 +37,6 @@ jobs:
 
       - name: "Set up R"
         uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-          install-r: false
 
       - name: "Set up Pandoc"
         uses: r-lib/actions/setup-pandoc@v2
